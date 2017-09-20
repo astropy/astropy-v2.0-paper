@@ -61,9 +61,17 @@
 \author{Astropy Project}
 
 \begin{abstract}
-
-Astropy is amazing. and even more amazing than before
-
+The Astropy project supports and fosters the development of open-source Python
+packages that provide commonly-needed functionality to the astronomical
+community.
+A key element of the project is the Astropy core package, which serves as the
+foundation for more specialized projects and packages.
+In this article, we provide an overview of the organization of the Astropy
+project and summarize key features in the core package as of the recent major
+release, version 2.0.
+We then describe the project infrastructure designed to facilitate [...]
+We conclude with a future outlook of planned new features and directions for the
+broader Astropy ecosystem.
 \end{abstract}
 
 %% Keywords should appear after the \end{abstract} command.
@@ -97,16 +105,17 @@ versioning
 \subsection{Coordinates}
 % Adrian & Erik
 
-The \texttt{astropy.coordinates} subpackage ...
+The \texttt{astropy.coordinates} subpackage is designed to support
 
 - Three-tiered structure for coordinates: representation, frame, skycoord
 - With differential classes, frames support velocities
+
+Accuracy and comparison of coordinate system definitions?
+
+\subsubsection{Key features}
+
 - Celestial coordinates, and local coordinates (via EarthLocation + Time)
 - JPL ephemerids
-
-start with short description of the astropy approach and features (JPL ephemerids, barycentric correction, proper motions, coordinate frames) then shows the tests.
-
-In particular, we had a discussion on problems with the definition of some coordinate system on the mailing list. Getting that discussion in here gives us a refereed paper to point to when we need to push the IAU to fix that.
 
 \subsection{Units and quantities}
 
