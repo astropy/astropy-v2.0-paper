@@ -64,7 +64,7 @@ Astropy is amazing. and even more amazing than before
 
 \end{abstract}
 
-%% Keywords should appear after the \end{abstract} command. 
+%% Keywords should appear after the \end{abstract} command.
 %% See the online documentation for the full list of available subject
 %% keywords and the rules for their use.
 \keywords{}
@@ -89,13 +89,20 @@ The astropy project aims to provide python-based packages for all tasks that are
 (ordered in the order in which they appear in the astropy documentation)
 
 \subsection{Constants}
-versioning 
+versioning
 
 \subsection{Coordinates}
 
+The \texttt{astropy.coordinates} subpackage ...
 
+- Three-tiered structure for coordinates: representation, frame, skycoord
+- With differential classes, frames support velocities
+- Celestial coordinates, and local coordinates (via EarthLocation + Time)
+- JPL ephemerids
 
-start with short description of the astropy approach and features (JPL ephemerids, barycentric correction, proper motions, coordinate frames) then shows the tests. In particular, we had a discussion on problems with the definition of some coordinate system on the mailing list. Getting that discussion in here gives us a refereed paper to point to when we need to push the IAU to fix that.
+start with short description of the astropy approach and features (JPL ephemerids, barycentric correction, proper motions, coordinate frames) then shows the tests.
+
+In particular, we had a discussion on problems with the definition of some coordinate system on the mailing list. Getting that discussion in here gives us a refereed paper to point to when we need to push the IAU to fix that.
 
 \subsection{Units and quantities}
 
@@ -150,17 +157,17 @@ Summary
 
 Who to thank?
 
-%% Similar to \facility{}, there is the optional \software command to allow 
-%% authors a place to specify which programs were used during the creation of 
+%% Similar to \facility{}, there is the optional \software command to allow
+%% authors a place to specify which programs were used during the creation of
 %% the manusscript. Authors should list each code and include either a
 %% citation or url to the code inside ()s when available.
 
-\software{astropy \citep{2013A&A...558A..33A},  
-          numpy, 
-          scipy, 
+\software{astropy \citep{2013A&A...558A..33A},
+          numpy,
+          scipy,
           }
-          
-%\bibliographystyle{aasjournal}          
+
+%\bibliographystyle{aasjournal}
 %\bibliography{bibliography}
 
 \begin{thebibliography}{}
