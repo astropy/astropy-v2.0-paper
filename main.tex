@@ -1,5 +1,7 @@
 \documentclass[modern]{aastex61}
 
+\newcommand{\escapecmd}[1]{\texttt{\detokenize{#1}}}
+
 \submitjournal{ApJ}
 
 \shorttitle{Astropy Project II}
@@ -35,22 +37,26 @@ broader Astropy ecosystem.
 %% keywords and the rules for their use.
 \keywords{}
 
-\section{Notes and guidelines (to be removed)}
+\section*{Notes and guidelines (\textit{to be removed})}
 
 \begin{itemize}
-	\item Right now, we don't foresee needing to include code in this paper. But, if you think you will need to include code in your section, please add it to a separate Python module (.py file) and include it in this repository. 
+	\item We don't plan on including code in this paper, but if you think you will need to include code in your section, please add it to a separate Python module (.py file) and include it in this repository. 
+    \item Use \escapecmd{\sectionname} not Section, \escapecmd{\figname} not Figure, \escapecmd{\documentname} not Article
 \end{itemize}
 
 \section{Introduction} \label{sec:intro}
-
-Moritz volunteered to write the intro
+% Moritz (first draft)
 
 
 \section{Major concepts}
+
 \subsection{Astropy development model, astropy ecosystem}
 This subsection should include some basic statistics about the contributors, commits, line of code etc. up to the 2.0 release when we know it.
+
 \subsection{Mixin}
+
 \subsection{Accuracy testing across many different implementation}
+
 \subsection{Use of Quantities across package}
 
 %\subsection{Difficulty of reversing design choices}
@@ -78,8 +84,7 @@ The \texttt{astropy.coordinates} subpackage is designed to support
 
 Accuracy and comparison of coordinate system definitions?
 
-\textbf{Key features}
-
+\textbf{Key features:}
 \begin{itemize}
 	\item Celestial coordinates, and local coordinates (via EarthLocation + Time)
 	\item JPL ephemerids
@@ -88,9 +93,12 @@ Accuracy and comparison of coordinate system definitions?
 \subsection{Units and quantities}
 % Marten, Adrian
 
-incl logarithmic units and magnitudes
-speed improvements,
-interaction with numpy arrays
+\textbf{Key features:}
+\begin{itemize}
+	\item incl logarithmic units and magnitudes
+	\item speed improvements
+    \item interaction with numpy arrays
+\end{itemize}
 
 \subsection{Data arrays}
 
