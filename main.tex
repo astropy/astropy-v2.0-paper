@@ -52,10 +52,81 @@ broader Astropy ecosystem.
 \end{itemize}
 
 \section{Introduction} \label{sec:intro}
-% Moritz (first draft)
+% first draft by Moritz (hamogu)
+All astronomical research makes use of software in some way and
+astronomy as a field has long supported the development of specialized
+software tools for different astronomical tasks. Some of those
+software packages are (or at least were) supported by large
+institutions, e.g.\ IRAF \citep[developed at NAOA,][]{IRAF}, MIDAS
+\citep[developed at ESO,][]{MIDAS}, or ds9 \citep[developed at
+  SAO,][]{ds9}. These packages tend to address a wide range of users
+and they typically provide some level of documentation and user
+support. Other packages are developed foremost by individual research
+groups and used mostly in work by members of this group. Those
+packages can address more specialized needs, but are not necessarily
+available to the community and even if they are, documentation can in
+some cases be insufficient for new users and the quality of the
+software, i.e. the robustness and the level of testing that has been
+performed to ensure correctness, is not always clear. On the other
+hand, there are also many widely used, well documented, high quality
+software packages which are developed by individuals or small groups.
+
+The implementation of astronomical software, be it for a package meant
+for wide distribution or scripts and programs for a specific research
+project, can be eased by the use of a library that provides core
+functionality that is common to many astronomical tasks. Reading and
+writing fits files is one example where it is time
+consuming to implement the fits standard correctly and
+programming is much faster when using an existing library perform this
+task. Another example of such a common task is dealing with different
+astronomical coordinate systems. The astropy project aims to provide a
+library of core astronomical functionality in the Python programming
+language.
+
+Python\footnote{\url{https://www.python.org/}} is an increasingly
+popular general-purpose scripting language that is available under a
+permissive open source software licence free of charge for all major
+operating systems. Stable and well-developed packages provide support
+for array arithmetic \citep[numpy,][]{numpy}, a wide variety of
+functions for scientific computing \citep[scipy,][]{numpy}, and
+publication-quality plotting \citep[matplotlib,][]{matplotlib}. Tens of
+thousands of other packages are available which can help with tasks
+that are not astronomy specific but might be performed in the course
+of astronomical research, e.g.\ presenting results on websites or
+interfacing with databases.
+
+At the same time, an ecosystem of tools, programms, and webservices
+has become available that makes it easier to collaborate on code development,
+continuously test the code, build and provide documentation, and
+supply downloadable packages. The astropy project aims to develop and
+provide high quality code and documentation according to the best
+practices in software development. The project makes use of these
+tools to do so without central institutional oversight.
+
+The first public release of the astropy package is described in
+\cite{2013A&A...558A..33A}. Since then, the astropy package has been
+used in hundreds of projects, and the scope of the package as grown
+considerably. At the same time, the community of astronomers
+contributing to the project has grown tremendeously and an ecosystem
+of packages supporting or affiliated with the astropy core has
+developed. In this paper, we describe the current status of the
+astropy community, the astropy core package, and the astropy
+ecosystem.
+
+We start by describing the way the astropy project works and is
+organized in section~\ref{sec:concepts}.  The project develops a core
+package called \texttt{astropy} (section~\ref{sec:core}) and several
+separate packages that help setting up the infrastructure for testing,
+documentation etc.\ (section~\ref{sec:infrastructure}). In
+section~\ref{sec:learning} we give an overview of the wealth of
+recources created to teach new users the use of the astropy packages
+and how to contribute to the community. We end with a short vision for
+the future of astropy in section~\ref{sec:future}.
+
 
 
 \section{Major concepts}
+\label{sec:concepts}
 % Anyone want to take this??
 \subsection{APEs - Astropy Proposals for Enhancement}
 % would be nice to write about the concept of APEs so we can refer to the
@@ -114,7 +185,7 @@ bugfix releases.
 %difficulty to decide where general use ends and "handy feature for some" starts, i.e. how to reject PRs or deal with maintenance burden
 
 \section{Astropy Core Package v2.0}
-
+\label{sec:core}
 The astropy project aims to provide python-based packages for all tasks that are commonly needed in a large subset of the astronomical community. Two aspects of this (time and coordinate transformations) are already discussed in great detail in section 3. In this section, we highlight other features introduced or substantially improved since version v0.2, which is described in \citet{2013A&A...558A..33A}.
 (ordered in the order in which they appear in the astropy documentation)
 
@@ -221,6 +292,7 @@ wcsaxis, rgb, histograms comes to mind.Can use more publicity and also makes goo
 major additions to be discussed: lomb-scargle, sigma clipping, bayesian blocks, histograms, also:  robust (biweight) statistics
 
 \section{Infrastructure for affiliated packages}
+\label{sec:infrastructure}
 % - should we use links to the appropriate github repo?
 %
 \par In addition to astronomy related packages and libraries, the Astropy
@@ -253,11 +325,13 @@ widespread. Currently we support setups for TravisCI and AppveyorCI.
 % Commenting out unless a clear statement is added
 
 \section{Learning Astropy}
+\label{sec:learning}
 % Kelle, Adrian
 
 Explain components: Documentation, Example gallery, Tutorials and lessons
 
 \section{The future of the Astropy project}
+\label{sec:future}
 
 dropping python2 support, growths of affiliated packages
 Summary
