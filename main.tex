@@ -76,10 +76,29 @@ Historically, it has been unusual to keep units as part of numbers, especially a
 
 In the process, some standard wrappers have been defined that make defining functions that require quantities as input simpler. As an extension of this, we plan to define wrappers for functions that work on numbers that will automatically convert quantities to any required units.
 
-\subsection{Long term support}
+\subsection{Release cycle and Long Term Support}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
-
+%
+% - reference APE2 for versioning and APE10 for dropping python2 support
+% - shall we maybe refer to the release calendar, too?
+% - should we mention that v3.0 is the exception to the version numbering
+%   scheme we use by not being 2.1?
+\par The general scheme for the releases and version numbering that the core
+package has adopted if the following. Astropy has new feature releases every
+6 month, and between feature releases additional bugfix releases that
+contain only bugfixes but no new features. The timing of
+%
+\par Long-term support (LTS) releases continue to receive bugfixes for 2
+years with no changes to the API. They are ideal for pipelines and other
+applications where API stability is essential. The latest LTS release is
+also the last one that supports Python2, and will receive bug fixes until the
+end of 2019.
+%
+\par The version numbering of astropy reflects on the release scheme
+described above. The core package uses the form x.y.z, where x is advances
+on LTS, y is advanced for a non-LTS feature release, and z is advanced on
+bugfix releases.
 
 %\subsection{Difficulty of reversing design choices}
 %Deciding if a feature should be included
