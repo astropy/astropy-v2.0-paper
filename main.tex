@@ -212,16 +212,36 @@ wcsaxis, rgb, histograms comes to mind.Can use more publicity and also makes goo
 major additions to be discussed: lomb-scargle, sigma clipping, bayesian blocks, histograms, also:  robust (biweight) statistics
 
 \section{Infrastructure for affiliated packages}
+% - should we use links to the appropriate github repo?
+%
+\par In addition to astronomy related packages and libraries, the Astropy
+Project also contains and supports several infrastructure package that are
+very generic. The following sections describes the most widely used
+selection of them.
+%
 \subsubsection{Package template}
 % Brigitta may write this up if there is no other takers
+\par Astropy provides a template package that any Python package is welcome to
+use (many affiliated packages do so). The template contains a ready-to-go
+package layout. It provides infrastructure such as documentation tools,
+testing framework and CI templates and configurations, Cython integration,
+and documentation on how to make it all work.
+%
 \subsection{Continuous integration helpers}
 % Brigitta
+\texttt{ci-helpers} is a collection of scripts that empowers package
+maintainers to control their testing set up and installation process for
+various continuous integration services via a set of environment
+variables. While the current development is mostly driven by the needs of
+the astropy ecosystem, the actual usage of this package is extremely
+widespread. Currently we support setups for TravisCI and AppveyorCI.
+%
 \subsection{sphinx extensions}
-% Tom R 
+% Tom R
 
 
 % \section{State of the Ecosystem}
-% Commenting out unless a clear statement is added 
+% Commenting out unless a clear statement is added
 
 \section{Learning Astropy}
 % Kelle, Adrian
