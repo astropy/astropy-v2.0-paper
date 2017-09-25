@@ -253,7 +253,18 @@ QTable is new, mixin columns for time and coordinates. Table operations were add
 
 \subsubsection{Unified file read/write interface}
 
-Check when it was added. 
+Check when it was added (0.3?). Overview of the supported formats (ascii, fits, votable).
+
+\subsubsection{Enhanced CSV format}
+
+\subsubsection{ASCII, FITS, etc.}
+
+One subsection per format (if enough new features) ?
+
+\begin{itemize}
+\item ascii : fast reader/writer (1.0), HTML tables
+\item fits: lazy loading, command-line scripts (fitsheader, fitsinfo)
+\end{itemize}
 
 \subsection{Modeling}
 \label{sec:modeling}
@@ -288,10 +299,17 @@ wcsaxis, rgb, histograms comes to mind.Can use more publicity and also makes goo
 
 
 \subsection{Statistics}
-% Steve C.
+% Steve C.: overview, circular stats, 
 % Jake V.:  Lomb-scargle, Bayesian blocks
 % Larry:  sigma clipping, biweight stats
+% Ze':  Ripley's K (spatial stats)
 major additions to be discussed: lomb-scargle, sigma clipping, bayesian blocks, histograms, also:  robust (biweight) statistics
+
+\subsection{Robust Statistical Estimators}
+\subsection{Circular Statistics}
+\subsection{Lomb-Scargle Periodograms}
+\subsection{Ripley's K Function Estimators}
+\subsection{Histogram Binning}
 
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
