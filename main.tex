@@ -203,7 +203,7 @@ The astropy project aims to provide python-based packages for all tasks that are
 \label{sec:units}
 % Marten, Adrian
 
-\textbf{Key features:}
+\textbf{Key new features:}
 \begin{itemize}
 	\item incl logarithmic units and magnitudes
 	\item speed improvements
@@ -230,12 +230,15 @@ right ascension, declination) or Cartesian coordinates.
 They can therefore be re-represented or transformed to other reference frames
 (e.g., the Galactic frame) in an independent way.
 
-- Three-tiered structure for coordinates: representation, frame, skycoord
+The classes that handle coordinate representations (the \texttt{Representation}
+classes) act like three-dimensional vectors and thus support vector arithmetic.
+
+
 - With differential classes, frames support velocities
 
 Accuracy and comparison of coordinate system definitions?
 
-\textbf{Key features:}
+\textbf{Key new features:}
 \begin{itemize}
 	\item Celestial coordinates, and local coordinates (via EarthLocation + Time)
 	\item JPL ephemerids
