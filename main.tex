@@ -312,27 +312,35 @@ with a corresponding \texttt{Representation} class.
     observation planning can now be completed with \astropypkg\ or the
     \astropy-affiliated package \texttt{astroplan} (TODO: cite zenodo entry?).
 
+    \item[Proper motion and velocity transformations]
+    In addition to positional coordinate data, the \texttt{Frame} classes now
+    also support velocity data.
+    As the default representation for most frames is spherical, most of the
+    \texttt{Frame} classes expect proper motion and radial velocity components
+    to specify the velocity information.
+    The names of the proper motion components all start with \texttt{pm_} and
+    adopt the same longitude and latitude names as the positional components.
+    Transforming coordinates with velocity data is also supported, but in some
+    cases the transformed velocity components have limited accuracy because the
+    transformations are done numerically.
+    The visualization of the coordinate frame transform graph highlights which
+    velocity transformations can be done exactly and which transformations are
+    done using a finite-difference scheme.
+    The low-level interface for specifying and transforming velocity data (see
+    the next point) is currently experimental.
+    As such, in v2.0, only the \texttt{Frame} classes (and not the
+    \texttt{SkyCoord} class) support handling velocities.
+
     \item[Derivatives of coordinate representations]
     As mentioned above, the \texttt{Representation} classes act like
     three-dimensional vectors.
     \texttt{astropy.coordinates} now also supports handling first derivatives of
-    the \texttt{Representation} classes through the new \texttt{Differential}
-    classes.
-    The \texttt{Differential} classes are currently used internal to the
-    \texttt{Frame} classes to store velocity data when attached to a
-    \texttt{Representation} instance.
-
-    TODO: differential classes. Represent single-derivatives of
-    representations. Used to store velocity information, only really useful
-    attached to a representation object.
-
-    \item[Proper motion and velocity transformations]
-    TODO: Frame classes support proper motions, radial velocities. Explain
-    component naming, why SkyCoord doesn't support right now, "experimental" but
-    tested feature.
+    vectors / representations through the new \texttt{Differential} classes.
+    The \texttt{Differential} classes are currently used internally within the
+    \texttt{Frame} classes to store the velocity data.
 
     \item[JPL ephemeris]
-    TODO: JPL ephemerids % Who can write this? Erik?
+    TODO: JPL ephemerids % Erik?
 \end{description}
 
 \subsubsection{Accuracy and comparison of coordinate system definitions}
