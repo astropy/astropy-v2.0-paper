@@ -270,10 +270,16 @@ with a corresponding \texttt{Representation} class.
 
 \textbf{Key new features:}
 \begin{itemize}
-	\item TODO: Celestial coordinates, but now also local coordinates (via EarthLocation + Time)
-    \item TODO: differential classes
-    \item TODO: Proper motions, radial velocities
-    \item TODO: JPL ephemerids
+    \item TODO: Celestial coordinates, but now also local coordinates (via
+    EarthLocation + Time). Now supports Alt-Az coordinates, observation planning
+    - shoutout to astroplan
+    \item TODO: differential classes. Represent single-derivatives of
+    representations. Used to store velocity information, only really useful
+    attached to a representation object.
+    \item TODO: Frame classes support proper motions, radial velocities. Explain
+    component naming, why SkyCoord doesn't support right now, "experimental" but
+    tested feature.
+    \item TODO: JPL ephemerids % Who can write this? Erik?
 \end{itemize}
 
 \subsubsection{Accuracy and comparison of coordinate system definitions?}
