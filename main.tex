@@ -240,13 +240,12 @@ to specify the components of the coordinates.
 These preferred representation and short-hand component names differ between
 various astronomical reference systems.
 For example, in the ICRS frame, longitude and latitude are right ascension
-(\texttt{ra}) and declination ((\texttt{dec})), whereas in the Galactic frame,
-the spherical angles are Galactic longitude (\texttt{l}) and latitude
-(\texttt{b}).
+(\texttt{ra}) and declination (\texttt{dec}), whereas in the Galactic frame, the
+spherical angles are Galactic longitude (\texttt{l}) and latitude (\texttt{b}).
 Each of the \texttt{Frame} classes define their own component names and
 preferred \texttt{Representation} class.
 The frame-specific component names map to corresponding components on the
-underlying \texttt{Representation} object that interally stores the coordinate
+underlying \texttt{Representation} object that internally stores the coordinate
 data.
 For most frames the preferred representation is spherical.
 
@@ -254,11 +253,12 @@ Many of the \texttt{Frame} classes also have attributes specific to the
 corresponding reference system that allow the user to specify the frame.
 For example, the Fifth Fundamental Catalogue (FK5) reference system requires
 specifying an equinox to determine the reference frame.
+If required, these additional frame attributes must be specified along with the
+coordinate data when a \texttt{Frame} object is created.
 
+With all of that in mind, the typical user doesn't usually have to interact with
+the \texttt{Frame} or \texttt{Representation} classes directly.
 
-
-todo: The typical user doesn't have to interact with the frame classes or
-representation classes directly.
 Instead, use the \texttt{SkyCoord} object...
 
 Accuracy and comparison of coordinate system definitions?
