@@ -297,9 +297,17 @@ with a corresponding \texttt{Representation} class.
 
 \textbf{Key new features:}
 \begin{itemize}
-    \item TODO: Celestial coordinates, but now also local coordinates (via
-    EarthLocation + Time). Now supports Alt-Az coordinates, observation planning
-    - shoutout to astroplan
+    \item In addition to representing celestial coordinates, \astropypkg\
+    now supports specifying positions on the Earth in a number of different
+    geocentric systems with the \texttt{EarthLocation} class.
+    With this, \astropypkg\ now supports Earth-location-specific coordinate
+    systems such as the altitude-azimuth (\texttt{AltAz}) or horizontal system.
+    Transformations between \texttt{AltAz} and any Barycentric coordinate frame
+    also requires specifying a time using the \texttt{Time} class from
+    \texttt{astropy.time}.
+    With this new functionality, many of the common tasks associated with
+    observation planning can now be completed with \astropypkg\ or the
+    \astropy-affiliated package \texttt{astroplan} (TODO: cite zenodo entry?).
     \item TODO: differential classes. Represent single-derivatives of
     representations. Used to store velocity information, only really useful
     attached to a representation object.
