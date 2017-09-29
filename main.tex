@@ -221,6 +221,9 @@ versioning
 
 The \texttt{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
+The framework heavily relies on the \texttt{astropy.units} subpackage, and most
+inputs to objects in this subpackage are expected to be \texttt{Quantity}
+objects.
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
 of one another.
