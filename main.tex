@@ -60,10 +60,10 @@ software packages are (or at least were) supported by large
 institutions, e.g.\ IRAF \citep[developed at NOAO,][]{IRAF}, MIDAS
 \citep[developed at ESO,][]{MIDAS}, or ds9 \citep[developed at
 % * <bsipocz@gmail.com> 2017-09-28T21:05:00.569Z:
-% 
-% > or ds9 
+%
+% > or ds9
 % probably starlink is a better example as being a large package of software similarly to IRAF and MIDAS rather than a single tool.
-% 
+%
 % ^.
   SAO,][]{ds9}. These packages tend to address a wide range of users
 and they typically provide some level of documentation and user
@@ -221,7 +221,14 @@ versioning
 
 The \texttt{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
-
+A key concept behind the design of this subpackage is that coordinate
+\textit{representations} and \textit{reference systems / frames} are independent
+of one another.
+For example, a set of coordinates in the International Celestial Reference
+System (ICRS) reference frame could be represented as a spherical (distance,
+right ascension, declination) or Cartesian coordinates.
+They can therefore be re-represented or transformed to other reference frames
+(e.g., the Galactic frame) in an independent way.
 
 - Three-tiered structure for coordinates: representation, frame, skycoord
 - With differential classes, frames support velocities
@@ -305,7 +312,7 @@ wcsaxis, rgb, histograms comes to mind.Can use more publicity and also makes goo
 
 
 \subsection{Statistics}
-% Steve C.: overview, circular stats, 
+% Steve C.: overview, circular stats,
 % Jake V.:  Lomb-scargle, Bayesian blocks
 % Larry:  sigma clipping, biweight stats
 % Ze':  Ripley's K (spatial stats)
