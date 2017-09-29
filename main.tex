@@ -34,8 +34,8 @@
 \begin{abstract}
 % I (Adrian) took a first stab at the abstract, but it needs some work. Feel
 % free to modify!
-The \astropy\ project supports and fosters the development of open-source Python
-packages that provide commonly-needed functionality to the astronomical
+The \astropy\ project supports and fosters the development of open-source
+\python\ packages that provide commonly-needed functionality to the astronomical
 community.
 A key element of the project is the \astropy\ core package, which serves as the
 foundation for more specialized projects and packages.
@@ -100,7 +100,7 @@ consuming to implement the fits standard correctly and
 programming is much faster when using an existing library perform this
 task. Another example of such a common task is dealing with different
 astronomical coordinate systems. The \astropy\ project aims to provide a
-library of core astronomical functionality in the Python programming
+library of core astronomical functionality in the \python\ programming
 language.
 
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular
@@ -191,7 +191,7 @@ contain only bugfixes but no new features. The timing of
 \par Long-term support (LTS) releases continue to receive bugfixes for 2
 years with no changes to the API. They are ideal for pipelines and other
 applications where API stability is essential. The latest LTS release is
-also the last one that supports Python2, and will receive bug fixes until the
+also the last one that supports \python 2, and will receive bug fixes until the
 end of 2019.
 %
 \par The version numbering of \astropypkg\ reflects on the release scheme
@@ -348,7 +348,7 @@ The whole modeling submodule was missing from the previous paper, so everything 
 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example.png}
-An example showing different modes of convolution available in the \python ecosystem.  The red x's mark pixels that are set to NaN in the original data (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using scipy's direct convolution (b), any pixel within range of the original NaN pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set to zero first: the originally NaN regions are depressed relative to their surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior, where the missing pixels are replaced with values interpolated from their surroundings using the convolution kernel.
+An example showing different modes of convolution available in the \python\ ecosystem.  The red x's mark pixels that are set to NaN in the original data (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using scipy's direct convolution (b), any pixel within range of the original NaN pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set to zero first: the originally NaN regions are depressed relative to their surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior, where the missing pixels are replaced with values interpolated from their surroundings using the convolution kernel.
 \end{figure}
 
 
@@ -389,7 +389,7 @@ selection of them.
 %
 \subsubsection{Package template}
 % Brigitta may write this up if there is no other takers
-\par \astropy\ provides a template package that any Python package is welcome to
+\par \astropy\ provides a template package that any \python\ package is welcome to
 use (many affiliated packages do so). The template contains a ready-to-go
 package layout. It provides infrastructure such as documentation tools,
 testing framework and CI templates and configurations, Cython integration,
@@ -421,7 +421,7 @@ Explain components: Documentation, Tutorials, and lessons
 \section{The future of the Astropy project}
 \label{sec:future}
 
-dropping python2 support, growths of affiliated packages
+dropping \python 2 support, growths of affiliated packages
 Summary
 
 \acknowledgments
