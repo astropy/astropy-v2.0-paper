@@ -232,6 +232,15 @@ They can therefore be re-represented or transformed to other reference frames
 
 The classes that handle coordinate representations (the \texttt{Representation}
 classes) act like three-dimensional vectors and thus support vector arithmetic.
+The classes that represent reference systems and frames (the \texttt{Frame}
+classes) internally use \texttt{Representation} objects to store the coordinate
+data---that is, the \texttt{Frame} classes accept coordinate data, either as a
+specified \texttt{Representation} object, or using short-hand keyword arguments
+to specify the components of the coordinates.
+Many of the \texttt{Frame} classes also have attributes specific to the
+corresponding reference system that allow the user to specify the frame.
+For example, the Fifth Fundamental Catalogue (FK5) reference system requires
+specifying an equinox to determine the reference frame.
 
 
 - With differential classes, frames support velocities
