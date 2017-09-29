@@ -259,10 +259,15 @@ specifying an equinox to determine the reference frame.
 If required, these additional frame attributes must be specified along with the
 coordinate data when a \texttt{Frame} object is created.
 
-With all of that in mind, the typical user doesn't usually have to interact with
-the \texttt{Frame} or \texttt{Representation} classes directly.
+The typical user doesn't usually have to interact with the \texttt{Frame} or
+\texttt{Representation} classes directly.
+Instead, \texttt{astropy.coordinates} provides a high-level interface to
+representing astronomical coordinates through the \texttt{SkyCoord} class.
+The \texttt{SkyCoord} class was designed to provide a single, go-to class that
+accepts a wide range of possible inputs, and supports coordinate data in any
+reference frame with a corresponding \texttt{Frame} class in any representation
+with a corresponding \texttt{Representation} class.
 
-Instead, use the \texttt{SkyCoord} object...
 
 Accuracy and comparison of coordinate system definitions?
 
