@@ -246,6 +246,7 @@ versioning
 \label{sec:coordinates}
 % Adrian, Erik
 
+\subsubsection{Overview}
 The \texttt{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
 The framework heavily relies on the \texttt{astropy.units} subpackage, and most
@@ -295,11 +296,13 @@ accepts a wide range of possible inputs, and supports coordinate data in any
 reference frame with a corresponding \texttt{Frame} class in any representation
 with a corresponding \texttt{Representation} class.
 
-\textbf{Key new features:}
-\begin{itemize}
-    \item In addition to representing celestial coordinates, \astropypkg\
-    now supports specifying positions on the Earth in a number of different
-    geocentric systems with the \texttt{EarthLocation} class.
+\subsubsection{Key new features}
+
+\begin{description}\itemsep0ex
+    \item[Local Earth coordinate frames] In addition to representing celestial
+    coordinates, \astropypkg\ now supports specifying positions on the Earth in
+    a number of different geocentric systems with the \texttt{EarthLocation}
+    class.
     With this, \astropypkg\ now supports Earth-location-specific coordinate
     systems such as the altitude-azimuth (\texttt{AltAz}) or horizontal system.
     Transformations between \texttt{AltAz} and any Barycentric coordinate frame
@@ -308,14 +311,29 @@ with a corresponding \texttt{Representation} class.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg\ or the
     \astropy-affiliated package \texttt{astroplan} (TODO: cite zenodo entry?).
-    \item TODO: differential classes. Represent single-derivatives of
+
+    \item[Derivatives of coordinate representations]
+    As mentioned above, the \texttt{Representation} classes act like
+    three-dimensional vectors.
+    \texttt{astropy.coordinates} now also supports handling first derivatives of
+    the \texttt{Representation} classes through the new \texttt{Differential}
+    classes.
+    The \texttt{Differential} classes are currently used internal to the
+    \texttt{Frame} classes to store velocity data when attached to a
+    \texttt{Representation} instance.
+
+    TODO: differential classes. Represent single-derivatives of
     representations. Used to store velocity information, only really useful
     attached to a representation object.
-    \item TODO: Frame classes support proper motions, radial velocities. Explain
+
+    \item[Proper motion and velocity transformations]
+    TODO: Frame classes support proper motions, radial velocities. Explain
     component naming, why SkyCoord doesn't support right now, "experimental" but
     tested feature.
-    \item TODO: JPL ephemerids % Who can write this? Erik?
-\end{itemize}
+
+    \item[JPL ephemeris]
+    TODO: JPL ephemerids % Who can write this? Erik?
+\end{description}
 
 \subsubsection{Accuracy and comparison of coordinate system definitions}
 % Erik?
