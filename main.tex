@@ -413,10 +413,35 @@ An example showing different modes of convolution available in the \python\ ecos
 
 \subsection{Visualization}
 % Larry:  Image visualization (stretching, scaling), RGB
-% Tom R.:  WCSAxes
 
-wcsaxis, rgb, histograms comes to mind.Can use more publicity and also makes good images to include in the paper.
+The \package{visualization} package provides functionality that can be helpful when visualizing data. This includes a framework for plotting astronomical images with coordinates with Matplotlib (previously the standalone \package{wcsaxes} package), functionality related to image normaliation (including both scaling and stretching), smart histogram plotting, RGB color image creation from separate images, and custom plotting styles for Matplotlib.
 
+\subsubsection{Image Stretching and Normalization}
+
+The \package{visualization} package provides a framework for transforming values in images (and more generally any arrays), typically for the purpose of visualization. Two main types of transformations are normalization and stretching of image values.
+
+Normalization transforms the images values to the [0:1] range using lower and upper limits where $x$ represents the values in the original image:
+
+\begin{equation}
+y = \frac{x - v_{vmin}}{v_{max} − v_{min}}
+\end{equation}
+
+Stretching transforms the image values in the [0:1] range to the [0:1] range using a linear or non-linear function:
+\begin{equation}
+z = f(y)
+\end{equation}
+
+In addition, classes are provided in order to identify lower and upper limits for a dataset based on specific algorithms (such as using percentiles).
+
+Identifying lower and upper limits, as well as re-normalizing, is described in the Intervals and Normalization section, while stretching is described in the Stretching section.
+
+\subsubsection{WCSAxes}
+% Tom R.
+
+\subsubsection{Choosing Histogram Bins}
+
+\subsubsection{Creating color RGB images}
+% include images
 
 %\subsection{Utils}
 % Lim
@@ -432,6 +457,21 @@ wcsaxis, rgb, histograms comes to mind.Can use more publicity and also makes goo
 major additions to be discussed: lomb-scargle, sigma clipping, bayesian blocks, histograms, also:  robust (biweight) statistics
 
 \subsection{Robust Statistical Estimators}
+
+Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
+
+\subsubsection{Sigma Clipping}
+
+Sigma clipping provides a fast method to identify outliers in a distribution. For a distribution of points, a center and a standard deviation are calculated. Values which are a set number of sigma times the standard deviation away from the center are rejected. The process can be iterated to further reject outliers.
+
+\subsubsection{Median Absolute Deviation}
+
+The median abosolute deviation (MAD) is a measure of the spread of a distribution and is defined as median(abs(a - median(a))). For a normal distribution, the MAD is related to the standard deviation by a factor of 1.4826, and a convenience function is available to apply the conversion.
+
+\subsubsection{Biweight Estimators}
+
+A set of functions are included in the \package{stats} package that use the biweight formalism. These functions have long been used in astronomy, particularly to calculate the velocity dispersion of galaxy clusters [XXX].
+
 \subsection{Circular Statistics}
 \subsection{Lomb-Scargle Periodograms}
 \subsection{Ripley's K Function Estimators}
@@ -495,6 +535,7 @@ Who to thank?  numfocus,
 \software{\package{astropy} (\citealt{astropy}),
           \package{numpy} (\citealt{numpy}),
           \package{scipy} (\url{https://www.scipy.org/}),
+          \package{matplotlib} (\url{https://matplotlib.org/}),
           }
 
 \bibliographystyle{aasjournal}
