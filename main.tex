@@ -450,13 +450,31 @@ Identifying lower and upper limits, as well as re-normalizing, is described in t
 
 
 \subsection{Statistics}
+
+The \astropypkg\ \package{stats} package provides 
+statistical tools that are useful for or specific to 
+astronomy and are not found in other \python\ 
+statistics packages such as \package{scipy} 
+\citep{scipy} or \package{statsmodels} 
+\citep{seabold2010statsmodels}.   The 
+\package{stats} package contains a range of 
+different functionality used by many different 
+disciplines in astronomy.   It is not a complete set 
+of statistic tools, but rather a still growing 
+collection of useful features.   
+
+The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests. 
+
+In this section, we describe these tools that provide a range of different functionality including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.  
+
+
 % Steve C.: overview, circular stats,
 % Jake V.:  Lomb-scargle, Bayesian blocks
 % Larry:  sigma clipping, biweight stats
 % Ze':  Ripley's K (spatial stats)
-major additions to be discussed: lomb-scargle, sigma clipping, bayesian blocks, histograms, also:  robust (biweight) statistics
 
-\subsection{Robust Statistical Estimators}
+
+\subsubsection{Robust Statistical Estimators} 
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
@@ -472,10 +490,14 @@ The median abosolute deviation (MAD) is a measure of the spread of a distributio
 
 A set of functions are included in the \package{stats} package that use the biweight formalism. These functions have long been used in astronomy, particularly to calculate the velocity dispersion of galaxy clusters [XXX].
 
-\subsection{Circular Statistics}
-\subsection{Lomb-Scargle Periodograms}
-\subsection{Ripley's K Function Estimators}
-\subsection{Histogram Binning}
+\subsubsection{Circular Statistics}
+%steve
+\subsubsection{Lomb-Scargle Periodograms}
+%jake
+\subsubsection{Ripley's K Function Estimators}
+%ze
+\subsubsection{Histogram Binning}
+%jake
 
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
