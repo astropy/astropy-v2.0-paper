@@ -116,8 +116,8 @@ The implementation of astronomical software, be it for a package meant
 for wide distribution or scripts and programs for a specific research
 project, can be eased by the use of a library that provides core
 functionality that is common to many astronomical tasks. Reading and
-writing fits files is one example where it is time
-consuming to implement the fits standard correctly and
+writing FITS files is one example where it is time
+consuming to implement the FITS standard correctly and
 programming is much faster when using an existing library perform this
 task. Another example of such a common task is dealing with different
 astronomical coordinate systems. The \astropy\ project aims to provide a
@@ -195,7 +195,7 @@ a platform \footnote{\url{https://github.com/astropy/astropy-APEs}}
 open to the public. In previous APEs a community concensus emerged and
 APEs are accepted and become the basis for future work at this
 point. In cases where consensus cannot be reached, the
-\astropy\ coordination comitee can decide to close the discussion and
+\astropy\ coordination committee can decide to close the discussion and
 make an executive decision based on the community input on the APE in
 question. APEs are modeled after the ``Python Enhancement Proposals''
 (PEP) and guide the development of the \python\ programming language.
@@ -218,7 +218,7 @@ This subsection should include some basic statistics about the contributors, com
 
 {\bf Very rough first text!}
 
-Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg\ 0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg\ 2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in fits tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
+Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg\ 0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg\ 2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in FITS tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
 
 In the process, some standard wrappers have been defined that make defining functions that require quantities as input simpler. As an extension of this, we plan to define wrappers for functions that work on numbers that will automatically convert quantities to any required units.
 
@@ -383,10 +383,10 @@ coordinate frame in any representation by internally using the \texttt{Frame} an
 
     \item[Solar System Ephemerides]
     \comment{EJT}{APW, you may want to give this item a quick read-over?  If it looks good just delete this comment}
-    Also new is support for computing ephemeris of major solar system bodies and outputting the resulting positions as coordinate objects. 
-    These ephemerides can be computed either using analytic approximations from ERFA (which requires no data download beyond the source code), or from downloaded JPL ephemerides (which requires the \package{jplephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}} optional dependency). 
+    Also new is support for computing ephemeris of major solar system bodies and outputting the resulting positions as coordinate objects.
+    These ephemerides can be computed either using analytic approximations from ERFA (which requires no data download beyond the source code), or from downloaded JPL ephemerides (which requires the \package{jplephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}} optional dependency).
     The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide the gateway to this functionality, yielding \texttt{SkyCoord} objects given a specific body and choice of ephemeris source.
-    
+
 \end{description}
 
 \subsubsection{Accuracy and comparison of coordinate system definitions}
@@ -395,7 +395,7 @@ coordinate frame in any representation by internally using the \texttt{Frame} an
 \subsection{Time}
 \label{sec:time}
 
-Q: does it make sense to refer forward to fits support, even though it is 3.0?
+Q: does it make sense to refer forward to FITS support, even though it is 3.0?
 
 \inlinecomment{EJT}{ERFA is likely to be referenced somewhere here. should cite the DOI as mentioned in the above ERFA refernce once it exists}
 
@@ -414,19 +414,31 @@ QTable is new, mixin columns for time and coordinates. Table operations were add
 \subsection{io}
 % Simon
 
+The \package{astropy.io} subpackage provides support for reading and writing
+various formats: a wide range of ASCII data table formats, FITS, VOTable, etc.
+It also provides a unified interface for reading and writing data with these
+different formats, using the \package{astropy.table} subpackage.
+For many common cases this simplifies the process of file I/O and reduce the
+need to master the separate details of all the I/O packages within Astropy.
+% This functionality is still in active development and the number of supported
+% formats will be increasing.
+
 \subsubsection{Unified file read/write interface}
 
-Check when it was added (0.3?). Overview of the supported formats (ascii, fits, votable).
+Check when it was added (0.3?). Overview of the supported formats (ASCII,
+FITS, votable, HTML, JSViewer/Datatables).
 
 \subsubsection{Enhanced CSV format}
 
 \subsubsection{ASCII, FITS, etc.}
 
-One subsection per format (if enough new features) ?
+\inlinecomment{SCO}{One subsection per format (if enough new features) ?}
+
+List of key new features:
 
 \begin{itemize}
-\item ascii : fast reader/writer (1.0), HTML tables
-\item fits: lazy loading, command-line scripts (fitsheader, fitsinfo)
+\item ASCII : fast reader/writer (1.0), HTML tables
+\item FITS: lazy loading, command-line scripts (fitsheader, fitsinfo)
 \end{itemize}
 
 \subsection{Modeling}
@@ -488,21 +500,21 @@ Identifying lower and upper limits, as well as re-normalizing, is described in t
 
 \subsection{Statistics}
 
-The \astropypkg\ \package{stats} package provides 
-statistical tools that are useful for or specific to 
-astronomy and are not found in other \python\ 
-statistics packages such as \package{scipy} 
-\citep{scipy} or \package{statsmodels} 
-\citep{seabold2010statsmodels}.   The 
-\package{stats} package contains a range of 
-different functionality used by many different 
-disciplines in astronomy.   It is not a complete set 
-of statistic tools, but rather a still growing 
-collection of useful features.   
+The \astropypkg\ \package{stats} package provides
+statistical tools that are useful for or specific to
+astronomy and are not found in other \python\
+statistics packages such as \package{scipy}
+\citep{scipy} or \package{statsmodels}
+\citep{seabold2010statsmodels}.   The
+\package{stats} package contains a range of
+different functionality used by many different
+disciplines in astronomy.   It is not a complete set
+of statistic tools, but rather a still growing
+collection of useful features.
 
-The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests. 
+The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests.
 
-In this section, we describe these tools that provide a range of different functionality including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.  
+In this section, we describe these tools that provide a range of different functionality including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.
 
 
 % Steve C.: overview, circular stats,
@@ -511,7 +523,7 @@ In this section, we describe these tools that provide a range of different funct
 % Ze':  Ripley's K (spatial stats)
 
 
-\subsubsection{Robust Statistical Estimators} 
+\subsubsection{Robust Statistical Estimators}
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
