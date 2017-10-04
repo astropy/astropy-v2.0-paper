@@ -436,10 +436,43 @@ FITS, votable, HTML, JSViewer/Datatables).
 
 List of key new features:
 
-\begin{itemize}
-\item ASCII : fast reader/writer (1.0), HTML tables
-\item FITS: lazy loading, command-line scripts (fitsheader, fitsinfo)
-\end{itemize}
+\begin{description}
+
+    \item[ASCII: fast reader/writer (v1.0)]
+
+		The \package{astropy.io.ascii} module now includes a significantly faster
+		Cython/C engine for reading and writing ASCII files. This is available
+		for the following formats: basic, commented\_header, csv, no\_header,
+		rdb, and tab.  On average the new engine is about 4 to 5 times faster
+		than the corresponding pure-Python implementation, and is often
+		comparable to the speed of the pandas ASCII file interface. The fast
+		reader has parallel processing option that allows harnessing multiple
+		cores for input parsing to achieve even greater speed gains.
+
+		By default, read() and write() will attempt to use the fast C engine when
+		dealing with compatible formats. Certain features of the full read / write
+		interface are not available in the fast version, in which case the
+		pure-Python version will automatically be used.
+
+    \item[ASCII: HTML tables]
+		TODO.
+
+	\item [FITS: command-line scripts (fitsheader, fitsinfo)]
+		TODO.
+
+	\item [FITS: lazy loading (v1.3)]
+		The \package{astropy.io.fits} sub-package now supports \emph{lazy
+		loading}, where all HDUs are not loaded until they are requested (or
+		the file is closed). This should provide substantial speedups for
+		situations using the convenience functions (e.g., \texttt{getheader()}
+		or \texttt{getdata()}) to get HDU’s that are near the front of a file
+		with many HDU’s.
+
+	\item [Misc: YAML serialization (v1.3)]
+		The new \astropy{astropy.io.misc.yaml} module
+		allows converting astropy objects into a standard YAML format.
+
+\end{description}
 
 \subsection{Modeling}
 \label{sec:modeling}
