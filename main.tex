@@ -295,14 +295,20 @@ The \package{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
 The framework heavily relies on the \package{astropy.units} subpackage, and most
 inputs to objects in this subpackage are expected to be \texttt{Quantity}
-objects. Some of the machinery also relies on the Essential Routines of Fundamental Astronomy (ERFA) C library for some of the critical underlying transformation machinery.
+objects.
+Some of the machinery also relies on the Essential Routines of Fundamental
+Astronomy (ERFA) \texttt{C} library for some of the critical underlying
+transformation machinery.
 \inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
 of one another.
 For example, a set of coordinates in the International Celestial Reference
-System (ICRS) reference frame could be represented as spherical (right ascension, declination, and distance from solar system barycenter) or Cartesian coordinates ($x$, $y$, $z$ with the origin at ).
-They can therefore change representations independent of being transformed to other reference frames (e.g., the Galactic coordinate frame).
+System (ICRS) reference frame could be represented as spherical (right
+ascension, declination, and distance from solar system barycenter) or Cartesian
+coordinates ($x$, $y$, $z$ with the origin at ).
+They can therefore change representations independent of being transformed to
+other reference frames (e.g., the Galactic coordinate frame).
 
 The classes that handle coordinate representations (the \texttt{Representation}
 classes) act like three-dimensional vectors and thus support vector arithmetic.
@@ -321,7 +327,8 @@ preferred \texttt{Representation} class.
 The frame-specific component names map to corresponding components on the
 underlying \texttt{Representation} object that internally stores the coordinate
 data.
-For most frames the preferred representation is spherical, although this is determined primarily by the common use in the astronomical community.
+For most frames the preferred representation is spherical, although this is
+determined primarily by the common use in the astronomical community.
 
 Many of the \texttt{Frame} classes also have attributes specific to the
 corresponding reference system that allow the user to specify the frame.
@@ -335,8 +342,9 @@ The typical user doesn't usually have to interact with the \texttt{Frame} or
 Instead, \texttt{astropy.coordinates} provides a high-level interface to
 representing astronomical coordinates through the \texttt{SkyCoord} class.
 The \texttt{SkyCoord} class was designed to provide a single class that
-accepts a wide range of possible inputs.  It supports coordinate data in any
-coordinate frame in any representation by internally using the \texttt{Frame} and \texttt{Representation} classes.
+accepts a wide range of possible inputs.
+It supports coordinate data in any coordinate frame in any representation by
+internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 \subsubsection{Key new features}
 
@@ -382,11 +390,16 @@ coordinate frame in any representation by internally using the \texttt{Frame} an
     \texttt{Frame} classes to store the velocity data.
 
     \item[Solar System Ephemerides]
-    \comment{EJT}{APW, you may want to give this item a quick read-over?  If it looks good just delete this comment}
-    Also new is support for computing ephemeris of major solar system bodies and outputting the resulting positions as coordinate objects. 
-    These ephemerides can be computed either using analytic approximations from ERFA (which requires no data download beyond the source code), or from downloaded JPL ephemerides (which requires the \package{jplephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}} optional dependency). 
-    The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide the gateway to this functionality, yielding \texttt{SkyCoord} objects given a specific body and choice of ephemeris source.
-    
+    Also new is support for computing ephemerides of major solar system bodies
+    and outputting the resulting positions as coordinate objects.
+    These ephemerides can be computed either using analytic approximations from
+    ERFA, or from downloaded JPL ephemerides (the latter requires the \package{j
+    plephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}}
+    optional dependency and an internet connection).
+    The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide
+    the gateway to this functionality, yielding \texttt{SkyCoord} objects given
+    a specific body and choice of ephemeris source.
+
 \end{description}
 
 \subsubsection{Accuracy and comparison of coordinate system definitions}
@@ -488,21 +501,21 @@ Identifying lower and upper limits, as well as re-normalizing, is described in t
 
 \subsection{Statistics}
 
-The \astropypkg\ \package{stats} package provides 
-statistical tools that are useful for or specific to 
-astronomy and are not found in other \python\ 
-statistics packages such as \package{scipy} 
-\citep{scipy} or \package{statsmodels} 
-\citep{seabold2010statsmodels}.   The 
-\package{stats} package contains a range of 
-different functionality used by many different 
-disciplines in astronomy.   It is not a complete set 
-of statistic tools, but rather a still growing 
-collection of useful features.   
+The \astropypkg\ \package{stats} package provides
+statistical tools that are useful for or specific to
+astronomy and are not found in other \python\
+statistics packages such as \package{scipy}
+\citep{scipy} or \package{statsmodels}
+\citep{seabold2010statsmodels}.   The
+\package{stats} package contains a range of
+different functionality used by many different
+disciplines in astronomy.   It is not a complete set
+of statistic tools, but rather a still growing
+collection of useful features.
 
-The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests. 
+The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests.
 
-In this section, we describe these tools that provide a range of different functionality including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.  
+In this section, we describe these tools that provide a range of different functionality including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.
 
 
 % Steve C.: overview, circular stats,
@@ -511,7 +524,7 @@ In this section, we describe these tools that provide a range of different funct
 % Ze':  Ripley's K (spatial stats)
 
 
-\subsubsection{Robust Statistical Estimators} 
+\subsubsection{Robust Statistical Estimators}
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
