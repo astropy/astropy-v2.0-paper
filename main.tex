@@ -423,18 +423,17 @@ need to master the separate details of all the I/O packages within Astropy.
 % This functionality is still in active development and the number of supported
 % formats will be increasing.
 
+\inlinecomment{SCO}{Pyfits deprecation in favor of io.fits ?}
+\inlinecomment{SCO}{Table and FITS tables}
+
 \subsubsection{Unified file read/write interface}
 
 Check when it was added (0.3?). Overview of the supported formats (ASCII,
 FITS, votable, HTML, JSViewer/Datatables).
 
-\subsubsection{Enhanced CSV format}
-
-\subsubsection{ASCII, FITS, etc.}
+\subsubsection{Key new features}
 
 \inlinecomment{SCO}{One subsection per format (if enough new features) ?}
-
-List of key new features:
 
 \begin{description}
 
@@ -454,13 +453,34 @@ List of key new features:
 		interface are not available in the fast version, in which case the
 		pure-Python version will automatically be used.
 
-    \item[ASCII: HTML tables]
-		TODO.
+    \item[ASCII: HTML tables (v0.4)]
 
-	\item [FITS: command-line scripts (fitsheader, fitsinfo)]
-		TODO.
+		The \package{astropy.io.ascii} sub-package now provides the capability
+		to read a table within an HTML file or web URL into an astropy
+		\texttt{Table} object. This requires the \package{BeautifulSoup4}
+		package to be installed.  Conversely a \texttt{Table} object can now
+		be written out as an HTML table.
+
+	\item [Enhanced CSV format (v1.0)]
+
+		One of the problems when storing a table in an ASCII format is
+		preserving table meta-data such as comments, keywords and column data
+		types, units, and descriptions. Using the newly defined \emph{Enhanced
+		Character Separated Values} (ECSV) format it is now possible to write
+		a table to an ASCII-format file and read it back with no loss of
+		information. The ECSV format has been designed to be both
+		human-readable and compatible with most simple CSV readers.
+
+	\item [FITS: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo}, v0.4)]
+
+		The \package{astropy.io.fits} sub-package now provides a command line
+		script for inspecting the header(s) of a FITS file.  Running
+		\texttt{fitsheader file.fits} in a terminal prints the header
+		information to the screen in a human-readable format. Run
+		\texttt{fitsheader --help} to see the full usage documentation.
 
 	\item [FITS: lazy loading (v1.3)]
+
 		The \package{astropy.io.fits} sub-package now supports \emph{lazy
 		loading}, where all HDUs are not loaded until they are requested (or
 		the file is closed). This should provide substantial speedups for
@@ -469,8 +489,9 @@ List of key new features:
 		with many HDU’s.
 
 	\item [Misc: YAML serialization (v1.3)]
-		The new \astropy{astropy.io.misc.yaml} module
-		allows converting astropy objects into a standard YAML format.
+
+		The new \package{astropy.io.misc.yaml} module allows converting
+		astropy objects into a standard YAML format.
 
 \end{description}
 
