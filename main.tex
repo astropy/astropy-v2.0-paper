@@ -20,6 +20,11 @@
 \newcommand{\equationname}{Equation}
 \renewcommand{\tablename}{Table}
 
+% For commenting - can be deleted before submission
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\inlinecomment}[2]{\todo[inline]{#1: #2}}
+\newcommand{\comment}[2]{\todo{#1: #2}}
+
 \begin{document}
 
 \draft{\today}
@@ -220,7 +225,7 @@ In the process, some standard wrappers have been defined that make defining func
 \subsection{Release cycle and Long Term Support}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
-%
+%\inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
 % - reference APE2 for versioning and APE10 for dropping python2 support
 % - shall we maybe refer to the release calendar, too?
 % - should we mention that v3.0 is the exception to the version numbering
@@ -282,22 +287,22 @@ versioning
 \subsection{Coordinates}
 \label{sec:coordinates}
 % Adrian, Erik
-% TODO: Do we want to put in a PDF of the transform graph?
+\inlinecomment{APW}{Do we want to put in a PDF of the transform graph?}
+\inlinecomment{EJT}{I think so?  It looks pretty slick...}
 
 \subsubsection{Overview}
-The \texttt{astropy.coordinates} subpackage is designed to support representing
+The \package{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
-The framework heavily relies on the \texttt{astropy.units} subpackage, and most
+The framework heavily relies on the \package{astropy.units} subpackage, and most
 inputs to objects in this subpackage are expected to be \texttt{Quantity}
-objects.
+objects. Some of the machinery also relies on the Essential Routines of Fundamental Astronomy (ERFA) C library for some of the critical underlying transformation machinery.
+\inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
 of one another.
 For example, a set of coordinates in the International Celestial Reference
-System (ICRS) reference frame could be represented as a spherical (distance,
-right ascension, declination) or Cartesian coordinates.
-They can therefore be re-represented or transformed to other reference frames
-(e.g., the Galactic frame) in an independent way.
+System (ICRS) reference frame could be represented as spherical (right ascension, declination, and distance from solar system barycenter) or Cartesian coordinates ($x$, $y$, $z$ with the origin at ).
+They can therefore change representations independent of being transformed to other reference frames (e.g., the Galactic coordinate frame).
 
 The classes that handle coordinate representations (the \texttt{Representation}
 classes) act like three-dimensional vectors and thus support vector arithmetic.
@@ -316,7 +321,7 @@ preferred \texttt{Representation} class.
 The frame-specific component names map to corresponding components on the
 underlying \texttt{Representation} object that internally stores the coordinate
 data.
-For most frames the preferred representation is spherical.
+For most frames the preferred representation is spherical, although this is determined primarily by the common use in the astronomical community.
 
 Many of the \texttt{Frame} classes also have attributes specific to the
 corresponding reference system that allow the user to specify the frame.
@@ -329,10 +334,9 @@ The typical user doesn't usually have to interact with the \texttt{Frame} or
 \texttt{Representation} classes directly.
 Instead, \texttt{astropy.coordinates} provides a high-level interface to
 representing astronomical coordinates through the \texttt{SkyCoord} class.
-The \texttt{SkyCoord} class was designed to provide a single, go-to class that
-accepts a wide range of possible inputs, and supports coordinate data in any
-reference frame with a corresponding \texttt{Frame} class in any representation
-with a corresponding \texttt{Representation} class.
+The \texttt{SkyCoord} class was designed to provide a single class that
+accepts a wide range of possible inputs.  It supports coordinate data in any
+coordinate frame in any representation by internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 \subsubsection{Key new features}
 
@@ -348,7 +352,7 @@ with a corresponding \texttt{Representation} class.
     \texttt{astropy.time}.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg\ or the
-    \astropy-affiliated package \texttt{astroplan} (TODO: cite zenodo entry?).
+    \astropy-affiliated package \package{astroplan}. \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}.
 
     \item[Proper motion and velocity transformations]
     In addition to positional coordinate data, the \texttt{Frame} classes now
@@ -377,8 +381,12 @@ with a corresponding \texttt{Representation} class.
     The \texttt{Differential} classes are currently used internally within the
     \texttt{Frame} classes to store the velocity data.
 
-    \item[JPL ephemeris]
-    TODO: JPL ephemerids % Erik?
+    \item[Solar System Ephemerides]
+    \comment{EJT}{APW, you may want to give this item a quick read-over?  If it looks good just delete this comment}
+    Also new is support for computing ephemeris of major solar system bodies and outputting the resulting positions as coordinate objects. 
+    These ephemerides can be computed either using analytic approximations from ERFA (which requires no data download beyond the source code), or from downloaded JPL ephemerides (which requires the \package{jplephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}} optional dependency). 
+    The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide the gateway to this functionality, yielding \texttt{SkyCoord} objects given a specific body and choice of ephemeris source.
+    
 \end{description}
 
 \subsubsection{Accuracy and comparison of coordinate system definitions}
@@ -388,6 +396,8 @@ with a corresponding \texttt{Representation} class.
 \label{sec:time}
 
 Q: does it make sense to refer forward to fits support, even though it is 3.0?
+
+\inlinecomment{EJT}{ERFA is likely to be referenced somewhere here. should cite the DOI as mentioned in the above ERFA refernce once it exists}
 
 \subsection{Data arrays}
 
