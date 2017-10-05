@@ -116,8 +116,8 @@ The implementation of astronomical software, be it for a package meant
 for wide distribution or scripts and programs for a specific research
 project, can be eased by the use of a library that provides core
 functionality that is common to many astronomical tasks. Reading and
-writing fits files is one example where it is time
-consuming to implement the fits standard correctly and
+writing FITS files is one example where it is time
+consuming to implement the FITS standard correctly and
 programming is much faster when using an existing library perform this
 task. Another example of such a common task is dealing with different
 astronomical coordinate systems. The \astropy\ project aims to provide a
@@ -195,7 +195,7 @@ a platform \footnote{\url{https://github.com/astropy/astropy-APEs}}
 open to the public. In previous APEs a community concensus emerged and
 APEs are accepted and become the basis for future work at this
 point. In cases where consensus cannot be reached, the
-\astropy\ coordination comitee can decide to close the discussion and
+\astropy\ coordination committee can decide to close the discussion and
 make an executive decision based on the community input on the APE in
 question. APEs are modeled after the ``Python Enhancement Proposals''
 (PEP) and guide the development of the \python\ programming language.
@@ -218,7 +218,7 @@ This subsection should include some basic statistics about the contributors, com
 
 {\bf Very rough first text!}
 
-Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg\ 0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg\ 2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in fits tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
+Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg\ 0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg\ 2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in FITS tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
 
 In the process, some standard wrappers have been defined that make defining functions that require quantities as input simpler. As an extension of this, we plan to define wrappers for functions that work on numbers that will automatically convert quantities to any required units.
 
@@ -408,7 +408,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 \subsection{Time}
 \label{sec:time}
 
-Q: does it make sense to refer forward to fits support, even though it is 3.0?
+Q: does it make sense to refer forward to FITS support, even though it is 3.0?
 
 \inlinecomment{EJT}{ERFA is likely to be referenced somewhere here. should cite the DOI as mentioned in the above ERFA refernce once it exists}
 
@@ -427,20 +427,86 @@ QTable is new, mixin columns for time and coordinates. Table operations were add
 \subsection{io}
 % Simon
 
+The \package{astropy.io} subpackage provides support for reading and writing
+various formats: a wide range of ASCII data table formats, FITS, VOTable, etc.
+It also provides a unified interface for reading and writing data with these
+different formats, using the \package{astropy.table} subpackage.
+For many common cases this simplifies the process of file I/O and reduce the
+need to master the separate details of all the I/O packages within Astropy.
+% This functionality is still in active development and the number of supported
+% formats will be increasing.
+
+\inlinecomment{SCO}{Pyfits deprecation in favor of io.fits ?}
+\inlinecomment{SCO}{Table and FITS tables}
+
 \subsubsection{Unified file read/write interface}
 
-Check when it was added (0.3?). Overview of the supported formats (ascii, fits, votable).
+Check when it was added (0.3?). Overview of the supported formats (ASCII,
+FITS, votable, HTML, JSViewer/Datatables).
 
-\subsubsection{Enhanced CSV format}
+\subsubsection{Key new features}
 
-\subsubsection{ASCII, FITS, etc.}
+\inlinecomment{SCO}{One subsection per format (if enough new features) ?}
 
-One subsection per format (if enough new features) ?
+\begin{description}
 
-\begin{itemize}
-\item ascii : fast reader/writer (1.0), HTML tables
-\item fits: lazy loading, command-line scripts (fitsheader, fitsinfo)
-\end{itemize}
+    \item[ASCII: fast reader/writer (v1.0)]
+
+		The \package{astropy.io.ascii} module now includes a significantly faster
+		Cython/C engine for reading and writing ASCII files. This is available
+		for the following formats: basic, commented\_header, csv, no\_header,
+		rdb, and tab.  On average the new engine is about 4 to 5 times faster
+		than the corresponding pure-Python implementation, and is often
+		comparable to the speed of the pandas ASCII file interface. The fast
+		reader has parallel processing option that allows harnessing multiple
+		cores for input parsing to achieve even greater speed gains.
+
+		By default, read() and write() will attempt to use the fast C engine when
+		dealing with compatible formats. Certain features of the full read / write
+		interface are not available in the fast version, in which case the
+		pure-Python version will automatically be used.
+
+    \item[ASCII: HTML tables (v0.4)]
+
+		The \package{astropy.io.ascii} sub-package now provides the capability
+		to read a table within an HTML file or web URL into an astropy
+		\texttt{Table} object. This requires the \package{BeautifulSoup4}
+		package to be installed.  Conversely a \texttt{Table} object can now
+		be written out as an HTML table.
+
+	\item [Enhanced CSV format (v1.0)]
+
+		One of the problems when storing a table in an ASCII format is
+		preserving table meta-data such as comments, keywords and column data
+		types, units, and descriptions. Using the newly defined \emph{Enhanced
+		Character Separated Values} (ECSV) format it is now possible to write
+		a table to an ASCII-format file and read it back with no loss of
+		information. The ECSV format has been designed to be both
+		human-readable and compatible with most simple CSV readers.
+
+	\item [FITS: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo}, v0.4)]
+
+		The \package{astropy.io.fits} sub-package now provides a command line
+		script for inspecting the header(s) of a FITS file.  Running
+		\texttt{fitsheader file.fits} in a terminal prints the header
+		information to the screen in a human-readable format. Run
+		\texttt{fitsheader --help} to see the full usage documentation.
+
+	\item [FITS: lazy loading (v1.3)]
+
+		The \package{astropy.io.fits} sub-package now supports \emph{lazy
+		loading}, where all HDUs are not loaded until they are requested (or
+		the file is closed). This should provide substantial speedups for
+		situations using the convenience functions (e.g., \texttt{getheader()}
+		or \texttt{getdata()}) to get HDU’s that are near the front of a file
+		with many HDU’s.
+
+	\item [Misc: YAML serialization (v1.3)]
+
+		The new \package{astropy.io.misc.yaml} module allows converting
+		astropy objects into a standard YAML format.
+
+\end{description}
 
 \subsection{Modeling}
 \label{sec:modeling}
