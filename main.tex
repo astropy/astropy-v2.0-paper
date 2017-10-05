@@ -210,14 +210,14 @@ This subsection should include some basic statistics about the contributors, com
 % write it up
 %
 \par A major part of the \astropy{} project is the concept of “Affiliated
-Packages”. An affiliated package is an astronomy-related Python package that
+Packages”. An affiliated package is an astronomy-related \python{} package that
 is not part of the \astropypkg{} core package, but has requested to be
 included as part of the astropy project’s community. These packages support
 the goals and vision of \astropy{} of improving code reuse,
 interoperability, and embracing good coding practices such as testing and
 thorough documentation. \astropypkg{} currently supports both versions of
-Python 2.7+ and Python 3.x, affiliated packages are strongly encouraged to
-support at least Python 3.x.
+\python\ 2.7+ and \python\ 3.4, affiliated packages are strongly encouraged to
+support at least \python\ 3.x.
 %
 \par Affiliated packages contain functionality that is more specialized, or
 have license incompatibility, or have enough external dependencies (e.g. GUI
@@ -244,11 +244,11 @@ In the process, some standard wrappers have been defined that make defining func
 \subsection{Release cycle and Long Term Support}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
-%\inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
-% - reference APE2 for versioning and APE10 for dropping python2 support
-% - shall we maybe refer to the release calendar, too?
-% - should we mention that v3.0 is the exception to the version numbering
-%   scheme we use by not being 2.1?
+\inlinecomment{BMS: TODO}{reference APE2 for versioning and APE10 for dropping python2 support}
+\inlinecomment{BMS}{shall we maybe refer to the release calendar, too?}
+\inlinecomment{BMS}{should we mention that v3.0 is the exception to the
+  version numbering scheme we use by not being 2.1?}
+%
 \par The general scheme for the releases and version numbering that the core
 package has adopted if the following. \astropypkg\ has new feature releases every
 6 months, and between feature releases additional bugfix releases that
@@ -636,8 +636,8 @@ A set of functions are included in the \package{stats} package that use the biwe
 
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
-% - should we use links to the appropriate github repo?
-% - should we describe astropy-helpers even though it's future is unsure?
+\inlinecomment{BMS}{should we use links to the appropriate github repo?}
+\inlinecomment{BMS}{should we describe astropy-helpers even though it's future is unsure?}
 %
 \par In addition to astronomy related packages and libraries, the \astropy\
 Project also contains and supports several infrastructure package that are
@@ -671,7 +671,7 @@ widespread. Currently we support setups for TravisCI and AppveyorCI.
 \section{Learning Astropy}
 \label{sec:learning}
 % Kelle, Adrian
-% - would astropy learn mature enough to described in the paper, or maybe it should go as a subsection for the next, future of astropy section?
+\inlinecomment{BMS}{would astropy learn mature enough to described in the paper, or maybe it should go as a subsection for the next, future of astropy section?}
 
 Explain components: Documentation, Tutorials, and lessons
 
