@@ -268,7 +268,7 @@ bugfix releases.
 \subsection{Support of Astropy}
 
 % This section should be a straight forward/factual description of the current
-% funding and support provided to astropy with the purpose of explaining the 
+% funding and support provided to astropy with the purpose of explaining the
 % current structure to the community
 
 %\subsection{Difficulty of reversing design choices}
@@ -326,9 +326,9 @@ Astronomy (ERFA) \texttt{C} library for some of the critical underlying
 transformation machinery.
 \inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
 % * <tjenness@lsst.org> 2017-10-16T15:53:18.375Z:
-% 
+%
 % I think it should mention that ERFA is related to SOFA (and cite SOFA).
-% 
+%
 % ^.
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
@@ -366,6 +366,19 @@ For example, the Fifth Fundamental Catalogue (FK5) reference system requires
 specifying an equinox to determine the reference frame.
 If required, these additional frame attributes must be specified along with the
 coordinate data when a \texttt{Frame} object is created.
+\figurename~\ref{fig:frame-transform-graph} shows the network of possible
+reference frame transformations as currently implemented in
+\texttt{astropy.coordinates}.
+Custom, user-implemented \texttt{Frame} classes that define transformations to
+any reference frame in this graph can then be transformed to any of the other
+connected frames.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{coordinates_graph.pdf}
+The full graph of possible reference frame transformations implemented in
+\texttt{astropy.coordinates}.
+\label{fig:frame-transform-graph}
+\end{figure}
 
 The typical user doesn't usually have to interact with the \texttt{Frame} or
 \texttt{Representation} classes directly.
@@ -534,9 +547,9 @@ FITS, votable, HTML, JSViewer/Datatables).
 	\item [Misc: YAML serialization (v1.3)]
 
 		The new \package{astropy.io.misc.yaml} module allows converting
-		astropy objects into a standard YAML format. 
+		astropy objects into a standard YAML format.
         This can be used beyond \texttt{astropy.io.misc.yaml}: for example, to
-        serialize the metadata of tables before saving to other formats like 
+        serialize the metadata of tables before saving to other formats like
         HDF5.
 
 \end{description}
@@ -557,6 +570,7 @@ The whole modeling submodule was missing from the previous paper, so everything 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example.png}
 An example showing different modes of convolution available in the \python ecosystem.  The red x's mark pixels that are set to NaN in the original data (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using scipy's direct convolution (b), any pixel within range of the original NaN pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set to zero first: the originally NaN regions are depressed relative to their surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior, where the missing pixels are replaced with values interpolated from their surroundings using the convolution kernel.
+\label{fig:convolution-example}
 \end{figure}
 
 
