@@ -1,5 +1,5 @@
 \documentclass[modern]{aastex61}
-
+\usepackage{xspace}
 \newcommand{\escapecmd}[1]{\texttt{\detokenize{#1}}}
 
 \submitjournal{ApJ}
@@ -8,22 +8,22 @@
 \shortauthors{Astropy Project et al.}
 
 % Packages / projects / programming - for consistency!
-\newcommand{\package}[1]{\texttt{#1}}
-\newcommand{\github}{\package{GitHub}}
-\newcommand{\python}{\package{Python}}
-\newcommand{\astropy}{Astropy}
-\newcommand{\astropypkg}{\package{astropy}}
+\newcommand{\package}[1]{\texttt{#1}\xspace}
+\newcommand{\github}{\package{GitHub}\xspace}
+\newcommand{\python}{\package{Python}\xspace}
+\newcommand{\astropy}{Astropy\xspace}
+\newcommand{\astropypkg}{\package{astropy}\xspace}
 
 % For consistency:
-\newcommand{\sectionname}{Section}
-\renewcommand{\figurename}{Figure}
-\newcommand{\equationname}{Equation}
-\renewcommand{\tablename}{Table}
+\newcommand{\sectionname}{Section\xspace}
+\renewcommand{\figurename}{Figure\xspace}
+\newcommand{\equationname}{Equation\xspace}
+\renewcommand{\tablename}{Table\xspace}
 
 % For commenting - can be deleted before submission
 \usepackage[colorinlistoftodos]{todonotes}
-\newcommand{\inlinecomment}[2]{\todo[inline]{#1: #2}}
-\newcommand{\comment}[2]{\todo{#1: #2}}
+\newcommand{\inlinecomment}[2]{\todo[inline]{#1: #2}\xspace}
+\newcommand{\comment}[2]{\todo{#1: #2}\xspace}
 
 \begin{document}
 
@@ -39,18 +39,18 @@
 \begin{abstract}
 % I (Adrian) took a first stab at the abstract, but it needs some work. Feel
 % free to modify!
-The \astropy\ project supports and fosters the development of open-source
-\python\ packages that provide commonly-needed functionality to the astronomical
+The \astropy project supports and fosters the development of open-source
+\python packages that provide commonly-needed functionality to the astronomical
 community.
-A key element of the project is the \astropy\ core package, which serves as the
+A key element of the project is the \astropy core package, which serves as the
 foundation for more specialized projects and packages.
-In this article, we provide an overview of the organization of the \astropy\
+In this article, we provide an overview of the organization of the \astropy
 project and summarize key features in the core package as of the recent major
 release, version 2.0.
 We then describe the project infrastructure designed to facilitate and support
 development for a broader ecosystem of interoperable packages.
 We conclude with a future outlook of planned new features and directions for the
-broader \astropy\ project.
+broader \astropy project.
 \end{abstract}
 
 %% Keywords should appear after the \end{abstract} command.
@@ -62,8 +62,8 @@ broader \astropy\ project.
 
 \begin{itemize}
    \item The goal is to produce a brief and informative paper that covers major
-        \astropy\ principles not mentioned in the first paper, the core v2.0
-        package, and infrastructure in \astropy\ project to support development
+        \astropy principles not mentioned in the first paper, the core v2.0
+        package, and infrastructure in \astropy project to support development
         in \python.
     \item We don't plan on including code in this paper, but if you think you
         will need to include code in your section, please add it to a separate
@@ -91,7 +91,7 @@ All astronomical research makes use of software in some way and
 astronomy as a field has long supported the development of specialized
 software tools for different astronomical tasks. Some of those
 software packages are (or at least were) supported by large
-institutions, e.g.\ IRAF \citep[developed at NOAO,][]{IRAF}, MIDAS
+institutions, e.g.~IRAF \citep[developed at NOAO,][]{IRAF}, MIDAS
 \citep[developed at ESO,][]{MIDAS}, or ds9 \citep[developed at
 % * <bsipocz@gmail.com> 2017-09-28T21:05:00.569Z:
 %
@@ -120,8 +120,8 @@ writing FITS files is one example where it is time
 consuming to implement the FITS standard correctly and
 programming is much faster when using an existing library perform this
 task. Another example of such a common task is dealing with different
-astronomical coordinate systems. The \astropy\ project aims to provide a
-library of core astronomical functionality in the \python\ programming
+astronomical coordinate systems. The \astropy project aims to provide a
+library of core astronomical functionality in the \python programming
 language.
 
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular
@@ -138,30 +138,30 @@ results on websites or interfacing with databases.
 At the same time, an ecosystem of tools, programs, and webservices
 has become available that makes it easier to collaborate on code development,
 continuously test the code, build and provide documentation, and
-supply downloadable packages. The \astropy\ project aims to develop and
+supply downloadable packages. The \astropy project aims to develop and
 provide high quality code and documentation according to the best
 practices in software development. The project makes use of these
 tools to do so without central institutional oversight.
 
-The first public release of the \astropy\ package is described in
-\cite{astropy}. Since then, the \astropy\ package has been
+The first public release of the \astropy package is described in
+\cite{astropy}. Since then, the \astropy package has been
 used in hundreds of projects, and the scope of the package as grown
 considerably. At the same time, the community of astronomers
 contributing to the project has grown tremendously and an ecosystem
-of packages supporting or affiliated with the \astropy\ core has
+of packages supporting or affiliated with the \astropy core has
 developed. In this paper, we describe the current status of the
-\astropy\ community, the \astropy\ core package, and the \astropy\
+\astropy community, the \astropy core package, and the \astropy\
 ecosystem.
 
-We start by describing the way the \astropy\ project works and is
+We start by describing the way the \astropy project works and is
 organized in \sectionname~\ref{sec:concepts}.  The project develops a core
-package called \astropypkg\ (\sectionname~\ref{sec:core}) and several
+package called \astropypkg (\sectionname~\ref{sec:core}) and several
 separate packages that help setting up the infrastructure for testing,
-documentation etc.\ (\sectionname~\ref{sec:infrastructure}). In
+documentation etc.~(\sectionname~\ref{sec:infrastructure}). In
 \sectionname~\ref{sec:learning} we give an overview of the wealth of
-resources created to teach new users the use of the \astropy\ packages
+resources created to teach new users the use of the \astropy packages
 and how to contribute to the community. We end with a short vision for
-the future of \astropy\ in \sectionname~\ref{sec:future}.
+the future of \astropy in \sectionname~\ref{sec:future}.
 
 
 
@@ -174,7 +174,7 @@ the future of \astropy\ in \sectionname~\ref{sec:future}.
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 %draft by hamogu
-Central to the success of \astropy\ is an open environment where
+Central to the success of \astropy is an open environment where
 anybody can contribute to the code by opening a so-called ``pull
 request'' with a new code contribution on an publically available
 website\footnote{\url{https://github.com/astropy/astropy}}; this
@@ -183,8 +183,8 @@ sub-package and possibly merged into the main code base. Most bug
 fixes and small features are contributed in this way. However, this
 model leads to ``organic'' growth where different features are
 implemented by different people with different programming styles and
-interfaces. Thus, \astropy\ has a mechanism to more formally propose
-changes to the code management (e.g.\ the release cycle) or to plan
+interfaces. Thus, \astropy has a mechanism to more formally propose
+changes to the code management (e.g.~the release cycle) or to plan
 out major new features. This mechanism is called ``Astropy Proposal
 for Enhancement'' (APE). In an APE one or more authors lay out a
 vision for a new feature, including a rationale why this feature is
@@ -195,10 +195,10 @@ a platform \footnote{\url{https://github.com/astropy/astropy-APEs}}
 open to the public. In previous APEs a community concensus emerged and
 APEs are accepted and become the basis for future work at this
 point. In cases where consensus cannot be reached, the
-\astropy\ coordination committee can decide to close the discussion and
+\astropy coordination committee can decide to close the discussion and
 make an executive decision based on the community input on the APE in
 question. APEs are modeled after the ``Python Enhancement Proposals''
-(PEP) and guide the development of the \python\ programming language.
+(PEP) and guide the development of the \python programming language.
 
 
 \subsection{Astropy development model, astropy ecosystem}
@@ -209,15 +209,15 @@ This subsection should include some basic statistics about the contributors, com
 % it may be described in previous subsection, if not the Brigitta can try to
 % write it up
 %
-\par A major part of the \astropy{} project is the concept of “Affiliated
-Packages”. An affiliated package is an astronomy-related \python{} package that
-is not part of the \astropypkg{} core package, but has requested to be
+\par A major part of the \astropy project is the concept of “Affiliated
+Packages”. An affiliated package is an astronomy-related \python package that
+is not part of the \astropypkg core package, but has requested to be
 included as part of the astropy project’s community. These packages support
-the goals and vision of \astropy{} of improving code reuse,
+the goals and vision of \astropy of improving code reuse,
 interoperability, and embracing good coding practices such as testing and
-thorough documentation. \astropypkg{} currently supports both versions of
-\python\ 2.7+ and \python\ 3.4, affiliated packages are strongly encouraged to
-support at least \python\ 3.x.
+thorough documentation. \astropypkg currently supports both versions of
+\python~2.7 and \python~3.4+, affiliated packages are strongly encouraged to
+support at least \python~3.x.
 %
 \par Affiliated packages contain functionality that is more specialized, or
 have license incompatibility, or have enough external dependencies (e.g. GUI
@@ -237,7 +237,7 @@ packages to gain exposure.
 
 {\bf Very rough first text!}
 
-Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg\ 0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg\ 2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in FITS tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
+Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg~0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg~2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in FITS tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
 
 In the process, some standard wrappers have been defined that make defining functions that require quantities as input simpler. As an extension of this, we plan to define wrappers for functions that work on numbers that will automatically convert quantities to any required units.
 
@@ -250,7 +250,7 @@ In the process, some standard wrappers have been defined that make defining func
   version numbering scheme we use by not being 2.1?}
 %
 \par The general scheme for the releases and version numbering that the core
-package has adopted if the following. \astropypkg\ has new feature releases every
+package has adopted if the following. \astropypkg has new feature releases every
 6 months, and between feature releases additional bugfix releases that
 contain only bugfixes but no new features. The timing of
 %
@@ -260,7 +260,7 @@ applications where API stability is essential. The latest LTS release is
 also the last one that supports \python 2, and will receive bug fixes until the
 end of 2019.
 %
-\par The version numbering of \astropypkg\ reflects on the release scheme
+\par The version numbering of \astropypkg reflects on the release scheme
 described above. The core package uses the form x.y.z, where x is advances
 on LTS, y is advanced for a non-LTS feature release, and z is advanced on
 bugfix releases.
@@ -278,9 +278,9 @@ bugfix releases.
 \section{Astropy Core Package v2.0}
 \label{sec:core}
 
-The \astropy\ project aims to provide \python-based packages for all tasks that
+The \astropy project aims to provide \python-based packages for all tasks that
 are commonly needed in a large subset of the astronomical community.
-At the foundation is the \astropypkg\ core package, which provides general
+At the foundation is the \astropypkg core package, which provides general
 functionality (e.g., coordinate transformations) or base classes for other
 packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
@@ -325,6 +325,11 @@ Some of the machinery also relies on the Essential Routines of Fundamental
 Astronomy (ERFA) \texttt{C} library for some of the critical underlying
 transformation machinery.
 \inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
+% * <tjenness@lsst.org> 2017-10-16T15:53:18.375Z:
+% 
+% I think it should mention that ERFA is related to SOFA (and cite SOFA).
+% 
+% ^.
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
 of one another.
@@ -375,16 +380,16 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 \begin{description}
     \item[Local Earth coordinate frames] In addition to representing celestial
-    coordinates, \astropypkg\ now supports specifying positions on the Earth in
+    coordinates, \astropypkg now supports specifying positions on the Earth in
     a number of different geocentric systems with the \texttt{EarthLocation}
     class.
-    With this, \astropypkg\ now supports Earth-location-specific coordinate
+    With this, \astropypkg now supports Earth-location-specific coordinate
     systems such as the altitude-azimuth (\texttt{AltAz}) or horizontal system.
     Transformations between \texttt{AltAz} and any Barycentric coordinate frame
     also requires specifying a time using the \texttt{Time} class from
     \texttt{astropy.time}.
     With this new functionality, many of the common tasks associated with
-    observation planning can now be completed with \astropypkg\ or the
+    observation planning can now be completed with \astropypkg or the
     \astropy-affiliated package \package{astroplan}. \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}.
 
     \item[Proper motion and velocity transformations]
@@ -529,7 +534,10 @@ FITS, votable, HTML, JSViewer/Datatables).
 	\item [Misc: YAML serialization (v1.3)]
 
 		The new \package{astropy.io.misc.yaml} module allows converting
-		astropy objects into a standard YAML format.
+		astropy objects into a standard YAML format. 
+        This can be used beyond \texttt{astropy.io.misc.yaml}: for example, to
+        serialize the metadata of tables before saving to other formats like 
+        HDF5.
 
 \end{description}
 
@@ -543,12 +551,12 @@ The whole modeling submodule was missing from the previous paper, so everything 
 \subsection{Convolution}
 % Adam G.
 
-\astropypkg\ implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   In version $<=1.3$, the direct convolution and fft convolution approaches were not consistent, with fft convolution implementing normalized convolution and direct convolution implementing a different approach.  As of v2.0, the two methods are consistent and include a suite of consistency checks.
+\astropypkg implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   In version $<=1.3$, the direct convolution and fft convolution approaches were not consistent, with fft convolution implementing normalized convolution and direct convolution implementing a different approach.  As of v2.0, the two methods are consistent and include a suite of consistency checks.
 
 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example.png}
-An example showing different modes of convolution available in the \python\ ecosystem.  The red x's mark pixels that are set to NaN in the original data (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using scipy's direct convolution (b), any pixel within range of the original NaN pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set to zero first: the originally NaN regions are depressed relative to their surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior, where the missing pixels are replaced with values interpolated from their surroundings using the convolution kernel.
+An example showing different modes of convolution available in the \python ecosystem.  The red x's mark pixels that are set to NaN in the original data (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using scipy's direct convolution (b), any pixel within range of the original NaN pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set to zero first: the originally NaN regions are depressed relative to their surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior, where the missing pixels are replaced with values interpolated from their surroundings using the convolution kernel.
 \end{figure}
 
 
@@ -592,7 +600,7 @@ Identifying lower and upper limits, as well as re-normalizing, is described in t
 
 \subsection{Statistics}
 
-The \astropypkg\ \package{stats} package provides
+The \astropypkg \package{stats} package provides
 statistical tools that are useful for or specific to
 astronomy and are not found in other \python\
 statistics packages such as \package{scipy}
@@ -652,7 +660,7 @@ selection of them.
 %
 \subsection{Package template}
 % Brigitta may write this up if there is no other takers
-\par \astropy\ provides a template package that any \python\ package is welcome to
+\par \astropy provides a template package that any \python package is welcome to
 use (many affiliated packages do so). The template contains a ready-to-go
 package layout. It provides infrastructure such as documentation tools,
 testing framework and CI templates and configurations, Cython integration,
@@ -664,7 +672,7 @@ and documentation on how to make it all work.
 maintainers to control their testing set up and installation process for
 various continuous integration services via a set of environment
 variables. While the current development is mostly driven by the needs of
-the \astropy\ ecosystem, the actual usage of this package is extremely
+the \astropy ecosystem, the actual usage of this package is extremely
 widespread. Currently we support setups for TravisCI and AppveyorCI.
 %
 \subsection{sphinx extensions}
@@ -683,7 +691,7 @@ Explain components: Documentation, Tutorials, and lessons
 
 \section{The future of the Astropy project}
 \label{sec:future}
-\subsection{Roadmap for \python\ 3 only support}
+\subsection{Roadmap for \python 3 only support}
 
 dropping \python 2 support, growths of affiliated packages
 Summary
@@ -691,6 +699,8 @@ Summary
 \acknowledgments
 
 Who to thank?  numfocus,
+
+CI services? GitHub?
 
 %% Similar to \facility{}, there is the optional \software command to allow
 %% authors a place to specify which programs were used during the creation of
