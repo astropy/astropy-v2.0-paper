@@ -556,10 +556,45 @@ FITS, votable, HTML, JSViewer/Datatables).
 
 \subsection{Modeling}
 \label{sec:modeling}
-% Nadia
-% Lim blackbody
+% The whole modeling submodule was missing from the previous paper, so everything really, including compound models, unit support etc.
+% Nadia, Lim
 % Tom R. -- unit support
-The whole modeling submodule was missing from the previous paper, so everything really, including compound models, unit support etc.
+\subsubsection{Overview}
+The \package{astropy.modeling} subpackage provides a framework for representing analytical models and performing model evaluation and fitting. Models and fitters are independent of each other, a model can be fit with different fitters and new fitters can be added without changing existing models. The framework is designed to be flexible and easily extensible. The goal is to have a rich set of models but also make it easy to create new ones if necessary. The modeling framework is used in a variety of data analysis tools and is the basis for the Generalized World Coordinate System (GWCS) package (link). The unit support in models and fitters make it a unique package for working with astrophysical models.
+
+\subsubsection{Single Model Definition and Evaluation}
+Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the numpy broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments. 
+
+Models have \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e., a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse for another polynomial model.
+
+Another useful settable property of models is \texttt{Model.bounding\_box}. It defines the limits over which the model is significant. This greatly improves the efficiency of evaluation when the input range is much larger than the characteristic width of the model itself.
+
+\subsubsection{Model Sets}
+
+\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models=k} keyword, where k is the number of models to instantiate, and providing the values for each parameter as an iterable of size k. This creates a model set which is efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
+
+\subsubsection{Compound Models}
+Single models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join $\&$, and composition $|$ operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. 
+
+\subsubsection{Fitting Models to Data}
+
+\package{astropy.modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide supports for constraints. They take a model as input and return a copy of the model with the fitted parameters. The goal is to make it easy to extend the fitting framework and create new fitters. The optimizers available in astropy 2.0 are Levenberg-Marquardt, Simplex, SLSQP, and LinearLSQFitter (which is based on \texttt{numpy.linalg} that provides exact solution for linear models).
+
+Modeling also supports a plugin system for fitters, which allows using the astropy models with external fitters. An example of this is SABA (link), which is a bridge between Sherpa (link) and astropy.modeling, to bring the Sherpa fitters into astropy.
+
+\subsubsection{Creating New Models}
+
+New model classes can be created in two ways:
+\begin{itemize}
+   \item The simplest way is to use the \texttt{custom\_model} decorator in modeling with a user defined function which takes the inputs and model parameters as arguments.
+   \item It is also possible to subclass the \texttt{Model} base class and create an arbitrary complex custom model.
+\end{itemize}
+
+\subsubsection{Unit Support}
+
+% Tom R: unit support description goes here and the sentence below is to be folded in with it.
+
+Unit support in \texttt{modeling} has enabled implementation of the blackbody \citep{Rybicki1979} model, which requires units to make sense. It is available in \package{astropy} 2.0 as \texttt{BlackBody1D}.
 
 \subsection{Convolution}
 % Adam G.
@@ -609,7 +644,8 @@ In addition, classes are provided in order to identify lower and upper limits fo
 Identifying lower and upper limits, as well as re-normalizing, is described in the Intervals and Normalization section, while stretching is described in the Stretching section.
 
 \subsubsection{WCSAxes}
-% Tom R.
+
+% Tom R. will work on this on Oct 18 and/or 19.
 
 \subsubsection{Choosing Histogram Bins}
 
@@ -675,6 +711,7 @@ A set of functions are included in the \package{stats} package that use the biwe
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
 \inlinecomment{BMS}{should we use links to the appropriate github repo?}
+\inlinecomment{PLL}{IMHO a list of GitHub repo links for affil. pkgs. should be in appendix, if included.}
 \inlinecomment{BMS}{should we describe astropy-helpers even though it's future is unsure?}
 %
 \par In addition to astronomy related packages and libraries, the \astropy\
@@ -697,10 +734,11 @@ maintainers to control their testing set up and installation process for
 various continuous integration services via a set of environment
 variables. While the current development is mostly driven by the needs of
 the \astropy ecosystem, the actual usage of this package is extremely
-widespread. Currently we support setups for TravisCI and AppveyorCI.
+widespread. Currently we support setups for Travis CI and Appveyor CI.
 %
 \subsection{sphinx extensions}
-% Tom R
+
+% Tom R will work on this on Oct 18 and/or 19
 
 
 % \section{State of the Ecosystem}
@@ -715,6 +753,7 @@ Explain components: Documentation, Tutorials, and lessons
 
 \section{The future of the Astropy project}
 \label{sec:future}
+\inlinecomment{PLL}{In addition to PY3, add some killer features that we plan to implement for 3.0 and beyond?}
 \subsection{Roadmap for \python 3 only support}
 
 dropping \python 2 support, growths of affiliated packages
