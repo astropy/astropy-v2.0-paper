@@ -375,9 +375,11 @@ connected frames.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{coordinates_graph.pdf}
-The full graph of possible reference frame transformations implemented in
-\texttt{astropy.coordinates}.
-\label{fig:frame-transform-graph}
+\caption{
+    The full graph of possible reference frame transformations implemented in
+    \texttt{astropy.coordinates}.
+    \label{fig:frame-transform-graph}
+}
 \end{figure}
 
 The typical user doesn't usually have to interact with the \texttt{Frame} or
@@ -569,8 +571,18 @@ The whole modeling submodule was missing from the previous paper, so everything 
 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example.png}
-An example showing different modes of convolution available in the \python ecosystem.  The red x's mark pixels that are set to NaN in the original data (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using scipy's direct convolution (b), any pixel within range of the original NaN pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set to zero first: the originally NaN regions are depressed relative to their surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior, where the missing pixels are replaced with values interpolated from their surroundings using the convolution kernel.
-\label{fig:convolution-example}
+\caption{%
+    An example showing different modes of convolution available in the \python
+    ecosystem.  The red x's mark pixels that are set to NaN in the original data
+    (a).  If the data are convolved with a Gaussian kernel on a 9x9 grid using
+    scipy's direct convolution (b), any pixel within range of the original NaN
+    pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set
+    to zero first: the originally NaN regions are depressed relative to their
+    surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior,
+    where the missing pixels are replaced with values interpolated from their
+    surroundings using the convolution kernel.
+    \label{fig:convolution-example}
+}
 \end{figure}
 
 
