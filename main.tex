@@ -321,13 +321,10 @@ inputs to objects in this subpackage are expected to be \texttt{Quantity}
 objects.
 Some of the machinery also relies on the Essential Routines of Fundamental
 Astronomy (ERFA) \texttt{C} library for some of the critical underlying
-transformation machinery.
-\inlinecomment{EJT}{Need to create a Zenodo DOI for ERFA and then cite it here.}
-% * <tjenness@lsst.org> 2017-10-16T15:53:18.375Z:
-%
-% I think it should mention that ERFA is related to SOFA (and cite SOFA).
-%
-% ^.
+transformation machinery \citep{erfa}, which is based on the Standards Of 
+Fundamental Astronomy (SOFA) effort \citep{sofa}.
+
+
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
 of one another.
@@ -453,7 +450,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 Q: does it make sense to refer forward to FITS support, even though it is 3.0?
 
-\inlinecomment{EJT}{ERFA is likely to be referenced somewhere here. should cite the DOI as mentioned in the above ERFA refernce once it exists}
+Uses ERFA \citep{erfa}...
 
 \subsection{Data arrays}
 
