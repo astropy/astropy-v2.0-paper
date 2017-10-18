@@ -252,7 +252,8 @@ In the process, some standard wrappers have been defined that make defining func
 \par The general scheme for the releases and version numbering that the core
 package has adopted if the following. \astropypkg has new feature releases every
 6 months, and between feature releases additional bugfix releases that
-contain only bugfixes but no new features. The timing of
+contain only bugfixes but no new features.
+% The timing of
 %
 \par Long-term support (LTS) releases continue to receive bugfixes for 2
 years with no changes to the API. They are ideal for pipelines and other
@@ -557,7 +558,17 @@ FITS, votable, HTML, JSViewer/Datatables).
 % Nadia, Lim
 % Tom R. -- unit support
 \subsubsection{Overview}
-The \package{astropy.modeling} subpackage provides a framework for representing analytical models and performing model evaluation and fitting. Models and fitters are independent of each other, a model can be fit with different fitters and new fitters can be added without changing existing models. The framework is designed to be flexible and easily extensible. The goal is to have a rich set of models but also make it easy to create new ones if necessary. The modeling framework is used in a variety of data analysis tools and is the basis for the Generalized World Coordinate System (GWCS) package (link). The unit support in models and fitters make it a unique package for working with astrophysical models.
+The \package{astropy.modeling} subpackage provides a framework for representing
+analytical models and performing model evaluation and fitting. Models and
+fitters are independent of each other, a model can be fit with different
+fitters and new fitters can be added without changing existing models. The
+framework is designed to be flexible and easily extensible. The goal is to have
+a rich set of models but also make it easy to create new ones if necessary. The
+modeling framework is used in a variety of data analysis tools and is the basis
+for the Generalized World Coordinate System (GWCS)
+package\footnote{\url{https://github.com/spacetelescope/gwcs}}. The
+unit support in models and fitters make it a unique package for working with
+astrophysical models.
 
 \subsubsection{Single Model Definition and Evaluation}
 Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the numpy broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments. 
