@@ -695,24 +695,21 @@ In this section, we describe these tools that provide a range of different funct
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
-\subsubsection{Sigma Clipping}
-
+{\bf Sigma Clipping:}
 Sigma clipping provides a fast method to identify outliers in a distribution. For a distribution of points, a center and a standard deviation are calculated. Values which are a set number of sigma times the standard deviation away from the center are rejected. The process can be iterated to further reject outliers.
 
-\subsubsection{Median Absolute Deviation}
-
+{\bf Median Absolute Deviation:}
 The median abosolute deviation (MAD) is a measure of the spread of a distribution and is defined as median(abs(a - median(a))). For a normal distribution, the MAD is related to the standard deviation by a factor of 1.4826, and a convenience function is available to apply the conversion.
 
-\subsubsection{Biweight Estimators}
-
+{\bf Biweight Estimators: }
 A set of functions are included in the \package{stats} package that use the biweight formalism. These functions have long been used in astronomy, particularly to calculate the velocity dispersion of galaxy clusters [XXX].
 
-\subsubsection{Circular Statistics}
-%steve
+{\bf Circular Statistics: }
+A set of circular statistical estimators based on [XXX] are implemented in the \package{stats} package.  These functions provide measurements of the circular mean, variance, and moment.   For all of these functions, they work with both numpy.ndarrays (assumed to be in radians) and Quantity objects.  In addition, the package includes tests for Raleigh Test [XXX], vtest [XXX], and a function to compute the maximum likelihood estimator for the parameters of the von Mises distribution [XXX].
+
 \subsubsection{Lomb-Scargle Periodograms}
 %jake
-\subsubsection{Ripley's K Function Estimators}
-%ze
+
 \subsubsection{Histogram Binning}
 %jake
 
