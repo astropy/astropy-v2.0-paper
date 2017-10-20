@@ -294,6 +294,8 @@ packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
 since version v0.2 (previously described in \citealt{astropy}).
 
+\inlinecomment{BMS}{The itemizations below look very weird being boldface under a much less prominent subsection title. would it be nicer in the final version if we leave it as is in the draft?}
+
 % \subsection{Analytic Functions}
 % moved to models and depreciated --
 % just here for completeness at the moment
@@ -410,7 +412,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
     observation planning can now be completed with \astropypkg or the
     \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}. 
     \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}
-    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper}
+    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper, I made a placeholder for it.}
 
     \item[Proper motion and velocity transformations]
     In addition to positional coordinate data, the \texttt{Frame} classes now
@@ -458,7 +460,8 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 \subsection{Time}
 \label{sec:time}
 
-Q: does it make sense to refer forward to FITS support, even though it is 3.0?
+\inlinecomment{SCO}{Q: does it make sense to refer forward to FITS support, even though it is 3.0?}
+\inlinecomment{BMS}{what about moving it into the future section below?}
 
 Uses ERFA \citep{erfa}...
 
@@ -491,12 +494,13 @@ need to master the separate details of all the I/O packages within Astropy.
 
 \subsubsection{Unified file read/write interface}
 
-Check when it was added (0.3?). Overview of the supported formats (ASCII,
+TODO: Check when it was added (0.3?). Overview of the supported formats (ASCII,
 FITS, votable, HTML, JSViewer/Datatables).
 
 \subsubsection{Key new features}
 
 \inlinecomment{SCO}{One subsection per format (if enough new features) ?}
+\inlinecomment{BMS}{Do we really need to mention the old version numbers in the list below when a feature was added?}
 
 \begin{description}
 
@@ -560,6 +564,8 @@ FITS, votable, HTML, JSViewer/Datatables).
         HDF5.
 
 \end{description}
+
+\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
 
 \subsection{Modeling}
 \label{sec:modeling}
