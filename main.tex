@@ -288,7 +288,8 @@ bugfix releases.
 The \astropy project aims to provide \python-based packages for all tasks that
 are commonly needed in a large subset of the astronomical community.
 At the foundation is the \astropypkg core package, which provides general
-functionality (e.g., coordinate transformations) or base classes for other
+functionality (e.g., coordinate transformations, reading and writing astronomical
+files) or base classes for other
 packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
 since version v0.2 (previously described in \citealt{astropy}).
@@ -407,7 +408,9 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
     \texttt{astropy.time}.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg or the
-    \astropy-affiliated package \package{astroplan}. \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}.
+    \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}. 
+    \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}
+    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper}
 
     \item[Proper motion and velocity transformations]
     In addition to positional coordinate data, the \texttt{Frame} classes now
