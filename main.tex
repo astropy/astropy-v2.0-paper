@@ -662,9 +662,10 @@ Stretching transforms the image values in the [0:1] range to the [0:1] range usi
 z = f(y)
 \end{equation}
 
+Several classes are provided for determining intervals and for normalizing values in this interval to the [0:1] range.
 In addition, classes are provided in order to identify lower and upper limits for a dataset based on specific algorithms (such as using percentiles).
 
-Identifying lower and upper limits, as well as re-normalizing, is described in the Intervals and Normalization section, while stretching is described in the Stretching section.
+
 
 \subsubsection{WCSAxes}
 
@@ -675,7 +676,7 @@ Identifying lower and upper limits, as well as re-normalizing, is described in t
 \subsubsection{Creating color RGB images}
 % include images
 
-%\subsection{Utils}
+\subsection{Utils}
 % Lim
 
 \subsection{Cosmology}
@@ -683,9 +684,10 @@ Identifying lower and upper limits, as well as re-normalizing, is described in t
 
 \subsection{Statistics}
 
-The \astropypkg \package{stats} package provides
+The \package{astropy.stats} package provides
 statistical tools that are useful for or specific to
-astronomy and are not found in other \python\
+astronomy and are not found in or extend the available
+functionality of other \python\
 statistics packages such as \package{scipy}
 \citep{scipy} or \package{statsmodels}
 \citep{seabold2010statsmodels}.   The
@@ -705,8 +707,9 @@ In this section, we describe these tools that provide a range of different funct
 % Larry:  sigma clipping, biweight stats
 % Ze':  Ripley's K (spatial stats)
 
-
+%
 \subsubsection{Robust Statistical Estimators}
+\inlinecomment{BMS}{Can we highlight in a sentence for each of the ones below how they are different from e.g. the scipy equivalents?}
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
