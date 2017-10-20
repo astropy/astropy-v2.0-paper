@@ -678,16 +678,21 @@ Several classes are provided for determining intervals (e.g. using image percent
 
 \subsubsection{WCSAxes}
 
-One of the most common tasks by astronomers dealing with observational data is to make figures with images that include the correct coordinates and optionally with a coordinate grid. The challenge however is that the conceptual coordinate axes (such as longitude/latitude) need not be lined up with the pixel axes of the image. The \package{visualization.wcsaxes} subpackage implements a generalized way of making figures from an image array and a world coordinate system (WCS) object that provides the transformation between pixel and 'world' coordinates. World coordinates can be for example right ascension and declination, but can also include for example velocity, wavelength, frequency, time, and so on. The main features from this subpackage include the ability to control which axes to show which coordinate on (for example showing longitude ticks on the top and bottom axes and latitude on the left and right axes), controlling the spacing of the ticks either by specifying the positions to use or providing a tick spacing or an average number of ticks that should be present on each axis, controlling the visibility of the grid/graticule, and overlaying different coordinate systems
+One of the most common tasks by astronomers dealing with observational data is to make figures with images that include the correct coordinates and optionally with a coordinate grid. The challenge however is that the conceptual coordinate axes (such as longitude/latitude) need not be lined up with the pixel axes of the image. The \package{visualization.wcsaxes} subpackage implements a generalized way of making figures from an image array and a world coordinate system (WCS) object that provides the transformation between pixel and 'world' coordinates. World coordinates can be for example right ascension and declination, but can also include for example velocity, wavelength, frequency, time, and so on. The main features from this subpackage include the ability to control which axes to show which coordinate on (for example showing longitude ticks on the top and bottom axes and latitude on the left and right axes), controlling the spacing of the ticks either by specifying the positions to use or providing a tick spacing or an average number of ticks that should be present on each axis, setting the format for the tick labels to ones commonly used by astronomers, controlling the visibility of the grid/graticule, and overlaying ticks, labels, and/or grid lines from different coordinate systems. In addition, it is possible to pass data with more than two dimensions and slice on-the-fly. Finally, it is possible to define non-rectangular frames, such as for example for Aitoff projections.
+
+This subpackage differs from APLpy \citep{aplpy} in that the latter focuses on providing a very high-level interface to plotting that requires very few lines of code to get a good result, whereas WCSAxes defines an interface that is much closer to that of Matplotlib \citep{matplotlib}, and makes it possible to make significantly more advanced visualizations.
 
 \subsubsection{Choosing Histogram Bins}
 
 The package also provides the a histogram function, which is a generalization of \package{matplotlib}’s histogram function, to allow for more flexible specification of histogram bins.  The function provides several methods of automatically tuning the histogram bin size. It has a syntax identical \package{matplotlib}’s histogram function (with the exception of the bins parameter), which allows specification of one of four different methods for automatic bin selection.
 
 \subsubsection{Creating color RGB images}
-\citep{Lupton2004} describe an “optimal” algorithm for producing red-green- blue composite images from three separate high-dynamic range arrays. The \package{visualization} package provies a convenience function to create such an image.  It also includes an associated set of classes to provide alternate scalings.  The SDSS SkyServer color images were made using a variation on this technique.
-% mention LSST contribution (Zenodo ref?)
-% include images here
+
+\citep{Lupton2004} describe an “optimal” algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{visualization} package provides a convenience function to create such an image.  It also includes an associated set of classes to provide alternate scalings.
+This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to Astropy from a more traditional engineering organization \citep{lsst_astropy}.
+
+The SDSS SkyServer color images were made using a variation on this technique.
+% Larry TODO:  include RGB image here
 
 %\subsection{Utils}
 % Lim
@@ -722,18 +727,9 @@ In this section, we describe these tools that provide a range of different funct
 
 \subsubsection{Robust Statistical Estimators}
 
-Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
+Robust statistics provide reliable estimates of basic statistics for complex distributions that largely mitigate the effects of outliers. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes sigma clipping methods to rejecting outliers, median absolute deviation functions, and biweight estimators, which have been used to calculate the velocity dispersion of galaxy clusters \citep{Beers1990}.
 
-{\bf Sigma Clipping:}
-Sigma clipping provides a fast method to identify outliers in a distribution. For a distribution of points, a center and a standard deviation are calculated. Values which are a set number of sigma times the standard deviation away from the center are rejected. The process can be iterated to further reject outliers.  It should be noted that the \package{scipy} sigma clipping function provides a subset of functionality of the \package{astropy.stats} function.  The \package{astropy.stats} version can take a masked array as input and it allows the user to specify the number of iterations, the data axis on which to perform the clipping, and the functions used to calculate the center and standard deviation in the data.
-
-{\bf Median Absolute Deviation:}
-The median absolute deviation (MAD) is a measure of the spread of a distribution and is defined as median(abs(a - median(a))). For a normal distribution, the MAD is related to the standard deviation by a factor of 1.4826 (the normal inverse cumulative distribution function evaluated at probabilty $P=3/4$), and a convenience function is available to apply the conversion.
-
-{\bf Biweight Estimators: }
-A set of functions are included in the \package{stats} package that use the biweight formalism. These functions have long been used in astronomy, particularly to calculate the velocity dispersion of galaxy clusters \citep{Beers1990}.
-
-{\bf Circular Statistics: }
+{\subsubsection{Circular Statistics}
 A set of circular statistical estimators based on [XXX] are implemented in the \package{stats} package.  These functions provide measurements of the circular mean, variance, and moment.   For all of these functions, they work with both numpy.ndarrays (assumed to be in radians) and Quantity objects.  In addition, the package includes tests for Raleigh Test [XXX], vtest [XXX], and a function to compute the maximum likelihood estimator for the parameters of the von Mises distribution [XXX].
 
 \subsubsection{Lomb-Scargle Periodograms}
@@ -775,9 +771,9 @@ widespread. Currently we support setups for Travis CI and Appveyor CI.
 % Tom R will work on this on Oct 18 and/or 19
 
 
-\inlinecomment{BMS}{What about pytest-astropy, should we inlude it here, or
-  for the future section?}
-\inlinecomment{PLL}{pytest-astropy is v3, right?}
+%\inlinecomment{BMS}{What about pytest-astropy, should we inlude it here, or
+%  for the future section?}
+%\inlinecomment{PLL}{pytest-astropy is v3, right?}
 % \section{State of the Ecosystem}
 % Commenting out unless a clear statement is added
 
@@ -806,7 +802,7 @@ learning astropy
 
 Who to thank?  numfocus,
 
-Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. 
+Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs.
 
 %% Similar to \facility{}, there is the optional \software command to allow
 %% authors a place to specify which programs were used during the creation of
@@ -815,9 +811,9 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI.
 
 \software{\package{astropy} (\citealt{astropy}),
           \package{numpy} (\citealt{numpy}),
-          \package{scipy} (\url{https://www.scipy.org/}),
-          \package{matplotlib} (\url{https://matplotlib.org/})
-          \package{Cython}(\url{http://cython.org}),
+          \package{scipy} (\citealt{scipy}),
+          \package{matplotlib} (\citealt{matplotlib})
+          \package{Cython}(\citealt{cython}),
           }
 
 \bibliographystyle{aasjournal}
