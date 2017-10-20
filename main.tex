@@ -625,9 +625,7 @@ New model classes can be created in two ways:
 
 \subsubsection{Unit Support}
 
-% Tom R: unit support description goes here and the sentence below is to be folded in with it.
-
-Unit support in \texttt{modeling} has enabled implementation of the blackbody \citep{Rybicki1979} model, which requires units to make sense. It is available in \package{astropy} 2.0 as \texttt{BlackBody1D}.
+The \package{modeling} package now supports the representation, evaluation and fitting of models using \texttt{Quantity} objects, which attach units to scalar values or arrays of values. In practice, this means that one can for example fit a model to data with units and get parameters that also have units out, or initialize a model with parameters with units and evaluating it using input values with different but equivalent units. Using this, we have implemented a blackbody model (\texttt{BlackBody1D}) that can be used to fit observed fluxes in a variety of units and as a function of different units of spectral coordinates.
 
 \subsection{Convolution}
 % Adam G.
@@ -659,6 +657,8 @@ The \package{visualization} package provides functionality that can be helpful w
 
 \subsubsection{Image Stretching and Normalization}
 
+\label{sec:stretch}
+
 The \package{visualization} package provides a framework for transforming values in images (and more generally any arrays), typically for the purpose of visualization. Two main types of transformations are normalization and stretching of image values.
 
 Normalization transforms the images values to the [0:1] range using lower and upper limits where $x$ represents the values in the original image:
@@ -676,11 +676,19 @@ Several classes are provided for determining intervals (e.g. using image percent
 
 \package{Matplotlib} allows a custom normalization and stretch to be used when displaying data by passing a normalization object.  The \package{visualization} package also provides a normalization class that wraps the interval and stretching objects into a normalization object that \package{matplotlib} understands.
 
-\subsubsection{WCSAxes}
+\subsubsection{Plotting image data with world coordinates}
 
 One of the most common tasks by astronomers dealing with observational data is to make figures with images that include the correct coordinates and optionally with a coordinate grid. The challenge however is that the conceptual coordinate axes (such as longitude/latitude) need not be lined up with the pixel axes of the image. The \package{visualization.wcsaxes} subpackage implements a generalized way of making figures from an image array and a world coordinate system (WCS) object that provides the transformation between pixel and 'world' coordinates. World coordinates can be for example right ascension and declination, but can also include for example velocity, wavelength, frequency, time, and so on. The main features from this subpackage include the ability to control which axes to show which coordinate on (for example showing longitude ticks on the top and bottom axes and latitude on the left and right axes), controlling the spacing of the ticks either by specifying the positions to use or providing a tick spacing or an average number of ticks that should be present on each axis, setting the format for the tick labels to ones commonly used by astronomers, controlling the visibility of the grid/graticule, and overlaying ticks, labels, and/or grid lines from different coordinate systems. In addition, it is possible to pass data with more than two dimensions and slice on-the-fly. Finally, it is possible to define non-rectangular frames, such as for example for Aitoff projections.
 
-This subpackage differs from APLpy \citep{aplpy} in that the latter focuses on providing a very high-level interface to plotting that requires very few lines of code to get a good result, whereas WCSAxes defines an interface that is much closer to that of Matplotlib \citep{matplotlib}, and makes it possible to make significantly more advanced visualizations.
+This subpackage differs from APLpy \citep{aplpy} in that the latter focuses on providing a very high-level interface to plotting that requires very few lines of code to get a good result, whereas WCSAxes defines an interface that is much closer to that of Matplotlib \citep{matplotlib}, and makes it possible to make significantly more advanced visualizations. An example of a visualization made with \package{wcsaxes} is shown in Figure~\ref{fig:wcsaxes} -- this example illustrates the ability to overlay multiple coordinate systems and customize which ticks/labels are shown on which axes around the image. This also uses the image stretching functionality from Section~\ref{sec:stretch} to show the image in a square root stretch (automatically updating the tick positions in the colorbar).
+
+\begin{figure}
+\includegraphics[width=\textwidth]{cygnus_x_spitzer.pdf}
+\caption{%
+An example of figure made using the \package{visualization.wcsaxes} subpackage, using \textit{Spitzer}/IRAC 8.0$\mu$m data from the Cygnus-X Spitzer Legacy survey \citep{cygnusx}.
+\label{fig:wcsaxes}
+}
+\end{figure}
 
 \subsubsection{Choosing Histogram Bins}
 
@@ -688,11 +696,18 @@ The package also provides the a histogram function, which is a generalization of
 
 \subsubsection{Creating color RGB images}
 
-\citep{Lupton2004} describe an “optimal” algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{visualization} package provides a convenience function to create such an image.  It also includes an associated set of classes to provide alternate scalings.
+\cite{Lupton2004} describe an “optimal” algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{visualization} package provides a convenience function to create such a color image.  It also includes an associated set of classes to provide alternate scalings.
 This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to Astropy from a more traditional engineering organization \citep{lsst_astropy}.
 
-The SDSS SkyServer color images were made using a variation on this technique.
-% Larry TODO:  include RGB image here
+The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977} we show an RGB color image of the Hickson 88 group, centered near NGC~6977.  This image was generated from SDSS images using the \package{astropy.visualization} tools.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{ngc6977.png}
+\caption{An RGB color image of the region near the Hickson 88 group
+constructed from SDSS images and the \package{astropy.visualization}
+tools.
+\label{fig:ngc6977}}
+\end{figure}
 
 %\subsection{Utils}
 % Lim
@@ -733,10 +748,12 @@ Robust statistics provide reliable estimates of basic statistics for complex dis
 A set of circular statistical estimators based on [XXX] are implemented in the \package{stats} package.  These functions provide measurements of the circular mean, variance, and moment.   For all of these functions, they work with both numpy.ndarrays (assumed to be in radians) and Quantity objects.  In addition, the package includes tests for Raleigh Test [XXX], vtest [XXX], and a function to compute the maximum likelihood estimator for the parameters of the von Mises distribution [XXX].
 
 \subsubsection{Lomb-Scargle Periodograms}
-%jake
+Periodic analysis of unevenly-spaced time series is common across subfields of Astronomy. The \package{stats} package includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.][]{Press89, Palmer09}, and so can be applied to much larger datasets than algorithms available in, e.g. \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
 
-\subsubsection{Histogram Binning}
-%jake
+\subsubsection{Bayesian Blocks and Histogram Binning}
+AstroPy also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}.
+
+\inlinecomment{JTV}{Should we include an example BB histogram from the astropy docs?}
 
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
@@ -766,10 +783,13 @@ variables. While the current development is mostly driven by the needs of
 the \astropy ecosystem, the actual usage of this package is extremely
 widespread. Currently we support setups for Travis CI and Appveyor CI.
 %
-\subsection{sphinx extensions}
+\subsection{Sphinx extensions}
 
-% Tom R will work on this on Oct 18 and/or 19
+The documentation for many Python packages the core \package{astropy} package as well as for all packages in the Astropy ecosystem is written using the Sphinx package. This package makes it possible to write the documentation using plain text files that follow a markup language called reStructuredText, and Sphinx can then transform this into HTML or \LaTeX documentation. As part of the project, we have developed a few extensions that facilitate generating documentation for a large project like Astropy. One of the main extensions we have developed is \package{sphinx-automodapi}\footnote{\url{http://sphinx-automodapi.readthedocs.io}}, which makes it easy with a single reStructuredText command to generate a set of documentation pages listing all the available classes, functions, and attributes in any given Python module.
 
+\inlinecomment{TPR}{We should put the releases of sphinx-automodapi on Zenodo and cite this}
+
+% TODO: need to put releases of sphinx-automodapi on Zenodo!
 
 %\inlinecomment{BMS}{What about pytest-astropy, should we inlude it here, or
 %  for the future section?}
