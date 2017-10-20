@@ -672,10 +672,12 @@ Several classes are provided for determining intervals (e.g. using image percent
 
 \subsubsection{Choosing Histogram Bins}
 
+The package also provides the a histogram function, which is a generalization of \package{matplotlib}’s histogram function, to allow for more flexible specification of histogram bins.  The function provides several methods of automatically tuning the histogram bin size. It has a syntax identical to matplotlib’s plt.hist function, with the exception of the bins parameter, which allows specification of one of four different methods for automatic bin selection.
+
 \subsubsection{Creating color RGB images}
 % include images
 
-Lupton et al. (2004) describe an “optimal” algorithm for producing red-green- blue composite images from three separate high-dynamic range arrays. This method is implemented in the make_lupton_rgb as a convenience wraper function and an associated set of classes to provide alternate scalings. The SDSS SkyServer color images were made using a variation on this technique.
+Lupton et al. (2004) describe an “optimal” algorithm for producing red-green- blue composite images from three separate high-dynamic range arrays. The \package{visualization} package provies a convenience function to create such an image.  It also includes an associated set of classes to provide alternate scalings.  The SDSS SkyServer color images were made using a variation on this technique.
 
 \subsection{Utils}
 % Lim
