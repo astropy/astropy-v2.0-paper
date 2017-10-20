@@ -170,7 +170,7 @@ the future of \astropy in \sectionname~\ref{sec:future}.
 % Anyone want to take this??
 
 \subsection{Coordination of Astropy}
-% Kelle
+\inlinecomment{Kelle}
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 %draft by hamogu
@@ -202,7 +202,8 @@ question. APEs are modeled after the ``Python Enhancement Proposals''
 
 
 \subsection{Astropy development model, astropy ecosystem}
-% Erik
+\inlinecomment{Needs writing by EJT}
+
 This subsection should include some basic statistics about the contributors, commits, line of code etc. up to the 2.0 release when we know it.
 
 \subsection{Concept of affiliated packages}
@@ -230,11 +231,11 @@ benefit from a different release cycle while stabilizing its API.
 \par In general we hope that becoming an affiliated package is seen as 
 a good way for new and existing packages to gain exposure.
 %
-\inlinecomment{BMS}{TODO: write about the process of becoming affiliated, and project packages}
+\inlinecomment{BMS}{TODO: write about the process of becoming affiliated, and project packages into the future section below}
 %
-\subsection{Mixin}
+%\subsection{Mixin}
 
-\subsection{Accuracy testing across many different implementation}
+%\subsection{Accuracy testing across many different implementation}
 
 \subsection{Use of Quantities across package}
 % Marten and Tom R.
@@ -302,7 +303,7 @@ since version v0.2 (previously described in \citealt{astropy}).
 \inlinecomment{BMS}{I suggest to order the subsection lexicographically as reading the draft the current order seemed very random (unlike at the docs page where they the grouping logic is obvious)}
 \subsection{Units and quantities}
 \label{sec:units}
-% Marten, Adrian
+\inlinecomment{Marten, Adrian}{}
 
 The \package{astropy.units} subpackage provides ...
 
@@ -315,7 +316,9 @@ The \package{astropy.units} subpackage provides ...
 \end{description}
 
 \subsection{Constants}
-% David S.
+
+\inlinecomment{David S.}
+
 versioning
 
 
@@ -460,6 +463,8 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 \subsection{Time}
 \label{sec:time}
 
+\inlinecomment{Tom, Marten?}
+
 \inlinecomment{SCO}{Q: does it make sense to refer forward to FITS support, even though it is 3.0?}
 \inlinecomment{BMS}{what about moving it into the future section below?}
 
@@ -467,14 +472,19 @@ Uses ERFA \citep{erfa}...
 
 \subsection{Data arrays}
 
-\subsubsection{NDDdata}
-% Matt C., Michael, or Steve C.
-% Larry (nddata.utils)
-%NOTE (Larry), The package is nddata, which includes the NDData object.  %Don't forget the nddata.utils functionality (e.g. Cutout2D, block\_reduce, %etc.).
+\subsubsection{nddata}
+
+\inlinecomment{Matt C., Steve C.?}
+
+NDData object:
+
+%Larry:  Don't forget the nddata.utils functionality (e.g. Cutout2D, block\_reduce, %etc.).
 
 \subsubsection{Tables}
 \label{sec:table}
-% Tom A.
+
+\inlinecomment{Tom A.}
+
 QTable is new, mixin columns for time and coordinates. Table operations were added in v0.3
 
 \subsection{io}
@@ -668,6 +678,8 @@ Several classes are provided for determining intervals (e.g. using image percent
 
 \subsubsection{WCSAxes}
 
+One of the most common tasks by astronomers dealing with observational data is to make figures with images that include the correct coordinates (formatted e.g. as sexagesimal values) and optiona
+The \package{visualization} package
 % Tom R. will work on this on Oct 18 and/or 19.
 
 \subsubsection{Choosing Histogram Bins}
@@ -675,11 +687,11 @@ Several classes are provided for determining intervals (e.g. using image percent
 The package also provides the a histogram function, which is a generalization of \package{matplotlib}’s histogram function, to allow for more flexible specification of histogram bins.  The function provides several methods of automatically tuning the histogram bin size. It has a syntax identical \package{matplotlib}’s histogram function (with the exception of the bins parameter), which allows specification of one of four different methods for automatic bin selection.
 
 \subsubsection{Creating color RGB images}
-% include images
+\citep{Lupton2004} describe an “optimal” algorithm for producing red-green- blue composite images from three separate high-dynamic range arrays. The \package{visualization} package provies a convenience function to create such an image.  It also includes an associated set of classes to provide alternate scalings.  The SDSS SkyServer color images were made using a variation on this technique.
+% mention LSST contribution (Zenodo ref?)
+% include images here
 
-Lupton et al. (2004) describe an “optimal” algorithm for producing red-green- blue composite images from three separate high-dynamic range arrays. The \package{visualization} package provies a convenience function to create such an image.  It also includes an associated set of classes to provide alternate scalings.  The SDSS SkyServer color images were made using a variation on this technique.
-
-\subsection{Utils}
+%\subsection{Utils}
 % Lim
 
 \subsection{Cosmology}
@@ -713,17 +725,18 @@ In this section, we describe these tools that provide a range of different funct
 %
 \subsubsection{Robust Statistical Estimators}
 \inlinecomment{BMS}{Can we highlight in a sentence for each of the ones below how they are different from e.g. the scipy equivalents?}
+\inlinecomment{LDB}{Thanks.  I did this for sigma clipping.  Scipy doesn't have functions for the others...}
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
 {\bf Sigma Clipping:}
-Sigma clipping provides a fast method to identify outliers in a distribution. For a distribution of points, a center and a standard deviation are calculated. Values which are a set number of sigma times the standard deviation away from the center are rejected. The process can be iterated to further reject outliers.
+Sigma clipping provides a fast method to identify outliers in a distribution. For a distribution of points, a center and a standard deviation are calculated. Values which are a set number of sigma times the standard deviation away from the center are rejected. The process can be iterated to further reject outliers.  It should be noted that the \package{scipy} sigma clipping function provides a subset of functionality of the \package{astropy.stats} function.  The \package{astropy.stats} version can take a masked array as input and it allows the user to specify the number of iterations, the data axis on which to perform the clipping, and the functions used to calculate the center and standard deviation in the data.
 
 {\bf Median Absolute Deviation:}
-The median absolute deviation (MAD) is a measure of the spread of a distribution and is defined as median(abs(a - median(a))). For a normal distribution, the MAD is related to the standard deviation by a factor of 1.4826, and a convenience function is available to apply the conversion.
+The median absolute deviation (MAD) is a measure of the spread of a distribution and is defined as median(abs(a - median(a))). For a normal distribution, the MAD is related to the standard deviation by a factor of 1.4826 (the normal inverse cumulative distribution function evaluated at probabilty $P=3/4$), and a convenience function is available to apply the conversion.
 
 {\bf Biweight Estimators: }
-A set of functions are included in the \package{stats} package that use the biweight formalism. These functions have long been used in astronomy, particularly to calculate the velocity dispersion of galaxy clusters [XXX].
+A set of functions are included in the \package{stats} package that use the biweight formalism. These functions have long been used in astronomy, particularly to calculate the velocity dispersion of galaxy clusters \citep{Beers1990}.
 
 {\bf Circular Statistics: }
 A set of circular statistical estimators based on [XXX] are implemented in the \package{stats} package.  These functions provide measurements of the circular mean, variance, and moment.   For all of these functions, they work with both numpy.ndarrays (assumed to be in radians) and Quantity objects.  In addition, the package includes tests for Raleigh Test [XXX], vtest [XXX], and a function to compute the maximum likelihood estimator for the parameters of the von Mises distribution [XXX].
@@ -769,15 +782,16 @@ widespread. Currently we support setups for Travis CI and Appveyor CI.
 
 \inlinecomment{BMS}{What about pytest-astropy, should we inlude it here, or
   for the future section?}
+\inlinecomment{PLL}{pytest-astropy is v3, right?}
 % \section{State of the Ecosystem}
 % Commenting out unless a clear statement is added
 
-\section{Learning Astropy}
-\label{sec:learning}
+%\section{Learning Astropy}
+%\label{sec:learning}
 % Kelle, Adrian
-\inlinecomment{BMS}{would astropy learn mature enough to described in the paper, or maybe it should go as a subsection for the next, future of astropy section?}
+%\inlinecomment{BMS}{would astropy learn mature enough to described in the paper, or maybe it should go as a subsection for the next, future of astropy section?}
 
-Explain components: Documentation, Tutorials, and lessons
+%Explain components: Documentation, Tutorials, and lessons
 
 \section{The future of the Astropy project}
 \label{sec:future}
@@ -792,7 +806,7 @@ performance/speedup focus of the 3.1 release?}
 
 dropping \python 2 support, growths of affiliated packages
 Summary
-
+learning astropy 
 \acknowledgments
 
 Who to thank?  numfocus,
@@ -807,14 +821,16 @@ CI services? GitHub?
 \software{\package{astropy} (\citealt{astropy}),
           \package{numpy} (\citealt{numpy}),
           \package{scipy} (\url{https://www.scipy.org/}),
-          \package{matplotlib} (\url{https://matplotlib.org/}),
+          \package{matplotlib} (\url{https://matplotlib.org/})
+          \package{Cython}(\url{http://cython.org}),
           }
 
 \bibliographystyle{aasjournal}
 \bibliography{bibliography}
 
 
-
+\appendix
+\section{List of Affiliated Packages}
 
 
 \end{document}
