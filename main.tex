@@ -662,10 +662,9 @@ Stretching transforms the image values in the [0:1] range to the [0:1] range usi
 z = f(y)
 \end{equation}
 
-Several classes are provided for determining intervals and for normalizing values in this interval to the [0:1] range.
-In addition, classes are provided in order to identify lower and upper limits for a dataset based on specific algorithms (such as using percentiles).
+Several classes are provided for determining intervals (e.g. using image percentiles) and for normalizing values in this interval to the [0:1] range.
 
-
+\package{Matplotlib} allows a custom normalization and stretch to be used when displaying data by passing a normalization object.  The \package{visualization} package also provides a normalization class that wraps the interval and stretching objects into a normalization object that \package{matplotlib} understands.
 
 \subsubsection{WCSAxes}
 
@@ -675,6 +674,8 @@ In addition, classes are provided in order to identify lower and upper limits fo
 
 \subsubsection{Creating color RGB images}
 % include images
+
+Lupton et al. (2004) describe an “optimal” algorithm for producing red-green- blue composite images from three separate high-dynamic range arrays. This method is implemented in make_lupton_rgb as a convenience wraper function and an associated set of classes to provide alternate scalings. The SDSS SkyServer color images were made using a variation on this technique.
 
 \subsection{Utils}
 % Lim
