@@ -178,7 +178,7 @@ Central to the success of \astropy is an open environment where
 anybody can contribute to the code by opening a so-called ``pull
 request'' with a new code contribution on a publically available
 website\footnote{\url{https://github.com/astropy/astropy}}; this
-request is then reviewed by a maintainer responsible for the specific
+request is then reviewed by at least one of the maintainers responsible for the specific
 sub-package and possibly merged into the main code base. Most bug
 fixes and small features are contributed in this way. However, this
 model leads to ``organic'' growth where different features are
@@ -209,24 +209,28 @@ This subsection should include some basic statistics about the contributors, com
 % it may be described in previous subsection, if not the Brigitta can try to
 % write it up
 %
-\par A major part of the \astropy project is the concept of
+\par A major part of the \astropy~project is the concept of
 ``Affiliated Packages''. An affiliated package is an astronomy-related
-\python package that is not part of the \astropypkg core package, but
-has requested to be included as part of the astropy project’s
-community. These packages support the goals and vision of \astropy of
+\python~package that is not part of the \astropypkg~core package, but
+has requested to be included as part of the \astropy project's
+community. These packages support the goals and vision of \astropy~of
 improving code reuse, interoperability, and embracing good coding
-practices such as testing and thorough documentation. \astropypkg
+practices such as testing and thorough documentation. \astropypkg{}
 version 2.0 supports \python~2.7 and \python~3.4+, affiliated packages
 are strongly encouraged to support at least \python~3.x.
 %
 \par Affiliated packages contain functionality that is more specialized, or
 have license incompatibility, or have enough external dependencies (e.g. GUI
 libraries) that limit their integration possibility into the core and thus
-they are more suitable to be separate packages. In general we hope that
-becoming an affiliated package is seen as a good way for new and existing
-packages to gain exposure.
+they are more suitable to be separate packages. Starting as an affiliate 
+package is also seen as a good strategy for functionality that is aimed for
+the \astropypkg~core but is currently undergo rapid development and can 
+benefit from a different release cycle while stabilizing its API. 
 %
-% TODO: write about the process of becoming affiliated, and project packages
+\par In general we hope that becoming an affiliated package is seen as 
+a good way for new and existing packages to gain exposure.
+%
+\inlinecomment{BMS}{TODO: write about the process of becoming affiliated, and project packages}
 %
 \subsection{Mixin}
 
@@ -292,7 +296,7 @@ since version v0.2 (previously described in \citealt{astropy}).
 % \subsection{Analytic Functions}
 % moved to models and depreciated --
 % just here for completeness at the moment
-
+\inlinecomment{BMS}{I suggest to order the subsection lexicographically as reading the draft the current order seemed very random (unlike at the docs page where they the grouping logic is obvious)}
 \subsection{Units and quantities}
 \label{sec:units}
 % Marten, Adrian
