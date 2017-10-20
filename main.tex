@@ -678,11 +678,7 @@ Several classes are provided for determining intervals (e.g. using image percent
 
 \subsubsection{WCSAxes}
 
-One of the most common tasks by astronomers dealing with observational data is to make figures with images that include the correct coordinates (formatted e.g. as sexagesimal values) and optionally with a graticule showing the lines of longitude/latitude.
-
-
-The \package{visualization} package
-% Tom R. will work on this on Oct 18 and/or 19.
+One of the most common tasks by astronomers dealing with observational data is to make figures with images that include the correct coordinates and optionally with a coordinate grid. The challenge however is that the conceptual coordinate axes (such as longitude/latitude) need not be lined up with the pixel axes of the image. The \package{visualization.wcsaxes} subpackage implements a generalized way of making figures from an image array and a world coordinate system (WCS) object that provides the transformation between pixel and 'world' coordinates. World coordinates can be for example right ascension and declination, but can also include for example velocity, wavelength, frequency, time, and so on. The main features from this subpackage include the ability to control which axes to show which coordinate on (for example showing longitude ticks on the top and bottom axes and latitude on the left and right axes), controlling the spacing of the ticks either by specifying the positions to use or providing a tick spacing or an average number of ticks that should be present on each axis, controlling the visibility of the grid/graticule, and overlaying different coordinate systems
 
 \subsubsection{Choosing Histogram Bins}
 
@@ -724,10 +720,7 @@ In this section, we describe these tools that provide a range of different funct
 % Larry:  sigma clipping, biweight stats
 % Ze':  Ripley's K (spatial stats)
 
-%
 \subsubsection{Robust Statistical Estimators}
-\inlinecomment{BMS}{Can we highlight in a sentence for each of the ones below how they are different from e.g. the scipy equivalents?}
-\inlinecomment{LDB}{Thanks.  I did this for sigma clipping.  Scipy doesn't have functions for the others...}
 
 Robust statistics provide reliable estimates of basic statistics for complex distributions. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes methods for rejecting outliers as well as statistical description of the underlying distributions.
 
@@ -813,7 +806,7 @@ learning astropy
 
 Who to thank?  numfocus,
 
-CI services? GitHub?
+Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. 
 
 %% Similar to \facility{}, there is the optional \software command to allow
 %% authors a place to specify which programs were used during the creation of
