@@ -99,15 +99,15 @@ institutions, e.g.\ IRAF \citep[developed at NOAO,][]{IRAF}, MIDAS
 % probably starlink is a better example as being a large package of software similarly to IRAF and MIDAS rather than a single tool.
 %
 % ^.
-% hamogu: Feel free ot swap in Starlink, if you think that's more appropriate. I picked ds9 becase (a) it's wider known (e.g. in the X-ray sounity) and (b) because it is an example of a widely used tool with institutional support that is NOT a large package. TOPCAT would have been another example if we want to expand that list.
+% hamogu: Feel free ot swap in Starlink, if you think that's more appropriate. I picked ds9 becase (a) it's wider known (e.g. in the X-ray community) and (b) because it is an example of a widely used tool with institutional support that is NOT a large package. TOPCAT would have been another example if we want to expand that list.
   SAO,][]{ds9}. These packages tend to address a wide range of users
-and they typically provide some level of documentation and user
-support. Other packages are developed foremost by individual research
-groups and used mostly in work by members of this group. Those
+and typically provide some level of documentation and user
+support is provided. Other packages are developed foremost by individual research
+groups and used mostly in work by members of the group. Those
 packages can address more specialized needs, but are not necessarily
 available to the community and even if they are, documentation can in
 some cases be insufficient for new users and the quality of the
-software, i.e. the robustness and the level of testing that has been
+software, i.e.\ the robustness and the level of testing that has been
 performed to ensure correctness, is not always clear. On the other
 hand, there are also many widely used, well documented, high quality
 software packages which are developed by individuals or small groups.
@@ -118,7 +118,7 @@ project, can be eased by the use of a library that provides core
 functionality that is common to many astronomical tasks. Reading and
 writing FITS files is one example where it is time
 consuming to implement the FITS standard correctly and
-programming is much faster when using an existing library perform this
+programming is much faster when using an existing library to perform this
 task. Another example of such a common task is dealing with different
 astronomical coordinate systems. The \astropy project aims to provide a
 library of core astronomical functionality in the \python programming
@@ -132,7 +132,7 @@ and well-developed packages provide support for array arithmetic
 computing \citep[\package{scipy},][]{numpy}, and publication-quality plotting
 \citep[\package{matplotlib},][]{matplotlib}. Tens of thousands of other packages
 are available which can help with tasks that are not astronomy specific but
-might be performed in the course of astronomical research, e.g., presenting
+might be performed in the course of astronomical research, e.g.\ presenting
 results on websites or interfacing with databases.
 
 At the same time, an ecosystem of tools, programs, and webservices
@@ -145,7 +145,7 @@ tools to do so without central institutional oversight.
 
 The first public release of the \astropy package is described in
 \cite{astropy}. Since then, the \astropy package has been
-used in hundreds of projects, and the scope of the package as grown
+used in hundreds of projects, and the scope of the package has grown
 considerably. At the same time, the community of astronomers
 contributing to the project has grown tremendously and an ecosystem
 of packages supporting or affiliated with the \astropy core has
@@ -157,12 +157,10 @@ We start by describing the way the \astropy project works and is
 organized in \sectionname~\ref{sec:concepts}.  The project develops a core
 package called \astropypkg (\sectionname~\ref{sec:core}) and several
 separate packages that help setting up the infrastructure for testing,
-documentation etc.~(\sectionname~\ref{sec:infrastructure}). In
-\sectionname~\ref{sec:learning} we give an overview of the wealth of
-resources created to teach new users the use of the \astropy packages
-and how to contribute to the community. We end with a short vision for
-the future of \astropy in \sectionname~\ref{sec:future}.
-
+documentation etc.\ (\sectionname~\ref{sec:infrastructure}). 
+We end with a short vision for
+the future of \astropy in particular and astronomical software in general
+in \sectionname~\ref{sec:future}.
 
 
 \section{Major concepts}
@@ -225,7 +223,7 @@ have license incompatibility, or have enough external dependencies (e.g. GUI
 libraries) that limit their integration possibility into the core and thus
 they are more suitable to be separate packages. Starting as an affiliate 
 package is also seen as a good strategy for functionality that is aimed for
-the \astropypkg~core but is currently undergo rapid development and can 
+the \astropypkg~core but is initially undergoing rapid development and can 
 benefit from a different release cycle while stabilizing its API. 
 %
 \par In general we hope that becoming an affiliated package is seen as 
@@ -576,6 +574,7 @@ FITS, votable, HTML, JSViewer/Datatables).
 \end{description}
 
 \inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
+\inlinecomment{hamogu}{MY feeling is that this section is too detailed already. If I had written it, I would not have mentioned the scripts at all.}
 
 \subsection{Modeling}
 \label{sec:modeling}
@@ -717,18 +716,14 @@ tools.
 
 \subsection{Statistics}
 
-The \package{astropy.stats} package provides
-statistical tools that are useful for or specific to
-astronomy and are not found in or extend the available
-functionality of other \python\
-statistics packages such as \package{scipy}
-\citep{scipy} or \package{statsmodels}
-\citep{seabold2010statsmodels}.   The
-\package{stats} package contains a range of
-different functionality used by many different
-disciplines in astronomy.   It is not a complete set
-of statistic tools, but rather a still growing
-collection of useful features.
+The \package{astropy.stats} package provides statistical tools that
+are useful for or specific to astronomy and are not found in or extend
+the available functionality of other \python\ statistics packages such
+as \package{scipy} \citep{scipy} or \package{statsmodels}
+\citep{seabold2010statsmodels}.  The \package{stats} package contains
+a range of different functionality used by many different disciplines
+in astronomy.  It is not a complete set of statistic tools, but rather
+a still growing collection of useful features.
 
 The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests.
 
@@ -818,6 +813,41 @@ performance/speedup focus of the 3.1 release?}
 dropping \python 2 support, growths of affiliated packages
 Summary
 learning astropy 
+
+\section{Outlook}
+\label{sec:outlook}
+\inlinecomment{hamogu}{This may be merged into the section above once
+  that is fleshed out a little more.}  As shown above the development
+of the \astropypkg package is making good progress, helping
+astronomers worldwide to perform many daily tasks such as planning
+observations, analyzing data or simulation results, and writing
+publications. The strong emphasis that the \astropy project puts on
+reliability and code correctness helps users to trust the calculations
+performed with \astropypkg and to publish reproducable results. More
+functionality is added to the core package and more and more
+affiliated packages support more specialized needs.
+
+At the same time, \astropy is spreading awareness of best practices in
+software development. This is important since most practicing
+astronomers received their education without being taught in computer
+science and software development although a major fraction of almost
+every astronomer's workload today is related to software use and
+development. The \astropypkg package leads by example, showing all interested
+astronomers how modern tools like git verion control or continuous
+integration (code is tested after every change to the source) can
+increase the quality and accessability of astronomical software
+without overly complicating the development cycle. All submitted code
+is reviewed by at least one, but typically more, members of the
+astropy community, providing feedback and allowing contributors to
+improve their skill is developing software without the need for their
+institutions to provide dedicated teaching recources. Thus, the
+\astropy project does not only build the tools needed to perform
+productive astronomical research in an era of increasingly large and
+complex datasets, it also helps to prepare the current and the next
+generation of researchers with the knowledge to adequatly use those
+tools.
+
+
 \acknowledgments
 
 Who to thank?  numfocus,
