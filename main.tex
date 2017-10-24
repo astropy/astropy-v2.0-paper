@@ -752,12 +752,23 @@ compute the maximum likelihood estimator for the parameters of the von Mises
 distribution [XXX].
 
 \subsubsection{Lomb-Scargle Periodograms}
-Periodic analysis of unevenly-spaced time series is common across subfields of Astronomy. The \package{stats} package includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.][]{Press89, Palmer09}, and so can be applied to much larger datasets than algorithms available in, e.g. \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
+Periodic analysis of unevenly-spaced time series is common across subfields of Astronomy. The \package{stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g. \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
-AstroPy also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}.
+AstroPy also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}. An example of a histogram fit using the Bayesian blocks algorithm is shown in the right panel of \figurename\ref{fig:bayes-blocks-hist}.
 
-\inlinecomment{JTV}{Should we include an example BB histogram from the astropy docs?}
+\begin{figure}
+\includegraphics[width=\textwidth]{bayesian_blocks_hist.pdf}
+\caption{%
+    A histogram with irregular bins, fit using the Bayesian blocks
+    algorithm. The left panel shows a standard histogram using
+    \package{matplotlib}'s default of 10 bins. The right panel shows
+    the same histogram with bin widths determined by the Bayesian
+    blocks model. The model is such that relevant features of the data
+    distribution are much more apparent.
+    \label{fig:bayes-blocks-hist}
+}
+\end{figure}
 
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
