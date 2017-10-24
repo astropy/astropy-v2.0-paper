@@ -747,9 +747,9 @@ are implemented in the \package{stats} package.  These functions provide
 measurements of the circular mean, variance, and moment.   For all of these
 functions, they work with both \texttt{numpy.ndarrays} (assumed to be in
 radians) and \texttt{Quantity} objects.  In addition, the package includes
-tests for Rayleigh Test [XXX], vtest [XXX], and a function to compute the
-maximum likelihood estimator for the parameters of the von Mises distribution
-[XXX].
+tests for Rayleigh Test \citep{wilkie83}, vtest [XXX], and a function to
+compute the maximum likelihood estimator for the parameters of the von Mises
+distribution [XXX].
 
 \subsubsection{Lomb-Scargle Periodograms}
 Periodic analysis of unevenly-spaced time series is common across subfields of Astronomy. The \package{stats} package includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.][]{Press89, Palmer09}, and so can be applied to much larger datasets than algorithms available in, e.g. \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
