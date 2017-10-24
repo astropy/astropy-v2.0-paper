@@ -1,5 +1,7 @@
 \documentclass[modern]{aastex61}
+\usepackage{hyperref}
 \usepackage{xspace}
+\usepackage{booktabs}
 \newcommand{\escapecmd}[1]{\texttt{\detokenize{#1}}}
 
 \submitjournal{ApJ}
@@ -893,6 +895,16 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
 \appendix
 \section{List of Affiliated Packages}
 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    Package Name  & Stable & PyPI Name & Maintainer \\
+    \midrule
+      \input{registry.tex}
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \end{document}
 
