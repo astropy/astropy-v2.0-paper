@@ -516,7 +516,11 @@ Uses ERFA \citep{erfa}...
 
 \inlinecomment{Should I mention the fact that there will be changes coming to 3.0?}
 
-The \package{astropy.nddata} supackage provides three types of functionality: an abstract interface for representing generic arbitary-dimensional datasets intended primarily for developers of other packages and concrete classes building on this interface and utilities for manipulating these kind of datasets.
+The \package{astropy.nddata} supackage provides three types of functionality:
+an abstract interface for representing generic arbitrary-dimensional datasets
+intended primarily for developers of other packages and concrete classes
+building on this interface and utilities for manipulating these kind of
+datasets.
 
 The \texttt{NDDataBase} class provides the abstract interface for gridded data with attributes for accessing metadata, the world-coordinate system (WCS), uncertainty and other traits. Building on this interface the \texttt{NDData} class provides a minimally working implementation for storing NumPy arrays. These classes serve as useful base for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
 
