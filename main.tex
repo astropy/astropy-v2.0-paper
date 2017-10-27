@@ -173,7 +173,7 @@ in \sectionname~\ref{sec:future}.
 % Anyone want to take this??
 
 \subsection{Coordination of Astropy}
-\inlinecomment{Kelle}
+\inlinecomment{EJT}
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 %draft by hamogu
@@ -278,31 +278,46 @@ bugfix releases.
 
 \subsection{Distribution packages}
 
-\astropy is available from several of the Python distributions for scientific
+\astropypkg is available from several of the Python distributions for scientific
+% * <mattwcraig@gmail.com> 2017-10-27T07:13:51.093Z:
+% 
+% > \astropypkg i
+% I changed a few of the macros in here to refer to the package rather than the project because it is the package being discussed here.
+% 
+% ^.
 computing, such as Anaconda or Enthought Canopy, which include also some of
 \astropy's affiliated packages.
-Alternatively, \astropy can be readily installed from the Python Package Index
+Alternatively, \astropypkg can be readily installed from the Python Package Index
 (PyPI) using pip, the recommended command-line tool for installing Python packages
 that is included by default since Python 2 $\geq$ 2.7.9 and Python 3 $\geq$ 3.4.
-For most recent \astropy releases, pre-built wheel distributions are obtainable
+For most recent \astropypkg releases, pre-built wheel distributions are obtainable
 from PyPI for Windows, Mac OS X and Linux systems that provide faster
 installation compared to the source distribution.  Optionally, the version of
 the package and the dependencies needed to run or build the software are given
 by a specifier to the pip package manager as described in PEP 440\footnote{For
 more detailed installation instructions and optional flags see
-\url{http://docs.astropy.org/en/stable/install.html#installing-astropy}}.
+\url{http://docs.astropy.org/en/stable/install.html\#installing-astropy}}.
+
 Packaged versions of \astropy are also available for several
 operating systems that are managed by a system's package manager,
 including Debian, Ubuntu, Fedora, Gentoo, Arch Linux, Mac OS X (e.g.,
 via brew, macports or fink) and FreeBSD.  However, on occasion these packages
 may be outdated compared with the latest stable release of \astropy accessible
-from the PyPI.
+from the PyPI. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for the three majot platforms.
+% * <mattwcraig@gmail.com> 2017-10-27T07:16:27.310Z:
+% 
+% > re-built binary conda packages
+% Feel free to remove if this is too detailed. I do think the available of the whole ecosystem across all platforms has helped speed its adoption.
+% 
+% ^.
 
-\subsection{Support of Astropy}
-
+%\subsection{Support of Astropy}
+% Removing unless this gets written about in 
+% a later version
 % This section should be a straight forward/factual description of the current
 % funding and support provided to astropy with the purpose of explaining the
 % current structure to the community
+
 
 %\subsection{Difficulty of reversing design choices}
 %Deciding if a feature should be included
@@ -439,8 +454,8 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg or the
     \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}. 
-    \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}
-    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper, I made a placeholder for it.}
+%    \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}
+%    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper, I made a placeholder for it.}
 
     \item[Proper motion and velocity transformations]
     In addition to positional coordinate data, the \texttt{Frame} classes now
@@ -499,9 +514,16 @@ Uses ERFA \citep{erfa}...
 
 \subsubsection{nddata}
 
-\inlinecomment{Matt C., Steve C.?}
+\inlinecomment{Should I mention the fact that there will be changes coming to 3.0?}
 
-NDData object:
+The \package{astropy.nddata} subpackage provides three types of functionality: concrete classes for representing multi-dimensional gridded data like CCD images and utilities for manipulating multi-dimensional images and high-level classes that define an interface for representing generic gridded data that is intended primarily for developers of other packages.
+
+The \texttt{CCDData} class provides I/O to FITS files and uses data structures from \astropypkg, like WCS, to represent the contents of a file abstractly. This class supports basic arithmetic operations on image, including error propagation in limited cases and slicing of images that also appropriately slices the image mask and error arrays, if present.
+
+The \package{astropy.nddata.utils} module provides utilities that can operate on either plain NumPy arrays or any of the classes in the \package{astropy.nddata} subpackage.  It features a class for representing two-dimensional image cutouts, allowing one to easily link pixels in the cutout to pixels in the original image or from the image to the cutout, and to overlay the cutout on images. Functions to enlarge or reduce an image by doing block replication or reduction are also provided.
+
+At a higher level, classes are provided which define a minimal interface for gridded data with attributes for accessing metadata, WCS and other common traits. These serve as a useful base for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
+
 
 %Larry:  Don't forget the nddata.utils functionality (e.g. Cutout2D, block\_reduce, %etc.).
 
@@ -750,6 +772,7 @@ tools.
 
 \subsection{Cosmology}
 
+The \package{cosmology} package contains classes for representing different cosmologies and functions for calculating commonly used quantities such as look-back time and distance.   The package was described in detail in \cite{astropy}.  The  default cosmology in \astropy v2.0 is given by the values in \cite{2016A&A...594A..13P}
 
 \subsection{Statistics}
 
@@ -783,9 +806,8 @@ are implemented in the \package{stats} package.  These functions provide
 measurements of the circular mean, variance, and moment.   For all of these
 functions, they work with both \texttt{numpy.ndarrays} (assumed to be in
 radians) and \texttt{Quantity} objects.  In addition, the package includes
-tests for Rayleigh Test \citep{wilkie83}, vtest [XXX], and a function to
-compute the maximum likelihood estimator for the parameters of the von Mises
-distribution [XXX].
+tests for Rayleigh Test, vtest, and a function to compute the maximum likelihood estimator for the parameters of the von Mises
+distribution.
 
 \subsubsection{Lomb-Scargle Periodograms}
 Periodic analysis of unevenly-spaced time series is common across subfields of Astronomy. The \package{stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g. \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
@@ -808,18 +830,19 @@ AstroPy also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2
 
 \section{Infrastructure for affiliated packages}
 \label{sec:infrastructure}
-\inlinecomment{BMS}{should we use links to the appropriate github repo?}
-\inlinecomment{PLL}{IMHO a list of GitHub repo links for affil. pkgs. should be in appendix, if included.}
+%\inlinecomment{BMS}{should we use links to the appropriate github repo?}
+%\inlinecomment{PLL}{IMHO a list of GitHub repo links for affil. pkgs. should be in appendix, if included.}
 \inlinecomment{BMS}{should we describe astropy-helpers even though it's future is unsure?}
 %
 \par In addition to astronomy related packages and libraries, the \astropy\
-Project also contains and supports several infrastructure packages that are
+Project also maintains and distributes several infrastructure packages that are
 very generic. The following sections describes the most widely used
 selection of them.
 %
 \subsection{Package template}
 % Brigitta may write this up if there is no other takers
-\par \astropy provides a template package that any \python package is welcome to
+\par \astropy provides a \package{package-template}\footnote{\url{https://github.com/astropy/package-template/}}
+package that any \python package is welcome to
 use (many affiliated packages do so). The template contains a ready-to-go
 package layout. It provides infrastructure such as documentation tools,
 testing framework and CI templates and configurations, Cython integration,
@@ -827,8 +850,9 @@ and documentation on how to make it all work.
 %
 \subsection{Continuous integration helpers}
 % Brigitta
-\package{ci-helpers} is a collection of scripts that empowers package
-maintainers to control their testing set up and installation process for
+\package{ci-helpers}\footnote{\url{https://github.com/astropy/ci-helpers}} is a
+collection of scripts that empowers package maintainers to control their testing
+set up and installation process for
 various continuous integration services via a set of environment
 variables. While the current development is mostly driven by the needs of
 the \astropy ecosystem, the actual usage of this package is extremely
