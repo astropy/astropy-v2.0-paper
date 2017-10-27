@@ -104,7 +104,7 @@ institutions, e.g.\ IRAF \citep[developed at NOAO,][]{IRAF}, MIDAS
 %
 % ^.
 % hamogu: Feel free ot swap in Starlink, if you think that's more appropriate. I picked ds9 becase (a) it's wider known (e.g. in the X-ray community) and (b) because it is an example of a widely used tool with institutional support that is NOT a large package. TOPCAT would have been another example if we want to expand that list.
-% olebole: TOPCAT is part of Starlink Java. An other examples would be CASA resp. AIPS. I'd rather omit ds9, since it is mainly developed by one person. 
+% olebole: TOPCAT is part of Starlink Java. An other examples would be CASA resp. AIPS. I'd rather omit ds9, since it is mainly developed by one person.
   SAO,][]{ds9}. These packages tend to address a wide range of users
 and typically provide some level of documentation and user
 support is provided. Other packages are developed foremost by individual research
@@ -162,7 +162,7 @@ We start by describing the way the \astropy project works and is
 organized in \sectionname~\ref{sec:concepts}.  The project develops a core
 package called \astropypkg (\sectionname~\ref{sec:core}) and several
 separate packages that help setting up the infrastructure for testing,
-documentation etc.\ (\sectionname~\ref{sec:infrastructure}). 
+documentation etc.\ (\sectionname~\ref{sec:infrastructure}).
 We end with a short vision for
 the future of \astropy in particular and astronomical software in general
 in \sectionname~\ref{sec:future}.
@@ -226,12 +226,12 @@ are strongly encouraged to support at least \python~3.x.
 \par Affiliated packages contain functionality that is more specialized, or
 have license incompatibility, or have enough external dependencies (e.g. GUI
 libraries) that limit their integration possibility into the core and thus
-they are more suitable to be separate packages. Starting as an affiliate 
+they are more suitable to be separate packages. Starting as an affiliate
 package is also seen as a good strategy for functionality that is aimed for
-the \astropypkg~core but is initially undergoing rapid development and can 
-benefit from a different release cycle while stabilizing its API. 
+the \astropypkg~core but is initially undergoing rapid development and can
+benefit from a different release cycle while stabilizing its API.
 %
-\par In general we hope that becoming an affiliated package is seen as 
+\par In general we hope that becoming an affiliated package is seen as
 a good way for new and existing packages to gain exposure.
 %
 \inlinecomment{BMS}{TODO: write about the process of becoming affiliated, and project packages into the future section below}
@@ -280,10 +280,10 @@ bugfix releases.
 
 \astropypkg is available from several of the Python distributions for scientific
 % * <mattwcraig@gmail.com> 2017-10-27T07:13:51.093Z:
-% 
+%
 % > \astropypkg i
 % I changed a few of the macros in here to refer to the package rather than the project because it is the package being discussed here.
-% 
+%
 % ^.
 computing, such as Anaconda or Enthought Canopy, which include also some of
 \astropy's affiliated packages.
@@ -306,14 +306,14 @@ via brew, macports or fink) and FreeBSD.  However, on occasion these packages
 may be outdated compared with the latest stable release of \astropy accessible
 from the PyPI. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for the three major platforms.
 % * <mattwcraig@gmail.com> 2017-10-27T07:16:27.310Z:
-% 
+%
 % > re-built binary conda packages
 % Feel free to remove if this is too detailed. I do think the available of the whole ecosystem across all platforms has helped speed its adoption.
-% 
+%
 % ^.
 
 %\subsection{Support of Astropy}
-% Removing unless this gets written about in 
+% Removing unless this gets written about in
 % a later version
 % This section should be a straight forward/factual description of the current
 % funding and support provided to astropy with the purpose of explaining the
@@ -375,7 +375,7 @@ inputs to objects in this subpackage are expected to be \texttt{Quantity}
 objects.
 Some of the machinery also relies on the Essential Routines of Fundamental
 Astronomy (ERFA) \texttt{C} library for some of the critical underlying
-transformation machinery \citep{erfa}, which is based on the Standards Of 
+transformation machinery \citep{erfa}, which is based on the Standards Of
 Fundamental Astronomy (SOFA) effort \citep{sofa}.
 
 
@@ -454,7 +454,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
     \texttt{astropy.time}.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg or the
-    \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}. 
+    \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}.
 %    \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}
 %    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper, I made a placeholder for it.}
 
@@ -498,7 +498,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 \end{description}
 
-\subsubsection{Accuracy and comparison of coordinate system definitions}
+%\subsubsection{Accuracy and comparison of coordinate system definitions}
 % Erik?
 
 \subsection{Time}
@@ -652,7 +652,7 @@ unit support in models and fitters make it a unique package for working with
 astrophysical models.
 
 \subsubsection{Single Model Definition and Evaluation}
-Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the numpy broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments. 
+Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the numpy broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments.
 
 Models have \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e., a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse for another polynomial model.
 
@@ -663,7 +663,7 @@ Another useful settable property of models is \texttt{Model.bounding\_box}. It d
 \package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models=k} keyword, where k is the number of models to instantiate, and providing the values for each parameter as an iterable of size k. This creates a model set which is efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
 
 \subsubsection{Compound Models}
-Single models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join $\&$, and composition $|$ operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. 
+Single models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join $\&$, and composition $|$ operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs.
 
 \subsubsection{Fitting Models to Data}
 
@@ -1000,4 +1000,3 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
 \end{table}
 
 \end{document}
-
