@@ -105,7 +105,8 @@ institutions, e.g.\ IRAF \citep[developed at NOAO,][]{IRAF}, MIDAS
 % ^.
 % hamogu: Feel free ot swap in Starlink, if you think that's more appropriate. I picked ds9 becase (a) it's wider known (e.g. in the X-ray community) and (b) because it is an example of a widely used tool with institutional support that is NOT a large package. TOPCAT would have been another example if we want to expand that list.
 % olebole: TOPCAT is part of Starlink Java. An other examples would be CASA resp. AIPS. I'd rather omit ds9, since it is mainly developed by one person.
-  SAO,][]{ds9}. These packages tend to address a wide range of users
+% timj: Starlink originally developed TOPCAT. Starlink is much better an example than DS9.
+SAO,][]{ds9}. These packages tend to address a wide range of users
 and typically provide some level of documentation and user
 support is provided. Other packages are developed foremost by individual research
 groups and used mostly in work by members of the group. Those
@@ -261,6 +262,8 @@ In the process, some standard wrappers have been defined that make defining func
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
 \inlinecomment{BMS: TODO}{reference APE2 for versioning and APE10 for dropping python2 support}
+\inlinecomment{TR}{added a reference to APE10, will add APE2 once we upload that one to Zenodo}
+
 \inlinecomment{BMS}{shall we maybe refer to the release calendar, too?}
 \inlinecomment{hamogu}{I don't think that's necessary. These details are in the docs, but not too important for a general paper.}
 \inlinecomment{BMS}{should we mention that v3.0 is the exception to the
@@ -277,7 +280,7 @@ contain only bugfixes but no new features.
 years with no changes to the API\@. They are ideal for pipelines and other
 applications where API stability is essential. The latest LTS release is
 also the last one that supports \python 2, and will receive bug fixes until the
-end of 2019.
+end of 2019 \citep{ape10}.
 %
 \par The version numbering of \astropypkg reflects on the release scheme
 described above. The core package uses the form x.y.z, where x is advanced
