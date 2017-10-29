@@ -527,13 +527,16 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 \subsubsection{Accuracy of coordinate transformations}
 
+\inlinecomment{TR}{This is a first draft and I need to dig into the details again to finish some of the text, and I also need to make the table/figure}.
+
 In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have set up a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages \footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
-no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the 'ground truth' but instead compare each tool to all other tools to find.
+no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the 'ground truth' but instead compare each tool to all other tools to find. The benchmarks are thus useful beyond the Astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include astropy, kapteyn, novas, palpy, pyast, and pyslalib. \textbf{NEED REFS}
 
-The benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, and if relevant we
+The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth.
 
-Table \textbf{TODO} shows an example of comparison
+For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. Table \textbf{TODO} gives an example of the relative accuracy of the conversion from Galactic to FK4 coordinates for all pairs of tools. This shows that \textbf{Need to add discussion here}.
 
+The benchmarks also include all-sky plots that show trends in accuracy over the sky and can help diagnose issues. Figure \textbf{TODO} shows an example of the accuracy of the conversion from XX to XX and \textbf{insert insightful result here}.
 
 \end{description}
 
