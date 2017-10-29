@@ -510,7 +510,11 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 \subsubsection{Accuracy of coordinate transformations}
 
 In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have set up a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages \footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
-no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations sometimes 
+no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the 'ground truth' but instead compare each tool to all other tools to find.
+
+The benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, and if relevant we 
+
+Table \textbf{TODO} shows an example of comparison
 
 
 \end{description}
