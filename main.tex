@@ -512,7 +512,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have set up a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages \footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
 no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the 'ground truth' but instead compare each tool to all other tools to find.
 
-The benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, and if relevant we 
+The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using , and for now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame.
 
 Table \textbf{TODO} shows an example of comparison
 
