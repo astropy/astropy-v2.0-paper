@@ -213,10 +213,28 @@ question. APEs are modeled after the ``Python Enhancement Proposals''
 (PEP) and guide the development of the \python programming language.
 
 
-\subsection{Astropy development model, astropy ecosystem}
-\inlinecomment{Needs writing by EJT}
+\subsection{Astropy development model}
+\inlinecomment{Adrian started this, but needs some filling in by EJT}
 
-This subsection should include some basic statistics about the contributors, commits, line of code etc. up to the 2.0 release when we know it.
+Code is contributed to the \astropypkg core package or modified through ``pull
+requests'' (via \github) that often contain several \texttt{git} commits.
+Pull requests may fix bugs, implement new features, or improve or modify the
+infrastructure that supports the development and maintenance of the package.
+Individual pull requests are generally limited to a single conceptual addition
+or modification to make code review tractable.
+Pull requests that modify or add code to a specific subpackage must be reviewed
+and approved by one of the subpackage maintainers before it is merged into the
+core codebase.
+Bugs and feature requests are reported via the \github issue tracker and labeled
+with a set of possible labels that help classify and organize the issues.
+The development workflow is detailed in the \astropypkg
+documentation.\footnote{\emph{How to make a code contribution}, \url{http://docs.
+astropy.org/en/stable/development/workflow/development_workflow.html}}
+
+As of version XX, \astropypkg contains XX lines of code contributed by XX unique
+contributors over XX \texttt{git} commits.
+The majority of the commits were and are contributed by a subset of the
+contributor pool: XX percent of the commits were contributed by XX contributors.
 
 \subsection{Concept of affiliated packages}
 % it may be described in previous subsection, if not the Brigitta can try to
@@ -512,7 +530,7 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have set up a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages \footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
 no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the 'ground truth' but instead compare each tool to all other tools to find.
 
-The benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, and if relevant we 
+The benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, and if relevant we
 
 Table \textbf{TODO} shows an example of comparison
 
