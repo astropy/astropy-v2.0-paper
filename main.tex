@@ -954,10 +954,51 @@ performance/speedup focus of the 3.1 release?}
 
 dropping \python{} 2 support, growths of affiliated packages
 
-\subsection{Learning astropy}
+\subsection{Learn Astropy}
 % Adrian
 
-The \astropypkg documentation 
+The \astropypkg core package documentation contains narrative descriptions of
+the package functionality along with detailed usage notes for functions,
+classes, and modules.
+While useful as a reference and for more advanced \python users, it is not the
+right entry-point for all users or learning environments.
+In the near future, we will launch a new resource for learning to use both the
+\astropypkg core package and the many packages in the broader \astropy
+ecosystem, under the name '\emph{Learn Astropy}.'
+
+The new \emph{Learn Astropy} site will present several different ways to engage
+with the \astropy ecosystem:
+\begin{description}
+    \item[Documentation] The \astropypkg and affiliated package documentation
+        contain the complete description of a package with all requisite
+        details, including usage, dependencies, and examples.
+        The pages will largely remain as-is, but will be focused towards more
+        intermediate users and as a reference resource.
+    \item[Examples] These are stand-alone code snippets that live in the
+        \astropypkg documentation that demonstrate a specific functionality
+        within a subpackage.
+        The \astropypkg core package documentation will then gain a new ``index
+        of examples'' that links to all of the code or demonstrative examples
+        within any documentation page.
+    \item[Tutorials] The \astropy tutorials are step-by-step demonstrations of
+        common tasks that incorporate several packages or subpackages.
+        Tutorials are more extended and comprehensive than examples, may contain
+        exercises for the users, and are generally geared towards workshops or
+        teaching.
+        Several tutorials already
+        exist\footnote{\url{http://tutorials.astropy.org/}} and are being
+        actively expanded.
+    \item[Guides] These are long-form narrative, comprehensive,
+        conceptually-focused documents (roughly one book chapter in length)
+        providing stand-alone introductions to core packages in addition to the
+        underlying astronomical concepts.
+        These are less specific and more conceptual than tutorials.
+        For example, ``using \astropypkg and \package{ccdproc} to reduce imaging
+        data.''
+\end{description}
+We encourage any users who wish to see specific material to either contribute or
+comment on these efforts via the \astropy mailing list or \astropy-tutorials
+\github repository.\footnote{\url{https://github.com/astropy/astropy-tutorials}}
 
 \section{Outlook}
 \label{sec:outlook}
