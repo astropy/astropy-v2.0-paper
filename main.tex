@@ -1058,18 +1058,19 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
 \appendix
 \section{List of Affiliated Packages}
 
-\begin{table}[h]
-  \centering
-  \caption{Registry of affiliated packages.}
-  \label{tab:registry}
-  \begin{tabular}{ccccc}
-    \toprule
-    Package Name  & Stable & PyPI Name & Maintainer & Citation \\
-    \midrule
-      \input{registry.tex}
-    \bottomrule
-  \end{tabular}
-\end{table}
+\begin{longrotatetable}
+  \begin{deluxetable*}{ccccc}
+    \tablecaption{Registry of affiliated packages.}
+    \label{tab:registry}
+    \tablehead{
+            \colhead{Package Name} & \colhead{Stable} & \colhead{PyPI Name} &
+            \colhead{Maintainer} & \colhead{Citation}
+      }
+      \startdata
+        \input{registry.tex}
+      \enddata
+  \end{deluxetable*}
+\end{longrotatetable}
 
 \begin{table}[h]
   \centering
