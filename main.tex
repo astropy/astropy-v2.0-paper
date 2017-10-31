@@ -1063,8 +1063,11 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
     \tablecaption{Registry of affiliated packages.}
     \label{tab:registry}
     \tablehead{
-            \colhead{Package Name} & \colhead{Stable} & \colhead{PyPI Name} &
-            \colhead{Maintainer} & \colhead{Citation}
+        \colhead{Package Name} &
+        \colhead{Stable} &
+        \colhead{PyPI Name} &
+        \colhead{Maintainer} &
+        \colhead{Citation}
       }
       \startdata
         \input{registry.tex}
@@ -1072,17 +1075,18 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
   \end{deluxetable*}
 \end{longrotatetable}
 
-\begin{table}[h]
-  \centering
-  \caption{Registry of provisionally accepted affiliated packages.}
+\begin{deluxetable*}{cccc}
+  \tablecaption{Registry of provisionally accepted affiliated packages.}
   \label{tab:registry_prov}
-  \begin{tabular}{cccc}
-    \toprule
-    Package Name  & Stable & PyPI Name & Maintainer \\
-    \midrule
+    \tablehead{
+        \colhead{Package Name} &
+        \colhead{Stable} &
+        \colhead{PyPI Name} &
+        \colhead{Maintainer}
+      }
+    \startdata
       \input{registry_prov.tex}
-    \bottomrule
-  \end{tabular}
-\end{table}
+    \enddata
+\end{deluxetable*}
 
 \end{document}
