@@ -374,21 +374,23 @@ since version v0.2 (previously described in \citealt{astropy}).
 \label{sec:units}
 \inlinecomment{Marten, Adrian}{}
 
-The \package{astropy.units} subpackage provides ...
+The \package{Units} and \package{Quantities} packages were described in detail in \cite{astropy}.   
 
-\subsubsection{Key new features}
 
-\begin{description}
-    \item[Speed improvements] ...
-    \item[Logarithmic units and magnitudes] ...
-    \item[Interaction with \package{numpy} arrays] ...
-\end{description}
+
+%\subsubsection{Key new features}
+
+%\begin{description}
+%    \item[Speed improvements] ...
+%    \item[Logarithmic units and magnitudes] ...
+%    \item[Interaction with \package{numpy} arrays] ...
+%\end{description}
 
 \subsection{Constants}
 
 \inlinecomment{David S.}
 
-versioning
+The \package{Constants} package provides useful physical constants as quantities.  The package was described in \cite{astropy}.  \package{Constants} now include their own version to track when their values are adjusted. 
 
 
 \subsection{Coordinates}
@@ -545,18 +547,18 @@ The benchmarks also include all-sky plots that show trends in accuracy over the 
 \subsection{Time}
 \label{sec:time}
 
+
 \inlinecomment{Tom, Marten?}
 
-\inlinecomment{SCO}{Q: does it make sense to refer forward to FITS support, even though it is 3.0?}
-\inlinecomment{BMS}{what about moving it into the future section below?}
+\inlinecomment{SCO}{Q: does it make sense to refer forward to FITS support, even though it is 3.0?-- If you want to say something add it to the future section, but I'd say no.}
 
-Uses ERFA \citep{erfa}...
+Time and date functionality, especially those relevant to astronomy, are dealt by the \package{Time} package.  The package was described in detail in \cite{astropy}.  The \package{Time} package is currently built on ERFA \citep{erfa}, which replicates the functionality of SOFA \cite{sofa} but is licensed under a three-clause BSD license.
 
 \subsection{Data arrays}
 
 \subsubsection{nddata}
 
-\inlinecomment{Should I mention the fact that there will be changes coming to 3.0?}
+\inlinecomment{Should I mention the fact that there will be changes coming to 3.0? -- If you want to say something add it to the future section}
 
 The \package{astropy.nddata} supackage provides three types of functionality:
 an abstract interface for representing generic arbitrary-dimensional datasets
@@ -581,7 +583,9 @@ The \package{astropy.nddata.utils} module provides utilities that can operate on
 
 \inlinecomment{Tom A.}
 
-QTable is new, mixin columns for time and coordinates. Table operations were added in v0.3
+The \package{Tables} package provides wrappers to \package{NumPy} structure arrays, which can contain heterogeneous data sets.   The package was described in detail in \cite{astropy}. Tables now has the ability to work with other astropy classes including Quantities, Time, and Coordinates.  In addition, operations can also be performed on Tables. 
+
+%QTable is new, mixin columns for time and coordinates. Table operations were added in v0.3
 
 \subsection{io}
 % Simon
@@ -949,9 +953,15 @@ have may be mentioned here. e.g. functionality of astropy-healpix? or the
 performance/speedup focus of the 3.1 release?}
 \inlinecomment{BMS}{should we mention the refactored infra here?
   e.g. pytest-astropy and sphinx-astropy?}
-\subsection{Roadmap for \python 3 only support}
+\inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
+%\subsection{Roadmap for \python 3 only support}
 
-dropping \python{} 2 support, growths of affiliated packages
+Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \cite{python 3 APE}.   While the v2.0 release is a ‘long term stable’ release )meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017. 
+  
+In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release.   To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less new functionality may be introduced in this release, but the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release. 
+
+Beyond the core code, the \astropy project is also further developing the affiliated packages.  This includes elevating a suite of packages into part of the core project.    While these may not be integrated into the core code, these projects provide code that is useful to the astronomical community and meet the testing and documentation standards of \astropy.   Some of these new efforts includes an initiative to develop tools for spectroscopy , integration of LSST software , and packages to support HEALPIX projection. 
+
 
 \subsection{Learn Astropy}
 % Adrian
