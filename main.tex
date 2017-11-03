@@ -388,9 +388,22 @@ The \package{Units} and \package{Quantities} packages were described in detail i
 
 \subsection{Constants}
 
-\inlinecomment{David S.}
+%David S.
 
-The \package{Constants} package provides useful physical constants as quantities.  The package was described in \cite{astropy}.  \package{Constants} now include their own version to track when their values are adjusted. 
+The \package{Constants} package provides a selection of physical and astronomical
+constants as quantities.  A brief description was given in \cite{astropy}. 
+For version 2.0, constants have been organized into modules for specific versions.
+Physical constants include CODATA2014 and CODATA2010 versions. Astronomical constants
+are organized into IAU2015 and IAU2012 versions to roughly indicate their sources.
+The CODATA2014 and IAU2015 versions are combined into the default ASTROPYCONST20
+version. For astropy v1.3 and earlier, the ASTROPYCONST13 namespace is available;
+however when using previous versions of the constants, \package{Constants} should be used
+directly; \package{astropy.units} will be initialized to the ASTROPYCONST20 versions.
+
+Astronomers using \package{Constants} should take particular note of the constants
+provided for Earth, Jupiter and the Sun. Following IAU 2015 Resolution B3, nominal
+values are now given for masses and radii. The nominal values will not change as
+estimates of these proper
 
 
 \subsection{Coordinates}
