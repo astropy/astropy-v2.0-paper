@@ -430,6 +430,7 @@ Some of the machinery also relies on the Essential Routines of Fundamental
 Astronomy (ERFA) \texttt{C} library for some of the critical underlying
 transformation machinery \citep{erfa}, which is based on the Standards Of
 Fundamental Astronomy (SOFA) effort \citep{sofa}.
+% timj: The preferred SOFA reference is usually https://ui.adsabs.harvard.edu/#abs/2011SchpJ...611404H/abstract rather than a URL to the SOFA web site.
 
 
 A key concept behind the design of this subpackage is that coordinate
@@ -832,6 +833,8 @@ automatic bin selection.
 
 \cite{Lupton2004} describe an ``optimal'' algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{visualization} package provides a convenience function to create such a color image.  It also includes an associated set of classes to provide alternate scalings.
 This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to Astropy from a more traditional engineering organization \citep{lsst_astropy}.
+% Please cite the final SPIE paper here rather than the presentation slides at that conference.
+% https://ui.adsabs.harvard.edu/#abs/2016SPIE.9913E..0GJ/abstract (I'm not sure how to edit the bib file on overleaf)
 
 The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977} we show an RGB color image of the Hickson 88 group, centered near NGC~6977.  This image was generated from SDSS images using the \package{astropy.visualization} tools.
 
