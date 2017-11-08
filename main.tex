@@ -60,7 +60,7 @@ broader \astropy project.
 %% keywords and the rules for their use.
 \keywords{}
 
-\section*{\textit{Notes and guidelines (to be removed)}}
+l\section*{\textit{Notes and guidelines (to be removed)}}
 
 \begin{itemize}
    \item The goal is to produce a brief and informative paper that covers major
@@ -186,6 +186,8 @@ Additionally, the committee oversees the assignment of roles (primarily driven b
 %draft by hamogu
 \inlinecomment{TODO}{subpackage vs sub-package need to be standardized throughout the paper}
 
+\inlinecomment{Tom R}{at the moment this section doesn't take into account that APEs can be unrelated to code (e.g. APE 8 for the code of conduct)}
+
 Central to the success of \astropy is an open environment where
 anybody can contribute to the code by opening a so-called ``pull
 request'' with a new code contribution on a publically available
@@ -201,7 +203,7 @@ out major new features. This mechanism is called ``Astropy Proposal
 for Enhancement'' (APE). In an APE one or more authors lay out a
 vision for a new feature, including a rationale why this feature is
 needed, how it should be implemented, and what the interface will
-be. These APEs are discussed and refined before much work is invested
+be \citep{ape1}. These APEs are discussed and refined before much work is invested
 into a detailed implementation. APEs are again edited and discussed on
 a platform\footnote{\url{https://github.com/astropy/astropy-APEs}}
 open to the public. In previous APEs a community consensus emerged and
@@ -278,9 +280,6 @@ In the process, some standard wrappers have been defined that make defining func
 \subsection{Release cycle and Long Term Support}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
-\inlinecomment{BMS: TODO}{reference APE2 for versioning and APE10 for dropping python2 support}
-\inlinecomment{TR}{added a reference to APE10, will add APE2 once we upload that one to Zenodo}
-
 \inlinecomment{BMS}{shall we maybe refer to the release calendar, too?}
 \inlinecomment{hamogu}{I don't think that's necessary. These details are in the docs, but not too important for a general paper.}
 \inlinecomment{BMS}{should we mention that v3.0 is the exception to the
@@ -290,7 +289,7 @@ In the process, some standard wrappers have been defined that make defining func
 \par The general scheme for the releases and version numbering that the core
 package has adopted is the following. \astropypkg has new feature releases every
 6 months, and between feature releases additional bugfix releases that
-contain only bugfixes but no new features.
+contain only bugfixes but no new features \citep{ape2}.
 % The timing of
 %
 \par Long-term support (LTS) releases continue to receive bugfixes for 2
@@ -596,16 +595,13 @@ The concrete classes \texttt{NDDataRef}, \texttt{NDDataArray} and \texttt{CCDDat
 
 The \package{astropy.nddata.utils} module provides utilities that can operate on either plain NumPy arrays or any of the classes in the \package{astropy.nddata} subpackage.  It features a class for representing two-dimensional image cutouts, allowing one to easily link pixels in the cutout to pixels in the original image or from the image to the cutout, to convert between world and pixel coordinates in the cutout and to overlay the cutout on images. Functions to enlarge or reduce an image by doing block replication or reduction are also provided.
 
-\inlinecomment{Should we mention that Cutout2D supports WCS to pixel conversions?}
-
-\inlinecomment{Yes, done.}
 
 %Larry:  Don't forget the nddata.utils functionality (e.g. Cutout2D, block\_reduce, %etc.).
 
 \subsubsection{Tables}
 \label{sec:table}
 
-\inlinecomment{Tom A.}
+
 
 The \package{Tables} package provides wrappers to \package{NumPy} structure arrays, which can contain heterogeneous data sets.   The package was described in detail in \cite{astropy}. Tables now has the ability to work with other astropy classes including Quantities, Time, and Coordinates.  In addition, operations can also be performed on Tables. 
 
@@ -623,22 +619,19 @@ need to master the separate details of all the I/O packages within Astropy.
 % This functionality is still in active development and the number of supported
 % formats will be increasing.
 
-\inlinecomment{SCO}{Pyfits deprecation in favor of io.fits ?}
-\inlinecomment{SCO}{Table and FITS tables}
+%\inlinecomment{SCO}{Pyfits deprecation in favor of io.fits ?}
+%\inlinecomment{SCO}{Table and FITS tables}
 
-\subsubsection{Unified file read/write interface}
+%\subsubsection{Unified file read/write interface}
 
-TODO: Check when it was added (0.3?). Overview of the supported formats (ASCII,
-FITS, votable, HTML, JSViewer/Datatables).
+%\inlinecomment{Check when it was added (0.3?). Overview of the supported formats (ASCII,FITS, votable, HTML, JSViewer/Datatables).}
 
 \subsubsection{Key new features}
 
-\inlinecomment{SCO}{One subsection per format (if enough new features) ?}
-\inlinecomment{BMS}{Do we really need to mention the old version numbers in the list below when a feature was added?}
 
 \begin{description}
 
-    \item[ASCII: fast reader/writer (v1.0)]
+    \item[ASCII: fast reader/writer]
 
 		The \package{astropy.io.ascii} module now includes a significantly faster
 		Cython/C engine for reading and writing ASCII files. This is available
@@ -654,7 +647,7 @@ FITS, votable, HTML, JSViewer/Datatables).
 		interface are not available in the fast version, in which case the
 		pure-Python version will automatically be used.
 
-    \item[ASCII: HTML tables (v0.4)]
+    \item[ASCII: HTML tables]
 
 		The \package{astropy.io.ascii} sub-package now provides the capability
 		to read a table within an HTML file or web URL into an astropy
@@ -662,7 +655,7 @@ FITS, votable, HTML, JSViewer/Datatables).
 		package to be installed.  Conversely a \texttt{Table} object can now
 		be written out as an HTML table.
 
-	\item [Enhanced CSV format (v1.0)]
+	\item [Enhanced CSV format ]
 
 		One of the problems when storing a table in an ASCII format is
 		preserving table meta-data such as comments, keywords and column data
@@ -672,7 +665,7 @@ FITS, votable, HTML, JSViewer/Datatables).
 		information. The ECSV format has been designed to be both
 		human-readable and compatible with most simple CSV readers.
 
-	\item [FITS: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo}, v0.4)]
+	\item [FITS: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
 
 		The \package{astropy.io.fits} sub-package now provides a command line
 		script for inspecting the header(s) of a FITS file.  Running
@@ -680,7 +673,7 @@ FITS, votable, HTML, JSViewer/Datatables).
 		information to the screen in a human-readable format. Run
 		\texttt{fitsheader --help} to see the full usage documentation.
 
-	\item [FITS: lazy loading (v1.3)]
+	\item [FITS: lazy loading ]
 
 		The \package{astropy.io.fits} sub-package now supports \emph{lazy
 		loading}, where all HDUs are not loaded until they are requested (or
@@ -689,7 +682,7 @@ FITS, votable, HTML, JSViewer/Datatables).
 		or \texttt{getdata()}) to get HDU’s that are near the front of a file
 		with many HDU’s.
 
-	\item [Misc: YAML serialization (v1.3)]
+	\item [Misc: YAML serialization ]
 
 		The new \package{astropy.io.misc.yaml} module allows converting
 		astropy objects into a standard YAML format.
@@ -699,8 +692,8 @@ FITS, votable, HTML, JSViewer/Datatables).
 
 \end{description}
 
-\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
-\inlinecomment{hamogu}{MY feeling is that this section is too detailed already. If I had written it, I would not have mentioned the scripts at all.}
+%\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
+%\inlinecomment{hamogu}{MY feeling is that this section is too detailed already. If I had written it, I would not have mentioned the scripts at all.}
 
 \subsection{Modeling}
 \label{sec:modeling}
@@ -982,7 +975,7 @@ performance/speedup focus of the 3.1 release?}
 \inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
 %\subsection{Roadmap for \python 3 only support}
 
-Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \cite{python 3 APE}.   While the v2.0 release is a ‘long term stable’ release )meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017. 
+Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \cite{ape10}.   While the v2.0 release is a ‘long term stable’ release )meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017. 
   
 In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release.   To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less new functionality may be introduced in this release, but the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release. 
 
