@@ -89,7 +89,7 @@ broader \astropy project.
 
 \section*{Global TODO items}
 \begin{itemize}
-    \item subpackage vs sub-package need to be standardized throughout the paper
+    \item subpackage not sub-package!
     \item spell check!
 \end{itemize}
 
@@ -659,7 +659,7 @@ need to master the separate details of all the I/O packages within Astropy.
 
     \item[ASCII: HTML tables]
 
-		The \package{astropy.io.ascii} sub-package now provides the capability
+		The \package{astropy.io.ascii} subpackage now provides the capability
 		to read a table within an HTML file or web URL into an astropy
 		\texttt{Table} object. This requires the \package{BeautifulSoup4}
 		package to be installed.  Conversely a \texttt{Table} object can now
@@ -677,7 +677,7 @@ need to master the separate details of all the I/O packages within Astropy.
 
 	\item [FITS: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
 
-		The \package{astropy.io.fits} sub-package now provides a command line
+		The \package{astropy.io.fits} subpackage now provides a command line
 		script for inspecting the header(s) of a FITS file.  Running
 		\texttt{fitsheader file.fits} in a terminal prints the header
 		information to the screen in a human-readable format. Run
@@ -685,7 +685,7 @@ need to master the separate details of all the I/O packages within Astropy.
 
 	\item [FITS: lazy loading ]
 
-		The \package{astropy.io.fits} sub-package now supports \emph{lazy
+		The \package{astropy.io.fits} subpackage now supports \emph{lazy
 		loading}, where all HDUs are not loaded until they are requested (or
 		the file is closed). This should provide substantial speedups for
 		situations using the convenience functions (e.g., \texttt{getheader()}
