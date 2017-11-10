@@ -60,7 +60,7 @@ broader \astropy project.
 %% keywords and the rules for their use.
 \keywords{}
 
-l\section*{\textit{Notes and guidelines (to be removed)}}
+\section*{\textit{Notes and guidelines (to be removed)}}
 
 \begin{itemize}
    \item The goal is to produce a brief and informative paper that covers major
@@ -86,6 +86,13 @@ l\section*{\textit{Notes and guidelines (to be removed)}}
         your information to be able to track the contributors to the paper.
 
 \end{itemize}
+
+\section*{Global TODO items}
+\begin{itemize}
+    \item subpackage vs sub-package need to be standardized throughout the paper
+    \item spell check!
+\end{itemize}
+
 
 \section{Introduction} \label{sec:intro}
 % first draft by Moritz (hamogu)
@@ -139,7 +146,7 @@ are available which can help with tasks that are not astronomy specific but
 might be performed in the course of astronomical research, e.g.\ presenting
 results on websites or interfacing with databases.
 
-At the same time, an ecosystem of tools, programs, and webservices
+At the same time, an ecosystem of tools, programs, and web services
 has become available that makes it easier to collaborate on code development,
 continuously test the code, build and provide documentation, and
 supply downloadable packages. The \astropy project aims to develop and
@@ -184,36 +191,39 @@ Additionally, the committee oversees the assignment of roles (primarily driven b
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 %draft by hamogu
-\inlinecomment{TODO}{subpackage vs sub-package need to be standardized throughout the paper}
+%edited by Adrian PW
 
-\inlinecomment{Tom R}{at the moment this section doesn't take into account that APEs can be unrelated to code (e.g. APE 8 for the code of conduct)}
-
-Central to the success of \astropy is an open environment where
-anybody can contribute to the code by opening a so-called ``pull
-request'' with a new code contribution on a publically available
-website\footnote{\url{https://github.com/astropy/astropy}}; this
-request is then reviewed by at least one of the maintainers responsible for the specific
-sub-package and possibly merged into the main code base. Most bug
-fixes and small features are contributed in this way. However, this
-model leads to ``organic'' growth where different features are
+Central to the success of \astropy is an open environment where anybody can
+contribute to the project by opening a so-called ``pull request'' with a new
+contribution on a publically available
+website\footnote{\url{https://github.com/astropy/astropy}}.
+This request is then reviewed by at least one of the maintainers responsible for
+the specific subpackage or content and is possibly merged into the main code
+base.
+Most bug fixes, documentation edits, and small features are contributed in this
+way.
+However, this model leads to ``organic'' growth where different features are
 implemented by different people with different programming styles and
-interfaces. Thus, \astropy has a mechanism to more formally propose
-changes to the code management (e.g.~the release cycle) or to plan
-out major new features. This mechanism is called ``Astropy Proposal
-for Enhancement'' (APE). In an APE one or more authors lay out a
-vision for a new feature, including a rationale why this feature is
-needed, how it should be implemented, and what the interface will
-be \citep{ape1}. These APEs are discussed and refined before much work is invested
-into a detailed implementation. APEs are again edited and discussed on
-a platform\footnote{\url{https://github.com/astropy/astropy-APEs}}
-open to the public. In previous APEs a community consensus emerged and
-APEs are accepted and become the basis for future work at this
-point. In cases where consensus cannot be reached, the
+interfaces.
+Thus, \astropy has a mechanism to more formally propose significant changes to
+the core package (e.g., the release cycle; \citealt{ape2}), to plan out major
+new features, or institute new organization-wide policies (e.g.,
+\citealt{ape8}}).
+This mechanism is called ``Astropy Proposal for Enhancement'' (APE) and are
+modeled after the ``Python Enhancement Proposals'' (PEP) and guide the
+development of the \python programming language.
+In an APE one or more authors describe in detail the proposed changes or
+additions, including a rationale for the changes, how these changes will be
+implemented, and, in the case of code, what the interface will be \citep{ape1}.
+The APEs are discussed and refined by the community before much work is invested
+into a detailed implementation; anyone is welcome to contribute to these
+discussions during the open consideration period by leaving comments on the
+respective pull request.\footnote{\url{https://github.com/astropy/astropy-APEs}}
+In previous APEs a community consensus emerged and APEs are accepted and become
+the basis for future work at this point.
+In cases where consensus cannot be reached, the
 \astropy coordination committee can decide to close the discussion and
-make an executive decision based on the community input on the APE in
-question. APEs are modeled after the ``Python Enhancement Proposals''
-(PEP) and guide the development of the \python programming language.
-
+make an executive decision based on the community input on the APE in question.
 
 \subsection{Astropy development model}
 \inlinecomment{Adrian started this, but needs some filling in by EJT}
@@ -373,7 +383,7 @@ since version v0.2 (previously described in \citealt{astropy}).
 \label{sec:units}
 \inlinecomment{Marten, Adrian}{}
 
-The \package{Units} and \package{Quantities} packages were described in detail in \cite{astropy}.   
+The \package{Units} and \package{Quantities} packages were described in detail in \cite{astropy}.
 
 
 
@@ -390,25 +400,25 @@ The \package{Units} and \package{Quantities} packages were described in detail i
 %David S.
 
 The \package{Constants} package provides a selection of physical and astronomical
-constants as quantities.  A brief description was given in \cite{astropy}. 
+constants as quantities.  A brief description was given in \cite{astropy}.
 For version 2.0, constants have been organized into modules for specific versions.
 Physical constants include \texttt{codata2014} \citep{codata2014}
-and \texttt{codata2010} versions. Astronomical constants are organized 
-into \texttt{iau2015} and 
+and \texttt{codata2010} versions. Astronomical constants are organized
+into \texttt{iau2015} and
 \texttt{iau2012} modules to roughly indicate their sources.
-The \texttt{codata2014} and \texttt{iau2015} versions are combined 
+The \texttt{codata2014} and \texttt{iau2015} versions are combined
 into the default \texttt{astropyconst20}
-version. For astropy v1.3 and earlier, the \texttt{astropyconst13} 
+version. For astropy v1.3 and earlier, the \texttt{astropyconst13}
 namespace is available;
-however when using previous versions of the constants, 
+however when using previous versions of the constants,
 \package{Constants} should be used
-directly, since  \package{astropy.units} will be initialized to the 
+directly, since  \package{astropy.units} will be initialized to the
 \texttt{astropyconst20} versions.
 
 Astronomers using \package{Constants} should take particular note of the
-constants provided for Earth, Jupiter and the Sun. Following IAU 2015 
+constants provided for Earth, Jupiter and the Sun. Following IAU 2015
 Resolution B3 \citep{iau2015b3}, nominal
-values are now given for mass parameters and radii. The nominal values 
+values are now given for mass parameters and radii. The nominal values
 will not change even as ``current best estimates'' are updated.
 
 \inlinecomment{DavidS: we'd like to build on this to allow use of a
@@ -603,7 +613,7 @@ The \package{astropy.nddata.utils} module provides utilities that can operate on
 
 
 
-The \package{Tables} package provides wrappers to \package{NumPy} structure arrays, which can contain heterogeneous data sets.   The package was described in detail in \cite{astropy}. Tables now has the ability to work with other astropy classes including Quantities, Time, and Coordinates.  In addition, operations can also be performed on Tables. 
+The \package{Tables} package provides wrappers to \package{NumPy} structure arrays, which can contain heterogeneous data sets.   The package was described in detail in \cite{astropy}. Tables now has the ability to work with other astropy classes including Quantities, Time, and Coordinates.  In addition, operations can also be performed on Tables.
 
 %QTable is new, mixin columns for time and coordinates. Table operations were added in v0.3
 
@@ -975,11 +985,11 @@ performance/speedup focus of the 3.1 release?}
 \inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
 %\subsection{Roadmap for \python 3 only support}
 
-Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \cite{ape10}.   While the v2.0 release is a ‘long term stable’ release )meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017. 
-  
-In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release.   To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less new functionality may be introduced in this release, but the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release. 
+Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \cite{ape10}.   While the v2.0 release is a ‘long term stable’ release )meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017.
 
-Beyond the core code, the \astropy project is also further developing the affiliated packages.  This includes elevating a suite of packages into part of the core project.    While these may not be integrated into the core code, these projects provide code that is useful to the astronomical community and meet the testing and documentation standards of \astropy.   Some of these new efforts includes an initiative to develop tools for spectroscopy , integration of LSST software , and packages to support HEALPIX projection. 
+In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release.   To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less new functionality may be introduced in this release, but the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release.
+
+Beyond the core code, the \astropy project is also further developing the affiliated packages.  This includes elevating a suite of packages into part of the core project.    While these may not be integrated into the core code, these projects provide code that is useful to the astronomical community and meet the testing and documentation standards of \astropy.   Some of these new efforts includes an initiative to develop tools for spectroscopy , integration of LSST software , and packages to support HEALPIX projection.
 
 
 \subsection{Learn Astropy}
