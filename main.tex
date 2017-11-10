@@ -279,6 +279,7 @@ initially separate packages, the typically rapid development or new,
 experimental features may benefit from having a release cycle that is not tied
 to the \astropypkg core.
 
+\inlinecomment{APW}{This needs to be finished:}
 In general we hope that becoming an affiliated package is seen as
 a good way for new and existing packages to gain exposure.
 %
@@ -363,7 +364,7 @@ from the PyPI. Pre-built binary conda packages for all of the affiliated package
 
 \section{Astropy Core Package v2.0}
 \label{sec:core}
-
+% Adrian
 The \astropy project aims to provide \python-based packages for all tasks that
 are commonly needed in a large subset of the astronomical community.
 At the foundation is the \astropypkg core package, which provides general
@@ -398,24 +399,34 @@ array object and has been designed with speed in mind.
 As of \astropypkg version 2.0, units and quantities are prevalent in most other
 \astropypkg subpackages and are thus a key concept for using the package as a
 whole.
+Units are intimately entwined in the definition of astronomical coordinates and
+thus nearly all functionality in the \texttt{astropy.coordinates} subpackage
+(see \sectionname~\ref{sec:coordinates}) depends on this functionality.
+For most other subpackages, quantities are at least accepted, and often expected
+by default.
+
 The motivation and key concepts behind this subpackage were described in detail
 in the previous paper \citep{astropy}, and thus here we primarily highlight new
 features and improvements.
 
 \begin{description}
-    \item[Speed improvements] ...
-    \item[Logarithmic units and magnitudes] ...
-    \item[Using quantities in tables] In \astropypkg~2.0, one can also opt in to
-        use quantities fully in tables, by using the {\tt QTable} class (see
-        \sectionname~\ref{sec:table}). As a result, units in FITS tables are also
-        well-supported. For most other modules, quantities are at least
-        accepted, and often assumed by default.
-    \item[Defining functions that require quantities] In the process, some
-        standard wrappers have been defined that make defining functions that
-        require quantities as input simpler. As an extension of this, we plan to
-        define wrappers for functions that work on numbers that will
-        automatically convert quantities to any required units.
-    \item[Interaction with \package{numpy} arrays] ...
+    \item[Speed improvements] \inlinecomment{TODO}{Marten}
+    \item[Logarithmic units and magnitudes] \inlinecomment{TODO}{Marten}
+    \item[Using quantities in tables] The \texttt{astropy.table} subpackage (see
+        \sectionname~\ref{sec:table}) now supports using quantities in tables
+        with the \texttt{QTable} class.
+        As a result, units specified in FITS tables are supported, and tables
+        with quantities can be read and written to various file formats.
+    \item[Defining functions that require quantities] When writing code or
+        functions that expect \texttt{Quantity} objects, we often want to
+        enforce that the input units have the correct type.
+        For example, we may want to require only length-type \texttt{Quantity}
+        objects.
+        These requirements often lead to implementing repetitive code for
+        validating \texttt{Quantity} inputs.
+        \texttt{astropy.units} now provides a \python decorator
+        (\texttt{quantity_input}) that does this verification automatically.
+    \item[Interaction with \package{numpy} arrays] \inlinecomment{TODO}{Marten}
 \end{description}
 
 \subsection{Constants}
