@@ -165,7 +165,7 @@ developed. In this paper, we describe the current status of the
 ecosystem.
 
 We start by describing the way the \astropy project works and is
-organized in \sectionname~\ref{sec:concepts}.  The project develops a core
+organized in \sectionname~\ref{sec:org}.  The project develops a core
 package called \astropypkg (\sectionname~\ref{sec:core}) and several
 separate packages that help setting up the infrastructure for testing,
 documentation etc.\ (\sectionname~\ref{sec:infrastructure}).
@@ -174,8 +174,8 @@ the future of \astropy in particular and astronomical software in general
 in \sectionname~\ref{sec:future}.
 
 
-\section{Major concepts}
-\label{sec:concepts}
+\section{Organization and infrastructure}
+\label{sec:org}
 
 \subsection{Coordination of Astropy}
 % draft by ??
@@ -288,15 +288,6 @@ a good way for new and existing packages to gain exposure.
 
 %\subsection{Accuracy testing across many different implementation}
 
-\subsection{Use of Quantities across package}
-% Marten and Tom R.
-
-{\bf Very rough first text!}
-
-Historically, it has been unusual to keep units as part of numbers, especially as speed was often deemed essential and quantities used to be slower than regular arrays. Hence, programs and functions expected to be fed parameters in particular units, as (hopefully) stated in their documentation.  In \astropypkg~0.4, therefore, unit and quantity support was still somewhat spotty, but this has changed greatly.  One of the riskiest classes was angles, where both degrees and radians were ``obvious'' default units to some. As a consequence, quantities are most fully integrated in the coordinates module (\sectionname~\ref{sec:coordinates}). In \astropypkg~2.0, one can also opt in to use quantities fully in tables, by using the {\tt QTable} class (see \sectionname~\ref{sec:table}). As a result, units in FITS tables are also well-supported. For most other modules, quantities are at least accepted, and often assumed by default.
-
-In the process, some standard wrappers have been defined that make defining functions that require quantities as input simpler. As an extension of this, we plan to define wrappers for functions that work on numbers that will automatically convert quantities to any required units.
-
 \subsection{Release cycle and Long Term Support}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
@@ -388,21 +379,44 @@ since version v0.2 (previously described in \citealt{astropy}).
 % moved to models and depreciated --
 % just here for completeness at the moment
 \inlinecomment{BMS}{I suggest to order the subsection lexicographically as reading the draft the current order seemed very random (unlike at the docs page where they the grouping logic is obvious)}
-\subsection{Units and quantities}
-\label{sec:units}
-\inlinecomment{Marten, Adrian}{}
 
-The \package{Units} and \package{Quantities} packages were described in detail in \cite{astropy}.
+\subsection{Units and quantities}\label{sec:units}
+% Adrian, Marten
 
+% TODO: should this just be called "Units"? all other sections in here look like
+% they are named by the subpackage name -- quantity is an object within the
+% package
 
+The \texttt{astropy.units} subpackage adds support for representing units and
+numbers with associated units (``quantities'') in code.
+Historically, quantities in code have often been represented simply as numbers,
+with units implied or noted via comments in the code because of considerations
+about speed: having units associated with numbers inherently adds overhead to
+numerical operations.
+In \texttt{astropy.units}, \texttt{Quantity} objects subclass the \texttt{numpy}
+array object and has been designed with speed in mind.
+As of \astropypkg version 2.0, units and quantities are prevalent in most other
+\astropypkg subpackages and are thus a key concept for using the package as a
+whole.
+The motivation and key concepts behind this subpackage were described in detail
+in the previous paper \citep{astropy}, and thus here we primarily highlight new
+features and improvements.
 
-%\subsubsection{Key new features}
-
-%\begin{description}
-%    \item[Speed improvements] ...
-%    \item[Logarithmic units and magnitudes] ...
-%    \item[Interaction with \package{numpy} arrays] ...
-%\end{description}
+\begin{description}
+    \item[Speed improvements] ...
+    \item[Logarithmic units and magnitudes] ...
+    \item[Using quantities in tables] In \astropypkg~2.0, one can also opt in to
+        use quantities fully in tables, by using the {\tt QTable} class (see
+        \sectionname~\ref{sec:table}). As a result, units in FITS tables are also
+        well-supported. For most other modules, quantities are at least
+        accepted, and often assumed by default.
+    \item[Defining functions that require quantities] In the process, some
+        standard wrappers have been defined that make defining functions that
+        require quantities as input simpler. As an extension of this, we plan to
+        define wrappers for functions that work on numbers that will
+        automatically convert quantities to any required units.
+    \item[Interaction with \package{numpy} arrays] ...
+\end{description}
 
 \subsection{Constants}
 
