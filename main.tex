@@ -445,30 +445,35 @@ features and improvements.
 \end{description}
 
 \subsection{Constants}
+% David S.
+% Edited by Adrian PW
 
-%David S.
+The \texttt{astropy.constants} subpackage provides a selection of physical and
+astronomical constants as \texttt{Quantity} objects (see
+\sectionname~\ref{sec:units}).
+A brief description of this package was given in \citep{astropy}.
+In version 2.0, the built-in constants have been organized into modules for
+specific versions of the constant values.
+For example, physical constants have \texttt{codata2014} \citep{codata2014} and
+\texttt{codata2010} versions.
+Astronomical constants are organized into \texttt{iau2015} and \texttt{iau2012}
+modules to indicate their sources (resolutions from the International
+Astronomical Union, IAU).
+The \texttt{codata2014} and \texttt{iau2015} versions are combined into the
+default constant value version: \texttt{astropyconst20}.
+For compatibility with \astropypkg version 1.3 and earlier, the \texttt{astropyconst13}
+namespace is still available and provides access to the adopted versions of the
+constants from earlier versions of \astropypkg.
+To use previous versions of the constants as \emph{units} (e.g., solar masses),
+the values from the desired namespace have to be imported directly; with version
+2.0, \texttt{astropy.units} uses the \texttt{astropyconst20} versions.
 
-The \package{Constants} package provides a selection of physical and astronomical
-constants as quantities.  A brief description was given in \cite{astropy}.
-For version 2.0, constants have been organized into modules for specific versions.
-Physical constants include \texttt{codata2014} \citep{codata2014}
-and \texttt{codata2010} versions. Astronomical constants are organized
-into \texttt{iau2015} and
-\texttt{iau2012} modules to roughly indicate their sources.
-The \texttt{codata2014} and \texttt{iau2015} versions are combined
-into the default \texttt{astropyconst20}
-version. For astropy v1.3 and earlier, the \texttt{astropyconst13}
-namespace is available;
-however when using previous versions of the constants,
-\package{Constants} should be used
-directly, since  \package{astropy.units} will be initialized to the
-\texttt{astropyconst20} versions.
-
-Astronomers using \package{Constants} should take particular note of the
-constants provided for Earth, Jupiter and the Sun. Following IAU 2015
-Resolution B3 \citep{iau2015b3}, nominal
-values are now given for mass parameters and radii. The nominal values
-will not change even as ``current best estimates'' are updated.
+Astronomers using \texttt{astropy.constants} should take particular note of the
+constants provided for Earth, Jupiter, and the Sun.
+Following IAU 2015 Resolution B3 \citep{iau2015b3}, nominal values are now given
+for mass parameters and radii.
+The nominal values will not change even as ``current best estimates'' are
+updated.
 
 \inlinecomment{DavidS: we'd like to build on this to allow use of a
 context manager for selecting a version of constants. Here, or in the Future
