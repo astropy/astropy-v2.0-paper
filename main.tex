@@ -411,7 +411,15 @@ features and improvements.
 
 \begin{description}
     \item[Speed improvements] \inlinecomment{TODO}{Marten}
-    \item[Logarithmic units and magnitudes] \inlinecomment{TODO}{Marten}
+    \item[Logarithmic units and magnitudes] By default, taking the logarithm of
+        a \texttt{Quantity} object with non-dimensionless units intentionally
+        fails.
+        However, some well-known units are actually logarithmic quantities,
+        where the logarithm of the value is taken with respect to some reference
+        value.
+        Examples include astronomical magnitudes, which are logarithmic fluxes,
+        and decibels, which are more generic logarithmic ratios of quantities.
+        Logarithmic, relative units are now supported in \texttt{astropy.units}.
     \item[Using quantities in tables] The \texttt{astropy.table} subpackage (see
         \sectionname~\ref{sec:table}) now supports using quantities in tables
         with the \texttt{QTable} class.
