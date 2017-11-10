@@ -176,17 +176,19 @@ in \sectionname~\ref{sec:future}.
 
 \section{Major concepts}
 \label{sec:concepts}
-% Anyone want to take this??
 
 \subsection{Coordination of Astropy}
-From its inception, \astropy has required coordination to ensure the project as a whole and its coding efforts are consistent and reasonably efficient.
-While many Python projects adopt a ``Benevolent Dictator For Life'' (BDFL) model, Astropy has instead opted for a coordination \emph{committee}.
-This is in part due to the nature of the project as a large-scale collaboration between many contributors with many interests, and in part due to simply the amount of work that needs to get done.
-In part for the latter reason, the project has expanded the committee from three to four members from 2016 on.
+% draft by ??
+% edited by Adrian PW
 
-In the code itself, the coordination committee primarily acts to work toward consensus, or when consensus is difficult to achieve, generally acts as ``tie-breaker.''
-The committee also oversees affiliated package applications to ensure they are in keeping with \astropy's vision and philosophy, as well as the associated processes procedures.
-Additionally, the committee oversees the assignment of roles (primarily driven by already-existing contributions), and increasingly has acted as the ``face'' of the Project, providing contact with organizations like NumFOCUS (The body that holds any potential funding in trust for \astropy) or the American Astronomical Society (AAS).
+From its inception, \astropy has required coordination to ensure the project as a whole and its coding efforts are consistent and reasonably efficient.
+While many Python projects adopt a ``Benevolent Dictator For Life'' (BDFL) model, \astropy has instead opted for a \emph{coordination committee}.
+This is in part due to the nature of the project as a large-scale collaboration between many contributors with many interests, and in part due to simply the amount of work that needs to get done.
+In part for the latter reason, the project has expanded the committee from three to four members starting in 2016.
+
+For resolving disagreements about the \astropypkg core package or other \astropy-managed code, the coordination committee primarily acts to work toward consensus, or when consensus is difficult to achieve, generally acts as ``tie-breaker.''
+The committee also oversees affiliated package applications to ensure they are in keeping with \astropy's vision and philosophy, as well as the associated procedures.
+Additionally, the committee oversees the assignment of roles (primarily driven by already-existing contributions), and increasingly has acted as the ``face'' of the Project, providing contact with organizations like NumFOCUS (the body that holds any potential funding in trust for \astropy) or the American Astronomical Society (AAS).
 
 
 \subsection{APEs - Astropy Proposals for Enhancement}
@@ -258,30 +260,30 @@ contributors.
 \subsection{Concept of affiliated packages}
 % it may be described in previous subsection, if not the Brigitta can try to
 % write it up
-%
-\par A major part of the \astropy project is the concept of
+% edited by Adrian PW
+
+A major part of the \astropy project is the concept of
 ``Affiliated Packages''. An affiliated package is an astronomy-related
-\python~package that is not part of the \astropypkg core package, but
+\python package that is not part of the \astropypkg core package, but
 has requested to be included as part of the \astropy project's
 community. These packages support the goals and vision of \astropy of
 improving code reuse, interoperability, and embracing good coding
-practices such as testing and thorough documentation. \astropypkg{}
-version 2.0 supports \python~2.7 and \python~3.4+, affiliated packages
-are strongly encouraged to support at least \python~3.x.
-%
-\par Affiliated packages contain functionality that is more specialized, or
-have license incompatibility, or have enough external dependencies (e.g. GUI
-libraries) that limit their integration possibility into the core and thus
-they are more suitable to be separate packages. Starting as an affiliate
-package is also seen as a good strategy for functionality that is aimed for
-the \astropypkg~core but is initially undergoing rapid development and can
-benefit from a different release cycle while stabilizing its API.
-%
-\par In general we hope that becoming an affiliated package is seen as
+practices such as testing and thorough documentation.
+Affiliated packages contain functionality that is more specialized,
+have license incompatibilities, or have external dependencies (e.g., GUI
+libraries) that make these packages more suitable to be separate from the
+\astropypkg core package.
+Affiliated packages may also be used to develop substantial, new functionality
+that will eventually be incorporated into the \astropypkg core package: as
+initially separate packages, the typically rapid development or new,
+experimental features may benefit from having a release cycle that is not tied
+to the \astropypkg core.
+
+In general we hope that becoming an affiliated package is seen as
 a good way for new and existing packages to gain exposure.
 %
 \inlinecomment{BMS}{TODO: write about the process of becoming affiliated, and project packages into the future section below}
-%
+
 %\subsection{Mixin}
 
 %\subsection{Accuracy testing across many different implementation}
@@ -298,28 +300,27 @@ In the process, some standard wrappers have been defined that make defining func
 \subsection{Release cycle and Long Term Support}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
-\inlinecomment{BMS}{shall we maybe refer to the release calendar, too?}
-\inlinecomment{hamogu}{I don't think that's necessary. These details are in the docs, but not too important for a general paper.}
-\inlinecomment{BMS}{should we mention that v3.0 is the exception to the
-  version numbering scheme we use by not being 2.1?}
-\inlinecomment{hamogu}{No. This is a genral paper, those are details that will be unimportant very soon. }
-%
-\par The general scheme for the releases and version numbering that the core
-package has adopted is the following. \astropypkg has new feature releases every
-6 months, and between feature releases additional bugfix releases that
-contain only bugfixes but no new features \citep{ape2}.
-% The timing of
-%
-\par Long-term support (LTS) releases continue to receive bugfixes for 2
-years with no changes to the API\@. They are ideal for pipelines and other
-applications where API stability is essential. The latest LTS release is
-also the last one that supports \python 2, and will receive bug fixes until the
-end of 2019 \citep{ape10}.
-%
-\par The version numbering of \astropypkg reflects on the release scheme
-described above. The core package uses the form x.y.z, where x is advanced
-on LTS, y is advanced for a non-LTS feature release, and z is advanced on
-bugfix releases.
+% edited by Adrian PW
+
+As detailed in APE 2 \citep{ape2}, the \astropypkg release schedule
+
+The \astropypkg has a regular release schedule consisting of new significant
+releases every 6 months, with bugfix releases as needed \citep{ape2}.
+The major releases will contain new features or any significant changes, whereas
+the bugfix releases only contain fixes to code or documentation but no new
+features.
+Some versions are additionally designated as ``Long-term support'' (LTS)
+releases, which continue to receive bugfixes for 2 years following the release
+with no changes to the API.
+The LTS versions are ideal for pipelines and other applications where API
+stability is essential.
+The latest LTS release (v2.0) is also the last one that supports \python 2, and
+will receive bug fixes until the end of 2019 \citep{ape10}.
+
+The version numbering of the \astropypkg core package reflects this release
+scheme: the core package version number uses the form x.y.z, where ``x'' is
+advanced for LTS releases, ``y'' is advanced for non-LTS feature releases, and
+``z'' is advanced for bugfix releases.
 
 \subsection{Distribution packages}
 
@@ -447,8 +448,6 @@ Some of the machinery also relies on the Essential Routines of Fundamental
 Astronomy (ERFA) \texttt{C} library for some of the critical underlying
 transformation machinery \citep{erfa}, which is based on the Standards Of
 Fundamental Astronomy (SOFA) effort \citep{sofa}.
-% timj: The preferred SOFA reference is usually https://ui.adsabs.harvard.edu/#abs/2011SchpJ...611404H/abstract rather than a URL to the SOFA web site.
-
 
 A key concept behind the design of this subpackage is that coordinate
 \textit{representations} and \textit{reference systems / frames} are independent
@@ -526,8 +525,6 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg or the
     \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}.
-%    \inlinecomment{APW}{TODO: cite zenodo entry for astroplan?}
-%    \inlinecomment{BMS}{better to cite the submitted or soon to be submitted paper, I made a placeholder for it.}
 
     \item[Proper motion and velocity transformations]
     In addition to positional coordinate data, the \texttt{Frame} classes now
