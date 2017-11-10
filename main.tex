@@ -379,15 +379,11 @@ since version v0.2 (previously described in \citealt{astropy}).
 % just here for completeness at the moment
 \inlinecomment{BMS}{I suggest to order the subsection lexicographically as reading the draft the current order seemed very random (unlike at the docs page where they the grouping logic is obvious)}
 
-\subsection{Units and quantities}\label{sec:units}
-% Adrian, Marten
-
-% TODO: should this just be called "Units"? all other sections in here look like
-% they are named by the subpackage name -- quantity is an object within the
-% package
+\subsection{Units}\label{sec:units}
+% Adrian
 
 The \texttt{astropy.units} subpackage adds support for representing units and
-numbers with associated units (``quantities'') in code.
+numbers with associated units --- ``quantities'' --- in code.
 Historically, quantities in code have often been represented simply as numbers,
 with units implied or noted via comments in the code because of considerations
 about speed: having units associated with numbers inherently adds overhead to
@@ -408,7 +404,21 @@ in the previous paper \citep{astropy}, and thus here we primarily highlight new
 features and improvements.
 
 \begin{description}
-    \item[Speed improvements] \inlinecomment{TODO}{Marten}
+    \item[Interaction with \package{numpy} arrays] The \texttt{Quantity} object
+        is now a subclass of the \texttt{numpy.ndarray} object and therefore
+        works well with many of the functions in \texttt{numpy} that support
+        array operations. For example, \texttt{Quantity} objects with angular
+        units can be passed in to the trigonometric functions implemented in
+        \texttt{numpy} (e.g., \texttt{numpy.cos}) and do the right thing: the
+        units are internally converted to radians (what the \texttt{numpy}
+        trigonometric functions expect) before being passed to \texttt{numpy}.
+    \item[Speed improvements] The \texttt{Quantity} object is now significantly
+        faster than in early versions of \astropypkg. This is in large part due
+        to the fact that \texttt{Quantity} subclasses the \texttt{numpy.ndarray}
+        object, but even relative to more recent versions of \astropypkg,
+        operations with \texttt{Quantity} objects are generally faster. This is
+        largely thanks to improvements in the way \texttt{numpy} arrays can be
+        subclassed.
     \item[Logarithmic units and magnitudes] By default, taking the logarithm of
         a \texttt{Quantity} object with non-dimensionless units intentionally
         fails.
@@ -430,9 +440,8 @@ features and improvements.
         objects.
         These requirements often lead to implementing repetitive code for
         validating \texttt{Quantity} inputs.
-        \texttt{astropy.units} now provides a \python decorator
-        (\texttt{quantity\_input}) that does this verification automatically.
-    \item[Interaction with \package{numpy} arrays] \inlinecomment{TODO}{Marten}
+        \texttt{astropy.units} now provides a \python decorator,
+        \texttt{quantity\_input()}, that does this verification automatically.
 \end{description}
 
 \subsection{Constants}
