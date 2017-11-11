@@ -91,20 +91,16 @@ broader \astropy project.
 \begin{itemize}
     \item subpackage not sub-package!
     \item spell check!
+    \item check consistent astropy usage
 \end{itemize}
 
 
 \section{Introduction} \label{sec:intro}
 % first draft by Moritz (hamogu)
 % heavily edited by Adrian PW - let me know if you want to revert anything!
-All astronomical research makes use of software in some way.
-Astronomy as a field has thus long supported the development of software tools
-for astronomical tasks, from software packages that enable individualized
-scientific research to data reduction tools and pipelines that enable
-collaborations and survey operations.
-Some such software packages are or were supported by large institutions and are
-intended for a wide range of users.
-These packages typically provide some level of documentation and user support or
+All astronomical research makes use of software in some way.  Astronomy as a field has thus long supported the development of software tools
+for astronomical tasks: from scripts that enable individualized scientific research to software packages that enable collaborations to data reduction pipelines for survey operations.
+Some software packages are or were supported by large institutions and are intended for a wide range of users. These packages typically provide some level of documentation and user support or
 training.
 Other packages are developed by individual researchers or research groups and
 are then typically used by smaller groups for more domain-specific purposes.
@@ -130,8 +126,7 @@ maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
 
 The \astropypkg core package is now a feature-rich library of sufficiently
 general tools and classes that supports the development of more specialized
-code.
-An example of such functionality is reading and writing FITS files: it would be
+code. An example of such functionality is reading and writing FITS files: it would be
 time consuming and impractical for multiple groups to implement the FITS
 standard \citep{FITS} and maintain software for such a general-purpose need.
 Another example of such a common task is in dealing with representations of and
@@ -197,7 +192,7 @@ While many Python projects adopt a ``Benevolent Dictator For Life'' (BDFL) model
 This is in part due to the nature of the project as a large-scale collaboration between many contributors with many interests, and in part due to simply the amount of work that needs to get done.
 In part for the latter reason, the project has expanded the committee from three to four members starting in 2016.
 
-For resolving disagreements about the \astropypkg core package or other \astropy-managed code, the coordination committee primarily acts to work toward consensus, or when consensus is difficult to achieve, generally acts as ``tie-breaker.''
+For resolving disagreements about the \astropypkg core package or other \astropy-managed code, the coordination committee primarily acts to work toward consensus, or when consensus is difficult to achieve, generally acts as a ``tie-breaker.''
 The committee also oversees affiliated package applications to ensure they are in keeping with \astropy's vision and philosophy, as well as the associated procedures.
 Additionally, the committee oversees the assignment of roles (primarily driven by already-existing contributions), and increasingly has acted as the ``face'' of the Project, providing contact with organizations like NumFOCUS (the body that holds any potential funding in trust for \astropy) or the American Astronomical Society (AAS).
 
@@ -813,7 +808,7 @@ The \package{modeling} package now supports the representation, evaluation and f
 \subsection{Convolution}
 % Adam G.
 
-\astropypkg implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   In version $<=1.3$, the direct convolution and fft convolution approaches were not consistent, with fft convolution implementing normalized convolution and direct convolution implementing a different approach.  As of v2.0, the two methods are consistent and include a suite of consistency checks.
+\astropypkg implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   An example of this is given in \figurename \ref{fig:convolution-example}.  In version $<=1.3$, the direct convolution and fast fourier transform (fft) convolution approaches were not consistent, with fft convolution implementing normalized convolution and direct convolution implementing a different approach.  As of v2.0, the two methods are consistent and include a suite of consistency checks.
 
 
 \begin{figure}
@@ -1029,19 +1024,17 @@ performance/speedup focus of the 3.1 release?}
 \inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
 %\subsection{Roadmap for \python 3 only support}
 
-Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \cite{ape10}.   While the v2.0 release is a ‘long term stable’ release )meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017.
+Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \citep{ape10}.  While the v2.0 release is a ‘long term stable’ release (meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017.
 
-In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release.   To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less new functionality may be introduced in this release, but the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release.
+In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release. To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less functionality may be introduced in this release while the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release.
 
-Beyond the core code, the \astropy project is also further developing the affiliated packages.  This includes elevating a suite of packages into part of the core project.    While these may not be integrated into the core code, these projects provide code that is useful to the astronomical community and meet the testing and documentation standards of \astropy.   Some of these new efforts includes an initiative to develop tools for spectroscopy , integration of LSST software , and packages to support HEALPIX projection.
-
+Beyond the core code, the \astropy project is also further developing the affiliated packages.  This includes elevating a suite of packages into part of the core project. While these may not be integrated into the core code, these projects provide code that is useful to the astronomical community and meet the testing and documentation standards of \astropy.   Some of these new efforts includes an initiative to develop tools for spectroscopy, integration of LSST software, and packages to support HEALPIX projection.
 
 \subsection{Learn Astropy}
 % Adrian
 
 The \astropypkg core package documentation contains narrative descriptions of
-the package functionality along with detailed usage notes for functions,
-classes, and modules.
+the package functionality along with detailed usage notes for functions, classes, and modules.
 While useful as a reference and for more advanced \python users, it is not the
 right entry-point for all users or learning environments.
 In the near future, we will launch a new resource for learning to use both the
@@ -1141,6 +1134,7 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
 \appendix
 \section{List of Affiliated Packages}
 
+\inlinecomment{SMC: Can a brief description of each code be added?}
 \begin{longrotatetable}
   \begin{deluxetable*}{ccccc}
     \tablecaption{Registry of affiliated packages.}
@@ -1157,6 +1151,7 @@ Software/services to thank: GitHub. Travis CI, Appveyor, CircleCI. Read the Docs
       \enddata
   \end{deluxetable*}
 \end{longrotatetable}
+
 
 \begin{deluxetable*}{cccc}
   \tablecaption{Registry of provisionally accepted affiliated packages.}
