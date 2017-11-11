@@ -489,8 +489,6 @@ updated.
 \subsection{Coordinates}
 \label{sec:coordinates}
 % Adrian, Erik
-
-\subsubsection{Overview}
 The \package{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
 The framework heavily relies on the \package{astropy.units} subpackage, and most
@@ -562,7 +560,8 @@ accepts a wide range of possible inputs.
 It supports coordinate data in any coordinate frame in any representation by
 internally using the \texttt{Frame} and \texttt{Representation} classes.
 
-\subsubsection{Key new features}
+In what follows, we briefly highlight key new features in
+\texttt{astropy.coordinates}.
 
 \begin{description}
     \item[Local Earth coordinate frames] In addition to representing celestial
@@ -630,9 +629,6 @@ The benchmarks are meant to evolve over time and include an increasing variety o
 For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. Table \textbf{TODO} gives an example of the relative accuracy of the conversion from Galactic to FK4 coordinates for all pairs of tools. This shows that \textbf{Need to add discussion here}.
 
 The benchmarks also include all-sky plots that show trends in accuracy over the sky and can help diagnose issues. Figure \textbf{TODO} shows an example of the accuracy of the conversion from XX to XX and \textbf{insert insightful result here}.
-
-%\subsubsection{Accuracy and comparison of coordinate system definitions}
-% Erik?
 
 \subsection{Time}
 \label{sec:time}
