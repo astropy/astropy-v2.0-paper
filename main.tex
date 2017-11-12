@@ -662,22 +662,39 @@ pyslalib &  pytpm    & 0.218  & 0.196 & 0.249 & 0.056 \\
 
 \subsection{Time}
 \label{sec:time}
-% Tom, Marten?
-% edited by Adrian PW
+% Adrian PW
 
 The \package{astropy.time} subpackage focuses on supporting time scales (e.g.,
 UTC, TAI, UT1) and time formats (e.g., Julian date, modified Julian date) that
-are commonly used in astronomy, for example, to calculate barycentric
-corrections or sidereal times.
-The core functionality is currently built on the ERFA (\citealt{erfa}) C
+are commonly used in astronomy.
+This functionality is needed, for example, to calculate barycentric corrections
+or sidereal times.
+\package{astropy.time} is currently built on the ERFA (\citealt{erfa}) C
 library, which replicates the Standards of Fundamental Astronomy (SOFA;
 \citealt{sofa}) but is licensed under a three-clause BSD license.
-The package was described in detail in \cite{astropy} and thus, in what follows,
-we only highlight significant changes or new features.
+The package was described in detail in previous work \citep{astropy} and has
+stayed stable for the last several versions of \astropypkg.
+Thus, in what follows, we only highlight significant changes or new features
+since the previous \astropy paper.
 
 \begin{description}
-    \item[Barycentric and Heliocentric corrections] TODO: added in v1.2, but maybe worth mentioning?
-    \item[As columns in \texttt{Table} objects] todo...
+    \item[Barycentric and Heliocentric corrections] Detailed eclipse or transit
+        timing requires accounting for light travel time differences from the
+        source to the observatory because of the Earth's motion.
+        It is therefore common to instead convert times to the Solar System
+        barycenter or heliocenter where the relative timing of photons is
+        standardized.
+        With the location of a source on the sky (i.e. a \texttt{SkyCoord}
+        object), the location of an observatory on Earth (i.e. an
+        \texttt{EarthLocation} object), and time values as \texttt{Time}
+        objects, the time corrections to shift to the solar system barycenter or
+        heliocenter can now be computed with \package{astropy.time} using the
+        \texttt{light\_travel\_time} method of a \texttt{Time} object.
+    \item[\texttt{Time} objects in \texttt{Table}'s] \texttt{Time} objects can
+        now be added as columns in \package{astropy.table} \texttt{Table}
+        objects.
+        This is described in more detail in \sectionname~\ref{sec:table} with
+        the concept of a ``mixin'' column type.
 \end{description}
 
 \subsection{Data arrays}
