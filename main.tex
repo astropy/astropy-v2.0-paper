@@ -697,17 +697,20 @@ since the previous \astropy paper.
         the concept of a ``mixin'' column type.
 \end{description}
 
-\subsection{Data arrays}
+\subsection{Data containers}
 
 \subsubsection{nddata}
 
-The \package{astropy.nddata} supackage provides three types of functionality:
-an abstract interface for representing generic arbitrary-dimensional datasets
-intended primarily for developers of other packages, concrete classes
-building on this interface and utilities for manipulating these kind of
+The \package{astropy.nddata} supackage provides three types of functionality: an
+abstract interface for representing generic arbitrary-dimensional datasets
+intended primarily for subclassing by developers of other packages, concrete
+classes building on this interface, and utilities for manipulating these kind of
 datasets.
 
-The \texttt{NDDataBase} class provides the abstract interface for gridded data with attributes for accessing metadata, the world-coordinate system (WCS), uncertainty and other traits. Building on this interface the \texttt{NDData} class provides a minimally working implementation for storing NumPy arrays. These classes serve as useful base for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
+The \texttt{NDDataBase} class provides the abstract interface for gridded data
+with attributes for accessing metadata, the world-coordinate system (WCS),
+uncertainty arrays matched to the data shape, and other traits.
+Building on this interface the \texttt{NDData} class provides a minimally working implementation for storing NumPy arrays. These classes serve as useful base for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
 
 The concrete classes \texttt{NDDataRef}, \texttt{NDDataArray} and \texttt{CCDData} extend the storing functionality with options to do basic arithmetic (addition, subtraction, multiplication and division) including error propagation in limited cases and slicing of the dataset based on grid coordinates appropriately handling mask, errors, and units, if present. Additionally \texttt{CCDData} also provides I/O from and to FITS files and uses data structures from \astropypkg, like WCS, to represent the contents of a file abstractly.
 
