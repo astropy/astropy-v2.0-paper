@@ -631,13 +631,23 @@ The benchmarks also include all-sky plots that show trends in accuracy over the 
 
 \subsection{Time}
 \label{sec:time}
+% Tom, Marten?
+% edited by Adrian PW
 
+The \package{astropy.time} subpackage focuses on supporting time scales (e.g.,
+UTC, TAI, UT1) and time formats (e.g., Julian date, modified Julian date) that
+are commonly used in astronomy, for example, to calculate barycentric
+corrections or sidereal times.
+The core functionality is currently built on the ERFA (\citealt{erfa}) C
+library, which replicates the Standards of Fundamental Astronomy (SOFA;
+\citealt{sofa}) but is licensed under a three-clause BSD license.
+The package was described in detail in \cite{astropy} and thus, in what follows,
+we only highlight significant changes or new features.
 
-\inlinecomment{Tom, Marten?}
-
-\inlinecomment{SCO}{Q: does it make sense to refer forward to FITS support, even though it is 3.0?-- If you want to say something add it to the future section, but I'd say no.}
-
-Time and date functionality, especially those relevant to astronomy, are dealt by the \package{Time} package.  The package was described in detail in \cite{astropy}.  The \package{Time} package is currently built on ERFA \citep{erfa}, which replicates the functionality of SOFA \cite{sofa} but is licensed under a three-clause BSD license.
+\begin{description}
+    \item[TODO] todo...
+    \item[TODO] todo...
+\end{description}
 
 \subsection{Data arrays}
 
