@@ -626,7 +626,7 @@ no package can be guaranteed to implement all transformations to arbitrary preci
 The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. Table \ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows for example that astropy, Kapteyn and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves, but show an offset of around 0.2\arcsec with the former three packages. Finally, PyEphem disagrees with other packages by 0.4-0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and packages are updated.
 
 \begin{table}
-\caption{Comparison of the accuracy of the FK4 to Galactic transformation between different packages.\label{tab:coordinate_benchmarks}}
+\begin{center}
 \begin{tabular}{llcccc}
 \hline
 \hline
@@ -656,6 +656,8 @@ pyephem  &  pyslalib & 0.563  & 0.570 & 1.012 & 0.253 \\
 pyslalib &  pytpm    & 0.218  & 0.196 & 0.249 & 0.056 \\
 \hline
 \end{tabular}
+\end{center}
+\caption{Comparison of the accuracy of the FK4 to Galactic transformation between different packages.\label{tab:coordinate_benchmarks}}
 \end{table}
 
 \subsection{Time}
