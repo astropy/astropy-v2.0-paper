@@ -710,14 +710,11 @@ datasets.
 The \texttt{NDDataBase} class provides the abstract interface for gridded data
 with attributes for accessing metadata, the world-coordinate system (WCS),
 uncertainty arrays matched to the data shape, and other traits.
-Building on this interface the \texttt{NDData} class provides a minimally working implementation for storing NumPy arrays. These classes serve as useful base for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
+Building on this interface, the \texttt{NDData} class provides a minimal working implementation for storing \package{numpy} arrays. These classes serve as useful base classes for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
 
-The concrete classes \texttt{NDDataRef}, \texttt{NDDataArray} and \texttt{CCDData} extend the storing functionality with options to do basic arithmetic (addition, subtraction, multiplication and division) including error propagation in limited cases and slicing of the dataset based on grid coordinates appropriately handling mask, errors, and units, if present. Additionally \texttt{CCDData} also provides I/O from and to FITS files and uses data structures from \astropypkg, like WCS, to represent the contents of a file abstractly.
+The classes \texttt{NDDataRef}, \texttt{NDDataArray}, and \texttt{CCDData} extend the base storing functionality with options to do basic arithmetic (addition, subtraction, multiplication, and division) including error propagation in limited cases and slicing of the dataset based on grid coordinates that appropriately handles masking, errors, and units (if present). Additionally, the \texttt{CCDData} class also provides reading and writing from and to FITS files and uses data structures from \astropypkg, like \texttt{WCS}, to represent the contents of a file abstractly.
 
-The \package{astropy.nddata.utils} module provides utilities that can operate on either plain NumPy arrays or any of the classes in the \package{astropy.nddata} subpackage.  It features a class for representing two-dimensional image cutouts, allowing one to easily link pixels in the cutout to pixels in the original image or from the image to the cutout, to convert between world and pixel coordinates in the cutout and to overlay the cutout on images. Functions to enlarge or reduce an image by doing block replication or reduction are also provided.
-
-
-%Larry:  Don't forget the nddata.utils functionality (e.g. Cutout2D, block\_reduce, %etc.).
+The \package{astropy.nddata.utils} module provides utilities that can operate on either plain \package{numpy} arrays or any of the classes in the \package{astropy.nddata} subpackage. It features a class for representing two-dimensional image cutouts, allowing one to easily link pixels in the cutout to pixels in the original image or from the image to the cutout, to convert between world and pixel coordinates in the cutout, and to overlay the cutout on images. Functions to enlarge or reduce an image by doing block replication or reduction are also provided.
 
 \subsubsection{Tables}
 \label{sec:table}
