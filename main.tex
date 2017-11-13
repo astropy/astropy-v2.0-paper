@@ -723,9 +723,9 @@ The \package{astropy.nddata.utils} module provides utilities that can operate on
 The \package{astropy.table} subpackage provides functionality for representing
 and manipulating heterogeneous data.
 \inlinecomment{APW:}{Need more introduction to the table subpackage!}
-The package was described in detail in \cite{astropy}; we summarize key new
-features or updates to \package{astropy.table} below.
+The package was described in detail in \cite{astropy}.
 
+We summarize key new features or updates to \package{astropy.table} below:
 \begin{description}
     \item[Support for grouped table operations] Some tables contain data that
         naturally form groups.
@@ -768,11 +768,13 @@ features or updates to \package{astropy.table} below.
 % Simon
 
 The \package{astropy.io} subpackage provides support for reading and writing
-various formats: a wide range of ASCII data table formats, FITS, VOTable, etc.
+data to a variety of ASCII and binary file formats, such as a wide range of
+ASCII data table formats, FITS, and VOTable.
 It also provides a unified interface for reading and writing data with these
-different formats, using the \package{astropy.table} subpackage.
-For many common cases this simplifies the process of file I/O and reduce the
-need to master the separate details of all the I/O packages within Astropy.
+different formats using the \package{astropy.table} subpackage.
+For many common cases this simplifies the process of file input/output and
+reduces the need to master the separate details of all the I/O packages within
+\astropypkg.
 % This functionality is still in active development and the number of supported
 % formats will be increasing.
 
@@ -783,12 +785,21 @@ need to master the separate details of all the I/O packages within Astropy.
 
 %\inlinecomment{Check when it was added (0.3?). Overview of the supported formats (ASCII,FITS, votable, HTML, JSViewer/Datatables).}
 
-\subsubsection{Key new features}
-
-
+We summarize key new features or updates to \package{astropy.io} below,
+organized by sub-subpackage:
 \begin{description}
 
-    \item[ASCII: fast reader/writer]
+    \item [Enhanced CSV format ]
+
+        One of the problems when storing a table in an ASCII format is
+        preserving table meta-data such as comments, keywords and column data
+        types, units, and descriptions. Using the newly defined \emph{Enhanced
+        Character Separated Values} (ECSV) format it is now possible to write
+        a table to an ASCII-format file and read it back with no loss of
+        information. The ECSV format has been designed to be both
+        human-readable and compatible with most simple CSV readers.
+
+    \item[\texttt{.ascii}: fast reader/writer]
 
 		The \package{astropy.io.ascii} module now includes a significantly faster
 		Cython/C engine for reading and writing ASCII files. This is available
@@ -804,7 +815,7 @@ need to master the separate details of all the I/O packages within Astropy.
 		interface are not available in the fast version, in which case the
 		pure-Python version will automatically be used.
 
-    \item[ASCII: HTML tables]
+    \item[\texttt{.ascii}: HTML tables]
 
 		The \package{astropy.io.ascii} subpackage now provides the capability
 		to read a table within an HTML file or web URL into an astropy
@@ -812,17 +823,7 @@ need to master the separate details of all the I/O packages within Astropy.
 		package to be installed.  Conversely a \texttt{Table} object can now
 		be written out as an HTML table.
 
-	\item [Enhanced CSV format ]
-
-		One of the problems when storing a table in an ASCII format is
-		preserving table meta-data such as comments, keywords and column data
-		types, units, and descriptions. Using the newly defined \emph{Enhanced
-		Character Separated Values} (ECSV) format it is now possible to write
-		a table to an ASCII-format file and read it back with no loss of
-		information. The ECSV format has been designed to be both
-		human-readable and compatible with most simple CSV readers.
-
-	\item [FITS: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
+	\item [\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
 
 		The \package{astropy.io.fits} subpackage now provides a command line
 		script for inspecting the header(s) of a FITS file.  Running
@@ -830,7 +831,7 @@ need to master the separate details of all the I/O packages within Astropy.
 		information to the screen in a human-readable format. Run
 		\texttt{fitsheader --help} to see the full usage documentation.
 
-	\item [FITS: lazy loading ]
+	\item [\texttt{.fits}: lazy loading ]
 
 		The \package{astropy.io.fits} subpackage now supports \emph{lazy
 		loading}, where all HDUs are not loaded until they are requested (or
@@ -839,7 +840,7 @@ need to master the separate details of all the I/O packages within Astropy.
 		or \texttt{getdata()}) to get HDU’s that are near the front of a file
 		with many HDU’s.
 
-	\item [Misc: YAML serialization ]
+	\item [\texttt{.misc}: YAML serialization ]
 
 		The new \package{astropy.io.misc.yaml} module allows converting
 		astropy objects into a standard YAML format.
