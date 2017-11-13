@@ -2,6 +2,7 @@
 \usepackage{xspace}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{ulem}
 \newcommand{\escapecmd}[1]{\texttt{\detokenize{#1}}}
 
 \submitjournal{ApJ}
@@ -83,7 +84,7 @@ broader \astropy project.
         note on what the package does, a reference to paper I, and any new major
         updates to your package
     \item If your subpackage was not included, then please describe the
-        sub-package on level with what was in the first paper, and highlight any
+        subpackage on level with what was in the first paper, and highlight any
         major features in it. Typical length should be equivalent to one page
         (single-column).
     \item Please make sure you are logged into Overleaf or pushing a commit with
@@ -93,7 +94,7 @@ broader \astropy project.
 
 \section*{Global TODO items}
 \begin{itemize}
-    \item subpackage not sub-package!
+    \item \sout{subpackage not sub-package!} BMS: checked as done 13/11
     \item spell check!
     \item check consistent astropy usage
 \end{itemize}
@@ -188,7 +189,7 @@ in \sectionname~\ref{sec:future}.
 \label{sec:org}
 
 \subsection{Coordination of Astropy}
-% draft by ??
+% draft by ?? (BMS thinks Erik)
 % edited by Adrian PW
 
 From its inception, \astropy has required coordination to ensure the project as a whole and its coding efforts are consistent and reasonably efficient.
@@ -322,9 +323,9 @@ scheme: the core package version number uses the form x.y.z, where ``x'' is
 advanced for LTS releases, ``y'' is advanced for non-LTS feature releases, and
 ``z'' is advanced for bugfix releases.
 
-\subsection{Distribution packages}
+\subsection{Distribution of packages}
 
-\astropypkg is available from several of the Python distributions for scientific
+The \astropypkg core package is available from several of the Python distributions for scientific
 % * <mattwcraig@gmail.com> 2017-10-27T07:13:51.093Z:
 %
 % > \astropypkg i
@@ -1115,22 +1116,46 @@ attributes in any given Python module.
 
 \section{The future of the Astropy project}
 \label{sec:future}
-\inlinecomment{PLL}{In addition to PY3, add some killer features that we
-  plan to implement for 3.0 and beyond?}
-\inlinecomment{BMS}{Some killer features we already know about to definitely
-have may be mentioned here. e.g. functionality of astropy-healpix? or the
-performance/speedup focus of the 3.1 release?}
+% First draft by SMC
+% edited by BMS
+
+%\inlinecomment{PLL}{In addition to PY3, add some killer features that we
+%  plan to implement for 3.0 and beyond?}
+%\inlinecomment{BMS}{Some killer features we already know about to definitely
+%have may be mentioned here. e.g. functionality of astropy-healpix? or the
+%performance/speedup focus of the 3.1 release?}
 \inlinecomment{BMS}{should we mention the refactored infra here?
   e.g. pytest-astropy and sphinx-astropy?}
-\inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
-%\subsection{Roadmap for \python 3 only support}
-
-Development has continued after the release of v2.0 of \package{astropy}.    The most significant development for the next release will be removing python 2 support \citep{ape10}.  While the v2.0 release is a ‘long term stable’ release (meaning that it will be supported through 2019 in both python 2 and python 3), the v3.0 \package{astropy} release will only support python 3.  This will allow the use of the new functionality in python 3, simplify the code base, and reducing the testing overhead.   The v3.0 release is currently scheduled for December 2017.
-
-In the release cycle after v3.0, the \astropy project will focus on optimization of the code and improved documentation for the v3.1 release. To prepare for this release, software for testing and monitoring the performance of the code are being developed.   Less functionality may be introduced in this release while the focus will be primarily on improved performance.  In addition, a new suite of tutorials and documentation are being prepared for this release.
-
-Beyond the core code, the \astropy project is also further developing the affiliated packages.  This includes elevating a suite of packages into part of the core project. While these may not be integrated into the core code, these projects provide code that is useful to the astronomical community and meet the testing and documentation standards of \astropy.   Some of these new efforts includes an initiative to develop tools for spectroscopy, integration of LSST software, and packages to support HEALPIX projection.
-
+%\inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
+%
+\par Development has already been continued after the release of v2.0 of
+\astropypkg. The most significant development for the next release will
+be removing python 2 support \citep{ape10}, the v3.0 \astropypkg release
+will only support python 3.  This will allow the use of the new
+functionality in python 3, simplify the code base, and reducing the
+testing overhead.   The v3.0 release is currently scheduled for January
+2018.
+%
+\par In the next major release after v3.0, scheduled for the summer of 
+2018, the focus will be on optimization of the code and improved 
+documentation. To prepare for this release, software for testing and 
+monitoring the performance of the code are being developed.   Less 
+functionality may be introduced in this release while the focus will be 
+primarily on improved performance.  In addition, a new suite of tutorials 
+and documentation are being prepared for this release.
+%
+\par Beyond the core code, the \astropy project is also further 
+developing the affiliated packages.  This includes elevating a suite of 
+packages into part of the core project. While these may not be integrated 
+into the \astropypkg core code, these projects provide code that is 
+useful to the astronomical community and meet the testing and 
+documentation standards of \astropy.   Some of these new efforts includes 
+an initiative to develop tools for spectroscopy 
+\citep[\package{specutils}, \package{specreduc}, \package{specviz}]
+{ape13}, integration of LSST software, and packages to support HEALPIX 
+projection% \citep{astropy-healpix}
+.
+\inlinecomment{BMS}{TODO: uncomment references of packages once they are available}
 \subsection{Learn Astropy}
 % Adrian
 
