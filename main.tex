@@ -1111,7 +1111,7 @@ for continuous integration services, and \package{Cython} build support.
 
 \astropy also provides a set of scripts for setting up and configuring
 continuous integration (CI) services as a \github repository,
-\package{astropy/ci-helpers}\footnote{\url{https://github.com/astropy/ci-helpers}}
+\package{astropy/ci-helpers}.\footnote{\url{https://github.com/astropy/ci-helpers}}
 These tools aim to empower package maintainers to control their testing set up
 and installation process for various continuous integration services through a
 set of environment variables.
@@ -1146,24 +1146,27 @@ attributes in a given \python module.
 \label{sec:future}
 % First draft by SMC
 % edited by BMS
+% edited again by Adrian PW
 
-%\inlinecomment{PLL}{In addition to PY3, add some killer features that we
-%  plan to implement for 3.0 and beyond?}
-%\inlinecomment{BMS}{Some killer features we already know about to definitely
-%have may be mentioned here. e.g. functionality of astropy-healpix? or the
-%performance/speedup focus of the 3.1 release?}
+Following the release of version 2.0, development on the next major version of
+the \astropypkg core package (version 3.0) has already begun.
+On top of planned changes and additions to the core package, we also plan to
+overhaul the \astropy educational and learning materials, and further refactor
+and generalize the infrastructure utilities developed for the core package for
+the benefit of the community.
+
 \inlinecomment{BMS}{should we mention the refactored infra here?
   e.g. pytest-astropy and sphinx-astropy?}
-%\inlinecomment{SMC}{I've added a rough first draft -- please feel free to edit}
-%
-\par Development has already been continued after the release of v2.0 of
-\astropypkg. The most significant development for the next release will
-be removing python 2 support \citep{ape10}, the v3.0 \astropypkg release
-will only support python 3.  This will allow the use of the new
-functionality in python 3, simplify the code base, and reducing the
-testing overhead.   The v3.0 release is currently scheduled for January
-2018.
-%
+
+\subsection{Future versions of the \astropypkg core package}
+
+One of the most significant changes coming in this next major release will be
+removing support for \python 2 \citep{ape10}: future versions of \astropypkg
+will only support \python 3.5 and higher.
+Removing \python 2 support will allow the use of new, \python 3-only features,
+will simplify the code base, and reduce the testing overhead for the package.
+\astropypkg version 3.0 is currently scheduled for January 2018.
+
 \par In the next major release after v3.0, scheduled for the summer of
 2018, the focus will be on optimization of the code and improved
 documentation. To prepare for this release, software for testing and
@@ -1184,6 +1187,7 @@ an initiative to develop tools for spectroscopy
 projection% \citep{astropy-healpix}
 .
 \inlinecomment{BMS}{TODO: uncomment references of packages once they are available}
+
 \subsection{Learn Astropy}
 % Adrian
 
