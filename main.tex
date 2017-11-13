@@ -910,8 +910,7 @@ The \package{modeling} package now supports the representation, evaluation and f
 \subsection{Convolution}
 % Adam G.
 
-\astropypkg implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   An example of this is given in \figurename \ref{fig:convolution-example}.  In version $<=1.3$, the direct convolution and fast fourier transform (fft) convolution approaches were not consistent, with fft convolution implementing normalized convolution and direct convolution implementing a different approach.  As of v2.0, the two methods are consistent and include a suite of consistency checks.
-
+\astropypkg implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   An example of this is given in \figurename \ref{fig:convolution-example}.  In versions $<=1.3$, the direct convolution and Fast Fourier Transform (FFT) convolution approaches were not consistent, with FFT convolution implementing normalized convolution and direct convolution implementing a different approach.  As of version 2.0, the two methods are consistent and include a suite of consistency checks.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example.png}
