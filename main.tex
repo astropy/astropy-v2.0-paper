@@ -123,10 +123,10 @@ community-driven effort to standardize core functionality for astronomical
 software in \python.
 In this way, its genesis differs from but builds upon many substantial and
 % * <bsipocz@gmail.com> 2017-11-13T13:13:08.884Z:
-% 
+%
 % how do astroy builds upon these? or it's more like builds upon the developer experience?
-% 
-% 
+%
+%
 % ^.
 former astronomical software development efforts that were commissioned or
 initiated through large institutional support, for example IRAF \citep[developed
@@ -875,52 +875,54 @@ organized by sub-subpackage:
 % Tom R. -- unit support
 \subsubsection{Overview}
 The \package{astropy.modeling} subpackage provides a framework for representing
-analytical models and performing model evaluation and fitting. Models and
-fitters are independent of each other, a model can be fit with different
+analytical models and performing model evaluation and parameter fitting. Models and
+fitters are independent of each other: a model can be fit with different
 fitters and new fitters can be added without changing existing models. The
 framework is designed to be flexible and easily extensible. The goal is to have
 a rich set of models but also make it easy to create new ones if necessary. The
 modeling framework is used in a variety of data analysis tools and is the basis
 for the Generalized World Coordinate System (GWCS)
-package\footnote{\url{https://github.com/spacetelescope/gwcs}}. The
-unit support in models and fitters make it a unique package for working with
-astrophysical models.
+package.\footnote{\url{https://github.com/spacetelescope/gwcs}}
+The recently-added support for \package{astropy.units} in models and fitters
+make it a uniquely powerful package for working with astrophysical models.
 
 \subsubsection{Single Model Definition and Evaluation}
-Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the numpy broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments.
+Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments.
 
-Models have \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e., a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse for another polynomial model.
+Models have a \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e. a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse to another polynomial model.
 
-Another useful settable property of models is \texttt{Model.bounding\_box}. It defines the limits over which the model is significant. This greatly improves the efficiency of evaluation when the input range is much larger than the characteristic width of the model itself.
+Another useful settable property of models is \texttt{Model.bounding\_box}. This attribute sets the domain over which the model is defined. This greatly improves the efficiency of evaluation when the input range is much larger than the characteristic width of the model itself.
 
 \subsubsection{Model Sets}
 
-\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models=k} keyword, where k is the number of models to instantiate, and providing the values for each parameter as an iterable of size k. This creates a model set which is efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
+\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. The the values for each parameter in the model set must be passed as iterables of size \texttt{n_models}. This creates a model set that can be efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
 
 \subsubsection{Compound Models}
-Single models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join $\&$, and composition $|$ operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs.
+Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs.
 
 \subsubsection{Fitting Models to Data}
 
-\package{astropy.modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide supports for constraints. They take a model as input and return a copy of the model with the fitted parameters. The goal is to make it easy to extend the fitting framework and create new fitters. The optimizers available in \astropypkg 2.0 are Levenberg-Marquardt, Simplex, SLSQP, and LinearLSQFitter (which is based on \texttt{numpy.linalg} that provides exact solution for linear models).
+\package{astropy.modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide support for specifying parameter constraints. The fitters take a model and data as input and return a copy of the model with the optimized parameter values set. The goal is to make it easy to extend the fitting framework to create new fitters. The optimizers available in \astropypkg version 2.0 are Levenberg--Marquardt, Simplex, SLSQP, and LinearLSQFitter (which is based on \texttt{numpy.linalg} that provides exact solution for linear models).
+
+\inlinecomment{APW}{Add citations for the different optimizaton algorithms in paragraph above?}
 
 Modeling also supports a plugin system for fitters, which allows using the
-astropy models with external fitters. An example of this is
+\astropypk models with external fitters. An example of this is
 \package{SABA}\footnote{\url{https://github.com/astropy/saba}}, which is a bridge between
 Sherpa\footnote{\url{http://cxc.cfa.harvard.edu/contrib/sherpa/}}
-and \package{astropy.modeling}, to bring the Sherpa fitters into astropy.
+and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
 
 \subsubsection{Creating New Models}
 
 New model classes can be created in two ways:
-\begin{itemize}
-   \item The simplest way is to use the \texttt{custom\_model} decorator in modeling with a user defined function which takes the inputs and model parameters as arguments.
-   \item It is also possible to subclass the \texttt{Model} base class and create an arbitrary complex custom model.
-\end{itemize}
+\begin{enumerate}
+   \item The simplest way is to use the \texttt{custom\_model} decorator in modeling with a user-defined function that takes the inputs and model parameters as arguments.
+   \item It is also possible to subclass the \texttt{Model} base class and create an arbitrarily complex custom model.
+\end{enumerate}
 
 \subsubsection{Unit Support}
 
-The \package{modeling} package now supports the representation, evaluation and fitting of models using \texttt{Quantity} objects, which attach units to scalar values or arrays of values. In practice, this means that one can for example fit a model to data with units and get parameters that also have units out, or initialize a model with parameters with units and evaluating it using input values with different but equivalent units. Using this, we have implemented a blackbody model (\texttt{BlackBody1D}) that can be used to fit observed fluxes in a variety of units and as a function of different units of spectral coordinates.
+The \package{modeling} package now supports the representation, evaluation, and fitting of models using \texttt{Quantity} objects, which attach units to scalar values or arrays of values. In practice, this means that one can, for example, fit a model to data with units and get parameters that also have units out, or initialize a model with parameters with units and evaluate it using input values with different but equivalent units. Using this, we have implemented a blackbody model (\texttt{BlackBody1D}) that can be used to fit observed fluxes in a variety of units and as a function of different units of spectral coordinates (e.g., wavelength or frequency).
 
 \subsection{Convolution}
 % Adam G.
