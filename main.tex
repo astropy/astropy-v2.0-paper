@@ -1023,19 +1023,20 @@ tools.
 The \package{cosmology} package contains classes for representing different cosmologies and functions for calculating commonly used quantities such as look-back time and distance.   The package was described in detail in \cite{astropy}.  The default cosmology in \astropy version 2.0 is given by the values in \cite{2016A&A...594A..13P}.
 
 \subsection{Statistics}
+% Edited by Adrian PW
 
 The \package{astropy.stats} package provides statistical tools that
 are useful for or specific to astronomy and are not found in or extend
-the available functionality of other \python\ statistics packages such
+the available functionality of other \python statistics packages such
 as \package{scipy} \citep{scipy} or \package{statsmodels}
-\citep{seabold2010statsmodels}.  The \package{stats} package contains
-a range of different functionality used by many different disciplines
-in astronomy.  It is not a complete set of statistic tools, but rather
+\citep{seabold2010statsmodels}.  \package{astropy.stats} contains
+a range of functionality used by many different disciplines
+in astronomy. It is not a complete set of statistic tools, but rather
 a still growing collection of useful features.
 
-The current review process for contributions to the \package{stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests.
+% The current review process for contributions to the \package{astropy.stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests.
 
-In this section, we describe these tools that provide a range of different functionality including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.
+In this section, we describe these tools, including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.
 
 
 % Steve C.: overview, circular stats,
@@ -1045,23 +1046,24 @@ In this section, we describe these tools that provide a range of different funct
 
 \subsubsection{Robust Statistical Estimators}
 
-Robust statistics provide reliable estimates of basic statistics for complex distributions that largely mitigate the effects of outliers. The \package{stats} package includes several robust statistical functions that are commonly used in astronomy. This includes sigma clipping methods for rejecting outliers, median absolute deviation functions, and biweight estimators, which have been used to calculate the velocity dispersion of galaxy clusters \citep{Beers1990}.
+Robust statistics provide reliable estimates of basic statistics for complex distributions that largely mitigate the effects of outliers. \package{astropy.stats} includes several robust statistical functions that are commonly used in astronomy, such as sigma clipping methods for rejecting outliers, median absolute deviation functions, and biweight estimators, which have been used to calculate the velocity dispersion of galaxy clusters \citep{Beers1990}.
 
 \subsubsection{Circular Statistics}
 
 A set of circular statistical estimators based on \citet{JammalamadakaSengupta}
-are implemented in the \package{stats} package.  These functions provide
+are implemented in \package{astropy.stats}.  These functions provide
 measurements of the circular mean, variance, and moment.   For all of these
 functions, they work with both \texttt{numpy.ndarrays} (assumed to be in
-radians) and \texttt{Quantity} objects.  In addition, the package includes
-tests for Rayleigh Test, vtest, and a function to compute the maximum likelihood estimator for the parameters of the von Mises
-distribution.
+radians) and \texttt{Quantity} objects.  In addition, the subpackage includes
+tests for Rayleigh Test, vtest, and a function to compute the maximum likelihood
+estimator for the parameters of the von Mises distribution.
 
 \subsubsection{Lomb-Scargle Periodograms}
-Periodic analysis of unevenly-spaced time series is common across subfields of Astronomy. The \package{stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g. \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
+
+Periodic analysis of unevenly-spaced time series is common across many subfields of astronomy. The \package{astropy.stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.,][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
-AstroPy also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}. An example of a histogram fit using the Bayesian blocks algorithm is shown in the right panel of \figurename\ref{fig:bayes-blocks-hist}.
+\astropypkg also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}. An example of a histogram fit using the Bayesian blocks algorithm is shown in the right panel of \figurename~\ref{fig:bayes-blocks-hist}.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{bayesian_blocks_hist.pdf}
