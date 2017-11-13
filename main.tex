@@ -895,7 +895,7 @@ Another useful settable property of models is \texttt{Model.bounding\_box}. This
 
 \subsubsection{Model Sets}
 
-\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. The the values for each parameter in the model set must be passed as iterables of size \texttt{n_models}. This creates a model set that can be efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
+\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. The the values for each parameter in the model set must be passed as iterables of size \texttt{n\_models}. This creates a model set that can be efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
 
 \subsubsection{Compound Models}
 Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs.
@@ -907,7 +907,7 @@ Models can be combined using arithmetic expressions. The result is also a model,
 \inlinecomment{APW}{Add citations for the different optimizaton algorithms in paragraph above?}
 
 Modeling also supports a plugin system for fitters, which allows using the
-\astropypk models with external fitters. An example of this is
+\astropypkg models with external fitters. An example of this is
 \package{SABA}\footnote{\url{https://github.com/astropy/saba}}, which is a bridge between
 Sherpa\footnote{\url{http://cxc.cfa.harvard.edu/contrib/sherpa/}}
 and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
@@ -1078,59 +1078,67 @@ Periodic analysis of unevenly-spaced time series is common across many subfields
 }
 \end{figure}
 
-\section{Infrastructure for affiliated packages}
+\section{Infrastructure for Astropy affiliated packages}
+
 \label{sec:infrastructure}
-%\inlinecomment{BMS}{should we use links to the appropriate github repo?}
-%\inlinecomment{PLL}{IMHO a list of GitHub repo links for affil. pkgs. should be in appendix, if included.}
 \inlinecomment{BMS}{should we describe astropy-helpers even though it's future is unsure?}
-%
-\par In addition to astronomy related packages and libraries, the \astropy
-Project also maintains and distributes several generic purpose infrastructure packages.
-The following sections describes the most widely used selection of them.
-%
+% Text also edited by Adrian PW
+
+In addition to astronomy-specific packages and libraries, the \astropy Project
+also maintains and distributes several general-purpose infrastructure packages
+that help with the maintenance and upkeep of the \astropypkg core package and
+other affiliated packages.
+The following sections describes the most widely-used infrastructure packages
+developed by the \astropy Project.
+
 \subsection{Package template}
 % Brigitta may write this up if there is no other takers
-%
-\par \astropy provides the \package{package-template}\footnote{\url{https://github.com/astropy/package-template/}}
-package. Using this template, any \python package can make use of the ready-to-go package
-layout, setup, installation and documentation infrastructure developed originally for the
-\astropypkg core package and affiliated packages maintained by the \astropy. It also provides
-a testing framework, CI templates and configurations, Cython integration, and documentation
-on how to make it all work.
-%
+
+\astropy provides a package template --- as a separate \github repository,
+\package{astropy/package-template}\footnote{\url{https://github.com/astropy/package-t
+emplate/}} --- that aims to simplify setting up packaging, testing, and
+documentation builds for developers of affiliated packages or
+\astropypkg-dependent packages.
+Any \python package can make use of this ready-to-go package layout, setup,
+installation, and \package{Sphinx} documentation build infrastructure that was
+originally developed for the \astropypkg core package and affiliated packages
+maintained by the \astropy project.
+The package template also provides a testing framework, template configurations
+for continuous integration services, and \package{Cython} build support.
+
 \subsection{Continuous integration helpers}
 % Brigitta
-%
-\package{ci-helpers}\footnote{\url{https://github.com/astropy/ci-helpers}} is a
-collection of scripts that empowers package maintainers to control their testing
-set up and installation process for
-various continuous integration services via a set of environment
-variables. While the current development is mostly driven by the needs of
-the \astropy ecosystem, the actual usage of this package is extremely
-widespread. Currently we support setups for Travis CI and Appveyor CI.
-%
+
+\astropy also provides a set of scripts for setting up and configuring
+continuous integration (CI) services as a \github repository,
+\package{astropy/ci-helpers}\footnote{\url{https://github.com/astropy/ci-helpers}}
+These tools aim to empower package maintainers to control their testing set up
+and installation process for various continuous integration services through a
+set of environment variables.
+While the current development is mostly driven by the needs of the \astropy
+ecosystem, the actual usage of this package is extremely widespread. The current
+tools support configuration for Travis CI and Appveyor CI.
+
 \subsection{Sphinx extensions}
 
-The documentation for many \python packages the core \package{astropy} package
-as well as for all packages in the Astropy ecosystem is written using the
-Sphinx package. This package makes it possible to write the documentation using
-plain text files that follow a markup language called reStructuredText, and
-Sphinx can then transform this into HTML or \LaTeX{} documentation. As part of
-the project, we have developed a few extensions that facilitate generating
-documentation for a large project like Astropy. One of the main extensions we
-have developed is
+The documentation for many \python packages, the core \astropypkg package, and
+for all packages in the \astropy ecosystem is written using the
+\package{Sphinx} documentation build system.
+\package{Sphinx} makes it possible to write documentation using plain text files
+that follow a markup language called ``reStructuredText,'' which are then
+transformed into HTML or \LaTeX{} documentation during the documentation build
+process.
+For the \astropy project, we have developed a few \package{Sphinx} extensions
+that facilitate automatically generating API documentation for large projects,
+like the \astropypkg core package.
+The main extension we have developed is
 \package{sphinx-automodapi}\footnote{\url{http://sphinx-automodapi.readthedocs.io}},
 which makes it easy with a single reStructuredText command to generate a set of
-documentation pages listing all the available classes, functions, and
-attributes in any given \python module.
+documentation pages listing all of the available classes, functions, and
+attributes in a given \python module.
 
 \inlinecomment{TPR}{We should put the releases of sphinx-automodapi on Zenodo and cite this}
 
-% TODO: need to put releases of sphinx-automodapi on Zenodo!
-
-%\inlinecomment{BMS}{What about pytest-astropy, should we inlude it here, or
-%  for the future section?}
-%\inlinecomment{PLL}{pytest-astropy is v3, right?}
 % \section{State of the Ecosystem}
 % Commenting out unless a clear statement is added
 
