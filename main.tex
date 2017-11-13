@@ -122,13 +122,23 @@ The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
 software in \python.
 In this way, its genesis differs from but builds upon many substantial and
+% * <bsipocz@gmail.com> 2017-11-13T13:13:08.884Z:
+% 
+% how do astroy builds upon these? or it's more like builds upon the developer experience?
+% 
+% 
+% ^.
 former astronomical software development efforts that were commissioned or
 initiated through large institutional support, for example IRAF \citep[developed
 at NOAO;][]{IRAF}, MIDAS \citep[developed at ESO;][]{MIDAS}, or Starlink
 \citep[originally developed by a consortium of UK institutions and now
 maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
 % More recently, community-driven efforts have seen significant success in the astronomical sciences \citep{yt}
-
+\inlinecomment{BMS}{I like the idea to reference yt here}
+%
+The \astropy project aims to provide an open-source, open-development core
+package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
+support astronomical functionality in the \python programming language.
 The \astropypkg core package is now a feature-rich library of sufficiently
 general tools and classes that supports the development of more specialized
 code. An example of such functionality is reading and writing FITS files: it would be
@@ -136,9 +146,6 @@ time consuming and impractical for multiple groups to implement the FITS
 standard \citep{FITS} and maintain software for such a general-purpose need.
 Another example of such a common task is in dealing with representations of and
 transformations between astronomical coordinate systems.
-The \astropy project aims to provide an open-source, open-development core
-package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
-support astronomical functionality in the \python programming language.
 
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular,
 general-purpose scripting language that is available under a permissive open
