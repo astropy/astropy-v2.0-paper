@@ -718,17 +718,50 @@ The \package{astropy.nddata.utils} module provides utilities that can operate on
 
 \subsubsection{Tables}
 \label{sec:table}
+% fleshed out / edited by Adrian PW
 
-The \package{astropy.table} package provides wrappers to \package{numpy} structure arrays, which can contain heterogeneous data sets. The package was described in detail in \cite{astropy}. Tables now has the ability to work with other \astropypkg classes including \texttt{Quantity}, \texttt{Time}, and \texttt{SkyCoord}. In addition, operations can also be performed on Tables.
-
-We summarize key new features or updates to \package{astropy.table} below.
-%QTable is new, mixin columns for time and coordinates. Table operations were added in v0.3
-
-\inlinecomment{Adrian PW}{The new features below need filling in.}
+The \package{astropy.table} subpackage provides functionality for representing
+and manipulating heterogeneous data.
+\inlinecomment{APW:}{Need more introduction to the table subpackage!}
+The package was described in detail in \cite{astropy}; we summarize key new
+features or updates to \package{astropy.table} below.
 
 \begin{description}
-    \item[QTable] TODO...quantity tables
-    \item[Mixin columns for time and coordinates] TODO...
+    \item[Support for grouped table operations] Some tables contain data that
+        naturally form groups.
+        For example, a table of photometry for galaxies, stars, and quasars.
+        We may then want to split the table or a column into these groups and
+        compute some statistic on the data, or filter the groups based on some
+        criteria.
+        Grouped operations are now supported by \texttt{Table} objects,
+        mainly through the \texttt{group\_by()} method and subsequent operations
+        on the grouped version of the table or column.
+    \item[Support for table concatenation] Tables can be combined in several
+        different ways.
+        If two tables have the same rows, we may want to stack them
+        ``vertically'' to create a new table with the same columns but all rows.
+        If two tables are row-matched but have distinct columns, we may want to
+        stack them ``horizontally'' to create a new table with the same rows
+        but all columns.
+        For other situations, more general table concatenations or joins are
+        also possible when two tables share some common columns.
+        All three of these operations are now possible with \texttt{Table}
+        objects through the \texttt{vstack}, \texttt{hstack}, and \texttt{join}
+        functions in \package{astropy.table}.
+    \item[Mixin columns for time and coordinates] The default data containers
+        for \texttt{Table} objects are \texttt{Column} objects.
+        However, sometimes the data for a given column is better represented as
+        a \texttt{Quantity}, or a sky coordinate (\texttt{SkyCoord}), or an
+        astronomical \texttt{Time} object.
+        The \texttt{Table} object now supports these and other objects to serve
+        as array-like containers for column data through the ``mixin'' protocol.
+    \item[Transform to and from \texttt{Pandas} \texttt{DataFrame} objects]
+        \texttt{Table} objects can now be created from a \texttt{DataFrame}
+        object (\texttt{from\_pandas()}), or exported to a \texttt{DataFrame}
+        object (\texttt{to\_pandas()}).
+        \texttt{DataFrame} objects do not support multi-dimensional array
+        columns, so this conversion will fail if the source \texttt{Table}
+        object contains any such columns.
 \end{description}
 
 \subsection{io}
