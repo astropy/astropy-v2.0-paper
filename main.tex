@@ -74,7 +74,7 @@ broader \astropy project.
         in \python.
     \item We don't plan on including code in this paper, but if you think you
         will need to include code in your section, please add it to a separate
-        Python module (.py file) and include it in this repository.
+        \python module (.py file) and include it in this repository.
     \item Use \escapecmd{\sectionname} not ``Section,'' \escapecmd{\figurename}
         not ``Figure''
     \item Use \escapecmd{\astropypkg} for the astropy package,
@@ -192,10 +192,15 @@ in \sectionname~\ref{sec:future}.
 % draft by ?? (BMS thinks Erik)
 % edited by Adrian PW
 
-From its inception, \astropy has required coordination to ensure the project as a whole and its coding efforts are consistent and reasonably efficient.
-While many Python projects adopt a ``Benevolent Dictator For Life'' (BDFL) model, \astropy has instead opted for a \emph{coordination committee}.
-This is in part due to the nature of the project as a large-scale collaboration between many contributors with many interests, and in part due to simply the amount of work that needs to get done.
-In part for the latter reason, the project has expanded the committee from three to four members starting in 2016.
+From its inception, \astropy has required coordination to ensure the project
+as a whole and its coding efforts are consistent and reasonably efficient.
+While many \python projects adopt a ``Benevolent Dictator For Life'' (BDFL)
+model, \astropy has instead opted for a \emph{coordination committee}.  This
+is in part due to the nature of the project as a large-scale collaboration
+between many contributors with many interests, and in part due to simply the
+amount of work that needs to get done.  In part for the latter reason, the
+project has expanded the committee from three to four members starting in
+2016.
 
 For resolving disagreements about the \astropypkg core package or other \astropy-managed code, the coordination committee primarily acts to work toward consensus, or when consensus is difficult to achieve, generally acts as a ``tie-breaker.''
 The committee also oversees affiliated package applications to ensure they are in keeping with \astropy's vision and philosophy, as well as the associated procedures.
@@ -325,7 +330,7 @@ advanced for LTS releases, ``y'' is advanced for non-LTS feature releases, and
 
 \subsection{Distribution of packages}
 
-The \astropypkg core package is available from several of the Python distributions for scientific
+The \astropypkg core package is available from several of the \python distributions for scientific
 % * <mattwcraig@gmail.com> 2017-10-27T07:13:51.093Z:
 %
 % > \astropypkg i
@@ -336,8 +341,8 @@ computing, such as Anaconda or Enthought Canopy, which include also some of
 \astropy's affiliated packages.
 Alternatively, \astropypkg can be readily installed from the Python Package
 Index\footnote{\url{https://pypi.python.org/pypi}} (PyPI) using pip, the
-recommended command-line tool for installing Python packages
-that is included by default since Python 2 $\geq$ 2.7.9 and Python 3 $\geq$ 3.4.
+recommended command-line tool for installing \python packages
+that is included by default since \python 2 $\geq$ 2.7.9 and \python 3 $\geq$ 3.4.
 For most recent \astropypkg releases, pre-built wheel distributions are obtainable
 from PyPI for Windows, Mac OS X and Linux systems that provide faster
 installation compared to the source distribution.  Optionally, the version of
@@ -790,7 +795,7 @@ We summarize key new features or updates to \package{astropy.io} below,
 organized by sub-subpackage:
 \begin{description}
 
-    \item [Enhanced CSV format ]
+    \item [Enhanced CSV format]
 
         One of the problems when storing a table in an ASCII format is
         preserving table meta-data such as comments, keywords and column data
@@ -802,49 +807,50 @@ organized by sub-subpackage:
 
     \item[\texttt{.ascii}: fast reader/writer]
 
-		The \package{astropy.io.ascii} module now includes a significantly faster
-		Cython/C engine for reading and writing ASCII files. This is available
-		for the following formats: basic, commented\_header, csv, no\_header,
-		rdb, and tab.  On average the new engine is about 4 to 5 times faster
-		than the corresponding pure-Python implementation, and is often
-		comparable to the speed of the pandas ASCII file interface. The fast
-		reader has parallel processing option that allows harnessing multiple
-		cores for input parsing to achieve even greater speed gains.
+        The \package{astropy.io.ascii} module now includes a significantly faster
+        Cython/C engine for reading and writing ASCII files. This is available
+        for the following formats: basic, commented\_header, csv, no\_header,
+        rdb, and tab.  On average the new engine is about 4 to 5 times faster
+        than the corresponding pure-\python implementation, and is often
+        comparable to the speed of the pandas ASCII file interface. The fast
+        reader has parallel processing option that allows harnessing multiple
+        cores for input parsing to achieve even greater speed gains.
 
-		By default, read() and write() will attempt to use the fast C engine when
-		dealing with compatible formats. Certain features of the full read / write
-		interface are not available in the fast version, in which case the
-		pure-Python version will automatically be used.
+        By default, \texttt{read()} and \texttt{write()} will attempt to use
+        the fast C engine when dealing with compatible formats. Certain
+        features of the full read / write interface are not available in the
+        fast version, in which case the pure-\python version will automatically
+        be used.
 
     \item[\texttt{.ascii}: HTML tables]
 
-		The \package{astropy.io.ascii} subpackage now provides the capability
-		to read a table within an HTML file or web URL into an astropy
-		\texttt{Table} object. This requires the \package{BeautifulSoup4}
-		package to be installed.  Conversely a \texttt{Table} object can now
-		be written out as an HTML table.
+        The \package{astropy.io.ascii} subpackage now provides the capability
+        to read a table within an HTML file or web URL into an astropy
+        \texttt{Table} object. This requires the \package{BeautifulSoup4}
+        package to be installed.  Conversely a \texttt{Table} object can now
+        be written out as an HTML table.
 
-	\item [\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
+    \item [\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
 
-		The \package{astropy.io.fits} subpackage now provides a command line
-		script for inspecting the header(s) of a FITS file.  Running
-		\texttt{fitsheader file.fits} in a terminal prints the header
-		information to the screen in a human-readable format. Run
-		\texttt{fitsheader --help} to see the full usage documentation.
+        The \package{astropy.io.fits} subpackage now provides a command line
+        script for inspecting the header(s) of a FITS file.  Running
+        \texttt{fitsheader file.fits} in a terminal prints the header
+        information to the screen in a human-readable format. Run
+        \texttt{fitsheader --help} to see the full usage documentation.
 
-	\item [\texttt{.fits}: lazy loading ]
+    \item [\texttt{.fits}: lazy loading ]
 
-		The \package{astropy.io.fits} subpackage now supports \emph{lazy
-		loading}, where all HDUs are not loaded until they are requested (or
-		the file is closed). This should provide substantial speedups for
-		situations using the convenience functions (e.g., \texttt{getheader()}
-		or \texttt{getdata()}) to get HDU’s that are near the front of a file
-		with many HDU’s.
+        The \package{astropy.io.fits} subpackage now supports \emph{lazy
+        loading}, where all HDUs are not loaded until they are requested (or
+        the file is closed). This should provide substantial speedups for
+        situations using the convenience functions (e.g., \texttt{getheader()}
+        or \texttt{getdata()}) to get HDU’s that are near the front of a file
+        with many HDU’s.
 
-	\item [\texttt{.misc}: YAML serialization ]
+    \item [\texttt{.misc}: YAML serialization ]
 
-		The new \package{astropy.io.misc.yaml} module allows converting
-		astropy objects into a standard YAML format.
+        The new \package{astropy.io.misc.yaml} module allows converting
+        astropy objects into a standard YAML format.
         This can be used beyond \texttt{astropy.io.misc.yaml}: for example, to
         serialize the metadata of tables before saving to other formats like
         HDF5.
@@ -1091,7 +1097,7 @@ widespread. Currently we support setups for Travis CI and Appveyor CI.
 %
 \subsection{Sphinx extensions}
 
-The documentation for many Python packages the core \package{astropy} package
+The documentation for many \python packages the core \package{astropy} package
 as well as for all packages in the Astropy ecosystem is written using the
 Sphinx package. This package makes it possible to write the documentation using
 plain text files that follow a markup language called reStructuredText, and
@@ -1102,7 +1108,7 @@ have developed is
 \package{sphinx-automodapi}\footnote{\url{http://sphinx-automodapi.readthedocs.io}},
 which makes it easy with a single reStructuredText command to generate a set of
 documentation pages listing all the available classes, functions, and
-attributes in any given Python module.
+attributes in any given \python module.
 
 \inlinecomment{TPR}{We should put the releases of sphinx-automodapi on Zenodo and cite this}
 
@@ -1136,23 +1142,23 @@ functionality in python 3, simplify the code base, and reducing the
 testing overhead.   The v3.0 release is currently scheduled for January
 2018.
 %
-\par In the next major release after v3.0, scheduled for the summer of 
-2018, the focus will be on optimization of the code and improved 
-documentation. To prepare for this release, software for testing and 
-monitoring the performance of the code are being developed.   Less 
-functionality may be introduced in this release while the focus will be 
-primarily on improved performance.  In addition, a new suite of tutorials 
+\par In the next major release after v3.0, scheduled for the summer of
+2018, the focus will be on optimization of the code and improved
+documentation. To prepare for this release, software for testing and
+monitoring the performance of the code are being developed.   Less
+functionality may be introduced in this release while the focus will be
+primarily on improved performance.  In addition, a new suite of tutorials
 and documentation are being prepared for this release.
 %
-\par Beyond the core code, the \astropy project is also further 
-developing the affiliated packages.  This includes elevating a suite of 
-packages into part of the core project. While these may not be integrated 
-into the \astropypkg core code, these projects provide code that is 
-useful to the astronomical community and meet the testing and 
-documentation standards of \astropy.   Some of these new efforts includes 
-an initiative to develop tools for spectroscopy 
+\par Beyond the core code, the \astropy project is also further
+developing the affiliated packages.  This includes elevating a suite of
+packages into part of the core project. While these may not be integrated
+into the \astropypkg core code, these projects provide code that is
+useful to the astronomical community and meet the testing and
+documentation standards of \astropy.   Some of these new efforts includes
+an initiative to develop tools for spectroscopy
 \citep[\package{specutils}, \package{specreduc}, \package{specviz}]
-{ape13}, integration of LSST software, and packages to support HEALPIX 
+{ape13}, integration of LSST software, and packages to support HEALPIX
 projection% \citep{astropy-healpix}
 .
 \inlinecomment{BMS}{TODO: uncomment references of packages once they are available}
@@ -1246,7 +1252,7 @@ feasible, such as GitHub, Travis CI, Appveyor, CircleCI, and Read the Docs.
           \package{numpy} (\citealt{numpy}),
           \package{scipy} (\citealt{scipy}),
           \package{matplotlib} (\citealt{matplotlib}),
-          \package{Cython}(\citealt{cython}),
+          \package{Cython} (\citealt{cython}),
           }
 
 \bibliographystyle{aasjournal}
