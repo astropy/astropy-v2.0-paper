@@ -778,11 +778,9 @@ data to a variety of ASCII and binary file formats, such as a wide range of
 ASCII data table formats, FITS, and VOTable.
 It also provides a unified interface for reading and writing data with these
 different formats using the \package{astropy.table} subpackage.
-For many common cases this simplifies the process of file input/output and
+For many common cases this simplifies the process of file input and output and
 reduces the need to master the separate details of all the I/O packages within
 \astropypkg.
-% This functionality is still in active development and the number of supported
-% formats will be increasing.
 
 %\inlinecomment{SCO}{Pyfits deprecation in favor of io.fits ?}
 %\inlinecomment{SCO}{Table and FITS tables}
@@ -800,10 +798,10 @@ organized by sub-subpackage:
         One of the problems when storing a table in an ASCII format is
         preserving table meta-data such as comments, keywords and column data
         types, units, and descriptions. Using the newly defined \emph{Enhanced
-        Character Separated Values} (ECSV) format it is now possible to write
-        a table to an ASCII-format file and read it back with no loss of
-        information. The ECSV format has been designed to be both
-        human-readable and compatible with most simple CSV readers.
+        Character Separated Values} (ECSV,  \citet{ape6}) format it is now
+        possible to write a table to an ASCII-format file and read it back
+        with no loss of information. The ECSV format has been designed to be
+        both human-readable and compatible with most simple CSV readers.
 
     \item[\texttt{.ascii}: fast reader/writer]
 
