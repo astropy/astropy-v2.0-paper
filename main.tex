@@ -1158,7 +1158,7 @@ the benefit of the community.
 \inlinecomment{BMS}{should we mention the refactored infra here?
   e.g. pytest-astropy and sphinx-astropy?}
 
-\subsection{Future versions of the \astropypkg core package}
+\subsection{Future versions of the \astropypkg core and affiliated packages}
 
 One of the most significant changes coming in this next major release will be
 removing support for \python 2 \citep{ape10}: future versions of \astropypkg
@@ -1167,32 +1167,31 @@ Removing \python 2 support will allow the use of new, \python 3-only features,
 will simplify the code base, and reduce the testing overhead for the package.
 \astropypkg version 3.0 is currently scheduled for January 2018.
 
-\par In the next major release after v3.0, scheduled for the summer of
+In the next major release after version 3.0, scheduled for the summer of
 2018, the focus will be on optimization of the code and improved
-documentation. To prepare for this release, software for testing and
-monitoring the performance of the code are being developed.   Less
-functionality may be introduced in this release while the focus will be
-primarily on improved performance.  In addition, a new suite of tutorials
-and documentation are being prepared for this release.
-%
-\par Beyond the core code, the \astropy project is also further
-developing the affiliated packages.  This includes elevating a suite of
-packages into part of the core project. While these may not be integrated
-into the \astropypkg core code, these projects provide code that is
-useful to the astronomical community and meet the testing and
-documentation standards of \astropy.   Some of these new efforts includes
-an initiative to develop tools for spectroscopy
-\citep[\package{specutils}, \package{specreduc}, \package{specviz}]
+documentation.
+To prepare for this release, we are preparing software for testing, evaluating,
+and monitoring the performance of the code.
+Less functionality may be introduced in this release while the focus will be
+primarily on improved performance.
+
+Beyond the core code, the \astropy project is also further developing the
+\astropy-managed affiliated packages.
+While these may not be integrated into the \astropypkg core package, these
+projects provide code that is useful to the astronomical community and meet the
+testing and documentation standards of \astropy.
+Some of these new efforts includes an initiative to develop tools for
+spectroscopy \citep[\package{specutils}, \package{specreduc}, \package{specviz}]
 {ape13}, integration of LSST software, and packages to support HEALPIX
-projection% \citep{astropy-healpix}
-.
+projection. %\citep{astropy-healpix}
 \inlinecomment{BMS}{TODO: uncomment references of packages once they are available}
 
 \subsection{Learn Astropy}
 % Adrian
 
 The \astropypkg core package documentation contains narrative descriptions of
-the package functionality along with detailed usage notes for functions, classes, and modules.
+the package functionality along with detailed usage notes for functions,
+classes, and modules.
 While useful as a reference and for more advanced \python users, it is not the
 right entry-point for all users or learning environments.
 In the near future, we will launch a new resource for learning to use both the
