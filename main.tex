@@ -291,12 +291,12 @@ have license incompatibilities, or have external dependencies (e.g., GUI
 libraries) that make these packages more suitable to be separate from the
 \astropypkg core package.
 Affiliated packages may also be used to develop substantial new functionality
-that will eventually be incorporated into the \astropypkg core package. 
+that will eventually be incorporated into the \astropypkg core package.
 New functionality benefits from having a rapid development and release cycle that is not tied to that of the \astropypkg core.
 % AG: rephrased this.
 %Initially separate packages with typically rapid initial development and new experimental features benefit from having a release cycle that is not tied to the
 
-Affiliated packages are listed on the main astropy website and advertised to the community through astropy mailing lists, so becoming an affiliated package is a good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to help with \inlinecomment{AG}{Increase?} code reuse in the astronomical community. 
+Affiliated packages are listed on the main \astropy website and advertised to the community through \astropy mailing lists, so becoming an affiliated package is a good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to help with \inlinecomment{AG}{Increase?} code reuse in the astronomical community.
 
 Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (sect.~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
 
@@ -438,7 +438,7 @@ The \texttt{Quantity} object
         operations with \texttt{Quantity} objects are generally faster. This is
         largely thanks to improvements in the way \texttt{numpy} arrays can be
         subclassed.
-        
+
 \subsubsection{Logarithmic units and magnitudes}
         By default, taking the logarithm of
         a \texttt{Quantity} object with non-dimensionless units intentionally
@@ -449,7 +449,7 @@ The \texttt{Quantity} object
         Examples include astronomical magnitudes, which are logarithmic fluxes,
         and decibels, which are more generic logarithmic ratios of quantities.
         Logarithmic, relative units are now supported in \texttt{astropy.units}.
-        
+
 \subsubsection{Using quantities in tables}
 
         The \texttt{astropy.table} subpackage (see
@@ -457,7 +457,7 @@ The \texttt{Quantity} object
         with the \texttt{QTable} class.
         As a result, units specified in FITS tables are supported, and tables
         with quantities can be read and written to various file formats.
-        
+
 \subsubsection{Defining functions that require quantities}
         When writing code or
         functions that expect \texttt{Quantity} objects, we often want to
@@ -638,9 +638,9 @@ In addition to representing celestial
 \inlinecomment{TR}{This is a first draft and I need to dig into the details again to finish some of the text, and I also need to make the table/figure}.
 
 In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have created a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages \footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
-no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the `ground truth' but instead compare each tool to all other tools to find. The benchmarks are thus useful beyond the Astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include the astropy core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas}, PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast}, PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem}, and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
+no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the `ground truth' but instead compare each tool to all other tools to find. The benchmarks are thus useful beyond the \astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include the \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas}, PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast}, PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem}, and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
 
-The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. Table \ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows for example that astropy, Kapteyn and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves, but show an offset of around 0.2\arcsec with the former three packages. Finally, PyEphem disagrees with other packages by 0.4-0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and packages are updated.
+The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. Table \ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows for example that \astropy, Kapteyn and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves, but show an offset of around 0.2\arcsec with the former three packages. Finally, PyEphem disagrees with other packages by 0.4-0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and packages are updated.
 
 \begin{table}
 \begin{center}
@@ -813,69 +813,69 @@ organized by sub-subpackage.
 
 \subsubsection{Enhanced CSV format}
 
-        One of the problems when storing a table in an ASCII format is
-        preserving table meta-data such as comments, keywords and column data
-        types, units, and descriptions. Using the newly defined \emph{Enhanced
-        Character Separated Values} (ECSV,  \citet{ape6}) format it is now
-        possible to write a table to an ASCII-format file and read it back
-        with no loss of information. The ECSV format has been designed to be
-        both human-readable and compatible with most simple CSV readers.
+One of the problems when storing a table in an ASCII format is
+preserving table meta-data such as comments, keywords and column data
+types, units, and descriptions. Using the newly defined \emph{Enhanced
+Character Separated Values} (ECSV,  \citet{ape6}) format it is now
+possible to write a table to an ASCII-format file and read it back
+with no loss of information. The ECSV format has been designed to be
+both human-readable and compatible with most simple CSV readers.
 
 \subsubsection{\texttt{.ascii}: fast readers and writers}
 
-        The \package{astropy.io.ascii} module now includes a significantly
-        faster Cython/C engine for reading and writing ASCII files. This is
-        available for the most common formats.
+The \package{astropy.io.ascii} module now includes a significantly
+faster Cython/C engine for reading and writing ASCII files. This is
+available for the most common formats.
 
- %following formats: \texttt{basic},
-  %      \texttt{commented\_header}, \texttt{csv}, \texttt{no\_header},
-        %      \texttt{rdb}, and \texttt{tab}.
-        On average the new engine is about
-        4 to 5 times faster than the corresponding pure-\python
-        implementation, and is often comparable to the speed of the
-        \package{Pandas} \citep{pandas} ASCII file interface.  The fast
-        reader has parallel processing option that allows harnessing
-        multiple cores for input parsing to achieve even greater speed
-        gains.
+%following formats: \texttt{basic},
+%      \texttt{commented\_header}, \texttt{csv}, \texttt{no\_header},
+%      \texttt{rdb}, and \texttt{tab}.
+On average the new engine is about
+4 to 5 times faster than the corresponding pure-\python
+implementation, and is often comparable to the speed of the
+\package{Pandas} \citep{pandas} ASCII file interface.  The fast
+reader has parallel processing option that allows harnessing
+multiple cores for input parsing to achieve even greater speed
+gains.
 
-        By default, \texttt{read()} and \texttt{write()} will attempt to use
-        the fast C engine when dealing with compatible formats. Certain
-        features of the full read / write interface are not available in the
-        fast version, in which case the pure-\python version will automatically
-        be used.
+By default, \texttt{read()} and \texttt{write()} will attempt to use
+the fast C engine when dealing with compatible formats. Certain
+features of the full read / write interface are not available in the
+fast version, in which case the pure-\python version will automatically
+be used.
 
 \subsubsection{\texttt{.ascii}: HTML tables}
 
-        The \package{astropy.io.ascii} subpackage now provides the capability
-        to read a table within an HTML file or web URL into an astropy
-        \texttt{Table} object. This requires the \package{BeautifulSoup4}
-        package to be installed.  Conversely a \texttt{Table} object can now
-        be written out as an HTML table.
+The \package{astropy.io.ascii} subpackage now provides the capability
+to read a table within an HTML file or web URL into an astropy
+\texttt{Table} object. This requires the \package{BeautifulSoup4}
+package to be installed.  Conversely a \texttt{Table} object can now
+be written out as an HTML table.
 
 \subsubsection{\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})}
 
-        The \package{astropy.io.fits} subpackage now provides command-line
-        scripts for printing a summary of the HDUs in a FITS file(s)
-        (\texttt{fitsinfo file.fits}) and for printing the header information
-        to the screen in a human-readable format (\texttt{fitsheader
-        file.fits}).
+The \package{astropy.io.fits} subpackage now provides command-line
+scripts for printing a summary of the HDUs in a FITS file(s)
+(\texttt{fitsinfo file.fits}) and for printing the header information
+to the screen in a human-readable format (\texttt{fitsheader
+file.fits}).
 
 \subsubsection{\texttt{.fits}: lazy loading }
 
-        The \package{astropy.io.fits} subpackage now supports \emph{lazy
-        loading}, where all HDUs are not loaded until they are requested (or
-        the file is closed). This should provide substantial speedups for
-        situations using the convenience functions (e.g., \texttt{getheader()}
-        or \texttt{getdata()}) to get HDU’s that are near the front of a file
-        with many HDUs.
+The \package{astropy.io.fits} subpackage now supports \emph{lazy
+loading}, where all HDUs are not loaded until they are requested (or
+the file is closed). This should provide substantial speedups for
+situations using the convenience functions (e.g., \texttt{getheader()}
+or \texttt{getdata()}) to get HDU’s that are near the front of a file
+with many HDUs.
 
 \subsubsection{\texttt{.misc}: YAML serialization}
 
-        The new \package{astropy.io.misc.yaml} module allows converting
-        astropy objects into a standard YAML format.
-        This can be used beyond \texttt{astropy.io.misc.yaml}: for example, to
-        serialize the metadata of tables before saving to other formats like
-        HDF5.
+The new \package{astropy.io.misc.yaml} module allows converting
+astropy objects into a standard YAML format.
+This can be used beyond \texttt{astropy.io.misc.yaml}: for example, to
+serialize the metadata of tables before saving to other formats like
+HDF5.
 
 
 %\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
@@ -1021,7 +1021,7 @@ automatic bin selection: `blocks', `knuth', `scott', or `freedman'.
 \subsubsection{Creating color RGB images}
 
 \cite{Lupton2004} describe an ``optimal'' algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{astropy.visualization} subpackage provides a convenience function to create such a color image.  It also includes an associated set of classes to provide alternate scalings.
-This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to Astropy from a more traditional engineering organization \citep{Jennes2016}.
+This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to \astropy from a more traditional engineering organization \citep{Jennes2016}.
 
 The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977} we show an RGB color image of the Hickson 88 group, centered near NGC~6977.  This image was generated from SDSS images using the \package{astropy.visualization} tools.
 
@@ -1078,7 +1078,7 @@ estimator for the parameters of the von Mises distribution.
 
 \subsubsection{Lomb-Scargle Periodograms}
 
-Periodic analysis of unevenly-spaced time series is common across many subfields of astronomy. The \package{astropy.stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.,][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in AstroPy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
+Periodic analysis of unevenly-spaced time series is common across many subfields of astronomy. The \package{astropy.stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.,][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in \astropy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
 \astropypkg also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}. An example of a histogram fit using the Bayesian blocks algorithm is shown in the right panel of \figurename~\ref{fig:bayes-blocks-hist}.
