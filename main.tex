@@ -304,9 +304,9 @@ Affiliated pacakges are listed on the main astropy website and advertized to the
 % Brigitta can writes this up if there's no other taker
 % edited by Adrian PW
 
-The \astropypkg has a regular release schedule consisting of new significant
+The \astropypkg package has a regular release schedule consisting of new significant
 releases every 6 months, with bugfix releases as needed \citep{ape2}.
-The major releases will contain new features or any significant changes, whereas
+The major releases contain new features or any significant changes, whereas
 the bugfix releases only contain fixes to code or documentation but no new
 features.
 Some versions are additionally designated as ``Long-term support'' (LTS)
@@ -339,18 +339,21 @@ recommended command-line tool for installing \python packages
 that is included by default since \python 2 $\geq$ 2.7.9 and \python 3 $\geq$ 3.4.
 For most recent \astropypkg releases, pre-built wheel distributions are obtainable
 from PyPI for Windows, Mac OS X and Linux systems that provide faster
-installation compared to the source distribution.  Optionally, the version of
-the package and the dependencies needed to run or build the software are given
-by a specifier to the pip package manager as described in PEP 440\footnote{For
-more detailed installation instructions and optional flags see
-\url{http://docs.astropy.org/en/stable/install.html\#installing-astropy}}.
+installation compared to the source distribution.
+% hamogu: I think that's too detailed for a journal paper.
+%     It's in the docs if anyone needs it.
+%Optionally, the version of
+%the package and the dependencies needed to run or build the software are given
+%by a specifier to the pip package manager as described in PEP 440\footnote{For
+%more detailed installation instructions and optional flags see
+%\url{http://docs.astropy.org/en/stable/install.html\#installing-astropy}}.
 
 Packaged versions of \astropy are also available for several
 operating systems that are managed by a system's package manager,
 including Debian, Ubuntu, Fedora, Gentoo, Arch Linux, Mac OS X (e.g.,
 via brew, macports or fink) and FreeBSD.  However, on occasion these packages
 may be outdated compared with the latest stable release of \astropy accessible
-from the PyPI. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for the three major platforms.
+from the PyPI. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for Linux, Max OS X, and MS Windows.
 % * <mattwcraig@gmail.com> 2017-10-27T07:16:27.310Z:
 %
 % > re-built binary conda packages
@@ -382,7 +385,6 @@ packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
 since version v0.2 (previously described in \citealt{astropy}).
 
-\inlinecomment{BMS}{The itemizations below look very weird being boldface under a much less prominent subsection title. would it be nicer in the final version if we leave it as is in the draft?}
 
 % \subsection{Analytic Functions}
 % moved to models and depreciated --
@@ -399,7 +401,7 @@ with units implied or noted via comments in the code because of considerations
 about speed: having units associated with numbers inherently adds overhead to
 numerical operations.
 In \texttt{astropy.units}, \texttt{Quantity} objects subclass the \texttt{numpy}
-array object and has been designed with speed in mind.
+array object and have been designed with speed in mind.
 As of \astropypkg version 2.0, units and quantities are prevalent in most other
 \astropypkg subpackages and are thus a key concept for using the package as a
 whole.
@@ -413,8 +415,9 @@ The motivation and key concepts behind this subpackage were described in detail
 in the previous paper \citep{astropy}, and thus here we primarily highlight new
 features and improvements.
 
-\begin{description}
-    \item[Interaction with \package{numpy} arrays] The \texttt{Quantity} object
+\subsubsection{Interaction with \package{numpy} arrays}
+
+The \texttt{Quantity} object
         is now a subclass of the \texttt{numpy.ndarray} object and therefore
         works well with many of the functions in \texttt{numpy} that support
         array operations. For example, \texttt{Quantity} objects with angular
@@ -422,14 +425,17 @@ features and improvements.
         \texttt{numpy} (e.g., \texttt{numpy.cos}) and do the right thing: the
         units are internally converted to radians (what the \texttt{numpy}
         trigonometric functions expect) before being passed to \texttt{numpy}.
-    \item[Speed improvements] The \texttt{Quantity} object is now significantly
+
+\subsubsection{Speed improvements} The \texttt{Quantity} object is now significantly
         faster than in early versions of \astropypkg. This is in large part due
         to the fact that \texttt{Quantity} subclasses the \texttt{numpy.ndarray}
         object, but even relative to more recent versions of \astropypkg,
         operations with \texttt{Quantity} objects are generally faster. This is
         largely thanks to improvements in the way \texttt{numpy} arrays can be
         subclassed.
-    \item[Logarithmic units and magnitudes] By default, taking the logarithm of
+        
+\subsubsection{Logarithmic units and magnitudes}
+        By default, taking the logarithm of
         a \texttt{Quantity} object with non-dimensionless units intentionally
         fails.
         However, some well-known units are actually logarithmic quantities,
@@ -438,12 +444,17 @@ features and improvements.
         Examples include astronomical magnitudes, which are logarithmic fluxes,
         and decibels, which are more generic logarithmic ratios of quantities.
         Logarithmic, relative units are now supported in \texttt{astropy.units}.
-    \item[Using quantities in tables] The \texttt{astropy.table} subpackage (see
+        
+\subsubsection{Using quantities in tables}
+
+        The \texttt{astropy.table} subpackage (see
         \sectionname~\ref{sec:table}) now supports using quantities in tables
         with the \texttt{QTable} class.
         As a result, units specified in FITS tables are supported, and tables
         with quantities can be read and written to various file formats.
-    \item[Defining functions that require quantities] When writing code or
+        
+\subsubsection{Defining functions that require quantities}
+        When writing code or
         functions that expect \texttt{Quantity} objects, we often want to
         enforce that the input units have the correct type.
         For example, we may want to require only length-type \texttt{Quantity}
@@ -452,7 +463,7 @@ features and improvements.
         validating \texttt{Quantity} inputs.
         \texttt{astropy.units} now provides a \python decorator,
         \texttt{quantity\_input()}, that does this verification automatically.
-\end{description}
+
 
 \subsection{Constants}
 % David S.
@@ -504,7 +515,7 @@ of one another.
 For example, a set of coordinates in the International Celestial Reference
 System (ICRS) reference frame could be represented as spherical (right
 ascension, declination, and distance from solar system barycenter) or Cartesian
-coordinates ($x$, $y$, $z$ with the origin at ).
+coordinates ($x$, $y$, $z$ with the origin at barycenter).
 They can therefore change representations independent of being transformed to
 other reference frames (e.g., the Galactic coordinate frame).
 
@@ -562,8 +573,8 @@ internally using the \texttt{Frame} and \texttt{Representation} classes.
 In what follows, we briefly highlight key new features in
 \texttt{astropy.coordinates}.
 
-\begin{description}
-    \item[Local Earth coordinate frames] In addition to representing celestial
+\subsubsection{Local Earth coordinate frames}
+In addition to representing celestial
     coordinates, \astropypkg now supports specifying positions on the Earth in
     a number of different geocentric systems with the \texttt{EarthLocation}
     class.
@@ -576,7 +587,7 @@ In what follows, we briefly highlight key new features in
     observation planning can now be completed with \astropypkg or the
     \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}.
 
-    \item[Proper motion and velocity transformations]
+\subsubsection{Proper motion and velocity transformations}
     In addition to positional coordinate data, the \texttt{Frame} classes now
     also support velocity data.
     As the default representation for most frames is spherical, most of the
@@ -595,7 +606,7 @@ In what follows, we briefly highlight key new features in
     As such, in v2.0, only the \texttt{Frame} classes (and not the
     \texttt{SkyCoord} class) support handling velocities.
 
-    \item[Derivatives of coordinate representations]
+\subsubsection{Derivatives of coordinate representations}
     As mentioned above, the \texttt{Representation} classes act like
     three-dimensional vectors.
     \texttt{astropy.coordinates} now also supports handling first derivatives of
@@ -603,18 +614,19 @@ In what follows, we briefly highlight key new features in
     The \texttt{Differential} classes are currently used internally within the
     \texttt{Frame} classes to store the velocity data.
 
-    \item[Solar System Ephemerides]
+\subsubsection{Solar System Ephemerides}
     Also new is support for computing ephemerides of major solar system bodies
     and outputting the resulting positions as coordinate objects.
     These ephemerides can be computed either using analytic approximations from
     ERFA, or from downloaded JPL ephemerides (the latter requires the
     \package{jplephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}}
     optional dependency and an internet connection).
-    The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide
-    the gateway to this functionality, yielding \texttt{SkyCoord} objects given
-    a specific body and choice of ephemeris source.
+    % hamogu: I think the specific names of functions can be in the docs
+    % and don't need to be repeated here.
+    %The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide
+    %the gateway to this functionality, yielding \texttt{SkyCoord} objects given
+    %a specific body and choice of ephemeris source.
 
-\end{description}
 
 \subsubsection{Accuracy of coordinate transformations}
 
@@ -677,8 +689,9 @@ stayed stable for the last several versions of \astropypkg.
 Thus, in what follows, we only highlight significant changes or new features
 since the previous \astropy paper.
 
-\begin{description}
-    \item[Barycentric and Heliocentric corrections] Detailed eclipse or transit
+
+\subsubsection{Barycentric and Heliocentric corrections}
+Detailed eclipse or transit
         timing requires accounting for light travel time differences from the
         source to the observatory because of the Earth's motion.
         It is therefore common to instead convert times to the Solar System
@@ -690,12 +703,12 @@ since the previous \astropy paper.
         objects, the time corrections to shift to the solar system barycenter or
         heliocenter can now be computed with \package{astropy.time} using the
         \texttt{light\_travel\_time} method of a \texttt{Time} object.
-    \item[\texttt{Time} objects as \texttt{Table} columns] \texttt{Time} objects
+\subsubsection{\texttt{Time} objects as \texttt{Table} columns} \texttt{Time} objects
         can now be added as columns in \package{astropy.table} \texttt{Table}
         objects. This is described in more detail in
         \sectionname~\ref{sec:table} with the concept of a ``mixin'' column
         type.
-\end{description}
+
 
 \subsection{Data containers}
 
@@ -725,44 +738,50 @@ and manipulating heterogeneous data.
 \inlinecomment{APW:}{Need more introduction to the table subpackage!}
 The package was described in detail in \cite{astropy}.
 
-We summarize key new features or updates to \package{astropy.table} below:
-\begin{description}
-    \item[Support for grouped table operations] Some tables contain data that
-        naturally form groups.
-        For example, a table of photometry for galaxies, stars, and quasars.
-        We may then want to split the table or a column into these groups and
-        compute some statistic on the data, or filter the groups based on some
-        criteria.
-        Grouped operations are now supported by \texttt{Table} objects,
-        mainly through the \texttt{group\_by()} method and subsequent operations
-        on the grouped version of the table or column.
-    \item[Support for table concatenation] Tables can be combined in several
-        different ways.
-        If two tables have the same rows, we may want to stack them
-        ``vertically'' to create a new table with the same columns but all rows.
-        If two tables are row-matched but have distinct columns, we may want to
-        stack them ``horizontally'' to create a new table with the same rows
-        but all columns.
-        For other situations, more general table concatenations or joins are
-        also possible when two tables share some common columns.
-        All three of these operations are now possible with \texttt{Table}
-        objects through the \texttt{vstack}, \texttt{hstack}, and \texttt{join}
-        functions in \package{astropy.table}.
-    \item[Mixin columns for time and coordinates] The default data containers
-        for \texttt{Table} objects are \texttt{Column} objects.
-        However, sometimes the data for a given column is better represented as
-        a \texttt{Quantity}, or a sky coordinate (\texttt{SkyCoord}), or an
-        astronomical \texttt{Time} object.
-        The \texttt{Table} object now supports these and other objects to serve
-        as array-like containers for column data through the ``mixin'' protocol.
-    \item[Transform to and from \texttt{Pandas} \texttt{DataFrame} objects]
-        \texttt{Table} objects can now be created from a \texttt{DataFrame}
-        object (\texttt{from\_pandas()}), or exported to a \texttt{DataFrame}
-        object (\texttt{to\_pandas()}).
-        \texttt{DataFrame} objects do not support multi-dimensional array
-        columns, so this conversion will fail if the source \texttt{Table}
-        object contains any such columns.
-\end{description}
+Next, we summarize key new features or updates to \package{astropy.table}.
+
+\subsubsection{Support for grouped table operations}
+Tables can contain data that naturally form groups, for example monitoring of an object in different bands.
+We may then want to split the table or a column into these groups (in this example: observations in different filters)  and
+compute some statistic on the data, or filter the groups based on some
+criteria.
+Grouped operations are now supported by \texttt{Table} objects.
+%,
+%mainly through the \texttt{group\_by()} method and subsequent operations
+%on the grouped version of the table or column.
+
+\subsubsection{Support for table concatenation}
+Tables can be combined in several
+different ways.
+If two tables have the same rows, we may want to stack them
+``vertically'' to create a new table with the same columns but all rows.
+If two tables are row-matched but have distinct columns, we may want to
+stack them ``horizontally'' to create a new table with the same rows
+but all columns.
+For other situations, more general table concatenations or joins are
+also possible when two tables share some common columns.
+%All three of these operations are now possible with \texttt{Table}
+%objects through the \texttt{vstack}, \texttt{hstack}, and \texttt{join}
+%functions in \package{astropy.table}.
+
+\subsubsection{Mixin columns for time and coordinates}
+The \texttt{Table} object now supports \texttt{Quantity}, sky coordinate (\texttt{SkyCoord}),
+astronomical \texttt{Time} objects and and other objects to serve
+as array-like containers for column data through the ``mixin'' protocol.
+
+%hamogu: I've commented this out.
+% I think it's very specific and not relevant to non-developers.
+% If we want to keep it, we need to add at least 102 senteces about what Pandas
+% is and I think that's more text than is warrented for this feature.
+
+%\subsubsection{Transform to and from \texttt{Pandas} \texttt{DataFrame} objects}
+%\texttt{Table} objects can now be created from a \texttt{DataFrame}
+%object (\texttt{from\_pandas()}), or exported to a \texttt{DataFrame}
+%object (\texttt{to\_pandas()}).
+%\texttt{DataFrame} objects do not support multi-dimensional array
+%columns, so this conversion will fail if the source \texttt{Table}
+%object contains any such columns.
+
 
 \subsection{io}
 % Simon
@@ -784,10 +803,10 @@ reduces the need to master the separate details of all the I/O packages within
 %\inlinecomment{Check when it was added (0.3?). Overview of the supported formats (ASCII,FITS, votable, HTML, JSViewer/Datatables).}
 
 We summarize key new features or updates to \package{astropy.io} below,
-organized by sub-subpackage:
-\begin{description}
+organized by sub-subpackage.
 
-    \item [Enhanced CSV format]
+
+\subsubsection{Enhanced CSV format}
 
         One of the problems when storing a table in an ASCII format is
         preserving table meta-data such as comments, keywords and column data
@@ -797,7 +816,7 @@ organized by sub-subpackage:
         with no loss of information. The ECSV format has been designed to be
         both human-readable and compatible with most simple CSV readers.
 
-    \item[\texttt{.ascii}: fast readers and writers]
+\subsubsection{\texttt{.ascii}: fast readers and writers}
 
         The \package{astropy.io.ascii} module now includes a significantly
         faster Cython/C engine for reading and writing ASCII files. This is
@@ -817,7 +836,7 @@ organized by sub-subpackage:
         fast version, in which case the pure-\python version will automatically
         be used.
 
-    \item[\texttt{.ascii}: HTML tables]
+\subsubsection{\texttt{.ascii}: HTML tables}
 
         The \package{astropy.io.ascii} subpackage now provides the capability
         to read a table within an HTML file or web URL into an astropy
@@ -825,7 +844,7 @@ organized by sub-subpackage:
         package to be installed.  Conversely a \texttt{Table} object can now
         be written out as an HTML table.
 
-    \item [\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})]
+\subsubsection{\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})}
 
         The \package{astropy.io.fits} subpackage now provides command-line
         scripts for printing a summary of the HDUs in a FITS file(s)
@@ -833,7 +852,7 @@ organized by sub-subpackage:
         to the screen in a human-readable format (\texttt{fitsheader
         file.fits}).
 
-    \item [\texttt{.fits}: lazy loading ]
+\subsubsection{\texttt{.fits}: lazy loading }
 
         The \package{astropy.io.fits} subpackage now supports \emph{lazy
         loading}, where all HDUs are not loaded until they are requested (or
@@ -842,7 +861,7 @@ organized by sub-subpackage:
         or \texttt{getdata()}) to get HDU’s that are near the front of a file
         with many HDUs.
 
-    \item [\texttt{.misc}: YAML serialization ]
+\subsubsection{\texttt{.misc}: YAML serialization}
 
         The new \package{astropy.io.misc.yaml} module allows converting
         astropy objects into a standard YAML format.
@@ -850,7 +869,6 @@ organized by sub-subpackage:
         serialize the metadata of tables before saving to other formats like
         HDF5.
 
-\end{description}
 
 %\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
 %\inlinecomment{hamogu}{MY feeling is that this section is too detailed already. If I had written it, I would not have mentioned the scripts at all.}
