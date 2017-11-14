@@ -198,7 +198,7 @@ in \sectionname~\ref{sec:future}.
 \subsection{Coordination of Astropy}
 % draft by ?? (BMS thinks Erik)
 % edited by Adrian PW
-
+\label{sect:coordcom}
 From its inception, \astropy has required coordination to ensure the project
 as a whole and its coding efforts are consistent and reasonably efficient.
 While many \python projects adopt a ``Benevolent Dictator For Life'' (BDFL)
@@ -257,7 +257,7 @@ the core package (e.g., the release cycle; \citealt{ape2}), to plan out major
 new features, or institute new organization-wide policies (e.g.,
 code of conduct; \citealt{ape8}).
 This mechanism is called ``Astropy Proposal for Enhancement'' (APE) and are
-modeled after the ``Python Enhancement Proposals'' (PEP) and guide the
+modeled after the ``Python Enhancement Proposals'' (PEP) that guide the
 development of the \python programming language.
 In an APE one or more authors describe in detail the proposed changes or
 additions, including a rationale for the changes, how these changes will be
@@ -290,16 +290,10 @@ have license incompatibilities, or have external dependencies (e.g., GUI
 libraries) that make these packages more suitable to be separate from the
 \astropypkg core package.
 Affiliated packages may also be used to develop substantial, new functionality
-that will eventually be incorporated into the \astropypkg core package: as
-initially separate packages, the typically rapid development or new,
-experimental features may benefit from having a release cycle that is not tied
+that will eventually be incorporated into the \astropypkg core package. 
+Initially separate packages with typically rapid initial development and new experimental features benefit from having a release cycle that is not tied
 to the \astropypkg core.
-
-\inlinecomment{APW}{This needs to be finished:}
-In general we hope that becoming an affiliated package is seen as
-a good way for new and existing packages to gain exposure.
-%
-\inlinecomment{BMS}{TODO: write about the process of becoming affiliated, and project packages into the future section below}
+Affiliated pacakges are listed on the main astropy website and advertized to the community through astropy mailing lists, so becoming an affiliated package is sa good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to help with code reuse in the astronomical community. Packages can become affilited to \astropy by applying for this status on a public mailing list. The coordination comittee (sect.~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
 
 %\subsection{Mixin}
 
