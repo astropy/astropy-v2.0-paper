@@ -45,7 +45,7 @@
 The \astropy project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
-A key element of the project is the \astropy core package \astropypkg, which serves as the
+A key element of the \astropy project is the core package \astropypkg, which serves as the
 foundation for more specialized projects and packages.
 In this article, we provide an overview of the organization of the \astropy
 project and summarize key features in the core package as of the recent major
@@ -236,7 +236,7 @@ maintainability as the code itself.  Without comments there are $142197$ lines
 of code.} contributed by $232$ unique contributors over $19270$ \texttt{git}
 commits.
 The commit distribution follows an approximate power-law (with log-slope of
-$\approx -0.47$), meaning most of the commits were and are contributed by a
+$\approx -0.47$) \inlinecomment{AG}{round to -0.5?  This is astronomy, after all.}, meaning most of the commits were and are contributed by a
 relatively small fraction of the contributor pool.
 Roughly half of the commits were contributed by the top $4$
 contributors, while $\sim 90$ percent of the commits came from the top $24$
@@ -253,13 +253,13 @@ However, this model leads to ``organic'' growth where different features are
 implemented by different people with different programming styles and
 interfaces.
 Thus, \astropy has a mechanism to more formally propose significant changes to
-the core package (e.g., the release cycle; \citealt{ape2}), to plan out major
+the core package (e.g., the release cycle; \citealt{ape2})\inlinecomment{AG}{Is the release cycle really part of the core package?  That's how this reads.  Is there something more concretely linked to the code we can use as an example here?}, to plan out major
 new features, or institute new organization-wide policies (e.g.,
 code of conduct; \citealt{ape8}).
 This mechanism is called ``Astropy Proposal for Enhancement'' (APE) and are
 modeled after the ``Python Enhancement Proposals'' (PEP) that guide the
 development of the \python programming language.
-In an APE one or more authors describe in detail the proposed changes or
+In an APE, one or more authors describe in detail the proposed changes or
 additions, including a rationale for the changes, how these changes will be
 implemented, and, in the case of code, what the interface will be \citep{ape1}.
 The APEs are discussed and refined by the community before much work is invested
@@ -285,15 +285,20 @@ has requested to be included as part of the \astropy project's
 community. These packages support the goals and vision of \astropy of
 improving code reuse, interoperability, and embracing good coding
 practices such as testing and thorough documentation.
+
 Affiliated packages contain functionality that is more specialized,
 have license incompatibilities, or have external dependencies (e.g., GUI
 libraries) that make these packages more suitable to be separate from the
 \astropypkg core package.
-Affiliated packages may also be used to develop substantial, new functionality
+Affiliated packages may also be used to develop substantial new functionality
 that will eventually be incorporated into the \astropypkg core package. 
-Initially separate packages with typically rapid initial development and new experimental features benefit from having a release cycle that is not tied
-to the \astropypkg core.
-Affiliated pacakges are listed on the main astropy website and advertized to the community through astropy mailing lists, so becoming an affiliated package is sa good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to help with code reuse in the astronomical community. Packages can become affilited to \astropy by applying for this status on a public mailing list. The coordination comittee (sect.~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
+New functionality benefits from having a rapid development and release cycle that is not tied to that of the \astropypkg core.
+% AG: rephrased this.
+%Initially separate packages with typically rapid initial development and new experimental features benefit from having a release cycle that is not tied to the
+
+Affiliated packages are listed on the main astropy website and advertised to the community through astropy mailing lists, so becoming an affiliated package is a good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to help with \inlinecomment{AG}{Increase?} code reuse in the astronomical community. 
+
+Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (sect.~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
 
 %\subsection{Mixin}
 
