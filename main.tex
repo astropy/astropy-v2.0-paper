@@ -825,9 +825,12 @@ organized by sub-subpackage.
 
         The \package{astropy.io.ascii} module now includes a significantly
         faster Cython/C engine for reading and writing ASCII files. This is
-        available for the following formats: \texttt{basic},
-        \texttt{commented\_header}, \texttt{csv}, \texttt{no\_header},
-        \texttt{rdb}, and \texttt{tab}.  On average the new engine is about
+        available for the most common formats.
+
+ %following formats: \texttt{basic},
+  %      \texttt{commented\_header}, \texttt{csv}, \texttt{no\_header},
+        %      \texttt{rdb}, and \texttt{tab}.
+        On average the new engine is about
         4 to 5 times faster than the corresponding pure-\python
         implementation, and is often comparable to the speed of the
         \package{Pandas} \citep{pandas} ASCII file interface.  The fast
@@ -893,11 +896,16 @@ a rich set of models but also make it easy to create new ones if necessary. The
 modeling framework is used in a variety of data analysis tools and is the basis
 for the Generalized World Coordinate System (GWCS)
 package.\footnote{\url{https://github.com/spacetelescope/gwcs}}
-The recently-added support for \package{astropy.units} in models and fitters
-make it a uniquely powerful package for working with astrophysical models.
+
+% hamogu: I comented this out because we don't have prrof that it's
+% ``uniquly'' useful. THe developers of e.g. ISIS, Sherpa, for even IRAF
+% will probably disagree.
+%The recently-added support for \package{astropy.units} in models and fitters
+%make it a uniquely powerful package for working with astrophysical models.
 
 \subsubsection{Single Model Definition and Evaluation}
-Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function and passing the inputs in as arguments.
+\inlinecomment{hamogu: I tihnk this is too techical. I know it's a complex subpackage but I had trouble understanding this section even as a regular user.}
+Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function.
 
 Models have a \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e. a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse to another polynomial model.
 
@@ -905,10 +913,10 @@ Another useful settable property of models is \texttt{Model.bounding\_box}. This
 
 \subsubsection{Model Sets}
 
-\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. The the values for each parameter in the model set must be passed as iterables of size \texttt{n\_models}. This creates a model set that can be efficiently evaluated. Model sets are most useful for efficiently fitting multiple linear models of the same kind.
+\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. This creates a model set that can be efficiently evaluated for example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitides.
 
 \subsubsection{Compound Models}
-Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs.
+Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. An example of a compound model could be a spectrum with interstellar absorption. The stellar spectrum and the interstellar extinction are represented by separate models, but the observed spectrum is fitted with a compoud model that combines both.
 
 \subsubsection{Fitting Models to Data}
 
