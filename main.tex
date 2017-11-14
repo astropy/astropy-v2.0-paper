@@ -45,7 +45,7 @@
 The \astropy project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
-A key element of the project is the \astropy core package, which serves as the
+A key element of the project is the \astropy core package \astropypkg, which serves as the
 foundation for more specialized projects and packages.
 In this article, we provide an overview of the organization of the \astropy
 project and summarize key features in the core package as of the recent major
@@ -104,7 +104,7 @@ broader \astropy project.
 % first draft by Moritz (hamogu)
 % heavily edited by Adrian PW - let me know if you want to revert anything!
 All astronomical research makes use of software in some way.  Astronomy as a field has thus long supported the development of software tools
-for astronomical tasks: from scripts that enable individualized scientific research to software packages that enable collaborations to data reduction pipelines for survey operations.
+for astronomical tasks: from scripts that enable individual scientific research to software packages for small collaborations to data reduction pipelines for survey operations.
 Some software packages are or were supported by large institutions and are intended for a wide range of users. These packages typically provide some level of documentation and user support or
 training.
 Other packages are developed by individual researchers or research groups and
@@ -146,13 +146,13 @@ computing \citep[\package{scipy};][]{numpy}, and publication-quality plotting
 are available which can help with tasks that are not astronomy specific but
 might be performed in the course of astronomical research, for example interfacing with databases or statistical inference.
 
-\python has become especially popular in the quantitative sciences, especially
+\python has become especially popular in the quantitative sciences,
 where researchers must simultaneously produce research, perform data analysis,
 and develop software.
 A large part of this success owes itself to a vibrant community of developers
 and a continuously-growing ecosystem of tools and web services that enable
-easier collaboration on software development, easier writing and sharing
-documentation, and continuous testing and validation of software.
+easier collaboration on software development, easier writing and sharing of
+software documentation, and continuous testing and validation of software.
 More recently, package managers such as
 Anaconda\footnote{\url{https://anaconda.org/}} have streamlined the installation
 process for most packages, therefore significantly reducing the barrier to entry
@@ -181,7 +181,7 @@ contributing to the project has grown tremendously and an ecosystem
 of packages supporting or affiliated with the \astropypkg core has
 developed.
 In this paper, we describe the current status of the \astropy community and the
-\astropypkg core package and discuss goals for future development
+\astropypkg core package and discuss goals for future development.
 
 We start by describing the way the \astropy project functions and is organized
 in \sectionname~\ref{sec:org}. We then describe the main software efforts
@@ -205,7 +205,7 @@ While many \python projects adopt a ``Benevolent Dictator For Life'' (BDFL)
 model, \astropy has instead opted for a \emph{coordination committee}.  This
 is in part due to the nature of the project as a large-scale collaboration
 between many contributors with many interests, and in part due to simply the
-amount of work that needs to get done.  In part for the latter reason, the
+amount of work that needs to get done.  For the latter reason, the
 project has expanded the committee from three to four members starting in
 2016.
 
@@ -213,46 +213,8 @@ For resolving disagreements about the \astropypkg core package or other \astropy
 The committee also oversees affiliated package applications to ensure they are in keeping with \astropy's vision and philosophy, as well as the associated procedures.
 Additionally, the committee oversees the assignment of roles (primarily driven by already-existing contributions), and increasingly has acted as the ``face'' of the Project, providing contact with organizations like NumFOCUS (the body that holds any potential funding in trust for \astropy) or the American Astronomical Society (AAS).
 
-
-\subsection{APEs - Astropy Proposals for Enhancement}
-% draft by hamogu
-% edited by Adrian PW
-
-Central to the success of \astropy is an open environment where anybody can
-contribute to the project by opening a so-called ``pull request'' with a new
-contribution on a publically available
-website.\footnote{\url{https://github.com/astropy/astropy}}
-This request is then reviewed by at least one of the maintainers responsible for
-the specific subpackage or content and is possibly merged into the main code
-base.
-Most bug fixes, documentation edits, and small features are contributed in this
-way.
-However, this model leads to ``organic'' growth where different features are
-implemented by different people with different programming styles and
-interfaces.
-Thus, \astropy has a mechanism to more formally propose significant changes to
-the core package (e.g., the release cycle; \citealt{ape2}), to plan out major
-new features, or institute new organization-wide policies (e.g.,
-code of conduct; \citealt{ape8}).
-This mechanism is called ``Astropy Proposal for Enhancement'' (APE) and are
-modeled after the ``Python Enhancement Proposals'' (PEP) and guide the
-development of the \python programming language.
-In an APE one or more authors describe in detail the proposed changes or
-additions, including a rationale for the changes, how these changes will be
-implemented, and, in the case of code, what the interface will be \citep{ape1}.
-The APEs are discussed and refined by the community before much work is invested
-into a detailed implementation; anyone is welcome to contribute to these
-discussions during the open consideration period by leaving comments on the
-respective pull request.\footnote{\url{https://github.com/astropy/astropy-APEs}}
-In previous APEs a community consensus emerged and APEs are accepted and become
-the basis for future work at this point.
-In cases where consensus cannot be reached, the
-\astropy coordination committee can decide to close the discussion and
-make an executive decision based on the community input on the APE in question.
-
 \subsection{Astropy development model}
 % draft by Adrian PW and Erik T.
-\inlinecomment{BMS}{Move this subsection before the APE one, as that one has some repeated content in the first sentences that belongs here}
 Code is contributed to the \astropypkg core package or modified through ``pull
 requests'' (via \github) that often contain several \texttt{git} commits.
 Pull requests may fix bugs, implement new features, or improve or modify the
@@ -276,9 +238,40 @@ commits.
 The commit distribution follows an approximate power-law (with log-slope of
 $\approx -0.47$), meaning most of the commits were and are contributed by a
 relatively small fraction of the contributor pool.
-$\approx 50$ percent of the commits were contributed by the top $4$
+Roughly half of the commits were contributed by the top $4$
 contributors, while $\sim 90$ percent of the commits came from the top $24$
 contributors.
+
+
+\subsection{APEs - Astropy Proposals for Enhancement}
+% draft by hamogu
+% edited by Adrian PW
+
+Central to the success of \astropy is an open environment where anybody can
+contribute to the project.
+However, this model leads to ``organic'' growth where different features are
+implemented by different people with different programming styles and
+interfaces.
+Thus, \astropy has a mechanism to more formally propose significant changes to
+the core package (e.g., the release cycle; \citealt{ape2}), to plan out major
+new features, or institute new organization-wide policies (e.g.,
+code of conduct; \citealt{ape8}).
+This mechanism is called ``Astropy Proposal for Enhancement'' (APE) and are
+modeled after the ``Python Enhancement Proposals'' (PEP) and guide the
+development of the \python programming language.
+In an APE one or more authors describe in detail the proposed changes or
+additions, including a rationale for the changes, how these changes will be
+implemented, and, in the case of code, what the interface will be \citep{ape1}.
+The APEs are discussed and refined by the community before much work is invested
+into a detailed implementation; anyone is welcome to contribute to these
+discussions during the open consideration period by leaving comments on the
+respective pull request.\footnote{\url{https://github.com/astropy/astropy-APEs}}
+In previous APEs a community consensus emerged and APEs are accepted and become
+the basis for future work at this point.
+In cases where consensus cannot be reached, the
+\astropy coordination committee can decide to close the discussion and
+make an executive decision based on the community input on the APE in question.
+
 
 \subsection{Concept of affiliated packages}
 % it may be described in previous subsection, if not the Brigitta can try to
