@@ -57,7 +57,7 @@ broader \astropy project.
 \end{abstract}
 
 % Adrian PW: how are there still no software keywords in AAS journals?!?
-\keywords{
+\keywords{%
     Astrophysics - Instrumentation and Methods for Astrophysics
     ---
     methods: data analysis
@@ -298,7 +298,7 @@ New functionality benefits from having a rapid development and release cycle tha
 
 Affiliated packages are listed on the main \astropy website and advertised to the community through \astropy mailing lists, so becoming an affiliated package is a good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to help with \inlinecomment{AG}{Increase?} code reuse in the astronomical community.
 
-Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (sect.~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
+Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
 
 %\subsection{Mixin}
 
@@ -316,7 +316,7 @@ the bugfix releases only contain fixes to code or documentation but no new
 features.
 Some versions are additionally designated as ``Long-term support'' (LTS)
 releases, which continue to receive bugfixes for 2 years following the release
-with no changes to the API.
+with no changes to the API\@.
 The LTS versions are ideal for pipelines and other applications where API
 stability is essential.
 The latest LTS release (v2.0) is also the last one that supports \python 2, and
@@ -356,9 +356,9 @@ installation compared to the source distribution.
 Packaged versions of \astropy are also available for several
 operating systems that are managed by a system's package manager,
 including Debian, Ubuntu, Fedora, Gentoo, Arch Linux, Mac OS X (e.g.,
-via brew, macports or fink) and FreeBSD.  However, on occasion these packages
+via brew, macports or fink) and FreeBSD\@.  However, on occasion these packages
 may be outdated compared with the latest stable release of \astropy accessible
-from the PyPI. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for Linux, Max OS X, and MS Windows.
+from the PyPI\@. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for Linux, Max OS X, and MS Windows.
 % * <mattwcraig@gmail.com> 2017-10-27T07:16:27.310Z:
 %
 % > re-built binary conda packages
@@ -637,10 +637,10 @@ In addition to representing celestial
 
 \inlinecomment{TR}{This is a first draft and I need to dig into the details again to finish some of the text, and I also need to make the table/figure}.
 
-In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have created a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages \footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
+In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have created a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages\footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
 no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the `ground truth' but instead compare each tool to all other tools to find. The benchmarks are thus useful beyond the \astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include the \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas}, PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast}, PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem}, and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
 
-The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. Table \ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows for example that \astropy, Kapteyn and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves, but show an offset of around 0.2\arcsec with the former three packages. Finally, PyEphem disagrees with other packages by 0.4-0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and packages are updated.
+The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. \tablename~\ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows for example that \astropy, Kapteyn and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves, but show an offset of around 0.2\arcsec with the former three packages. Finally, PyEphem disagrees with other packages by 0.4--0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and packages are updated.
 
 \begin{table}
 \begin{center}
@@ -916,7 +916,7 @@ Another useful settable property of models is \texttt{Model.bounding\_box}. This
 \package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. This creates a model set that can be efficiently evaluated for example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitides.
 
 \subsubsection{Compound Models}
-Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. An example of a compound model could be a spectrum with interstellar absorption. The stellar spectrum and the interstellar extinction are represented by separate models, but the observed spectrum is fitted with a compoud model that combines both.
+Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. An example of a compound model could be a spectrum with interstellar absorption. The stellar spectrum and the interstellar extinction are represented by separate models, but the observed spectrum is fitted with a compound model that combines both.
 
 \subsubsection{Fitting Models to Data}
 
