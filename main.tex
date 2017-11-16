@@ -41,7 +41,7 @@
 
 \begin{abstract}
 % I (Adrian) took a first stab at the abstract, but it needs some work. Feel
-% free to modify!
+% free to modify!  
 The \astropy project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
@@ -118,6 +118,8 @@ built around a common foundation.
 The \astropy project has grown to become this community, and the \astropypkg
 core package a feature-rich library for \python-based astronomical software.
 
+\inlinecomment{Tom R}{the 'this community' above is a bit too general - do we mean it is the only community in astronomy, or in the Python astronomy world? I'd change this to either 'to become this community for Python astronomy software' or 'to become such a community'. For instance yt had a community before we came along for the simulation community, so I want to make sure we don't claim we are the only community out there.}
+
 The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
 software in \python.
@@ -136,10 +138,12 @@ maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
 % More recently, community-driven efforts have seen significant success in the astronomical sciences \citep{yt}
 \inlinecomment{BMS}{I like the idea to reference yt here}
 %
+\inlinecomment{Tom R}{Python calls itself a programming language or general-purpose language, not specifically scripting language. I would remove 'scripting' below.}
+
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular,
 general-purpose scripting language that is available under a permissive open
 source software license free of charge for all major operating systems.
-Stable and well-developed packages provide support for array arithmetic
+Stable and well-developed packages provide support for array representation and arithmetic
 \citep[\package{numpy};][]{numpy}, a wide variety of functions for scientific
 computing \citep[\package{scipy};][]{numpy}, and publication-quality plotting
 \citep[\package{matplotlib};][]{matplotlib}. Tens of thousands of other packages
@@ -235,7 +239,7 @@ line count includes comments, as these are often as important for
 maintainability as the code itself.  Without comments there are $142197$ lines
 of code.} contributed by $232$ unique contributors over $19270$ \texttt{git}
 commits.
-The commit distribution follows an approximate power-law (with log-slope of
+The commit distribution \inlinecomment{Tom R}{too vague, maybe 'the distribution of number of commits as a function of ...'} follows an approximate power-law (with log-slope of
 $\approx -0.47$) \inlinecomment{AG}{round to -0.5?  This is astronomy, after all.}, meaning most of the commits were and are contributed by a
 relatively small fraction of the contributor pool.
 Roughly half of the commits were contributed by the top $4$
@@ -265,7 +269,7 @@ implemented, and, in the case of code, what the interface will be \citep{ape1}.
 The APEs are discussed and refined by the community before much work is invested
 into a detailed implementation; anyone is welcome to contribute to these
 discussions during the open consideration period by leaving comments on the
-respective pull request.\footnote{\url{https://github.com/astropy/astropy-APEs}}
+respective pull request.\footnote{\url{https://github.com/astropy/astropy-APEs}} \inlinecomment{Tom R}{first mention of a pull request in the context of an APE - need to make it clear that APEs are proposed by PRs}
 In previous APEs a community consensus emerged and APEs are accepted and become
 the basis for future work at this point.
 In cases where consensus cannot be reached, the
@@ -339,9 +343,13 @@ The \astropypkg core package is available from several of the \python distributi
 computing, such as Anaconda or Enthought Canopy, which include also some of
 \astropy's affiliated packages.
 Alternatively, \astropypkg can be readily installed from the Python Package
-Index\footnote{\url{https://pypi.python.org/pypi}} (PyPI) using pip, the
+Index\footnote{\url{https://pypi.python.org/pypi}} (PyPI) 
+\inlinecomment{Tom R}{make footnote link directly to astropy on PyPI?}
+using pip, the
 recommended command-line tool for installing \python packages
 that is included by default since \python 2 $\geq$ 2.7.9 and \python 3 $\geq$ 3.4.
+
+\inlinecomment{Tom R}{is this actually true? I installed Python 3.6 from source recently and it didn't have the pip command readily available. What it does have is the ensurepip module, but we might want to be careful how we phrase this here. Maybe just remove mention of pip being included by default?}
 For most recent \astropypkg releases, pre-built wheel distributions are obtainable
 from PyPI for Windows, Mac OS X and Linux systems that provide faster
 installation compared to the source distribution.
@@ -358,7 +366,7 @@ operating systems that are managed by a system's package manager,
 including Debian, Ubuntu, Fedora, Gentoo, Arch Linux, Mac OS X (e.g.,
 via brew, macports or fink) and FreeBSD\@.  However, on occasion these packages
 may be outdated compared with the latest stable release of \astropy accessible
-from the PyPI\@. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for Linux, Max OS X, and MS Windows.
+from the PyPI\@. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for Linux, Mac OS X, and MS Windows.
 % * <mattwcraig@gmail.com> 2017-10-27T07:16:27.310Z:
 %
 % > re-built binary conda packages
@@ -395,6 +403,7 @@ since version v0.2 (previously described in \citealt{astropy}).
 % moved to models and depreciated --
 % just here for completeness at the moment
 \inlinecomment{BMS}{I suggest to order the subsection lexicographically as reading the draft the current order seemed very random (unlike at the docs page where they the grouping logic is obvious)}
+\inlinecomment{Tom R}{the only issue is if we rely on having e.g. units described first if they are used later}
 
 \subsection{Units}\label{sec:units}
 % Adrian
@@ -407,6 +416,9 @@ about speed: having units associated with numbers inherently adds overhead to
 numerical operations.
 In \texttt{astropy.units}, \texttt{Quantity} objects subclass the \texttt{numpy}
 array object and have been designed with speed in mind.
+
+\inlinecomment{Tom R}{I think saying 'subclass' here is too detailed and is mentioned below in 3.1.1 if needed - 'make it possible to attach units to numpy arrays' or something like that?}
+
 As of \astropypkg version 2.0, units and quantities are prevalent in most other
 \astropypkg subpackages and are thus a key concept for using the package as a
 whole.
@@ -431,7 +443,11 @@ The \texttt{Quantity} object
         units are internally converted to radians (what the \texttt{numpy}
         trigonometric functions expect) before being passed to \texttt{numpy}.
 
-\subsubsection{Speed improvements} The \texttt{Quantity} object is now significantly
+\subsubsection{Speed improvements}
+
+\inlinecomment{Tom R}{I wonder if we might just want to mention at the top level that performance has been improved in places? This seems a bit too detailed}
+
+The \texttt{Quantity} object is now significantly
         faster than in early versions of \astropypkg. This is in large part due
         to the fact that \texttt{Quantity} subclasses the \texttt{numpy.ndarray}
         object, but even relative to more recent versions of \astropypkg,
@@ -451,6 +467,8 @@ The \texttt{Quantity} object
         Logarithmic, relative units are now supported in \texttt{astropy.units}.
 
 \subsubsection{Using quantities in tables}
+
+\inlinecomment{Tom R}{this is a new feature of table, not units, so I think we don't want to mention this here}
 
         The \texttt{astropy.table} subpackage (see
         \sectionname~\ref{sec:table}) now supports using quantities in tables
@@ -488,7 +506,7 @@ Astronomical Union, IAU).
 The \texttt{codata2014} and \texttt{iau2015} versions are combined into the
 default constant value version: \texttt{astropyconst20}.
 For compatibility with \astropypkg version 1.3 and earlier, the \texttt{astropyconst13}
-namespace is still available and provides access to the adopted versions of the
+namespace \inlinecomment{Tom R}{jargon alert: 'namespace'} is still available and provides access to the adopted versions of the
 constants from earlier versions of \astropypkg.
 To use previous versions of the constants as \emph{units} (e.g., solar masses),
 the values from the desired namespace have to be imported directly; with version
@@ -612,6 +630,9 @@ In addition to representing celestial
     \texttt{SkyCoord} class) support handling velocities.
 
 \subsubsection{Derivatives of coordinate representations}
+
+\inlinecomment{Tom R}{does this really warrant a separate section or is it just a byproduct of the velocity stuff that can be mentioned in 3.3.2?}
+
     As mentioned above, the \texttt{Representation} classes act like
     three-dimensional vectors.
     \texttt{astropy.coordinates} now also supports handling first derivatives of
@@ -634,8 +655,6 @@ In addition to representing celestial
 
 
 \subsubsection{Accuracy of coordinate transformations}
-
-\inlinecomment{TR}{This is a first draft and I need to dig into the details again to finish some of the text, and I also need to make the table/figure}.
 
 In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have created a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages\footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
 no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the `ground truth' but instead compare each tool to all other tools to find. The benchmarks are thus useful beyond the \astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include the \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas}, PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast}, PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem}, and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
@@ -689,7 +708,7 @@ or sidereal times.
 \package{astropy.time} is currently built on the ERFA (\citealt{erfa}) C
 library, which replicates the Standards of Fundamental Astronomy (SOFA;
 \citealt{sofa}) but is licensed under a three-clause BSD license.
-The package was described in detail in previous work \citep{astropy} and has
+The package was described in detail in  \citet{astropy} and has
 stayed stable for the last several versions of \astropypkg.
 Thus, in what follows, we only highlight significant changes or new features
 since the previous \astropy paper.
@@ -713,6 +732,10 @@ Detailed eclipse or transit
         objects. This is described in more detail in
         \sectionname~\ref{sec:table} with the concept of a ``mixin'' column
         type.
+        
+\inlinecomment{Tom R}{I would remove this tiny section. As for units, I think we should only mention the whole mixin stuff in the table section, not for every single object that can go in a table}
+        
+        
 
 
 \subsection{Data containers}
@@ -774,6 +797,8 @@ The \texttt{Table} object now supports \texttt{Quantity}, sky coordinate (\textt
 astronomical \texttt{Time} objects and and other objects to serve
 as array-like containers for column data through the ``mixin'' protocol.
 
+\inlinecomment{Tom R}{this is waaaaay too short and jargony. It's a very cool feature that deserves more reader-friendly text!}
+
 %hamogu: I've commented this out.
 % I think it's very specific and not relevant to non-developers.
 % If we want to keep it, we need to add at least 102 senteces about what Pandas
@@ -810,6 +835,7 @@ reduces the need to master the separate details of all the I/O packages within
 We summarize key new features or updates to \package{astropy.io} below,
 organized by sub-subpackage.
 
+\inlinecomment{Tom R}{is a sub-subpackage a thing, or is it just 'subpackage' all the way down?}
 
 \subsubsection{Enhanced CSV format}
 
@@ -868,6 +894,8 @@ the file is closed). This should provide substantial speedups for
 situations using the convenience functions (e.g., \texttt{getheader()}
 or \texttt{getdata()}) to get HDU’s that are near the front of a file
 with many HDUs.
+
+\inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
 
 \subsubsection{\texttt{.misc}: YAML serialization}
 
