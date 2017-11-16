@@ -119,6 +119,7 @@ The \astropy project has grown to become this community, and the \astropypkg
 core package a feature-rich library for \python-based astronomical software.
 
 \inlinecomment{Tom R}{the 'this community' above is a bit too general - do we mean it is the only community in astronomy, or in the Python astronomy world? I'd change this to either 'to become this community for Python astronomy software' or 'to become such a community'. For instance yt had a community before we came along for the simulation community, so I want to make sure we don't claim we are the only community out there.}
+\inlinecomment{Perry G}{Agreed}
 
 The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
@@ -139,7 +140,7 @@ maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
 \inlinecomment{BMS}{I like the idea to reference yt here}
 %
 \inlinecomment{Tom R}{Python calls itself a programming language or general-purpose language, not specifically scripting language. I would remove 'scripting' below.}
-
+\inlinecomment{Perry G}{Yes, it's time to drop the scripting adjective; it's far more general than that now.}
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular,
 general-purpose scripting language that is available under a permissive open
 source software license free of charge for all major operating systems.
@@ -417,6 +418,7 @@ numerical operations.
 In \texttt{astropy.units}, \texttt{Quantity} objects subclass the \texttt{numpy}
 array object and have been designed with speed in mind.
 
+\inlinecomment{Perry G}{Agreeing with Tom below, I would avoid using terms like subclass, decorators, mixin, namespace, (and perhaps even class, instead using objects consistently; this is no place to be pendantic about the distinction between classes and objects; even to the extent of adding a qualifying sentence somewhere like: "In this paper we will use object when we mean object or classes; in software there are important distinctions between the two terms, but they are not relevant in this paper."), and the like and replace them with more generic descriptions, e.g., "extended", or "tools to make defining functions that can use quantities simple to write" }
 \inlinecomment{Tom R}{I think saying 'subclass' here is too detailed and is mentioned below in 3.1.1 if needed - 'make it possible to attach units to numpy arrays' or something like that?}
 
 As of \astropypkg version 2.0, units and quantities are prevalent in most other
@@ -660,7 +662,7 @@ In order to check the accuracy of the coordinate transformations in \package{ast
 no package can be guaranteed to implement all transformations to arbitrary precision, and since some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the `ground truth' but instead compare each tool to all other tools to find. The benchmarks are thus useful beyond the \astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include the \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas}, PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast}, PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem}, and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
 
 The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows - we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS and Ecliptic frames. For now we set the epoch of observation to J2000, and the frame to J2000 in the case of the FK5 and ecliptic frames and B1950 for the FK4 frame, but in future we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, minimum, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools. \tablename~\ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows for example that \astropy, Kapteyn and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves, but show an offset of around 0.2\arcsec with the former three packages. Finally, PyEphem disagrees with other packages by 0.4--0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and packages are updated.
-
+\inlinecomment{Perry G}{Wouldn't the table be better represented as a matrices? Or perhaps as a matrix as a crude image with colors or intensities representing the size of the quantity. Is the difference between median and mean significant enough to warrant showing both? A link to the actual numbers may satisfy readers that want the exact values, but I suspect the majority don't need to see that precision.}
 \begin{table}
 \begin{center}
 \begin{tabular}{llcccc}
@@ -768,6 +770,7 @@ The package was described in detail in \cite{astropy}.
 
 Next, we summarize key new features or updates to \package{astropy.table}.
 
+\inlinecomment{Perry G}{Some mention that some of these are inspired by Pandas?}
 \subsubsection{Support for grouped table operations}
 Tables can contain data that naturally form groups, for example monitoring of an object in different bands.
 We may then want to split the table or a column into these groups (in this example: observations in different filters)  and
