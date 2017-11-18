@@ -15,4 +15,4 @@ addons:
             - latexmk
 
 script:
-    - yes X | latexmk -halt-on-error -pdf main
+    - source build-paper-travis.sh
