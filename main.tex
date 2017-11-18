@@ -41,7 +41,7 @@
 
 \begin{abstract}
 % I (Adrian) took a first stab at the abstract, but it needs some work. Feel
-% free to modify!  
+% free to modify!
 The \astropy project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
@@ -256,9 +256,10 @@ However, this model leads to ``organic'' growth where different features are
 implemented by different people with different programming styles and
 interfaces.
 Thus, \astropy has a mechanism to more formally propose significant changes to
-the core package (e.g., the release cycle; \citealt{ape2})\inlinecomment{AG}{Is the release cycle really part of the core package?  That's how this reads.  Is there something more concretely linked to the code we can use as an example here?}, to plan out major
-new features, or institute new organization-wide policies (e.g.,
-code of conduct; \citealt{ape8}).
+the core package (e.g., re-writing the coordinates subpackage; \citealt{ape5}),
+to plan out major new features (e.g., a new file format; \citealt{ape6}), or
+institute new organization-wide policies (e.g., adopting a code of conduct;
+\citealt{ape8}).
 This mechanism is called ``Astropy Proposal for Enhancement'' (APE) and are
 modeled after the ``Python Enhancement Proposals'' (PEP) that guide the
 development of the \python programming language.
@@ -267,8 +268,9 @@ additions, including a rationale for the changes, how these changes will be
 implemented, and, in the case of code, what the interface will be \citep{ape1}.
 The APEs are discussed and refined by the community before much work is invested
 into a detailed implementation; anyone is welcome to contribute to these
-discussions during the open consideration period by leaving comments on the
-respective pull request.\footnote{\url{https://github.com/astropy/astropy-APEs}} \inlinecomment{Tom R}{first mention of a pull request in the context of an APE - need to make it clear that APEs are proposed by PRs}
+discussions during the open consideration period. APEs are proposed via pull
+requests on a dedicated GitHub repository\footnote{\url{https://github.com/astropy/astropy-APEs}},
+and anyone can therefore read the proposed APEs and leave comments in-line.
 In previous APEs a community consensus emerged and APEs are accepted and become
 the basis for future work at this point.
 In cases where consensus cannot be reached, the
@@ -342,7 +344,7 @@ The \astropypkg core package is available from several of the \python distributi
 computing, such as Anaconda or Enthought Canopy, which include also some of
 \astropy's affiliated packages.
 Alternatively, \astropypkg can be readily installed from the Python Package
-Index\footnote{\url{https://pypi.python.org/pypi}} (PyPI) 
+Index\footnote{\url{https://pypi.python.org/pypi}} (PyPI)
 \inlinecomment{Tom R}{make footnote link directly to astropy on PyPI?}
 using pip, the
 recommended command-line tool for installing \python packages
@@ -732,10 +734,10 @@ Detailed eclipse or transit
         objects. This is described in more detail in
         \sectionname~\ref{sec:table} with the concept of a ``mixin'' column
         type.
-        
+
 \inlinecomment{Tom R}{I would remove this tiny section. As for units, I think we should only mention the whole mixin stuff in the table section, not for every single object that can go in a table}
-        
-        
+
+
 
 
 \subsection{Data containers}
