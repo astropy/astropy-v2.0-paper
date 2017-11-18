@@ -4,7 +4,7 @@
 make
 
 # Push to GitHub
-if [ -n "$GITHUB_API_KEY" ]; then
+if [ -n "$GITHUB_API_KEY" ] && ["$TRAVIS_PULL_REQUEST" = "false"]; then
   cd $TRAVIS_BUILD_DIR
   git checkout --orphan $TRAVIS_BRANCH-pdf
   git rm -rf .
