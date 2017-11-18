@@ -305,8 +305,6 @@ Affiliated packages are listed on the main \astropy website and advertised to th
 
 Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
 
-%\subsection{Mixin}
-
 %\subsection{Accuracy testing across many different implementation}
 
 \subsection{Release cycle and Long Term Support}
@@ -467,16 +465,6 @@ The \texttt{Quantity} object is now significantly
         Examples include astronomical magnitudes, which are logarithmic fluxes,
         and decibels, which are more generic logarithmic ratios of quantities.
         Logarithmic, relative units are now supported in \texttt{astropy.units}.
-
-\subsubsection{Using quantities in tables}
-
-\inlinecomment{Tom R}{this is a new feature of table, not units, so I think we don't want to mention this here}
-
-        The \texttt{astropy.table} subpackage (see
-        \sectionname~\ref{sec:table}) now supports using quantities in tables
-        with the \texttt{QTable} class.
-        As a result, units specified in FITS tables are supported, and tables
-        with quantities can be read and written to various file formats.
 
 \subsubsection{Defining functions that require quantities}
         When writing code or
@@ -729,16 +717,6 @@ Detailed eclipse or transit
         objects, the time corrections to shift to the solar system barycenter or
         heliocenter can now be computed with \package{astropy.time} using the
         \texttt{light\_travel\_time} method of a \texttt{Time} object.
-\subsubsection{\texttt{Time} objects as \texttt{Table} columns} \texttt{Time} objects
-        can now be added as columns in \package{astropy.table} \texttt{Table}
-        objects. This is described in more detail in
-        \sectionname~\ref{sec:table} with the concept of a ``mixin'' column
-        type.
-        
-\inlinecomment{Tom R}{I would remove this tiny section. As for units, I think we should only mention the whole mixin stuff in the table section, not for every single object that can go in a table}
-        
-        
-
 
 \subsection{Data containers}
 
@@ -771,50 +749,40 @@ The package was described in detail in \cite{astropy}.
 Next, we summarize key new features or updates to \package{astropy.table}.
 
 \inlinecomment{Perry G}{Some mention that some of these are inspired by Pandas?}
+
 \subsubsection{Support for grouped table operations}
-Tables can contain data that naturally form groups, for example monitoring of an object in different bands.
-We may then want to split the table or a column into these groups (in this example: observations in different filters)  and
-compute some statistic on the data, or filter the groups based on some
-criteria.
-Grouped operations are now supported by \texttt{Table} objects.
-%,
-%mainly through the \texttt{group\_by()} method and subsequent operations
-%on the grouped version of the table or column.
+
+A table can contain data that naturally forms groups -- for example it may
+contain multiple observations of a few sources at different points in time
+and in different bands. We may then want to split the table into groups based
+on the combination of source observed and the band, and then combine the
+results for each combination of source and band in some way (for example finding
+the mean or standard deviation of the fluxes or magnitudes over time) or filter
+the groups based on user-defined criteria. These kinds of grouping and
+aggregation operations are now fully supported by \texttt{Table} objects.
 
 \subsubsection{Support for table concatenation}
-Tables can be combined in several
-different ways.
-If two tables have the same rows, we may want to stack them
-``vertically'' to create a new table with the same columns but all rows.
-If two tables are row-matched but have distinct columns, we may want to
-stack them ``horizontally'' to create a new table with the same rows
-but all columns.
-For other situations, more general table concatenations or joins are
-also possible when two tables share some common columns.
-%All three of these operations are now possible with \texttt{Table}
-%objects through the \texttt{vstack}, \texttt{hstack}, and \texttt{join}
-%functions in \package{astropy.table}.
 
-\subsubsection{Mixin columns for time and coordinates}
-The \texttt{Table} object now supports \texttt{Quantity}, sky coordinate (\texttt{SkyCoord}),
-astronomical \texttt{Time} objects and and other objects to serve
-as array-like containers for column data through the ``mixin'' protocol.
+\texttt{Table} objects can now be combined in several different ways. If two
+tables have the same rows, we may want to stack them ``vertically'' to create a
+new table with the same columns but all rows. If two tables are row-matched but
+have distinct columns, we may want to stack them ``horizontally'' to create a
+new table with the same rows but all columns. For other situations, more general
+table concatenations or joins are also possible when two tables share some
+common columns.
 
-\inlinecomment{Tom R}{this is waaaaay too short and jargony. It's a very cool feature that deserves more reader-friendly text!}
+\subsubsection{Using astropy objects in tables}
 
-%hamogu: I've commented this out.
-% I think it's very specific and not relevant to non-developers.
-% If we want to keep it, we need to add at least 102 senteces about what Pandas
-% is and I think that's more text than is warrented for this feature.
-
-%\subsubsection{Transform to and from \texttt{Pandas} \texttt{DataFrame} objects}
-%\texttt{Table} objects can now be created from a \texttt{DataFrame}
-%object (\texttt{from\_pandas()}), or exported to a \texttt{DataFrame}
-%object (\texttt{to\_pandas()}).
-%\texttt{DataFrame} objects do not support multi-dimensional array
-%columns, so this conversion will fail if the source \texttt{Table}
-%object contains any such columns.
-
+The \texttt{Table} object now allows \texttt{Quantity} objects, celestial
+coordinate objects (\texttt{SkyCoord}), and date/time objects (\texttt{Time}) to
+be used as columns, and also provides a general way for other user-defined
+objects to be used as columns. This makes it possible for example to easily
+represent catalogs of sources or time series as in Astropy, and having both the
+benefits of the \texttt{Table} object (such as accessing specific rows/columns
+or groups of rows/columns, combining tables, and so on) and the benefits of e.g.
+the \texttt{SkyCoord} or \texttt{Time} classes (such as converting the
+coordinates to a different frame, or accessing the date/time as a modified
+Julian date or in another time scale).
 
 \subsection{io}
 % Simon
