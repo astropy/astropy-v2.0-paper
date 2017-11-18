@@ -1,0 +1,18 @@
+language: c
+
+sudo: false
+
+addons:
+    apt:
+        packages:
+            - texlive
+            - pgf
+            - texlive-publishers
+            - texlive-generic-recommended
+            - texlive-fonts-recommended
+            - texlive-latex-extra
+            - latex-xcolor
+            - latexmk
+
+script:
+    - yes X | latexmk -halt-on-error -pdf main
