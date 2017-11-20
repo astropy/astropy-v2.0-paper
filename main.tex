@@ -306,8 +306,6 @@ Affiliated packages are listed on the main \astropy website and advertised to th
 
 Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
 
-%\subsection{Mixin}
-
 %\subsection{Accuracy testing across many different implementation}
 
 \subsection{Release cycle and Long Term Support}
@@ -464,16 +462,6 @@ The \texttt{Quantity} object is now significantly
         Examples include astronomical magnitudes, which are logarithmic fluxes,
         and decibels, which are more generic logarithmic ratios of quantities.
         Logarithmic, relative units are now supported in \texttt{astropy.units}.
-
-\subsubsection{Using quantities in tables}
-
-\inlinecomment{Tom R}{this is a new feature of table, not units, so I think we don't want to mention this here}
-
-        The \texttt{astropy.table} subpackage (see
-        \sectionname~\ref{sec:table}) now supports using quantities in tables
-        with the \texttt{QTable} class.
-        As a result, units specified in FITS tables are supported, and tables
-        with quantities can be read and written to various file formats.
 
 \subsubsection{Defining functions that require quantities}
         When writing code or
@@ -726,16 +714,6 @@ Detailed eclipse or transit
         objects, the time corrections to shift to the solar system barycenter or
         heliocenter can now be computed with \package{astropy.time} using the
         \texttt{light\_travel\_time} method of a \texttt{Time} object.
-\subsubsection{\texttt{Time} objects as \texttt{Table} columns} \texttt{Time} objects
-        can now be added as columns in \package{astropy.table} \texttt{Table}
-        objects. This is described in more detail in
-        \sectionname~\ref{sec:table} with the concept of a ``mixin'' column
-        type.
-
-\inlinecomment{Tom R}{I would remove this tiny section. As for units, I think we should only mention the whole mixin stuff in the table section, not for every single object that can go in a table}
-
-
-
 
 \subsection{Data containers}
 
@@ -768,50 +746,40 @@ The package was described in detail in \cite{astropy}.
 Next, we summarize key new features or updates to \package{astropy.table}.
 
 \inlinecomment{Perry G}{Some mention that some of these are inspired by Pandas?}
+
 \subsubsection{Support for grouped table operations}
-Tables can contain data that naturally form groups, for example monitoring of an object in different bands.
-We may then want to split the table or a column into these groups (in this example: observations in different filters)  and
-compute some statistic on the data, or filter the groups based on some
-criteria.
-Grouped operations are now supported by \texttt{Table} objects.
-%,
-%mainly through the \texttt{group\_by()} method and subsequent operations
-%on the grouped version of the table or column.
+
+A table can contain data that naturally forms groups -- for example it may
+contain multiple observations of a few sources at different points in time
+and in different bands. We may then want to split the table into groups based
+on the combination of source observed and the band, and then combine the
+results for each combination of source and band in some way (for example finding
+the mean or standard deviation of the fluxes or magnitudes over time) or filter
+the groups based on user-defined criteria. These kinds of grouping and
+aggregation operations are now fully supported by \texttt{Table} objects.
 
 \subsubsection{Support for table concatenation}
-Tables can be combined in several
-different ways.
-If two tables have the same rows, we may want to stack them
-``vertically'' to create a new table with the same columns but all rows.
-If two tables are row-matched but have distinct columns, we may want to
-stack them ``horizontally'' to create a new table with the same rows
-but all columns.
-For other situations, more general table concatenations or joins are
-also possible when two tables share some common columns.
-%All three of these operations are now possible with \texttt{Table}
-%objects through the \texttt{vstack}, \texttt{hstack}, and \texttt{join}
-%functions in \package{astropy.table}.
 
-\subsubsection{Mixin columns for time and coordinates}
-The \texttt{Table} object now supports \texttt{Quantity}, sky coordinate (\texttt{SkyCoord}),
-astronomical \texttt{Time} objects and and other objects to serve
-as array-like containers for column data through the ``mixin'' protocol.
+\texttt{Table} objects can now be combined in several different ways. If two
+tables have the same rows, we may want to stack them ``vertically'' to create a
+new table with the same columns but all rows. If two tables are row-matched but
+have distinct columns, we may want to stack them ``horizontally'' to create a
+new table with the same rows but all columns. For other situations, more general
+table concatenations or joins are also possible when two tables share some
+common columns.
 
-\inlinecomment{Tom R}{this is waaaaay too short and jargony. It's a very cool feature that deserves more reader-friendly text!}
+\subsubsection{Using astropy objects in tables}
 
-%hamogu: I've commented this out.
-% I think it's very specific and not relevant to non-developers.
-% If we want to keep it, we need to add at least 102 senteces about what Pandas
-% is and I think that's more text than is warrented for this feature.
-
-%\subsubsection{Transform to and from \texttt{Pandas} \texttt{DataFrame} objects}
-%\texttt{Table} objects can now be created from a \texttt{DataFrame}
-%object (\texttt{from\_pandas()}), or exported to a \texttt{DataFrame}
-%object (\texttt{to\_pandas()}).
-%\texttt{DataFrame} objects do not support multi-dimensional array
-%columns, so this conversion will fail if the source \texttt{Table}
-%object contains any such columns.
-
+The \texttt{Table} object now allows \texttt{Quantity} objects, celestial
+coordinate objects (\texttt{SkyCoord}), and date/time objects (\texttt{Time}) to
+be used as columns, and also provides a general way for other user-defined
+objects to be used as columns. This makes it possible for example to easily
+represent catalogs of sources or time series as in Astropy, and having both the
+benefits of the \texttt{Table} object (such as accessing specific rows/columns
+or groups of rows/columns, combining tables, and so on) and the benefits of e.g.
+the \texttt{SkyCoord} or \texttt{Time} classes (such as converting the
+coordinates to a different frame, or accessing the date/time as a modified
+Julian date or in another time scale).
 
 \subsection{io}
 % Simon
@@ -825,85 +793,75 @@ For many common cases this simplifies the process of file input and output and
 reduces the need to master the separate details of all the I/O packages within
 \astropypkg.
 
-%\inlinecomment{SCO}{Pyfits deprecation in favor of io.fits ?}
 %\inlinecomment{SCO}{Table and FITS tables}
 
 %\subsubsection{Unified file read/write interface}
 
 %\inlinecomment{Check when it was added (0.3?). Overview of the supported formats (ASCII,FITS, votable, HTML, JSViewer/Datatables).}
 
-We summarize key new features or updates to \package{astropy.io} below,
-organized by sub-subpackage.
+% We summarize key new features or updates to \package{astropy.io} below,
+% organized by sub-subpackage.
 
-\inlinecomment{Tom R}{is a sub-subpackage a thing, or is it just 'subpackage' all the way down?}
+% \inlinecomment{Tom R}{is a sub-subpackage a thing, or is it just 'subpackage' all the way down?}
 
-\subsubsection{Enhanced CSV format}
+\subsubsection{ASCII}
+% \subsubsection{Enhanced CSV format}
 
 One of the problems when storing a table in an ASCII format is
 preserving table meta-data such as comments, keywords and column data
-types, units, and descriptions. Using the newly defined \emph{Enhanced
-Character Separated Values} (ECSV,  \citet{ape6}) format it is now
+types, units, and descriptions. The newly defined \emph{Enhanced
+Character Separated Values} (ECSV,  \citet{ape6}) format makes it
 possible to write a table to an ASCII-format file and read it back
 with no loss of information. The ECSV format has been designed to be
 both human-readable and compatible with most simple CSV readers.
 
-\subsubsection{\texttt{.ascii}: fast readers and writers}
+% \subsubsection{\texttt{.ascii}: fast readers and writers}
 
-The \package{astropy.io.ascii} module now includes a significantly
-faster Cython/C engine for reading and writing ASCII files. This is
-available for the most common formats.
+The \package{astropy.io.ascii} subpackage now includes a significantly faster
+Cython/C engine for reading and writing ASCII files. This is available for the
+most common formats.  On average the new engine is about 4 to 5 times faster
+than the corresponding pure-\python implementation, and is often comparable to
+the speed of the \package{Pandas} \citep{pandas} ASCII file interface.  The
+fast reader has parallel processing option that allows harnessing multiple
+cores for input parsing to achieve even greater speed gains.  By default,
+\texttt{read()} and \texttt{write()} will attempt to use the fast C engine
+when dealing with compatible formats. Certain features of the full read
+/ write interface are not available in the fast version, in which case the
+pure-\python version will automatically be used.
 
-%following formats: \texttt{basic},
-%      \texttt{commented\_header}, \texttt{csv}, \texttt{no\_header},
-%      \texttt{rdb}, and \texttt{tab}.
-On average the new engine is about
-4 to 5 times faster than the corresponding pure-\python
-implementation, and is often comparable to the speed of the
-\package{Pandas} \citep{pandas} ASCII file interface.  The fast
-reader has parallel processing option that allows harnessing
-multiple cores for input parsing to achieve even greater speed
-gains.
-
-By default, \texttt{read()} and \texttt{write()} will attempt to use
-the fast C engine when dealing with compatible formats. Certain
-features of the full read / write interface are not available in the
-fast version, in which case the pure-\python version will automatically
-be used.
-
-\subsubsection{\texttt{.ascii}: HTML tables}
+% \subsubsection{\texttt{.ascii}: HTML tables}
 
 The \package{astropy.io.ascii} subpackage now provides the capability
 to read a table within an HTML file or web URL into an astropy
-\texttt{Table} object. This requires the \package{BeautifulSoup4}
-package to be installed.  Conversely a \texttt{Table} object can now
+\texttt{Table} object. Conversely a \texttt{Table} object can now
 be written out as an HTML table.
 
-\subsubsection{\texttt{.fits}: command-line scripts (\texttt{fitsheader}, \texttt{fitsinfo})}
+\subsubsection{FITS}
 
-The \package{astropy.io.fits} subpackage now provides command-line
-scripts for printing a summary of the HDUs in a FITS file(s)
-(\texttt{fitsinfo file.fits}) and for printing the header information
-to the screen in a human-readable format (\texttt{fitsheader
-file.fits}).
+The \package{astropy.io.fits} subpackage started as a direct port of the
+PyFITS project \citep{PyFITS}. Therefore it is pretty stable, with mostly bug
+fixes but also a few new features and performance improvements.  The API
+remains compatible with PyFITS, which is now deprecated in favor of
+\astropypkg.
 
-\subsubsection{\texttt{.fits}: lazy loading }
+Command-line scripts are now available for printing a summary of the HDUs in
+a FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
+the screen in a human-readable format (\texttt{fitsheader}).
 
-The \package{astropy.io.fits} subpackage now supports \emph{lazy
-loading}, where all HDUs are not loaded until they are requested (or
-the file is closed). This should provide substantial speedups for
-situations using the convenience functions (e.g., \texttt{getheader()}
-or \texttt{getdata()}) to get HDU’s that are near the front of a file
-with many HDUs.
+FITS files are now loaded \emph{lazily} (the default behavior, which can be
+deactivated if needed), where all HDUs are not loaded until they are
+requested. This should provide substantial speedups for situations using the
+convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
+get HDU’s that are near the front of a file with many HDUs.
 
-\inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
+% \inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
 
-\subsubsection{\texttt{.misc}: YAML serialization}
+% \subsubsection{\texttt{.misc}: YAML serialization}
 
-The new \package{astropy.io.misc.yaml} module allows converting
-astropy objects into a standard YAML format.
-This can be used beyond \texttt{astropy.io.misc.yaml}: for example, to
-serialize the metadata of tables before saving to other formats like
-HDF5.
+% The new \package{astropy.io.misc.yaml} module allows converting astropy
+% objects into a standard YAML format.  This can be used beyond
+% \texttt{astropy.io.misc.yaml}: for example, to serialize the metadata of
+% tables before saving to other formats like HDF5.
 
 
 %\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
