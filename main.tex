@@ -893,7 +893,9 @@ package.\footnote{\url{https://github.com/spacetelescope/gwcs}}
 %make it a uniquely powerful package for working with astrophysical models.
 
 \subsubsection{Single Model Definition and Evaluation}
-\inlinecomment{hamogu: I tihnk this is too techical. I know it's a complex subpackage but I had trouble understanding this section even as a regular user.}
+
+%\inlinecomment{hamogu: I tihnk this is too techical. I know it's a complex subpackage but I had trouble understanding this section even as a regular user.}
+
 Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function.
 
 Models have a \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e. a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse to another polynomial model.
@@ -911,7 +913,7 @@ Models can be combined using arithmetic expressions. The result is also a model,
 
 \package{astropy.modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide support for specifying parameter constraints. The fitters take a model and data as input and return a copy of the model with the optimized parameter values set. The goal is to make it easy to extend the fitting framework to create new fitters. The optimizers available in \astropypkg version 2.0 are Levenberg--Marquardt, Simplex, SLSQP, and LinearLSQFitter (which is based on \texttt{numpy.linalg} that provides exact solution for linear models).
 
-\inlinecomment{APW}{Add citations for the different optimizaton algorithms in paragraph above?}
+%\inlinecomment{APW}{Add citations for the different optimizaton algorithms in paragraph above?}
 
 Modeling also supports a plugin system for fitters, which allows using the
 \astropypkg models with external fitters. An example of this is
@@ -1144,7 +1146,7 @@ which makes it easy with a single reStructuredText command to generate a set of
 documentation pages listing all of the available classes, functions, and
 attributes in a given \python module.
 
-\inlinecomment{TPR}{We should put the releases of sphinx-automodapi on Zenodo and cite this}
+%\inlinecomment{TPR}{We should put the releases of sphinx-automodapi on Zenodo and cite this}
 
 % \section{State of the Ecosystem}
 % Commenting out unless a clear statement is added
