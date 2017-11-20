@@ -239,8 +239,11 @@ As of version 2.0, \astropypkg contains $212244$ lines of code\footnote{This
 line count includes comments, as these are often as important for
 maintainability as the code itself.  Without comments there are $142197$ lines
 of code.} contributed by $232$ unique contributors over $19270$ \texttt{git}
-commits.
-The distribution of number of commits as a function of number of contributors
+commits. We can divide up the commits by
+contributor and construct a distribution which is the number of commits
+for each contributor versus the rank of the contributor (where 1 is the
+contributor who has made the most commits, 2 is the contributor with the
+second most commits, and so on). When doing this, we find that this distribution
 follows an approximate power-law (with log-slope of
 $\approx -0.5$), meaning most of the commits were and are contributed by a
 relatively small fraction of the contributor pool.
