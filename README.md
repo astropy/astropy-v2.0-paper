@@ -3,7 +3,7 @@ Scope of the Paper
 
 The goal is to produce a brief and informative paper that covers major
 astropy principles not mentioned in the first paper, the core v2.0
-package, and infrastructure in astropy project to support development
+package, and infrastructure in the astropy project to support development
 in python.
 
 The draft of the paper can be found [here](https://github.com/astropy/astropy-v2.0-paper/blob/master-pdf/main.pdf).
@@ -30,8 +30,8 @@ Notes on writing
 Journal
 ======
 
-The paper will be submitted to the software section of the 
-Astrophysical Journal. 
+The paper will be submitted to the software section of the
+Astrophysical Journal.
 
 Rules for Authorship
 ====================
@@ -55,6 +55,6 @@ We would like you to become a co-author if any of the following applies to you:
         Reproject
         ccdproc
 
-If you would like to be a co-author, please complete the form [here](https://docs.google.com/forms/d/1UOA7-fqWy5aeGtW54gNFHiMvs53ahOMrfJtFJiS0fyQ/).   If the above does not apply to you but you feel that you should still be considered for co-authorship, please complete the form and your application will be reviewed.  
+If you would like to be a co-author, please complete the form [here](https://docs.google.com/forms/d/1UOA7-fqWy5aeGtW54gNFHiMvs53ahOMrfJtFJiS0fyQ/).   If the above does not apply to you but you feel that you should still be considered for co-authorship, please complete the form and your application will be reviewed.
 
-Authorship will be contributors to the paper in order of contribution followed by an alphebetical list of contribtors to the astropy project.  
+Authorship will be contributors to the paper in order of contribution followed by an alphabetical list of contributors to the astropy project.
