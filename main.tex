@@ -391,7 +391,7 @@ functionality (e.g., coordinate transformations, reading and writing astronomica
 files) or base classes for other
 packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
-since version v0.2 (previously described in \citealt{astropy}).
+since version v0.2 (previously described in \citealt{astropy}).  
 
 
 % \subsection{Analytic Functions}
@@ -409,11 +409,11 @@ Historically, quantities in code have often been represented simply as numbers,
 with units implied or noted via comments in the code because of considerations
 about speed: having units associated with numbers inherently adds overhead to
 numerical operations.
-In \texttt{astropy.units}, \texttt{Quantity} objects subclass the \texttt{numpy}
+In \texttt{astropy.units}, \texttt{Quantity} objects extend \texttt{numpy}
 array object and have been designed with speed in mind.
 
-\inlinecomment{Perry G}{Agreeing with Tom below, I would avoid using terms like subclass, decorators, mixin, namespace, (and perhaps even class, instead using objects consistently; this is no place to be pendantic about the distinction between classes and objects; even to the extent of adding a qualifying sentence somewhere like: "In this paper we will use object when we mean object or classes; in software there are important distinctions between the two terms, but they are not relevant in this paper."), and the like and replace them with more generic descriptions, e.g., "extended", or "tools to make defining functions that can use quantities simple to write" }
-\inlinecomment{Tom R}{I think saying 'subclass' here is too detailed and is mentioned below in 3.1.1 if needed - 'make it possible to attach units to numpy arrays' or something like that?}
+%\inlinecomment{Perry G}{Agreeing with Tom below, I would avoid using terms like subclass, decorators, mixin, namespace, (and perhaps even class, instead using objects consistently; this is no place to be pendantic about the distinction between classes and objects; even to the extent of adding a qualifying sentence somewhere like: "In this paper we will use object when we mean object or classes; in software there are important distinctions between the two terms, but they are not relevant in this paper."), and the like and replace them with more generic descriptions, e.g., "extended", or "tools to make defining functions that can use quantities simple to write" }
+%\inlinecomment{Tom R}{I think saying 'subclass' here is too detailed and is mentioned below in 3.1.1 if needed - 'make it possible to attach units to numpy arrays' or something like that?}
 
 As of \astropypkg version 2.0, units and quantities are prevalent in most other
 \astropypkg subpackages and are thus a key concept for using the package as a
@@ -430,26 +430,25 @@ features and improvements.
 
 \subsubsection{Interaction with \package{numpy} arrays}
 
-The \texttt{Quantity} object
-        is now a subclass of the \texttt{numpy.ndarray} object and therefore
-        works well with many of the functions in \texttt{numpy} that support
-        array operations. For example, \texttt{Quantity} objects with angular
-        units can be passed in to the trigonometric functions implemented in
-        \texttt{numpy} (e.g., \texttt{numpy.cos}) and do the right thing: the
-        units are internally converted to radians (what the \texttt{numpy}
-        trigonometric functions expect) before being passed to \texttt{numpy}.
+The \texttt{Quantity} object extends 
+the \texttt{numpy.ndarray} object and therefore
+works well with many of the functions in \texttt{numpy} that support
+array operations. For example, \texttt{Quantity} objects with angular
+units can be directly passed in to the trigonometric functions implemented in
+\texttt{numpy}. The units are internally converted to radians (what the \texttt{numpy}
+trigonometric functions expect) before being passed to \texttt{numpy}.
 
-\subsubsection{Speed improvements}
+%\subsubsection{Speed improvements}
 
-\inlinecomment{Tom R}{I wonder if we might just want to mention at the top level that performance has been improved in places? This seems a bit too detailed}
+%\inlinecomment{Tom R}{I wonder if we might just want to mention at the top level that performance has been improved in places? This seems a bit too detailed}
 
-The \texttt{Quantity} object is now significantly
-        faster than in early versions of \astropypkg. This is in large part due
-        to the fact that \texttt{Quantity} subclasses the \texttt{numpy.ndarray}
-        object, but even relative to more recent versions of \astropypkg,
-        operations with \texttt{Quantity} objects are generally faster. This is
-        largely thanks to improvements in the way \texttt{numpy} arrays can be
-        subclassed.
+%The \texttt{Quantity} object is now significantly
+        %faster than in early versions of \astropypkg. This is in large part due
+        %to the fact that \texttt{Quantity} subclasses the \texttt{numpy.ndarray}
+        %object, but even relative to more recent versions of \astropypkg,
+        %operations with \texttt{Quantity} objects are generally faster. This is
+        %largely thanks to improvements in the way \texttt{numpy} arrays can be
+        %subclassed.
 
 \subsubsection{Logarithmic units and magnitudes}
         By default, taking the logarithm of
@@ -491,11 +490,11 @@ modules to indicate their sources (resolutions from the International
 Astronomical Union, IAU).
 The \texttt{codata2014} and \texttt{iau2015} versions are combined into the
 default constant value version: \texttt{astropyconst20}.
-For compatibility with \astropypkg version 1.3 and earlier, the \texttt{astropyconst13}
-namespace \inlinecomment{Tom R}{jargon alert: 'namespace'} is still available and provides access to the adopted versions of the
+For compatibility with \astropypkg version 1.3,  \texttt{astropyconst13}
+is available and provides access to the adopted versions of the
 constants from earlier versions of \astropypkg.
 To use previous versions of the constants as \emph{units} (e.g., solar masses),
-the values from the desired namespace have to be imported directly; with version
+the values have to be imported directly; with version
 2.0, \texttt{astropy.units} uses the \texttt{astropyconst20} versions.
 
 Astronomers using \texttt{astropy.constants} should take particular note of the
@@ -920,7 +919,7 @@ and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
 New model classes can be created in two ways:
 \begin{enumerate}
    \item The simplest way is to use the \texttt{custom\_model} decorator in modeling with a user-defined function that takes the inputs and model parameters as arguments.
-   \item It is also possible to subclass the \texttt{Model} base class and create an arbitrarily complex custom model.
+   \item It is also possible to create an arbitrarily complex custom model baed on the \texttt{Model} class.
 \end{enumerate}
 
 \subsubsection{Unit Support}
