@@ -6,17 +6,19 @@ astropy principles not mentioned in the first paper, the core v2.0
 package, and infrastructure in astropy project to support development
 in python.
 
+The draft of the paper can be found [here](https://github.com/astropy/astropy-v2.0-paper/blob/master-pdf/main.pdf).
+
 Notes on writing
 ================
 
 *  We don't plan on including code in this paper, but if you think you
         will need to include code in your section, please add it to a separate
         python module (.py file) and include it in this repository.
-*  Use `\sectionname}` not ``Section,'' `\figurename`
-        not ``Figure''
+*  Use `\sectionname` not ``Section``, `\figurename`
+        not ``Figure``
 *  Use `\astropypkg` for the astropy package,
    `\astropy` for the astropy project, `\python` not
-        ``Python''
+        ``Python``
 *  If your subpackage was included in Paper I, then please just include a
    note on what the package does, a reference to paper I, and any new major
    updates to your package
@@ -36,6 +38,7 @@ Rules for Authorship
 
 
 We would like you to become a co-author if any of the following applies to you:
+
     You have an official role in the project, as defined on http://www.astropy.org/team.html
     You have contributed code to the core package
     You have contributed to one of the following pieces of infrastructure:
@@ -54,4 +57,4 @@ We would like you to become a co-author if any of the following applies to you:
 
 If you would like to be a co-author, please complete the form [here](https://docs.google.com/forms/d/1UOA7-fqWy5aeGtW54gNFHiMvs53ahOMrfJtFJiS0fyQ/).   If the above does not apply to you but you feel that you should still be considered for co-authorship, please complete the form and your application will be reviewed.  
 
-Authorship will be incontributors to the paper in order of contribution followed by an alphebetical list of contribtors to the astropy project. 
+Authorship will be contributors to the paper in order of contribution followed by an alphebetical list of contribtors to the astropy project.  
