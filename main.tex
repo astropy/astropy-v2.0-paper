@@ -870,20 +870,20 @@ be written out as an HTML table.
 \subsubsection{FITS}
 
 The \package{astropy.io.fits} subpackage started as a direct port of the
-PyFITS project. Therefore it is pretty stable, with mostly bug fixes but also
-a few new features and performance improvements.  The API remains compatible
-with PyFITS, which is now deprecated in favor of Astropy.
+PyFITS project \citep{PyFITS}. Therefore it is pretty stable, with mostly bug
+fixes but also a few new features and performance improvements.  The API
+remains compatible with PyFITS, which is now deprecated in favor of
+\astropypkg.
 
 Command-line scripts are now available for printing a summary of the HDUs in
 a FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
 the screen in a human-readable format (\texttt{fitsheader}).
 
 FITS files are now loaded \emph{lazily} (the default behavior, which can be
-deactivated if needed), where all HDUs are not loaded until they are requested
-(or the file is closed). This should provide substantial speedups for
-situations using the convenience functions (e.g., \texttt{getheader()} or
-\texttt{getdata()}) to get HDU’s that are near the front of a file with many
-HDUs.
+deactivated if needed), where all HDUs are not loaded until they are
+requested. This should provide substantial speedups for situations using the
+convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
+get HDU’s that are near the front of a file with many HDUs.
 
 % \inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
 
