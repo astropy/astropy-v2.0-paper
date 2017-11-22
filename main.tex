@@ -299,44 +299,14 @@ scheme: the core package version number uses the form x.y.z, where ``x'' is
 advanced for LTS releases, ``y'' is advanced for non-LTS feature releases, and
 ``z'' is advanced for bugfix releases.
 
-\subsection{Distribution of packages}
-
-The \astropypkg core package is available from several of the \python distributions for scientific
-% * <mattwcraig@gmail.com> 2017-10-27T07:13:51.093Z:
-%
-% > \astropypkg i
-% I changed a few of the macros in here to refer to the package rather than the project because it is the package being discussed here.
-%
-% ^.
-computing, such as Anaconda or Enthought Canopy, which include also some of
-\astropy's affiliated packages.
-Alternatively, \astropypkg can be readily installed from the Python Package
-Index\footnote{\url{https://pypi.python.org/pypi}} (PyPI)
-\inlinecomment{Tom R}{make footnote link directly to astropy on PyPI?}
-using \texttt{pip}, the standard command-line tool for installing \python packages.
-For most recent \astropypkg releases, pre-built wheel distributions are obtainable
-from PyPI for Windows, Mac OS X and Linux systems that provide faster
-installation compared to the source distribution.
-% hamogu: I think that's too detailed for a journal paper.
-%     It's in the docs if anyone needs it.
-%Optionally, the version of
-%the package and the dependencies needed to run or build the software are given
-%by a specifier to the pip package manager as described in PEP 440\footnote{For
-%more detailed installation instructions and optional flags see
-%\url{http://docs.astropy.org/en/stable/install.html\#installing-astropy}}.
-
-Packaged versions of \astropy are also available for several
-operating systems that are managed by a system's package manager,
-including Debian, Ubuntu, Fedora, Gentoo, Arch Linux, Mac OS X (e.g.,
-via brew, macports or fink) and FreeBSD\@.  However, on occasion these packages
-may be outdated compared with the latest stable release of \astropy accessible
-from the PyPI\@. Pre-built binary conda packages for all of the affiliated packages are also available  via the \texttt{astropy} conda channel for Linux, Mac OS X, and MS Windows.
-% * <mattwcraig@gmail.com> 2017-10-27T07:16:27.310Z:
-%
-% > re-built binary conda packages
-% Feel free to remove if this is too detailed. I do think the available of the whole ecosystem across all platforms has helped speed its adoption.
-%
-% ^.
+The released versions of the \astropypkg core package are available from several
+of the \python distributions for scientific computing (e.g.,
+\href{http://anaconda.org}{Anaconda}) and from the \python Package Index
+(PyPI).\footnote{See the installation documentation for more information:
+\url{http://docs.astropy.org/en/stable/install.html}}
+Effort has been made to make \astropypkg available and easily installable across
+all platforms; the package is constantly tested on different platforms as part
+of our suite of continuous integration tests.
 
 %\subsection{Support of Astropy}
 % Removing unless this gets written about in
@@ -361,9 +331,9 @@ files) or base classes for other
 packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
 since version v0.2 (previously described in \citealt{astropy}).  The \astropypkg
-provides a full log of changes \footnote{https://github.com/astropy/astropy/blob/master/CHANGES.rst}
+provides a full log of changes \footnote{\url{https://github.com/astropy/astropy/blob/stable/CHANGES.rst}}
 over the course of the entire project and more details about individual
-subpackages are available in the documentation \footnote{http://docs.astropy.org/en/stable/}.
+subpackages are available in the documentation \footnote{\url{http://docs.astropy.org/en/stable/}}.
 Beyond what is mentioned below, most subpackages have seen increased performance
 since the release of the v0.2 package.
 
