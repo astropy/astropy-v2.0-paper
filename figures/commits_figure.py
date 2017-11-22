@@ -83,12 +83,14 @@ def commits_vs_time(astropy_path, ax=None, **hist_kw):
     if ax is None:
         fig, ax = plt.subplots(1, 1, figsize=(6,5))
 
-    ax.plot(np.cumsum(commits_per_day), marker='', drawstyle='steps')
+    n_commits = np.cumsum(commits_per_day)
+    plt.fill_between(n_commits.index, 0, np.array(n_commits))
 
     ax.set_xlabel('year')
     ax.set_ylabel('number of commits')
 
-    ax.set_xlim(datetime(2011,1,1), datetime(2018,1,1))
+    ax.set_xlim(datetime(2011,6,1), datetime(2018,1,1))
+    ax.set_ylim(0, 21000)
 
 
 if __name__ == "__main__":
