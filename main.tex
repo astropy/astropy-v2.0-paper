@@ -202,18 +202,27 @@ The development workflow is detailed in the \astropypkg
 documentation.\footnote{\emph{How to make a code contribution}, \url{http://docs.
 astropy.org/en/stable/development/workflow/development_workflow.html}}
 
+\begin{figure}
+\includegraphics[width=\textwidth]{ncommits.pdf}
+\caption{%
+    \emph{Left panel}: Distribution of number of commits per committer.
+    \emph{Right panel}: Cumulative number of commits to the \astropypkg core
+    package over time.
+    \label{fig:ncommits}
+}
+\end{figure}
+
 As of version 2.0, \astropypkg contains $212244$ lines of code\footnote{This
 line count includes comments, as these are often as important for
 maintainability as the code itself.  Without comments there are $142197$ lines
 of code.} contributed by $232$ unique contributors over $19270$ \texttt{git}
 commits.
-The commit distribution \inlinecomment{Tom R}{too vague, maybe 'the distribution of number of commits as a function of ...'} follows an approximate power-law (with log-slope of
-$\approx -0.47$) \inlinecomment{AG}{round to -0.5?  This is astronomy, after all.}, meaning most of the commits were and are contributed by a
-relatively small fraction of the contributor pool.
-Roughly half of the commits were contributed by the top $4$
-contributors, while $\sim 90$ percent of the commits came from the top $24$
-contributors.
-
+\figurename~\ref{fig:ncommits}, left, shows the distribution of total number of
+commits per contributor as of November 2017; from this, it's clear that most
+commits were and are contributed by a relatively small fraction of the
+contributor pool.
+\figurename~\ref{fig:ncommits}, right, shows the number of contributors as a
+function of time since the genesis of the \astropypkg core package.
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 % draft by hamogu
