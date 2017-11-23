@@ -57,4 +57,12 @@ We would like you to become a co-author if any of the following applies to you:
 
 If you would like to be a co-author, please complete the form [here](https://docs.google.com/forms/d/1UOA7-fqWy5aeGtW54gNFHiMvs53ahOMrfJtFJiS0fyQ/).   If the above does not apply to you but you feel that you should still be considered for co-authorship, please complete the form and your application will be reviewed.
 
-Authorship will be contributors to the paper in order of contribution followed by an alphabetical list of contributors to the astropy project.
+The coordination committee has determine that the author order will be
+'The Astropy Collaboration' as the first author, followed by people
+who have contributed significantly to the paper, in order of
+contribution level (or alphabetically where contribution levels are
+similar), and all other authors will then be listed alphabetically. A
+note will be included to indicate the author list and how it was
+determined. Final decisions about author order will be made by Kelle
+Cruz (on behalf of the Astropy Coordination Committee) and Steve
+Crawford (on behalf of the Paper II coordination committee).
