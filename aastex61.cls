@@ -6291,7 +6291,7 @@ width 0pt\relax\fi}}}
 \def\email#1{{\let\ltx@footmark\tempfootmark
 \saveemail{}}
 {\renewcommand\thefootnote{\hskip-12.1pt}
-\footnote{\href{mailto: #1}{#1}\ifmodern\vrule depth 7pt width
+\footnote{\href{mailto:#1}{#1}\ifmodern\vrule depth 7pt width
 0pt\relax\else\ifmanu\vskip-4pt\else\vrule depth 7pt width 0pt\fi\fi}}}
 
 
