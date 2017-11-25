@@ -1053,12 +1053,11 @@ Periodic analysis of unevenly-spaced time series is common across many subfields
 \begin{figure}
 \includegraphics[width=\textwidth]{bayesian_blocks_hist.pdf}
 \caption{%
-    A histogram with irregular bins, fit using the Bayesian blocks
-    algorithm. The left panel shows a standard histogram using
-    \package{matplotlib}'s default of 10 bins. The right panel shows
-    the same histogram with bin widths determined by the Bayesian
-    blocks model. The model is such that relevant features of the data
-    distribution are much more apparent.
+    Three approaches to a 1D histogram:
+    {\it left:} a standard histogram using \package{matplotlib}'s default of 10 bins.
+    {\it center:} a histogram with the number of equal-width bins determined automatically using \package{numpy}'s {\tt bins='auto'}.
+    {\it right:} a histogram created with \package{astropy}, with irregularly-spaced bins computed via the Bayesian Blocks algorithm.
+    Compared to regularly-spaced bins, the irregular bin widths give a more accurate visual representation of features in the dataset at various scales.
     \label{fig:bayes-blocks-hist}
 }
 \end{figure}
