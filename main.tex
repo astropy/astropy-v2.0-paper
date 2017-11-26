@@ -26,6 +26,9 @@
 \newcommand{\equationname}{Equation\xspace}
 \renewcommand{\tablename}{Table\xspace}
 
+% Words that should not be hyphenated
+\hyphenation{NumFOCUS}
+
 % For commenting - can be deleted before submission
 \usepackage[colorinlistoftodos]{todonotes}
 \newcommand{\inlinecomment}[2]{\todo[inline]{#1: #2}\xspace}
@@ -106,27 +109,24 @@ at NOAO;][]{IRAF}, MIDAS \citep[developed at ESO;][]{MIDAS}, or Starlink
 \citep[originally developed by a consortium of UK institutions and now
 maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
 More recently, community-driven efforts have seen significant success in the astronomical sciences \citep{yt}.
-\python\footnote{\url{https://www.python.org/}} is an increasingly popular,
-general-purpose programming language that is available under a permissive open
-source software license free of charge for all major operating systems.
-Stable and well-developed packages provide support for array representation and arithmetic
-\citep[\package{numpy};][]{numpy}, a wide variety of functions for scientific
-computing \citep[\package{scipy};][]{scipy}, and publication-quality plotting
-\citep[\package{matplotlib};][]{matplotlib}. Tens of thousands of other packages
-are available which can help with tasks that are not astronomy specific but
-might be performed in the course of astronomical research, for example interfacing with databases or statistical inference.
 
-\python has become especially popular in the quantitative sciences,
-where researchers must simultaneously produce research, perform data analysis,
-and develop software.
-A large part of this success owes itself to a vibrant community of developers
-and a continuously-growing ecosystem of tools and web services that enable
-easier collaboration on software development, easier writing and sharing of
-software documentation, and continuous testing and validation of software.
-More recently, package managers such as
-Anaconda\footnote{\url{https://anaconda.org/}} have streamlined the installation
-process for most packages, therefore significantly reducing the barrier to entry
-for using many such libraries.
+\python\footnote{\url{https://www.python.org/}} is an increasingly popular, general-purpose
+programming language that is available under a permissive open source software license free of
+charge for all major operating systems. The programming language has become especially popular
+in the quantitative sciences, where researchers must simultaneously produce research, perform 
+data analysis and develop software. A large part of this success owes itself to the vibrant 
+community of developers and a continuously-growing ecosystem of tools, web services and stable
+well-developed packages that enable easier collaboration on software development, easier 
+writing and sharing of software documentation and continuous testing and validation of 
+software. While the programming language provides support for array representation \& 
+arithmetic \citep[\package{numpy};][]{numpy}, a wide variety of functions for scientific 
+computing \citep[\package{scipy};][]{scipy}, publication-quality plotting 
+\citep[\package{matplotlib};][]{matplotlib}, tens of thousands of other high quality and easy 
+to use packages are available which can help with tasks that are not astronomy specific but 
+might be performed in the course of astronomical research, for example, interfacing with 
+databases or statistical inferences. More recently, the development of package managers such as
+Anaconda\footnote{\url{https://anaconda.org/}} have streamlined the installation process for
+most packages significantly reducing the barrier to entry for using many such libraries.
 
 The \astropy project aims to provide an open-source, open-development core
 package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
@@ -197,8 +197,8 @@ core codebase.
 Bugs and feature requests are reported via the \github issue tracker and labeled
 with a set of possible labels that help classify and organize the issues.
 The development workflow is detailed in the \astropypkg
-documentation.\footnote{\emph{How to make a code contribution}, \url{http://docs.
-astropy.org/en/stable/development/workflow/development_workflow.html}}
+documentation.\footnote{\emph{How to make a code contribution},
+\url{http://docs.astropy.org/en/stable/development/workflow/development_workflow.html}}
 
 \begin{figure}
 \includegraphics[width=\textwidth]{ncommits.pdf}
@@ -330,21 +330,23 @@ of our suite of continuous integration tests.
 \subsection{Support of Astropy}
 
 The \astropy project, as of the v2.0 release, does not receive any direct financial support for
-the development of the \astropypkg.  Development of the \astropypkg is supported
-by individuals who work on \astropy project in their own personal
-time, by individuals or groups to work on \astropy as
+the development of \astropypkg.  Development of the software, all supporting materials, and community support is provided
+by individuals who work on the \astropy project in their own personal
+time, by individuals or groups contributing to \astropy as
 part of a research project, or contributions from institutions that allocate
 people to work on \astropy.
 A list of organizations that have contributed to \astropy in this manner
 can be found in the Acknowledgements.
+
 Different funding models have been proposed for support of \astropy in the future
+(e.g., \citealt{2016arXiv161003159M}), but a long-term plan
+Different funding models have been proposed for support of \astropy
 (e.g., \citealt{2016arXiv161003159M}), but a long-term plan
 for sustainability has not yet been established.
 The \astropy project has the ability to accept financial contributions
-(individual or institutes) through the NumFOCUS organization\footnote{NumFOCUS
+from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
-open source scientific computing.},
-which, has so far, covered the direct costs incurred by the \astropy project.
+open source scientific computing.} organization. NumFOCUS has to date covered the direct costs incurred by the \astropy project.
 
 % Removing unless this gets written about in
 % a later version
@@ -370,7 +372,7 @@ In this section, we highlight new features introduced or substantially improved
 since version v0.2 (previously described in \citealt{astropy}).  The \astropypkg
 provides a full log of changes\footnote{\url{https://github.com/astropy/astropy/blob/stable/CHANGES.rst}}
 over the course of the entire project and more details about individual
-subpackages are available in the documentation\footnote{\url{http://docs.astropy.org/en/stable/}}.
+subpackages are available in the documentation.\footnote{\url{http://docs.astropy.org/en/stable/}}
 Beyond what is mentioned below, most subpackages have seen increased performance
 since the release of the v0.2 package.
 
@@ -1053,12 +1055,11 @@ Periodic analysis of unevenly-spaced time series is common across many subfields
 \begin{figure}
 \includegraphics[width=\textwidth]{bayesian_blocks_hist.pdf}
 \caption{%
-    A histogram with irregular bins, fit using the Bayesian blocks
-    algorithm. The left panel shows a standard histogram using
-    \package{matplotlib}'s default of 10 bins. The right panel shows
-    the same histogram with bin widths determined by the Bayesian
-    blocks model. The model is such that relevant features of the data
-    distribution are much more apparent.
+    Three approaches to a 1D histogram:
+    {\it left:} a standard histogram using \package{matplotlib}'s default of 10 bins.
+    {\it center:} a histogram with the number of equal-width bins determined automatically using \package{numpy}'s {\tt bins='auto'}.
+    {\it right:} a histogram created with \package{astropy}, with irregularly-spaced bins computed via the Bayesian Blocks algorithm.
+    Compared to regularly-spaced bins, the irregular bin widths give a more accurate visual representation of features in the dataset at various scales.
     \label{fig:bayes-blocks-hist}
 }
 \end{figure}
@@ -1080,8 +1081,8 @@ developed by the \astropy Project.
 % Brigitta may write this up if there is no other takers
 
 \astropy provides a package template --- as a separate \github repository,
-\package{astropy/package-template}\footnote{\url{https://github.com/astropy/package-t
-emplate/}} --- that aims to simplify setting up packaging, testing, and
+\package{astropy/package-template}\footnote{\url{https://github.com/astropy/package-template/}}
+--- that aims to simplify setting up packaging, testing, and
 documentation builds for developers of affiliated packages or
 \astropypkg-dependent packages.
 Any \python package can make use of this ready-to-go package layout, setup,
