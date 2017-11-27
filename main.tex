@@ -393,7 +393,7 @@ with units implied or noted via comments in the code because of considerations
 about speed: having units associated with numbers inherently adds overhead to
 numerical operations.
 In \texttt{astropy.units}, \texttt{Quantity} objects extend \texttt{numpy}
-array object and have been designed with speed in mind.
+array objects and have been designed with speed in mind.
 
 %\inlinecomment{Perry G}{Agreeing with Tom below, I would avoid using terms like subclass, decorators, mixin, namespace, (and perhaps even class, instead using objects consistently; this is no place to be pendantic about the distinction between classes and objects; even to the extent of adding a qualifying sentence somewhere like: "In this paper we will use object when we mean object or classes; in software there are important distinctions between the two terms, but they are not relevant in this paper."), and the like and replace them with more generic descriptions, e.g., "extended", or "tools to make defining functions that can use quantities simple to write" }
 %\inlinecomment{Tom R}{I think saying 'subclass' here is too detailed and is mentioned below in 3.1.1 if needed - 'make it possible to attach units to numpy arrays' or something like that?}
@@ -413,9 +413,9 @@ features and improvements.
 
 \subsubsection{Interaction with \package{numpy} arrays}
 
-The \texttt{Quantity} object extends
-the \texttt{numpy.ndarray} object and therefore
-works well with many of the functions in \texttt{numpy} that support
+\texttt{Quantity} objects extend
+\texttt{numpy.ndarray} objects and therefore
+work well with many of the functions in \texttt{numpy} that support
 array operations. For example, \texttt{Quantity} objects with angular
 units can be directly passed in to the trigonometric functions implemented in
 \texttt{numpy}. The units are internally converted to radians (what the \texttt{numpy}
