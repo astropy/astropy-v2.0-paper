@@ -240,7 +240,7 @@ steady rate throughout its existence.
 
 Central to the success of \astropy is an open environment where anybody can
 contribute to the project.
-However, this model leads to ``organic'' growth where different features are
+This model leads to an ``organic'' growth, where different features are
 implemented by different people with different programming styles and
 interfaces.
 Thus, \astropy has a mechanism to more formally propose significant changes to
@@ -253,16 +253,16 @@ modeled after the ``Python Enhancement Proposals'' (PEP) that guide the
 development of the \python programming language.
 In an APE, one or more authors describe in detail the proposed changes or
 additions, including a rationale for the changes, how these changes will be
-implemented, and, in the case of code, what the interface will be \citep{ape1}.
+implemented, and in the case of code, what the interface will be \citep{ape1}.
 The APEs are discussed and refined by the community before much work is invested
 into a detailed implementation; anyone is welcome to contribute to these
 discussions during the open consideration period. APEs are proposed via pull
-requests on a dedicated GitHub repository\footnote{\url{https://github.com/astropy/astropy-APEs}},
-and anyone can therefore read the proposed APEs and leave comments in-line.
-In previous APEs a community consensus emerged and APEs are accepted and become
-the basis for future work at this point.
+requests on a dedicated GitHub repository\footnote{\url{https://github.com/astropy/astropy-APEs}};
+anyone can therefore read the proposed APEs and leave in-line comments.
+When a community consensus emerge, the APEs are accepted and become
+the basis for future work.
 In cases where consensus cannot be reached, the
-\astropy coordination committee can decide to close the discussion and
+\astropy coordination committee may decide to close the discussion and
 make an executive decision based on the community input on the APE in question.
 
 
@@ -276,7 +276,7 @@ A major part of the \astropy project is the concept of
 \python package that is not part of the \astropypkg core package, but
 has requested to be included as part of the \astropy project's
 community. These packages support the goals and vision of \astropy of
-improving code reuse, interoperability, and embracing good coding
+improving code re-use, interoperability, and embracing good coding
 practices such as testing and thorough documentation.
 
 Affiliated packages contain functionality that is more specialized,
@@ -284,18 +284,20 @@ have license incompatibilities, or have external dependencies (e.g., GUI
 libraries) that make these packages more suitable to be separate from the
 \astropypkg core package.
 Affiliated packages may also be used to develop substantial new functionality
-that will eventually be incorporated into the \astropypkg core package.
-New functionality benefits from having a rapid development and release cycle that is not tied to that of the \astropypkg core.
+that will eventually be incorporated into the \astropypkg core package
+(e.g., \texttt{wcsaxes}).
+New functionality benefits from having a rapid development and release cycle that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).
 % AG: rephrased this.
 %Initially separate packages with typically rapid initial development and new experimental features benefit from having a release cycle that is not tied to the
 
-Affiliated packages are listed on the main \astropy website and advertised to the community through \astropy mailing lists, so becoming an affiliated package is a good way for new and existing packages to gain exposure while at the same time promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to increase code reuse in the astronomical community.
+Affiliated packages are listed on the main \astropy website and advertised to the community through \astropy mailing lists. Therefore, becoming an affiliated package is a good way for new and existing packages to gain exposure while promoting \astropy's high standard for code and documentation quality. This process of listing and promoting affiliated packages is one way in which the \astropy project tries to increase code re-use in the astronomical community.
 
-Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package where possible.
+Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package, where applicable.
 
 %\subsection{Accuracy testing across many different implementation}
 
 \subsection{Release cycle and Long Term Support}
+\label{sect:releasecycle}
 % This could also include information about the development cycle
 % Brigitta can writes this up if there's no other taker
 % edited by Adrian PW
@@ -306,17 +308,17 @@ The major releases contain new features or any significant changes, whereas
 the bugfix releases only contain fixes to code or documentation but no new
 features.
 Some versions are additionally designated as ``Long-term support'' (LTS)
-releases, which continue to receive bugfixes for 2 years following the release
+releases, which continue to receive bug fixes for 2 years following the release
 with no changes to the API\@.
-The LTS versions are ideal for pipelines and other applications where API
+The LTS versions are ideal for pipelines and other applications, where API
 stability is essential.
-The latest LTS release (v2.0) is also the last one that supports \python 2, and
+The latest LTS release (v2.0) is also the last one that supports \python 2; It
 will receive bug fixes until the end of 2019 \citep{ape10}.
 
 The version numbering of the \astropypkg core package reflects this release
-scheme: the core package version number uses the form x.y.z, where ``x'' is
-advanced for LTS releases, ``y'' is advanced for non-LTS feature releases, and
-``z'' is advanced for bugfix releases.
+scheme: the core package version number uses the form \texttt{x.y.z}, where ``x'' is
+advanced for LTS releases, ``y'' for non-LTS feature releases, and
+``z'' for bugfix releases.
 
 The released versions of the \astropypkg core package are available from several
 of the \python distributions for scientific computing (e.g.,
