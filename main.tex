@@ -909,7 +909,7 @@ New model classes can be created in two ways:
 
 \subsubsection{Unit Support}
 
-The \package{astropy.modeling} subpackage now supports the representation, evaluation, and fitting of models using \texttt{Quantity} objects, which attach units to scalar values or arrays of values. In practice, this means that one can, for example, fit a model to data with units and get parameters that also have units out, or initialize a model with parameters with units and evaluate it using input values with different but equivalent units. Using this, we have implemented a blackbody model (\texttt{BlackBody1D}) that can be used to fit observed fluxes in a variety of units and as a function of different units of spectral coordinates (e.g., wavelength or frequency).
+The \package{astropy.modeling} subpackage now supports the representation, evaluation, and fitting of models using \texttt{Quantity} objects, which attach units to scalar values or arrays of values. In practice, this means that one can, for example, fit a model to data with units and get parameters that also have units out, or initialize a model with parameters with units and evaluate it using input values with different but equivalent units. Using this, we have implemented a blackbody model (\texttt{BlackBody1D}) that can be used to fit observed flux densities in a variety of units and as a function of different units of spectral coordinates (e.g., wavelength or frequency).
 
 \subsection{Convolution}
 % Adam G.
