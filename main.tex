@@ -157,7 +157,7 @@ the infrastructure for, e.g., testing and documentation
 the future of \astropy in particular and astronomical software in general
 in \sectionname~\ref{sec:future}.
 
-This article is not intended as an introduction to \astropypkg, nor does it replace the \astropypkg documentation. Instead, it describes the way the \astropy community works and organizes and the current state of the \astropypkg package.
+This article is not intended as an introduction to \astropypkg, nor does it replace the \astropypkg documentation. Instead, it describes the way the \astropy community is organized and the current state of the \astropypkg package.
 
 \section{Organization and infrastructure}
 \label{sec:org}
@@ -879,7 +879,7 @@ Another useful settable property of models is \texttt{Model.bounding\_box}. This
 \subsubsection{Model Sets}
 
 \package{astropy.modeling} provides an efficient way to set up the same type of model with many different sets of parameter values.
-This creates a model set that can be efficiently evaluated for example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitudes.
+This creates a model set that can be efficiently evaluated. For example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitudes.
 
 \subsubsection{Compound Models}
 Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. An example of a compound model could be a spectrum with interstellar absorption. The stellar spectrum and the interstellar extinction are represented by separate models, but the observed spectrum is fitted with a compound model that combines both.
@@ -897,7 +897,7 @@ Sherpa\footnote{\url{http://cxc.cfa.harvard.edu/contrib/sherpa/}}
 and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
 
 \subsubsection{Creating New Models}
-If arithmetic combinations of existing models is not sufficient, new model classes can be defined in different ways. The \package{astropy.modeling} provides tools to turn a simple function into a full-featured model, but it also allows to extend the build-in model class with arbitrary code.
+If arithmetic combinations of existing models is not sufficient, new model classes can be defined in different ways. The \package{astropy.modeling} provides tools to turn a simple function into a full-featured model, but it also allows extending the build-in model class with arbitrary code.
 
 \subsubsection{Unit Support}
 
