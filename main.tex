@@ -521,8 +521,7 @@ various astronomical reference systems.
 For example, in the ICRS frame, longitude and latitude are right ascension
 (\texttt{ra}) and declination (\texttt{dec}), whereas in the Galactic frame, the
 spherical angles are Galactic longitude (\texttt{l}) and latitude (\texttt{b}).
-Each of the \texttt{Frame} classes define their own component names and
-preferred \texttt{Representation} classes.
+Each \texttt{Frame} class defines its own component names and preferred \texttt{Representation} class.
 The frame-specific component names map to corresponding components on the
 underlying \texttt{Representation} object that internally stores the coordinate
 data.
@@ -579,7 +578,7 @@ In addition to representing celestial
 
 \subsubsection{Proper motion and velocity transformations}
     In addition to positional coordinate data, the \texttt{Frame} classes now
-    also support velocity.
+    also support velocity data.
     As the default representation for most frames is spherical, most of the
     \texttt{Frame} classes expect proper motion and radial velocity components
     to specify the velocity information.
