@@ -623,12 +623,45 @@ In addition to representing celestial
 
 \subsubsection{Accuracy of coordinate transformations}
 
-In order to check the accuracy of the coordinate transformations in \package{astropy.coordinates}, we have created a set of benchmarks that we use to compare transformations between a set of coordinate frames for a number of packages\footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}. Since
-no package can be guaranteed to implement all transformations to arbitrary precision and some transformations are sometimes subject to interpretation of standards (in particular in the case of Galactic coordinates), we do not designate any of the existing packages as the ``ground truth'' but instead compare each tool to all other tools. The benchmarks are thus useful beyond the \astropy project since they allow all of the tools to be compared to all other tools. The tools included in the benchmark at the moment include the \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas}, PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast}, PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem}, and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
+In order to check the accuracy of the coordinate transformations in
+\package{astropy.coordinates}, we have created a set of benchmarks that we use
+to compare transformations between a set of coordinate frames for a number of
+packages\footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}.
+Since no package can be guaranteed to implement all transformations to
+arbitrary precision and some transformations are sometimes subject to
+interpretation of standards (in particular in the case of Galactic coordinates),
+we do not designate any of the existing packages as the ``ground truth'' but
+instead compare each tool to all other tools. The benchmarks are thus useful
+beyond the \astropy project since they allow all of the tools to be compared to
+all other tools. The tools included in the benchmark at the moment include the
+\astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas},
+PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast},
+PyTPM\footnote{\url{https://github.com/phn/pytpm}}, PyEphem \citep{pyephem},
+and pySLALIB \citep[a Python wrapper for SLALIB, described in][]{slalib}.
 
-The benchmarks are meant to evolve over time and include an increasing variety of cases. At the moment, the benchmarks are set up as follows -- we have generated a standard set of 1000 pairs of random longitudes/latitudes that we use in all benchmarks. Each benchmark is then defined using an input and output coordinate frame, using all combinations of FK4, FK5, Galactic, ICRS, and Ecliptic frames. For now, we set the epoch of observation to J2000. We also set the frame to J2000 (for FK5 and Ecliptic) and B1950 (for FK4). In the future, we plan to include a larger variety of epochs and equinoxes, as well as tests of conversion to/from Altitude/Azimuth. For each benchmark, we convert the 1000 longitudes/latitudes from the input/output frame with all tools and quantify the comparison by looking at the median, mean, maximum, and standard deviation of the absolute separation of the output coordinates from each pair of tools.
+The benchmarks are meant to evolve over time and include an increasing variety
+of cases. At the moment, the benchmarks are set up as follows --
+we have generated a standard set of 1000 pairs of random longitudes/latitudes
+that we use in all benchmarks. Each benchmark is then defined using an input
+and output coordinate frame, using all combinations of FK4, FK5, Galactic,
+ICRS, and Ecliptic frames. For now, we set the epoch of observation to J2000.
+We also set the frame to J2000 (for FK5 and Ecliptic) and B1950 (for FK4).
+In the future, we plan to include a larger variety of epochs and equinoxes,
+as well as tests of conversion to/from Altitude/Azimuth. For each benchmark,
+we convert the 1000 longitudes/latitudes from the input/output frame with all
+tools and quantify the comparison by looking at the median, mean, maximum,
+and standard deviation of the absolute separation of the output coordinates
+from each pair of tools.
 
-\tablename~\ref{tab:coordinate_benchmarks} gives an example of the relative accuracy of the conversion from FK4 to Galactic coordinates for all pairs of tools. This shows, for example, that \astropy, Kapteyn, and PyTPM agree perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also agree perfectly amongst themselves. However, there is an offset of around 0.2\arcsec\space with the former three packages. Finally, PyEphem disagrees with other packages by 0.4--0.8\arcsec. These values are only meant to be illustrative and will change over time as the benchmarks are refined and the packages updated.
+\tablename~\ref{tab:coordinate_benchmarks} gives an example of the relative
+accuracy of the conversion from FK4 to Galactic coordinates for all pairs of
+tools. This shows, for example, that \astropy, Kapteyn, and PyTPM agree
+perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also
+agree perfectly amongst themselves. However, there is an offset of around
+0.2\arcsec\space with the former three packages. Finally, PyEphem disagrees
+with other packages by 0.4--0.8\arcsec. These values are only meant to be
+illustrative and will change over time as the benchmarks are refined and the
+packages updated.
 %\inlinecomment{Perry G}{Wouldn't the table be better represented as a matrices? Or perhaps as a matrix as a crude image with colors or intensities representing the size of the quantity. Is the difference between median and mean significant enough to warrant showing both? A link to the actual numbers may satisfy readers that want the exact values, but I suspect the majority don't need to see that precision.}
 \begin{table}
 \begin{center}
