@@ -73,8 +73,6 @@ broader \astropy project.
 
 
 \section{Introduction} \label{sec:intro}
-% first draft by Moritz (hamogu)
-% heavily edited by Adrian PW - let me know if you want to revert anything!
 All astronomical research makes use of software in some way.  Astronomy as a field has thus long supported the development of software tools
 for astronomical tasks: from scripts that enable individual scientific research to software packages for small collaborations to data reduction pipelines for survey operations.
 Some software packages are or were supported by large institutions and are intended for a wide range of users. These packages typically provide some level of documentation and user support or
@@ -89,9 +87,6 @@ The users of such software then also benefit from a community and ecosystem
 built around a common foundation.
 The \astropy project has grown to become this community for \python astronomy
 software, and the \astropypkg core package a feature-rich \python library.
-
-%\inlinecomment{Tom R}{the 'this community' above is a bit too general - do we mean it is the only community in astronomy, or in the Python astronomy world? I'd change this to either 'to become this community for Python astronomy software' or 'to become such a community'. For instance yt had a community before we came along for the simulation community, so I want to make sure we don't claim we are the only community out there.}
-%\inlinecomment{Perry G}{Agreed}
 
 The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
@@ -161,6 +156,8 @@ the infrastructure for, e.g., testing and documentation
 (\sectionname~\ref{sec:infrastructure}). We end with a short vision for
 the future of \astropy in particular and astronomical software in general
 in \sectionname~\ref{sec:future}.
+
+This article is not intended as an introduction to \astropypkg, nor does it replace the \astropypkg documentation. Instead, it describes the way the \astropy community is organized and the current state of the \astropypkg package.
 
 \section{Organization and infrastructure}
 \label{sec:org}
@@ -449,11 +446,10 @@ trigonometric functions expect) before being passed to \texttt{numpy}.
         enforce that the input units have the correct physical type.
         For example, we may want to require only length-type \texttt{Quantity}
         objects.
-        These requirements often lead to implementing repetitive code for
-        validating \texttt{Quantity} inputs.
-        \texttt{astropy.units} now provides a \python decorator,
-        \texttt{quantity\_input()}, that does this verification automatically.
-
+        \texttt{astropy.units} provides a tool called \texttt{quantity\_input()}
+        that can perform this varification automatically to avoid repetitive
+        code.
+        
 
 \subsection{Constants}
 % David S.
@@ -907,15 +903,16 @@ package.\footnote{\url{https://github.com/spacetelescope/gwcs}}
 
 %\inlinecomment{hamogu: I tihnk this is too techical. I know it's a complex subpackage but I had trouble understanding this section even as a regular user.}
 
-Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is instantiated by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function.
+Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is constructed by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function.
 
-Models have a \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e. a model instance can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse to another polynomial model.
+Models have a \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e. a model can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse to another polynomial model.
 
 Another useful settable property of models is \texttt{Model.bounding\_box}. This attribute sets the domain over which the model is defined. This greatly improves the efficiency of evaluation when the input range is much larger than the characteristic width of the model itself.
 
 \subsubsection{Model Sets}
 
-\package{astropy.modeling} provides an efficient way to instantiate the same type of model with many different sets of parameter values by passing the \texttt{n\_models} argument on instantiation, which sets the number of models to instantiate. This creates a model set that can be efficiently evaluated for example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitudes.
+\package{astropy.modeling} provides an efficient way to set up the same type of model with many different sets of parameter values.
+This creates a model set that can be efficiently evaluated. For example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitudes.
 
 \subsubsection{Compound Models}
 Models can be combined using arithmetic expressions. The result is also a model, which can further be combined with other models. Modeling supports arithmetic (+, -, *, /, and **), join ($\&$), and composition ($|$) operators. The rules for combining models involve matching their inputs and outputs. For example, the composition operator, $|$, requires the number of outputs of the left model to be equal to the number of inputs of the right one. For the join operator, the total number of inputs must equal the sum of number of inputs of both the left and the right models. For all arithmetic operators, the left and the right models must have the same number of inputs and outputs. An example of a compound model could be a spectrum with interstellar absorption. The stellar spectrum and the interstellar extinction are represented by separate models, but the observed spectrum is fitted with a compound model that combines both.
@@ -933,12 +930,7 @@ Sherpa\footnote{\url{http://cxc.cfa.harvard.edu/contrib/sherpa/}}
 and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
 
 \subsubsection{Creating New Models}
-
-New model classes can be created in two ways:
-\begin{enumerate}
-   \item The simplest way is to use the \texttt{custom\_model} decorator in modeling with a user-defined function that takes the inputs and model parameters as arguments.
-   \item It is also possible to create an arbitrarily complex custom model based on the \texttt{Model} class.
-\end{enumerate}
+If arithmetic combinations of existing models is not sufficient, new model classes can be defined in different ways. The \package{astropy.modeling} provides tools to turn a simple function into a full-featured model, but it also allows extending the build-in model class with arbitrary code.
 
 \subsubsection{Unit Support}
 
