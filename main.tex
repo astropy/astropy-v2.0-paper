@@ -710,20 +710,19 @@ stayed stable for the last several versions of \astropypkg.
 Thus, in what follows, we only highlight significant changes or new features
 since the previous \astropy paper.
 
-
 \subsubsection{Barycentric and Heliocentric corrections}
 Detailed eclipse or transit
-        timing requires accounting for light travel time differences from the
-        source to the observatory because of the Earth's motion.
-        It is therefore common to instead convert times to the Solar System
-        barycenter or heliocenter where the relative timing of photons is
-        standardized.
-        With the location of a source on the sky (i.e. a \texttt{SkyCoord}
-        object), the location of an observatory on Earth (i.e. an
-        \texttt{EarthLocation} object), and time values as \texttt{Time}
-        objects, the time corrections to shift to the solar system barycenter or
-        heliocenter can now be computed with \package{astropy.time} using the
-        \texttt{light\_travel\_time} method of a \texttt{Time} object.
+timing requires accounting for light travel time differences from the
+source to the observatory because of the Earth's motion.
+It is therefore common to instead convert times to the Solar System
+barycenter or heliocenter where the relative timing of photons is
+standardized.
+With the location of a source on the sky (i.e., a \texttt{SkyCoord}
+object), the location of an observatory on Earth (i.e., an
+\texttt{EarthLocation} object), and time values as \texttt{Time}
+objects, the time corrections to shift to the solar system barycenter or
+heliocenter can now be computed with \package{astropy.time} using the
+\texttt{light\_travel\_time} method of a \texttt{Time} object.
 
 \subsection{Data containers}
 
@@ -737,12 +736,29 @@ datasets.
 
 The \texttt{NDDataBase} class provides the abstract interface for gridded data
 with attributes for accessing metadata, the world-coordinate system (WCS),
-uncertainty arrays matched to the data shape, and other traits.
-Building on this interface, the \texttt{NDData} class provides a minimal working implementation for storing \package{numpy} arrays. These classes serve as useful base classes for package authors wishing to develop their own classes for specific use cases and as containers for exchanging gridded data.
+uncertainty arrays matched to the shape of the data, and other traits.
+Building on this interface, the \texttt{NDData} class provides a minimal
+working implementation for storing \package{numpy} arrays. These classes serve
+as useful base classes for package authors wishing to develop their own classes
+for specific use cases and as containers for exchanging gridded data.
 
-The classes \texttt{NDDataRef}, \texttt{NDDataArray}, and \texttt{CCDData} extend the base storing functionality with options to do basic arithmetic (addition, subtraction, multiplication, and division) including error propagation in limited cases and slicing of the dataset based on grid coordinates that appropriately handles masking, errors, and units (if present). Additionally, the \texttt{CCDData} class also provides reading and writing from and to FITS files and uses data structures from \astropypkg, like \texttt{WCS}, to represent the contents of a file abstractly.
+The classes \texttt{NDDataRef}, \texttt{NDDataArray}, and \texttt{CCDData}
+extend the base storage functionality with options to do basic arithmetic
+(addition, subtraction, multiplication, and division), including error
+propagation in limited cases, and slicing of the dataset based on grid
+coordinates that appropriately handles masking, errors, and units (if present).
+Additionally, the \texttt{CCDData} class also provides reading and writing from
+and to FITS files and uses data structures from \astropypkg, like \texttt{WCS},
+to represent the file contents abstractly.
 
-The \package{astropy.nddata.utils} module provides utilities that can operate on either plain \package{numpy} arrays or any of the classes in the \package{astropy.nddata} subpackage. It features a class for representing two-dimensional image cutouts, allowing one to easily link pixels in the cutout to pixels in the original image or from the image to the cutout, to convert between world and pixel coordinates in the cutout, and to overlay the cutout on images. Functions to enlarge or reduce an image by doing block replication or reduction are also provided.
+The \package{astropy.nddata.utils} module provides utilities that can operate
+on either plain \package{numpy} arrays or any of the classes in the
+\package{astropy.nddata} subpackage. It features a class for representing
+two-dimensional image cutouts, allowing one to easily link pixels in the cutout
+to those in the original image or vice versa, to convert
+between world and pixel coordinates in the cutout, and to overlay the cutout
+on images. Functions to enlarge or reduce an image by doing block replication
+or reduction are also provided.
 
 \subsubsection{Tables}
 \label{sec:table}
@@ -752,18 +768,18 @@ The \package{astropy.table} subpackage provides functionality for representing
 and manipulating heterogeneous data.
 %\inlinecomment{APW:}{Need more introduction to the table subpackage!}
 The package was described in detail in \cite{astropy}.
-
-Next, we summarize key new features or updates to \package{astropy.table}.
+Thus, in what follows, we only summarize key new features or updates to
+\package{astropy.table} since the previous \astropy paper.
 
 %\inlinecomment{Perry G}{Some mention that some of these are inspired by Pandas?}
 
 \subsubsection{Support for grouped table operations}
 
-A table can contain data that naturally forms groups -- for example it may
+A table can contain data that naturally form groups; For example, it may
 contain multiple observations of a few sources at different points in time
-and in different bands. We may then want to split the table into groups based
-on the combination of source observed and the band, and then combine the
-results for each combination of source and band in some way (for example finding
+and in different bands. Then, we may want to split the table into groups based
+on the combination of source observed and the band, after which we combine the
+results for each combination of source and band in some way (e.g., finding
 the mean or standard deviation of the fluxes or magnitudes over time) or filter
 the groups based on user-defined criteria. These kinds of grouping and
 aggregation operations are now fully supported by \texttt{Table} objects.
@@ -774,22 +790,21 @@ aggregation operations are now fully supported by \texttt{Table} objects.
 tables have the same columns, we may want to stack them ``vertically'' to create a
 new table with the same columns but all rows. If two tables are row-matched but
 have distinct columns, we may want to stack them ``horizontally'' to create a
-new table with the same rows but all columns. For other situations, more general
-table concatenations or joins are also possible when two tables share some
-common columns.
+new table with the same rows but all columns. For other situations, more generic
+table concatenation or join are also possible when two tables share some
+columns.
 
 \subsubsection{Using astropy objects in tables}
 
-The \texttt{Table} object now allows \texttt{Quantity} objects, celestial
-coordinate objects (\texttt{SkyCoord}), and date/time objects (\texttt{Time}) to
-be used as columns, and also provides a general way for other user-defined
-objects to be used as columns. This makes it possible for example to easily
-represent catalogs of sources or time series as in Astropy, and having both the
-benefits of the \texttt{Table} object (such as accessing specific rows/columns
-or groups of rows/columns, combining tables, and so on) and the benefits of e.g.
-the \texttt{SkyCoord} or \texttt{Time} classes (such as converting the
-coordinates to a different frame, or accessing the date/time as a modified
-Julian date or in another time scale).
+The \texttt{Table} object now allows \texttt{Quantity}, celestial
+coordinate (\texttt{SkyCoord}), and date/time (\texttt{Time}) objects to
+be used as columns. It also provides a general way for other user-defined
+objects to be used as columns. This makes it possible, for instance, to easily
+represent catalogs of sources or time series as in \astropy, while having both the
+benefits of the \texttt{Table} object (e.g., accessing specific rows/columns
+or groups of them and combining tables) and of, for example,
+the \texttt{SkyCoord} or the \texttt{Time} classes (e.g., converting the
+coordinates to a different frame or accessing the date/time in the desired time scale).
 
 \subsection{\package{io}}
 % Simon
