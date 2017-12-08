@@ -813,7 +813,7 @@ data to a variety of ASCII and binary file formats, such as a wide range of
 ASCII data table formats, FITS, and VOTable.
 It also provides a unified interface for reading and writing data with these
 different formats using the \package{astropy.table} subpackage.
-For many common cases this simplifies the process of file input and output and
+For many common cases, this simplifies the process of file input and output (I/O) and
 reduces the need to master the separate details of all the I/O packages within
 \astropypkg.
 
@@ -842,41 +842,41 @@ both human-readable and compatible with most simple CSV readers.
 % \subsubsection{\texttt{.ascii}: fast readers and writers}
 
 The \package{astropy.io.ascii} subpackage now includes a significantly faster
-Cython/C engine for reading and writing ASCII files. This is available for the
-most common formats.  On average the new engine is about 4 to 5 times faster
-than the corresponding pure-\python implementation, and is often comparable to
-the speed of the \package{Pandas} \citep{pandas} ASCII file interface.  The
+Cython/C engine for reading and writing ASCII files. This is available for most
+of the common formats.  On average, the new engine is about 4 to 5 times faster
+than the corresponding pure-\python implementation and is often comparable to
+the speed of the \package{pandas} \citep{pandas} ASCII file interface.  The
 fast reader has parallel processing option that allows harnessing multiple
 cores for input parsing to achieve even greater speed gains.  By default,
-\texttt{read()} and \texttt{write()} will attempt to use the fast C engine
+\texttt{read()} and \texttt{write()} will attempt to use the fast Cython/C engine
 when dealing with compatible formats. Certain features of the full read
-/ write interface are not available in the fast version, in which case the
+/ write interface are unavailable in the fast version, in which case the
 pure-\python version will automatically be used.
 
 % \subsubsection{\texttt{.ascii}: HTML tables}
 
 The \package{astropy.io.ascii} subpackage now provides the capability
-to read a table within an HTML file or web URL into an astropy
-\texttt{Table} object. Conversely a \texttt{Table} object can now
+to read a table within an HTML file or web URL into an \astropypkg
+\texttt{Table} object. Conversely, a \texttt{Table} object can now
 be written out as an HTML table.
 
 \subsubsection{FITS}
 
 The \package{astropy.io.fits} subpackage started as a direct port of the
-PyFITS project \citep{PyFITS}. Therefore it is pretty stable, with mostly bug
+PyFITS project \citep{PyFITS}. Therefore, it is pretty stable, with mostly bug
 fixes but also a few new features and performance improvements.  The API
-remains compatible with PyFITS, which is now deprecated in favor of
+remains mostly compatible with PyFITS, which is now deprecated in favor of
 \astropypkg.
 
 Command-line scripts are now available for printing a summary of the HDUs in
-a FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
+FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
 the screen in a human-readable format (\texttt{fitsheader}).
 
-FITS files are now loaded \emph{lazily} (the default behavior, which can be
-deactivated if needed), where all HDUs are not loaded until they are
-requested. This should provide substantial speedups for situations using the
+FITS files are now loaded \emph{lazily} (this default behavior can be
+deactivated, if needed), where all HDUs are not loaded until
+requested. This should provide substantial speed-ups when using the
 convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
-get HDU’s that are near the front of a file with many HDUs.
+get an HDU that is near the front of many in a file.
 
 % \inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
 
