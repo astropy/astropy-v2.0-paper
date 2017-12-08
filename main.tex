@@ -893,7 +893,16 @@ The \package{astropy.modeling} subpackage now supports the representation, evalu
 \subsection{Convolution}
 % Adam G.
 
-The \package{astropy.convolution} subpackage implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   An example of this is given in \figurename~\ref{fig:convolution-example}.  In versions $\leq 1.3$, the direct convolution and Fast Fourier Transform (FFT) convolution approaches were not consistent, with FFT convolution implementing normalized convolution and direct convolution implementing a different approach.  As of version 2.0, the two methods are consistent and include a suite of consistency checks.
+The \package{astropy.convolution} subpackage implements
+``normalized convolution'' \citep[e.g.,][]{Knutsson1993}, which is an image
+reconstruction technique in which missing data are ignored during the
+convolution and replaced with values interpolated using the kernel.
+An example of this is given in \figurename~\ref{fig:convolution-example}.
+In versions $\leq 1.3$, the direct convolution and Fast Fourier Transform (FFT)
+convolution approaches were not consistent, with FFT convolution implementing
+normalized convolution and direct convolution implementing a different approach.
+As of version 2.0, the two methods are consistent and include a suite of
+consistency checks.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example}
@@ -915,43 +924,90 @@ The \package{astropy.convolution} subpackage implements `normalized convolution'
 \subsection{Visualization}
 % Larry:  Image visualization (stretching, scaling), RGB
 
-The \package{astropy.visualization} subpackage provides functionality that can be helpful when visualizing data. This includes a framework for plotting astronomical images with coordinates with \package{matplotlib} (previously the standalone \package{wcsaxes} package), functionality related to image normalization (including both scaling and stretching), smart histogram plotting, RGB color image creation from separate images, and custom plotting styles for \package{matplotlib}.
+The \package{astropy.visualization} subpackage provides functionality that can
+be helpful when visualizing data. This includes a framework for plotting
+astronomical images with coordinates with \package{matplotlib} (previously the
+standalone \package{wcsaxes} package), functionality related to image
+normalization (including both scaling and stretching), smart histogram
+plotting, RGB color image creation from separate images, and custom plotting
+styles for \package{matplotlib}.
 
 \subsubsection{Image Stretching and Normalization}
 
 \label{sec:stretch}
 
-\package{astropy.visualization} provides a framework for transforming values in images (and more generally any arrays), typically for the purpose of visualization. Two main types of transformations are normalization and stretching of image values.
+\package{astropy.visualization} provides a framework for transforming values in
+images (and more generally any arrays), typically for the purpose of
+visualization. Two main types of transformations are normalization and
+stretching of image values.
 
-Normalization transforms the images values to the range $[0,1]$ using lower and upper limits $(v_{\rm min}, v_{\rm max})$
+Normalization transforms the images values to the range $[0,1]$ using lower and
+upper limits $(v_{\rm min}, v_{\rm max})$
 \begin{equation}
 y = \frac{x - v_{\rm min}}{v_{\rm max} - v_{\rm min}}
 \end{equation}
 where $x$ represents the values in the original image.
 
-Stretching transforms the image values in the range $[0,1]$ again to the range $[0,1]$ using a linear or non-linear function
+Stretching transforms the image values in the range $[0,1]$ again to the range
+$[0,1]$ using a linear or non-linear function
 \begin{equation}
 z = f(y) \quad .
 \end{equation}
 
-Several classes are provided for automatically determining intervals (e.g., using image percentiles) and for normalizing values in this interval to the $[0,1]$ range.
+Several classes are provided for automatically determining intervals
+(e.g., using image percentiles) and for normalizing values in this interval to
+the $[0,1]$ range.
 
-\package{matplotlib} allows a custom normalization and stretch to be used when displaying data by passing a normalization object. The \package{astropy.visualization} package also provides a normalization class that wraps the interval and stretching objects into a normalization object that \package{matplotlib} understands.
+\package{matplotlib} allows a custom normalization and stretch to be used when
+displaying data by passing a normalization object.
+The \package{astropy.visualization} package also provides a normalization class
+that wraps the interval and stretching objects into a normalization object that
+\package{matplotlib} understands.
 
 \subsubsection{Plotting image data with world coordinates}
 
-Astronomers dealing with observational imaging commonly need to make figures with images that include the correct coordinates and optionally display a coordinate grid. The challenge, however, is that the conceptual coordinate axes (such as longitude/latitude) need not be lined up with the pixel axes of the image. The \package{astropy.visualization.wcsaxes} subpackage implements a generalized way of making figures from an image array and a world coordinate system (WCS) object that provides the transformation between pixel and `world' coordinates.
+Astronomers dealing with observational imaging commonly need to make figures
+with images that include the correct coordinates and optionally display a
+coordinate grid. The challenge, however, is that the conceptual coordinate axes
+(such as longitude/latitude) need not be lined up with the pixel axes of the
+image. The \package{astropy.visualization.wcsaxes} subpackage implements a
+generalized way of making figures from an image array and a world coordinate
+system (WCS) object that provides the transformation between pixel and
+``world'' coordinates.
 
-World coordinates can be, for example, right ascension and declination, but can also include, for example, velocity, wavelength, frequency, or time. The main features from this subpackage include the ability to control which axes to show which coordinate on (for example showing longitude ticks on the top and bottom axes and latitude on the left and right axes), controlling the spacing of the ticks either by specifying the positions to use or providing a tick spacing or an average number of ticks that should be present on each axis, setting the format for the tick labels to ones commonly used by astronomers, controlling the visibility of the grid/graticule, and overlaying ticks, labels, and/or grid lines from different coordinate systems. In addition, it is possible to pass data with more than two dimensions and slice on-the-fly. Finally, it is possible to define non-rectangular frames, such as, for example, Aitoff projections.
+World coordinates can be, for example, right ascension and declination, but can
+also include, for example, velocity, wavelength, frequency, or time.
+The main features from this subpackage include the ability to control which
+axes to show which coordinate on (for example showing longitude ticks on the
+top and bottom axes and latitude on the left and right axes), controlling the
+spacing of the ticks either by specifying the positions to use or providing a
+tick spacing or an average number of ticks that should be present on each axis,
+setting the format for the tick labels to ones commonly used by astronomers,
+controlling the visibility of the grid/graticule, and overlaying ticks, labels,
+and/or grid lines from different coordinate systems. In addition, it is
+possible to pass data with more than two dimensions and slice on-the-fly.
+Finally, it is possible to define non-rectangular frames, such as, for example,
+Aitoff projections.
 
-This subpackage differs from \package{APLpy} \citep{aplpy} in that the latter focuses on providing a very high-level interface to plotting that requires very few lines of code to get a good result, whereas \package{wcsaxes} defines an interface that is much closer to that of \package{matplotlib} \citep{matplotlib}. This enables significantly more advanced visualizations.
+This subpackage differs from \package{APLpy} \citep{aplpy} in that the latter
+focuses on providing a very high-level interface to plotting that requires very
+few lines of code to get a good result, whereas \package{wcsaxes} defines an
+interface that is much closer to that of \package{matplotlib} \citep{matplotlib}.
+This enables significantly more advanced visualizations.
 
-An example of a visualization made with \package{wcsaxes} is shown in \figurename~\ref{fig:wcsaxes} -- this example illustrates the ability to overlay multiple coordinate systems and customize which ticks/labels are shown on which axes around the image. This also uses the image stretching functionality from \sectionname~\ref{sec:stretch} to show the image in a square root stretch (automatically updating the tick positions in the colorbar).
+An example of a visualization made with \package{wcsaxes} is shown in
+\figurename~\ref{fig:wcsaxes} -- this example illustrates the ability to
+overlay multiple coordinate systems and customize which ticks/labels are shown
+on which axes around the image. This also uses the image stretching
+functionality from \sectionname~\ref{sec:stretch} to show the image in a square
+root stretch (automatically updating the tick positions in the colorbar).
 
 \begin{figure}
 \includegraphics[width=\textwidth]{cygnus_x_spitzer.pdf}
 \caption{%
-An example of figure made using the \package{astropy.visualization.wcsaxes} subpackage, using \textit{Spitzer}/IRAC 8.0~$\mu$m data from the Cygnus-X \textit{Spitzer} Legacy survey \citep{cygnusx}.
+An example of figure made using the \package{astropy.visualization.wcsaxes}
+subpackage, using \textit{Spitzer}/IRAC 8.0~$\mu$m data from the Cygnus-X
+\textit{Spitzer} Legacy survey \citep{cygnusx}.
 \label{fig:wcsaxes}
 }
 \end{figure}
@@ -968,10 +1024,20 @@ automatic bin selection: `blocks', `knuth', `scott', or `freedman'.
 
 \subsubsection{Creating color RGB images}
 
-\cite{Lupton2004} describe an ``optimal'' algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{astropy.visualization} subpackage provides a convenience function to create such a color image.  It also includes an associated set of classes to provide alternate scalings.
-This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to \astropy from a more traditional engineering organization \citep{Jennes2016}.
+\cite{Lupton2004} describe an ``optimal'' algorithm for producing
+red-green-blue (RGB) composite images from three separate high-dynamic range
+arrays. The \package{astropy.visualization} subpackage provides a convenience
+function to create such a color image.  It also includes an associated set of
+classes to provide alternate scalings.
+This functionality was contributed by developers from the Large Synoptic Survey
+Telescope (LSST) and serves as an example of contribution to \astropy from a
+more traditional engineering organization \citep{Jennes2016}.
 
-The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977} we show an RGB color image of the Hickson 88 group, centered near NGC~6977.  This image was generated from SDSS images using the \package{astropy.visualization} tools.
+The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a
+variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977}
+we show an RGB color image of the Hickson 88 group, centered near NGC~6977.
+This image was generated from SDSS images using the
+\package{astropy.visualization} tools.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{ngc6977.png}
@@ -986,7 +1052,11 @@ tools.
 
 \subsection{Cosmology}
 
-The \package{cosmology} package contains classes for representing different cosmologies and functions for calculating commonly used quantities such as look-back time and distance.   The package was described in detail in \cite{astropy}.  The default cosmology in \astropypkg version 2.0 is given by the values in \cite{2016A&A...594A..13P}.
+The \package{cosmology} package contains classes for representing different
+cosmologies and functions for calculating commonly used quantities such as
+look-back time and distance.   The package was described in detail in
+\cite{astropy}.  The default cosmology in \astropypkg version 2.0 is given by
+the values in \cite{2016A&A...594A..13P}.
 
 \subsection{Statistics}
 % Edited by Adrian PW
