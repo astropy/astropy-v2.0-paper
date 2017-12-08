@@ -857,7 +857,7 @@ pure-\python version will automatically be used.
 
 The \package{astropy.io.ascii} subpackage now provides the capability
 to read a table within an HTML file or web URL into an \astropypkg
-\texttt{Table} object. Conversely, a \texttt{Table} object can now
+\texttt{Table} object. A \texttt{Table} object can now also
 be written out as an HTML table.
 
 \subsubsection{FITS}
@@ -876,7 +876,7 @@ FITS files are now loaded \emph{lazily} (this default behavior can be
 deactivated, if needed), where all HDUs are not loaded until
 requested. This should provide substantial speed-ups when using the
 convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
-get an HDU that is near the front of many in a file.
+get an HDU that is near the beginning of many in a file.
 
 % \inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
 
