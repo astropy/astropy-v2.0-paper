@@ -897,15 +897,16 @@ get HDU’s that are near the front of a file with many HDUs.
 % Nadia, Lim
 % Tom R. -- unit support
 
-Tha \package{astropy.modeling} subpackage provides a framework for representing
+The \package{astropy.modeling} subpackage provides a framework for representing
 analytical models and performing model evaluation and parameter fitting.
-The main motivation for it was creating a framework
-which allows arbitrary combination of models to support the Generalized World
+The main motivation for this functionality was to create a framework that
+allows arbitrary combination of models to support the Generalized World
 Coordinate System (GWCS) package.\footnote{\url{https://github.com/spacetelescope/gwcs}}
-The current FITS WCS model lacks the flexibility to represent
+The current FITS WCS specification lacks the flexibility to represent
 arbitrary distortions and does not meet the needs of many types of current instrumentation.
-The addition of units to modeling made it attractive for representing
-and fitting astrophysical models in various data analysis tools.
+The fact that the \astropypkg modeling framework now supports propagating
+units also makes it a useful tool for representing and fitting astrophysical
+models within data analysis tools.
 
 Models and fitters are independent of each other: a model can be fit with different
 fitters and new fitters can be added without changing existing models. The
