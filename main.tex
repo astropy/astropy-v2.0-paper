@@ -79,7 +79,7 @@ Some software packages are or were supported by large institutions and are inten
 training.
 Other packages are developed by individual researchers or research groups and
 are then typically used by smaller groups for more domain-specific purposes.
-Both in packages meant for wider distribution and in scripts specific to 
+Both in packages meant for wider distribution and in scripts specific to
 particular research projects, a library that addresses common astronomical tasks
 simplifies the software development process.
 The users of such a library then also benefit from a community and ecosystem
@@ -917,9 +917,18 @@ package.\footnote{\url{https://github.com/spacetelescope/gwcs}}
 
 %\inlinecomment{hamogu: I tihnk this is too techical. I know it's a complex subpackage but I had trouble understanding this section even as a regular user.}
 
-Most models are defined by parameters and maintain an ordered list of parameter names, \texttt{Model.param\_names}. A model is constructed by passing in values (scalars or arrays) for its parameters. A parameter is a descriptor that provides a proxy for the value and stores additional information -- default value, default unit, and parameter constraints. The value and constraints can be updated by assignment. Supported parameter constraints include \texttt{fixed}, and \texttt{tied} parameters, and \texttt{bounds} on parameter values. Most models have a fixed parameter set but for some (e.g., polynomials), the number of parameters is defined by another argument (e.g., degree-of-freedom in the case of polynomials). Parameters support arithmetic operations and are combined with the inputs during evaluation using the \package{numpy} broadcasting rules. A model is evaluated by calling it as a function.
+Models are defined by their parameters and initialized by providing values for them. The
+names of the parameters are stored in a list, \texttt{Model.param\_names}. Parameters are complex objects.
+They store additional information -- default value, default unit, and parameter constraints. Parameter
+values and constraints can be updated by assignment. Supported constraints include \texttt{fixed},
+and \texttt{tied} parameters, and \texttt{bounds} on parameter values. The framework supports also models
+for which the the number of parameters and their names are defined by another argument.
+A typical example is a polynomial model defined by its degree.
+A model is evaluated by calling it as a function.
 
-Models have a \texttt{Model.inverse} property, which returns the analytical inverse, if available, or raises an exception otherwise. This is a settable property; i.e. a model can be assigned as inverse to another model. For example, a polynomial model can be assigned as an inverse to another polynomial model.
+If an analytical inverse of a model exists it is already defined and can be
+accessed  by calling \texttt{Model.inverse}. In addition, \texttt{Model.inverse} can be assigned
+another model which represents a computed inverse.
 
 Another useful settable property of models is \texttt{Model.bounding\_box}. This attribute sets the domain over which the model is defined. This greatly improves the efficiency of evaluation when the input range is much larger than the characteristic width of the model itself.
 
