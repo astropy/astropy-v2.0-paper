@@ -1263,23 +1263,30 @@ of a number of organizations and services outside the traditional
 academic community. We thank Google for financing and organizing the
 Google Summer of Code (GSoC) program, that has funded severals
 students per year to work on \astropy related projects over the
-summer. These students ofter turn into long-term contributors. We also
+summer. These students often turn into long-term contributors. We also
 thank numfocus and the Python Software Foundation for financial
-support for various needs. Within the academic community, we thank
-institutions that make it possible that astronomers and programmers on
-their staff can contribute (part of) their time to the development of
-\astropy projects. Furthermore, the \astropy packages would not exisit
-in their current form without a number of webservices for code
+support. Within the academic community, we thank
+institutions that make it possible that developers on
+their staff can contribute their time to the development of
+\astropy projects.
+
+Furthermore, the \astropy packages would not exist
+in their current form without a number of web services for code
 hosting, continuous integration, and documentation; in particular,
 \astropy heavily relies on GitHub, Travis CI, Appveyor, CircleCI, and
-Read the Docs.  \astropypkg integrates with the SIMBAD database,
-operated at CDS, Strasbourg, France.
+Read the Docs.
+
+\astropypkg interfaces with the SIMBAD database,
+operated at CDS, Strasbourg, France. It also makes use of the ERFA library \citep{erfa}, 
+which in turn derives from the IAU SOFA Collection\footnote{http://www.iausofa.org} developed by the International Astronomical Union Standards of Fundamental Astronomy \citep{sofa}.
 
 \software{\package{astropy} (\citealt{astropy}),
           \package{numpy} (\citealt{numpy}),
           \package{scipy} (\citealt{scipy}),
           \package{matplotlib} (\citealt{matplotlib}),
           \package{Cython} (\citealt{cython}),
+          \package{SOFA} (\citealt{sofa}),
+          \package{ERFA} (\citealt{erfa})
           }
 
 \bibliographystyle{aasjournal}
