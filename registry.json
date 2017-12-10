@@ -320,7 +320,7 @@
          },
          {
             "name": "marxs",
-            "maintainer": "Hans Moritz Günther (hamogu)",
+            "maintainer": "Hans Moritz Günther",
             "provisional": false,
             "stable": true,
             "repo_url": "https://github.com/Chandra-MARX/marxs",
