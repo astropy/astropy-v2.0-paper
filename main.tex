@@ -1065,7 +1065,7 @@ tools.
 
 \subsection{Cosmology}
 
-The \package{cosmology} package contains classes for representing different cosmologies and functions for calculating commonly used quantities such as look-back time and distance.   The package was described in detail in \cite{astropy}.  The default cosmology in \astropy version 2.0 is given by the values in \cite{2016A&A...594A..13P}.
+The \package{cosmology} package contains classes for representing different cosmologies and functions for calculating commonly used quantities such as look-back time and distance.   The package was described in detail in \cite{astropy}.  The default cosmology in \astropypkg version 2.0 is given by the values in \cite{2016A&A...594A..13P}.
 
 \subsection{Statistics}
 % Edited by Adrian PW
@@ -1106,7 +1106,7 @@ estimator for the parameters of the von Mises distribution.
 
 \subsubsection{Lomb-Scargle Periodograms}
 
-Periodic analysis of unevenly-spaced time series is common across many subfields of astronomy. The \package{astropy.stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.,][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in \astropy has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
+Periodic analysis of unevenly-spaced time series is common across many subfields of astronomy. The \package{astropy.stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.,][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in \astropypkg has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
 \astropypkg also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}. An example of a histogram fit using the Bayesian blocks algorithm is shown in the right panel of \figurename~\ref{fig:bayes-blocks-hist}.
@@ -1117,7 +1117,7 @@ Periodic analysis of unevenly-spaced time series is common across many subfields
     Three approaches to a 1D histogram:
     {\it left:} a standard histogram using \package{matplotlib}'s default of 10 bins.
     {\it center:} a histogram with the number of equal-width bins determined automatically using \package{numpy}'s {\tt bins='auto'}.
-    {\it right:} a histogram created with \package{astropy}, with irregularly-spaced bins computed via the Bayesian Blocks algorithm.
+    {\it right:} a histogram created with \astropypkg, with irregularly-spaced bins computed via the Bayesian Blocks algorithm.
     Compared to regularly-spaced bins, the irregular bin widths give a more accurate visual representation of features in the dataset at various scales.
     \label{fig:bayes-blocks-hist}
 }
@@ -1202,7 +1202,7 @@ the benefit of the community.
 
 %\inlinecomment{BMS}{should we mention the refactored infra here?  e.g. pytest-astropy and sphinx-astropy?}
 
-\subsection{Future versions of the \astropypkg core and affiliated packages}
+\subsection{Future versions of the Astropy core and affiliated packages}
 
 One of the most significant changes coming in this next major release will be
 removing support for \python 2 \citep{ape10}: future versions of \astropypkg
@@ -1273,7 +1273,7 @@ with the \astropy ecosystem:
         data.''
 \end{description}
 We encourage any users who wish to see specific material to either contribute or
-comment on these efforts via the \astropy mailing list or \astropy-tutorials
+comment on these efforts via the \astropy mailing list or \package{astropy/astropy-tutorials}
 \github repository.\footnote{\url{https://github.com/astropy/astropy-tutorials}}
 
 \section{Conclusion}
