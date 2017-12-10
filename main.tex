@@ -338,7 +338,7 @@ time, by individuals or groups contributing to \astropy as
 part of a research project, or contributions from institutions that allocate
 people to work on \astropy.
 A list of organizations that have contributed to \astropy in this manner
-can be found in the Acknowledgements.
+can be found in the Acknowledgments.
 
 Different funding models have been proposed for support of \astropy
 (e.g., \citealt{2016arXiv161003159M}), but a long-term plan
@@ -369,13 +369,13 @@ functionality (e.g., coordinate transformations, reading and writing
 astronomical files, and units) or base classes for other
 packages to utilize for a common interface (e.g., \texttt{NDData}).
 In this section, we highlight new features introduced or substantially improved
-since version v0.2 (previously described in \citealt{astropy}).  The \astropypkg
+since version 0.2 (previously described in \citealt{astropy}).  The \astropypkg
 package
 provides a full log of changes\footnote{\url{https://github.com/astropy/astropy/blob/stable/CHANGES.rst}}
 over the course of the entire project and more details about individual
 subpackages are available in the documentation.\footnote{\url{http://docs.astropy.org/en/stable/}}
 Beyond what is mentioned below, most subpackages have seen increased performance
-since the release of the v0.2 package.
+since the release of the version 0.2 package.
 
 
 % \subsection{Analytic Functions}
@@ -798,7 +798,7 @@ new table with the same rows but all columns. For other situations, more generic
 table concatenation or join are also possible when two tables share some
 columns.
 
-\subsubsection{Using astropy objects in tables}
+\subsubsection{Using Astropy objects in tables}
 
 The \texttt{Table} object now allows \texttt{Quantity}, celestial
 coordinate (\texttt{SkyCoord}), and date/time (\texttt{Time}) objects to
@@ -979,11 +979,11 @@ The \package{astropy.convolution} subpackage implements `normalized convolution'
 \includegraphics[width=\textwidth]{convolution_example}
 \caption{%
     An example showing different modes of convolution available in the \python
-    ecosystem.  The red x's mark pixels that are set to NaN in the original data
+    ecosystem.  The red x's mark pixels that are set to \texttt{NaN} in the original data
     (a).  If the data are convolved with a Gaussian kernel on a $9\times 9$ grid using
-    scipy's direct convolution (b), any pixel within range of the original NaN
-    pixels is also set to NaN.  Panel (c) shows what happens if the NaNs are set
-    to zero first: the originally NaN regions are depressed relative to their
+    \package{scipy}'s direct convolution (b), any pixel within range of the original \texttt{NaN}
+    pixels is also set to \texttt{NaN}.  Panel (c) shows what happens if the \texttt{NaN}s are set
+    to zero first: the originally \texttt{NaN} regions are depressed relative to their
     surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior,
     where the missing pixels are replaced with values interpolated from their
     surroundings using the convolution kernel.
@@ -1337,7 +1337,7 @@ Read the Docs.
 
 \astropypkg interfaces with the SIMBAD database,
 operated at CDS, Strasbourg, France. It also makes use of the ERFA library \citep{erfa},
-which in turn derives from the IAU SOFA Collection\footnote{http://www.iausofa.org} developed by the International Astronomical Union Standards of Fundamental Astronomy \citep{sofa}.
+which in turn derives from the IAU SOFA Collection\footnote{\url{http://www.iausofa.org}} developed by the International Astronomical Union Standards of Fundamental Astronomy \citep{sofa}.
 
 \software{\package{astropy} (\citealt{astropy}),
           \package{numpy} (\citealt{numpy}),
