@@ -613,59 +613,24 @@ tools and quantify the comparison by looking at the median, mean, maximum,
 and standard deviation of the absolute separation of the output coordinates
 from each pair of tools.
 
-\tablename~\ref{tab:coordinate_benchmarks} gives an example of the relative
-accuracy of the conversion from FK4 to Galactic coordinates for all pairs of
-tools. This shows, for example, that \astropy, Kapteyn, and PyTPM agree
-perfectly (to the precision shown), while PALpy, pySLALIB, and PyAST also
-agree perfectly amongst themselves. However, there is an offset of around
-0.2\arcsec\space with the former three packages. Finally, PyEphem disagrees
-with other packages by 0.4--0.8\arcsec. These values are only meant to be
-illustrative and will change over time as the benchmarks are refined and the
-packages updated.
-%\inlinecomment{Perry G}{Wouldn't the table be better represented as a matrices? Or perhaps as a matrix as a crude image with colors or intensities representing the size of the quantity. Is the difference between median and mean significant enough to warrant showing both? A link to the actual numbers may satisfy readers that want the exact values, but I suspect the majority don't need to see that precision.}
-\begin{table}
-\begin{center}
-\begin{tabular}{llcccc}
-\hline
-\hline
-Package 1 & Package 2 & Median & Mean & Maximum & Std. Dev. \\
-          &           & arcsec & arcsec & arcsec & arcsec \\
-\hline
-astropy  &  kapteyn  & 0.000  & 0.000 & 0.000 & 0.000 \\
-\nodata  &  pytpm    & 0.000  & 0.000 & 0.000 & 0.000 \\
-\nodata  &  palpy    & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyast    & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyslalib & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyephem  & 0.459  & 0.458 & 0.860 & 0.231 \\
-kapteyn  &  pytpm    & 0.000  & 0.000 & 0.000 & 0.000 \\
-\nodata  &  palpy    & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyast    & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyslalib & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyephem  & 0.459  & 0.458 & 0.860 & 0.231 \\
-pytpm    &  palpy    & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyast    & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyslalib & 0.218  & 0.196 & 0.249 & 0.056 \\
-\nodata  &  pyephem  & 0.459  & 0.458 & 0.860 & 0.231 \\
-palpy    &  pyast    & 0.000  & 0.000 & 0.000 & 0.000 \\
-\nodata  &  pyslalib & 0.000  & 0.000 & 0.000 & 0.000 \\
-\nodata  &  pyephem  & 0.563  & 0.570 & 1.012 & 0.253 \\
-pyast    &  pyslalib & 0.000  & 0.000 & 0.000 & 0.000 \\
-\nodata  &  pyephem  & 0.563  & 0.570 & 1.012 & 0.253 \\
-pyslalib &  pyephem  & 0.563  & 0.570 & 1.012 & 0.253 \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Comparison of the accuracy of the FK4 to Galactic transformation between different packages.\label{tab:coordinate_benchmarks}}
-\end{table}
+\figurename~\ref{fig:coordinate_benchmarks} visualizes the relative accuracy of
+the conversion from FK4 to Galactic coordinates for all pairs of tools.
+This figure shows, for example, that \astropy, Kapteyn, and PyTPM agree
+perfectly (light colors, small differences), while PALpy, pySLALIB, and PyAST
+also agree perfectly amongst themselves.
+However, there is an offset of around 0.2\arcsec\space with the former three
+packages.
+Finally, PyEphem disagrees with other packages by 0.4--0.8\arcsec.
+These values are only meant to be illustrative and will change over time as the
+benchmarks are refined and the packages updated.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{coordinates-benchmark.pdf}
   \caption{
-    Comparison matrix of the accuracy values shown on
-    table~\ref{tab:coordinate_benchmarks} of the FK4 to Galactic transformation
-    between the different packages. Each comparison block shows four squares
-    representing the median, mean, maximum and standard deviation going from
-    left to right and bottom to top.
+    Comparison matrix of the accuracy values of the FK4 to Galactic
+    transformation between the different packages. Each comparison block shows
+    four squares representing the median, mean, maximum and standard deviation
+    going from left to right and bottom to top.
     \label{fig:coordinate_benchmarks}
   }
 \end{figure}
