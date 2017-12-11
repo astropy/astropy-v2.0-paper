@@ -91,12 +91,6 @@ The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
 software in \python.
 In this way, its genesis differs from but builds upon many substantial and
-% * <bsipocz@gmail.com> 2017-11-13T13:13:08.884Z:
-%
-% how do astroy builds upon these? or it's more like builds upon the developer experience?
-%
-%
-% ^.
 former astronomical software development efforts that were commissioned or
 initiated through large institutional support, for example IRAF \citep[developed
 at NOAO;][]{IRAF}, MIDAS \citep[developed at ESO;][]{MIDAS}, or Starlink
@@ -354,11 +348,6 @@ open source scientific computing.} organization. NumFOCUS has, to date, covered 
 % funding and support provided to astropy with the purpose of explaining the
 % current structure to the community
 
-
-%\subsection{Difficulty of reversing design choices}
-%Deciding if a feature should be included
-%difficulty to decide where general use ends and "handy feature for some" starts, i.e. how to reject PRs or deal with maintenance burden
-
 \section{Astropy Core Package version 2.0}
 \label{sec:core}
 % Adrian
@@ -377,13 +366,6 @@ subpackages are available in the documentation.\footnote{\url{http://docs.astrop
 Beyond what is mentioned below, most subpackages have seen increased performance
 since the release of the version 0.2 package.
 
-
-% \subsection{Analytic Functions}
-% moved to models and depreciated --
-% just here for completeness at the moment
-%\inlinecomment{BMS}{I suggest to order the subsection lexicographically as reading the draft the current order seemed very random (unlike at the docs page where they the grouping logic is obvious)}
-%\inlinecomment{Tom R}{the only issue is if we rely on having e.g. units described first if they are used later}
-
 \subsection{Units}\label{sec:units}
 % Adrian
 
@@ -395,9 +377,6 @@ about speed: having units associated with numbers inherently adds overhead to
 numerical operations.
 In \texttt{astropy.units}, \texttt{Quantity} objects extend \texttt{numpy}
 array objects and have been designed with speed in mind.
-
-%\inlinecomment{Perry G}{Agreeing with Tom below, I would avoid using terms like subclass, decorators, mixin, namespace, (and perhaps even class, instead using objects consistently; this is no place to be pendantic about the distinction between classes and objects; even to the extent of adding a qualifying sentence somewhere like: "In this paper we will use object when we mean object or classes; in software there are important distinctions between the two terms, but they are not relevant in this paper."), and the like and replace them with more generic descriptions, e.g., "extended", or "tools to make defining functions that can use quantities simple to write" }
-%\inlinecomment{Tom R}{I think saying 'subclass' here is too detailed and is mentioned below in 3.1.1 if needed - 'make it possible to attach units to numpy arrays' or something like that?}
 
 As of \astropypkg version 2.0, units and quantities, prevalent in most of its
 subpackages, have become a key concept for using the package as a whole.
@@ -420,18 +399,6 @@ array operations. For example, \texttt{Quantity} objects with angular
 units can be directly passed in to the trigonometric functions implemented in
 \texttt{numpy}. The units are internally converted to radians (what the \texttt{numpy}
 trigonometric functions expect) before being passed to \texttt{numpy}.
-
-%\subsubsection{Speed improvements}
-
-%\inlinecomment{Tom R}{I wonder if we might just want to mention at the top level that performance has been improved in places? This seems a bit too detailed}
-
-%The \texttt{Quantity} object is now significantly
-        %faster than in early versions of \astropypkg. This is in large part due
-        %to the fact that \texttt{Quantity} subclasses the \texttt{numpy.ndarray}
-        %object, but even relative to more recent versions of \astropypkg,
-        %operations with \texttt{Quantity} objects are generally faster. This is
-        %largely thanks to improvements in the way \texttt{numpy} arrays can be
-        %subclassed.
 
 \subsubsection{Logarithmic units and magnitudes}
         By default, taking the logarithm of
@@ -595,17 +562,6 @@ In addition to representing celestial
     As such, in version 2.0, only the \texttt{Frame} classes (and not the
     \texttt{SkyCoord} class) support handling velocities.
 
-%\subsubsection{Derivatives of coordinate representations}
-
-%\inlinecomment{Tom R}{does this really warrant a separate section or is it just a byproduct of the velocity stuff that can be mentioned in 3.3.2?}
-
-    %As mentioned above, the \texttt{Representation} classes act like
-    %three-dimensional vectors.
-    %\texttt{astropy.coordinates} now also supports handling first derivatives of
-    %vectors / representations through the new \texttt{Differential} classes.
-    %The \texttt{Differential} classes are currently used internally within the
-    %\texttt{Frame} classes to store the velocity data.
-
 \subsubsection{Solar System Ephemerides}
     Also new is support for computing ephemerides of major solar system bodies
     and outputting the resulting positions as coordinate objects.
@@ -613,12 +569,6 @@ In addition to representing celestial
     ERFA or from downloaded JPL ephemerides (the latter requires the
     \package{jplephem}\footnote{\url{https://github.com/brandon-rhodes/python-jplephem}}
     optional dependency and an internet connection).
-    % hamogu: I think the specific names of functions can be in the docs
-    % and don't need to be repeated here.
-    %The \texttt{get\_body} and \texttt{get\_body\_barycentric} functions provide
-    %the gateway to this functionality, yielding \texttt{SkyCoord} objects given
-    %a specific body and choice of ephemeris source.
-
 
 \subsubsection{Accuracy of coordinate transformations}
 
@@ -770,12 +720,9 @@ or reduction are also provided.
 
 The \package{astropy.table} subpackage provides functionality for representing
 and manipulating heterogeneous data.
-%\inlinecomment{APW:}{Need more introduction to the table subpackage!}
 The package was described in detail in \cite{astropy}.
 Thus, in what follows, we only summarize key new features or updates to
 \package{astropy.table} since the previous \astropy paper.
-
-%\inlinecomment{Perry G}{Some mention that some of these are inspired by Pandas?}
 
 \subsubsection{Support for grouped table operations}
 
@@ -822,19 +769,7 @@ For many common cases, this simplifies the process of file input and output (I/O
 reduces the need to master the separate details of all the I/O packages within
 \astropypkg.
 
-%\inlinecomment{SCO}{Table and FITS tables}
-
-%\subsubsection{Unified file read/write interface}
-
-%\inlinecomment{Check when it was added (0.3?). Overview of the supported formats (ASCII,FITS, votable, HTML, JSViewer/Datatables).}
-
-% We summarize key new features or updates to \package{astropy.io} below,
-% organized by sub-subpackage.
-
-% \inlinecomment{Tom R}{is a sub-subpackage a thing, or is it just 'subpackage' all the way down?}
-
 \subsubsection{ASCII}
-% \subsubsection{Enhanced CSV format}
 
 One of the problems when storing a table in an ASCII format is
 preserving table meta-data such as comments, keywords and column data
@@ -843,8 +778,6 @@ Character Separated Values} (ECSV,  \citealt{ape6}) format makes it
 possible to write a table to an ASCII-format file and read it back
 with no loss of information. The ECSV format has been designed to be
 both human-readable and compatible with most simple CSV readers.
-
-% \subsubsection{\texttt{.ascii}: fast readers and writers}
 
 The \package{astropy.io.ascii} subpackage now includes a significantly faster
 Cython/C engine for reading and writing ASCII files. This is available for most
@@ -857,8 +790,6 @@ cores for input parsing to achieve even greater speed gains.  By default,
 when dealing with compatible formats. Certain features of the full read
 / write interface are unavailable in the fast version, in which case the
 pure-\python version will automatically be used.
-
-% \subsubsection{\texttt{.ascii}: HTML tables}
 
 The \package{astropy.io.ascii} subpackage now provides the capability
 to read a table within an HTML file or web URL into an \astropypkg
@@ -883,19 +814,6 @@ requested. This should provide substantial speed-ups when using the
 convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
 get an HDU that is near the beginning in a file with many HDUs.
 
-% \inlinecomment{Tom R}{too detailed? I don't think we need to mention every single performance enhancement, right?}
-
-% \subsubsection{\texttt{.misc}: YAML serialization}
-
-% The new \package{astropy.io.misc.yaml} module allows converting astropy
-% objects into a standard YAML format.  This can be used beyond
-% \texttt{astropy.io.misc.yaml}: for example, to serialize the metadata of
-% tables before saving to other formats like HDF5.
-
-
-%\inlinecomment{BMS}{Maybe move the command line tools into a separate subsection to highlight them (even though we mostly only have fits related scripts)? They are supposed to be used more frequently by individual users.}
-%\inlinecomment{hamogu}{MY feeling is that this section is too detailed already. If I had written it, I would not have mentioned the scripts at all.}
-
 \subsection{Modeling}
 \label{sec:modeling}
 % The whole modeling submodule was missing from the previous paper, so everything really, including compound models, unit support etc.
@@ -918,15 +836,7 @@ fitters and new fitters can be added without changing existing models. The
 framework is designed to be flexible and easily extensible. The goal is to have
 a rich set of models, but to also facilitate creating new ones, if necessary.
 
-% hamogu: I comented this out because we don't have prrof that it's
-% ``uniquly'' useful. THe developers of e.g. ISIS, Sherpa, for even IRAF
-% will probably disagree.
-%The recently-added support for \package{astropy.units} in models and fitters
-%make it a uniquely powerful package for working with astrophysical models.
-
 \subsubsection{Single Model Definition and Evaluation}
-
-%\inlinecomment{hamogu: I tihnk this is too techical. I know it's a complex subpackage but I had trouble understanding this section even as a regular user.}
 
 Models are defined by their parameters and initialized by providing values for them. The
 names of the parameters are stored in a list, \texttt{Model.param\_names}. Parameters are complex objects.
@@ -954,8 +864,6 @@ Models can be combined using arithmetic expressions. The result is also a model,
 \subsubsection{Fitting Models to Data}
 
 \package{astropy.modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide support for specifying parameter constraints. The fitters take a model and data as input and return a copy of the model with the optimized parameter values set. The goal is to make it easy to extend the fitting framework to create new fitters. The optimizers available in \astropypkg version 2.0 are Levenberg--Marquardt, Simplex, SLSQP, and LinearLSQFitter (which is based on \texttt{numpy.linalg} that provides exact solutions for linear models).
-
-%\inlinecomment{APW}{Add citations for the different optimizaton algorithms in paragraph above?}
 
 Modeling also supports a plugin system for fitters, which allows using the
 \astropypkg models with external fitters. An example of this is
@@ -1080,11 +988,6 @@ a range of functionality used by many different disciplines
 in astronomy. It is not a complete set of statistic tools, but rather
 a still growing collection of useful features.
 
-% The current review process for contributions to the \package{astropy.stats} package includes review of the code, documentation, testing, and scientific merit of the inclusion.  When necessary, scientific reviewers outside of the maintainers will be sought for their input on new pull requests.
-
-In this section, we describe these tools. %, including robust statistical estimators, circular statistics, periodograms, spatial statistics, and histogram binning.
-
-
 % Steve C.: overview, circular stats,
 % Jake V.:  Lomb-scargle, Bayesian blocks
 % Larry:  sigma clipping, biweight stats
@@ -1127,7 +1030,6 @@ Periodic analysis of unevenly-spaced time series is common across many subfields
 \section{Infrastructure for Astropy affiliated packages}
 
 \label{sec:infrastructure}
-%\inlinecomment{BMS}{should we describe astropy-helpers even though it's future is unsure?}
 % Text also edited by Adrian PW
 
 In addition to astronomy-specific packages and libraries, the \astropy Project
@@ -1183,11 +1085,6 @@ which makes it easy with a single reStructuredText command to generate a set of
 documentation pages listing all of the available classes, functions, and
 attributes in a given \python module.
 
-%\inlinecomment{TPR}{We should put the releases of sphinx-automodapi on Zenodo and cite this}
-
-% \section{State of the Ecosystem}
-% Commenting out unless a clear statement is added
-
 \section{The future of the Astropy project}
 \label{sec:future}
 % First draft by SMC
@@ -1200,8 +1097,6 @@ On top of planned changes and additions to the core package, we also plan to
 overhaul the \astropy educational and learning materials, and further refactor
 and generalize the infrastructure utilities developed for the core package for
 the benefit of the community.
-
-%\inlinecomment{BMS}{should we mention the refactored infra here?  e.g. pytest-astropy and sphinx-astropy?}
 
 \subsection{Future versions of the Astropy core and affiliated packages}
 
@@ -1353,9 +1248,8 @@ which in turn derives from the IAU SOFA Collection\footnote{\url{http://www.iaus
 
 
 \appendix
-\section{List of Affiliated Packages}
 
-%\inlinecomment{SMC}{Can a brief description of each code be added?}
+\section{List of Affiliated Packages}
 
 \begin{longrotatetable}
   \begin{deluxetable*}{ccccc}
