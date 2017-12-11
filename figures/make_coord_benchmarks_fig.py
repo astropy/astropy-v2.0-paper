@@ -51,7 +51,7 @@ for i in range(n):
             M[2*j:2*j+2, 2*i:2*i+2] = np.array(data["{}-{}".format(names[j], names[i])])
 
 
-fig, ax = plt.subplots(1, 1, figsize=(7.5,6))
+fig, ax = plt.subplots(1, 1, figsize=(6,8.75))
 
 c = ax.imshow(M, cmap='YlOrBr', zorder=1)
 
@@ -59,31 +59,39 @@ maj_ticks = np.arange(0, 2*n, 2) + 0.5
 
 ax.set_xticks(maj_ticks)
 ax.set_yticks(maj_ticks)
-ax.set_xticklabels(names, fontsize=12)
-ax.set_yticklabels(names, fontsize=12)
-ax.set_xlim(2*n-0.5, -0.5)
+ax.set_xticklabels(names, fontsize=14)
+ax.set_yticklabels(names, fontsize=14)
 
-ax.xaxis.tick_top()
+ax.set_xlim(-0.5, 2*n-2.5+0.01)
+ax.set_ylim(2*n-0.5, 1.5-0.01)
 
 ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
+ax.spines['top'].set_visible(False)
 
 grid_style = dict(marker='', linewidth=1, zorder=8)
-for i in range(-1, 2*n+1, 2):
-    ax.plot([i-1.5, 2*n], [i+0.5, i+0.5], color='#333333', alpha=0.5,
-            **grid_style)
-    if i < 2*n-1:
-        ax.plot([i+0.5, i+0.5], [-0.5, i+2.5], color='#333333', alpha=0.5,
-                **grid_style)
 
+# "minor" grid
 for i in range(0, 2*n):
-    ax.plot([np.ceil(i-1.5)+0.5, 2*n], [i+0.5, i+0.5], color='#888888', alpha=0.25,
+    ax.plot([-.5, np.floor(i+.5)-.5], [i+0.5, i+0.5], color='#aaaaaa',
             **grid_style)
     if i < 2*n-1:
-        ax.plot([i+0.5, i+0.5], [-0.5, np.floor(i+2.5)-0.5], color='#888888', alpha=0.25,
+        ax.plot([i+0.5, i+0.5], [np.ceil(i+.5)+.5, 2*n], color='#aaaaaa',
                 **grid_style)
 
-cb = fig.colorbar(c)
-cb.set_label('accuracy metric [arcsec]')
+# "major" grid
+for i in range(-1, 2*n+1, 2):
+    ax.plot([-.5, i+.5], [i+0.5, i+0.5], color='#666666',
+            **grid_style)
+    if i < 2*n-1:
+        ax.plot([i+0.5, i+0.5], [i+.5, 2*n], color='#666666',
+                **grid_style)
+
+cbaxes = fig.add_axes([0.125, 0.8, 0.775, 0.025])
+cb = fig.colorbar(cax=cbaxes, mappable=c, orientation='horizontal')
+cb.set_label('accuracy metric [arcsec]', labelpad=10, fontsize=20)
+cb.ax.xaxis.set_ticks_position('top')
+cb.ax.xaxis.set_label_position('top')
+[l.set_fontsize(14) for l in cb.ax.xaxis.get_ticklabels()]
+cb.set_clim(0, 1)
 
 fig.savefig('coordinates-benchmark.pdf')
