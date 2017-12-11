@@ -2,13 +2,13 @@
     "packages": [
         {
             "name": "specutils",
-            "maintainer": "Nicholas Earl, Adam Ginsburg, Steve Crawford",
+            "maintainer": "Nicholas Earl, Adam Ginsburg, Steve Crawford, Erik Tollerud",
             "provisional": false,
             "stable": false,
             "home_url": "http://specutils.readthedocs.io",
             "repo_url": "http://github.com/astropy/specutils.git",
             "pypi_name": "specutils",
-            "description": "Affiliated package for 1D spectral operations.",
+            "description": "Affiliated package for analysis tools and basic data types of astronomical spectra.",
             "image": null
         },
         {
@@ -35,7 +35,7 @@
         },
         {
             "name": "ginga",
-            "maintainer": "Eric Jeschke <eric@naoj.org> and Pey Lian Lim",
+            "maintainer": "Eric Jeschke <eric@naoj.org> and Pey-Lian Lim",
             "provisional": false,
             "stable": true,
             "home_url": "https://ejeschke.github.io/ginga",
@@ -47,23 +47,12 @@
         {
             "name": "astroML",
             "maintainer": "Jake Vanderplas <vanderplas@astro.washington.edu>",
-            "provisional": "2015-10-1",
+            "provisional": false,
             "stable": true,
             "home_url": "http://astroml.github.com/",
             "repo_url": "http://github.com/astroML/astroML",
             "pypi_name": "astroML",
             "description": "Tools for machine learning and data mining in Astronomy.",
-            "image": null
-        },
-        {
-            "name": "montage-wrapper",
-            "maintainer": "Thomas Robitaille <thomas.robitaille@gmail.com>",
-            "provisional": false,
-            "stable": true,
-            "home_url": "http://www.astropy.org/montage-wrapper/",
-            "repo_url": "https://github.com/astropy/montage-wrapper",
-            "pypi_name": "montage-wrapper",
-            "description": "A pure Python module that provides a Python API to the Montage Astronomical Image Mosaic Engine, including both functions to access individual Montage commands, and high-level functions to facilitate mosaicking and re-projecting. Python-montage uses the Astropy core package for reading and writing FITS files.",
             "image": null
         },
         {
@@ -80,7 +69,7 @@
         {
             "name": "APLpy",
             "maintainer": "Thomas Robitaille and Eli Bressert <astropython@gmail.com>",
-            "provisional": "2016-6-30",
+            "provisional": false,
             "stable": true,
             "home_url": "http://aplpy.github.io",
             "repo_url": "http://github.com/aplpy/aplpy.git",
@@ -102,7 +91,7 @@
         {
             "name": "PyVO",
             "maintainer": "Stefan Becker <sbecker@ari.uni-heidelberg.de>",
-            "provisional": "2016-6-30",
+            "provisional": false,
             "stable": false,
             "home_url": "http://pyvo.readthedocs.io/",
             "repo_url": "https://github.com/pyvirtobs/pyvo.git",
@@ -152,12 +141,12 @@
             "repo_url": "https://github.com/glue-viz/glue.git",
             "pypi_name": "glueviz",
             "image": null,
-            "description": null
+            "description": "Linked data visualizations across multiple files."
         },
         {
             "name": "pyregion",
-            "maintainer": "Jae-Joon Lee",
-            "provisional": "2016-02-22",
+            "maintainer": "Jae-Joon Lee and Christoph Deil",
+            "provisional": false,
             "stable": true,
             "home_url": "http://pyregion.readthedocs.io",
             "repo_url": "https://github.com/astropy/pyregion.git",
@@ -256,7 +245,7 @@
         {
             "name": "omnifit",
             "maintainer": "Aleksi Suutarinen <aleksi.suutarinen@iki.fi>",
-            "provisional": "2017-10-7",
+            "provisional": false,
             "stable": true,
             "home_url": "https://ricemunk.github.io/omnifit/",
             "repo_url": "https://github.com/RiceMunk/omnifit",
@@ -273,7 +262,7 @@
             "repo_url": "https://github.com/adrn/gala",
             "pypi_name": "astro-gala",
             "image": null,
-            "description": null
+            "description": "A Python package for gravitational and galactic dynamics."
         },
         {
             "name": "galpy",
@@ -284,18 +273,29 @@
             "repo_url": "https://github.com/jobovy/galpy",
             "pypi_name": "galpy",
             "image": null,
-            "description": null
+            "description": "A Python 2 and 3 package for galactic dynamics."
         },
         {
             "name": "HENDRICS",
             "maintainer": "Matteo Bachetti <matteo@matteobachetti.it>",
-            "provisional": "2017-2-17",
+            "provisional": false,
             "stable": true,
             "repo_url": "https://github.com/StingraySoftware/HENDRICS",
             "home_url": "https://hendrics.readthedocs.io",
             "pypi_name": "hendrics",
-            "description": "Spectral-timing analysis of X-ray data from the command line (formerly known as MaLTPyNT)."
+            "description": "Spectral-timing analysis of X-ray data from the command line (formerly known as MaLTPyNT).",
+            "image": null
         },
+        {
+            "name": "stingray",
+            "maintainer": "Daniela Huppenkothen, Matteo Bachetti, Abigail Stevens, Simone Migliari, and Paul Balm",
+            "provisional": false,
+            "stable": false,
+            "repo_url": "https://github.com/StingraySoftware/stingray",
+            "home_url": "https://stingraysoftware.github.io",
+            "pypi_name": "stingray",
+            "description": "Python library for spectral-timing analysis of X-ray data."
+         },
         {
             "name": "Halotools",
             "maintainer": "Andrew Hearin <andrew.hearin@yale.edu>",
@@ -320,7 +320,7 @@
          },
          {
             "name": "marxs",
-            "maintainer": "Hans Moritz Günther",
+            "maintainer": "Hans Moritz Günther (hamogu)",
             "provisional": false,
             "stable": true,
             "repo_url": "https://github.com/Chandra-MARX/marxs",
@@ -328,6 +328,54 @@
             "pypi_name": "marxs",
             "description": "Multi-Architecture-Raytrace-Xraymission-Simulator",
             "image": null
-        }
+        },
+        {
+            "name": "pyspeckit",
+            "maintainer": "Adam Ginsburg <adam.g.ginsburg@gmail.com>",
+            "provisional": false,
+            "stable": true,
+            "home_url": "https://pyspeckit.readthedocs.org",
+            "repo_url": "https://github.com/pyspeckit/pyspeckit",
+            "pypi_name": "pyspeckit"
+        },
+        {
+            "name": "linetools",
+            "maintainer": "J. Xavier Prochaska, Nicolas Tejos, and Neil Crighton",
+            "provisional": false,
+            "stable": true,
+            "home_url": "http://linetools.readthedocs.io",
+            "repo_url": "https://github.com/linetools/linetools",
+            "pypi_name": "linetools"
+        },
+        {
+            "name": "poliastro",
+            "maintainer": "Juan Luis Cano Rodríguez",
+            "provisional": false,
+            "stable": false,
+            "repo_url": "https://github.com/poliastro/poliastro",
+            "home_url": "http://docs.poliastro.space",
+            "pypi_name": "poliastro",
+            "description": "Astrodynamics and Orbital Mechanics computations"
+        },
+        {
+            "name": "hips",
+            "maintainer": "Christoph Deil and Thomas Boch",
+            "provisional": false,
+            "stable": false,
+            "repo_url": "https://github.com/hipspy/hips",
+            "home_url": "https://hips.readthedocs.io",
+            "pypi_name": "hips",
+            "description": "A Python astronomy package for HiPS : Hierarchical Progressive Surveys."
+         },
+         {
+            "name": "regions",
+            "maintainer": "Christoph Deil and Johannes King",
+            "provisional": false,
+            "stable": false,
+            "repo_url": "https://github.com/astropy/regions",
+            "home_url": "https://astropy-regions.readthedocs.io",
+            "pypi_name": "regions",
+            "description": "A Python astronomy package region handling."
+         }
     ]
 }
