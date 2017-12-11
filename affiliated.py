@@ -22,16 +22,30 @@ with open("registry.tex", "w") as f1, open("registry_prov.tex", "w") as f2:
                    if item["name"] in bib_map
                    else "")
 
+        maintainer = re.sub(' [<(].*?[>)]', '', item["maintainer"])
+        maintainers = maintainer.split(",")
+        if len(maintainer) > 50: # of characters
+            # newline every 3rd person
+            maintainer = ""
+            for ii, name in enumerate(maintainers):
+                if ii > 0 and (ii+1) % 3 == 0:
+                    maintainer = maintainer+"{0},\par ".format(name)
+                else:
+                    maintainer = maintainer+"{0}, ".format(name)
+
+            maintainer = maintainer.rstrip(",\par ")
+            maintainer = "\\parbox{{3in}}{{{0}}}".format(maintainer)
+
         if not item['provisional']:
             f1.write(row.format(item["repo_url"], item["name"],
                                 stable_dict[item["stable"]], item['pypi_name'],
-                                re.sub(' <.*?>', '', item["maintainer"]),
+                                maintainer,
                                 citealt
                                ))
         else:
             f2.write(row.format(item["repo_url"],
                                 re.sub('_', '\_', item["name"]),
                                 stable_dict[item["stable"]], item['pypi_name'],
-                                re.sub(' <.*?>', '', item["maintainer"]),
+                                maintainer,
                                 citealt
                                ))
