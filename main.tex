@@ -614,7 +614,10 @@ and standard deviation of the absolute separation of the output coordinates
 from each pair of tools.
 
 \figurename~\ref{fig:coordinate_benchmarks} visualizes the relative accuracy of
-the conversion from FK4 to Galactic coordinates for all pairs of tools.
+the conversion from FK4 to Galactic coordinates for all pairs of tools that
+implement this transformation.
+In this figure, the color of the cell indicates the maximum difference (in
+arcseconds) between the two tools over the 1000 longitude-latitude pairs tested.
 This figure shows, for example, that \astropypkg, Kapteyn, and PyTPM agree with
 sub-milliarcsecond differences (light colors, small differences), while PALpy,
 pySLALIB, and PyAST also agree amongst themselves.
@@ -627,10 +630,9 @@ benchmarks are refined and the packages updated.
 \begin{figure}
   \includegraphics[width=\textwidth]{coordinates-benchmark.pdf}
   \caption{
-    Comparison matrix of the accuracy values of the FK4 to Galactic
-    transformation between the different packages. Each comparison block shows
-    four squares representing the median, mean, maximum and standard deviation
-    going from left to right and bottom to top.
+    Comparison matrix of the maximum difference between longitude-latitude
+    values in a set of 1000 random points transformed from FK4 to Galactic
+    with the different packages.
     Darker colors (larger differences) are more significant disagreements.
     \label{fig:coordinate_benchmarks}
   }
