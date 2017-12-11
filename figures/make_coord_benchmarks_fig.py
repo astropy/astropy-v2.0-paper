@@ -52,7 +52,7 @@ for i in range(n):
                                                                    names[i])])
 
 
-fig, ax = plt.subplots(1, 1, figsize=(6,8.75))
+fig, ax = plt.subplots(1, 1, figsize=(6,6))
 
 c = ax.imshow(M, cmap='YlOrBr', zorder=1)
 
@@ -87,7 +87,7 @@ for i in range(-1, 2*n+1, 2):
         ax.plot([i+0.5, i+0.5], [i+.5, 2*n], color='#666666',
                 **grid_style)
 
-cbaxes = fig.add_axes([0.125, 0.8, 0.775, 0.025])
+cbaxes = fig.add_axes([0.2, 0.825, 0.7, 0.025])
 cb = fig.colorbar(cax=cbaxes, mappable=c, orientation='horizontal')
 cb.set_label('accuracy metric [arcsec]', labelpad=10, fontsize=20)
 cb.ax.xaxis.set_ticks_position('top')
@@ -95,4 +95,5 @@ cb.ax.xaxis.set_label_position('top')
 [l.set_fontsize(14) for l in cb.ax.xaxis.get_ticklabels()]
 cb.set_clim(0, 1)
 
+fig.subplots_adjust(left=0.2, bottom=0.02)
 fig.savefig('coordinates-benchmark.pdf')
