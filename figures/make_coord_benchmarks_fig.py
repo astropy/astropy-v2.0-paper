@@ -5,6 +5,10 @@ Originally contributed by @dpshelio
 import matplotlib.pyplot as plt
 import numpy as np
 
+from astropy.visualization import astropy_mpl_style
+plt.style.use(astropy_mpl_style)
+plt.rcParams['font.family'] = plt.rcParamsDefault['font.family']
+
 # max difference to 3 significant figures:
 cc = 0
 ap = 0.249 # astropy - palpy
@@ -61,8 +65,12 @@ maj_ticks = np.arange(0, n, 1)
 
 ax.set_xticks(maj_ticks)
 ax.set_yticks(maj_ticks)
-ax.set_xticklabels(names, fontsize=14)
-ax.set_yticklabels(names, fontsize=14)
+ax.set_xticklabels(names, fontsize=11)
+ax.set_yticklabels(names, fontsize=11)
+
+for l in ax.get_xticklabels():
+    if l.get_text() == 'astropy':
+        l.set_fontweight('bold')
 
 ax.set_xlim(-0.5, n-1.5+0.01)
 ax.set_ylim(n-0.5, 0.5-0.01)
@@ -77,15 +85,17 @@ for i in range(0, n):
     ax.plot([-.5, i+.5], [i+0.5, i+0.5], color='#aaaaaa',
             **grid_style)
     ax.plot([i+0.5, i+0.5], [i+.5, n], color='#aaaaaa',
-            **grid_style)
+                **grid_style)
 
 cbaxes = fig.add_axes([0.2, 0.825, 0.7, 0.025])
 cb = fig.colorbar(cax=cbaxes, mappable=c, orientation='horizontal')
-cb.set_label('max. difference [arcsec]', labelpad=10, fontsize=20)
+cb.set_label('max. difference [arcsec]', labelpad=10, fontsize=16)
 cb.ax.xaxis.set_ticks_position('top')
 cb.ax.xaxis.set_label_position('top')
-[l.set_fontsize(16) for l in cb.ax.xaxis.get_ticklabels()]
+[l.set_fontsize(12) for l in cb.ax.xaxis.get_ticklabels()]
 cb.set_clim(0, 1)
+
+ax.grid(False)
 
 fig.subplots_adjust(left=0.2, bottom=0.02)
 fig.savefig('coordinates-benchmark.pdf')
