@@ -29,7 +29,7 @@ with open("registry.tex", "w") as f1, open("registry_prov.tex", "w") as f2:
                                 citealt
                                ))
         else:
-            f2.write(row.format(item["repo_url"], 
+            f2.write(row.format(item["repo_url"],
                                 re.sub('_', '\_', item["name"]),
                                 stable_dict[item["stable"]], item['pypi_name'],
                                 re.sub(' <.*?>', '', item["maintainer"]),
