@@ -871,13 +871,13 @@ The \package{astropy.modeling} subpackage now supports the representation, evalu
 % Adam G.
 
 The \package{astropy.convolution} subpackage implements
-``normalized convolution'' \citep[e.g.,][]{Knutsson1993} that is an image
-reconstruction technique, in which missing data are ignored during the
-convolution and replaced with values interpolated using the kernel;
-An example of this is given in \figurename~\ref{fig:convolution-example}.
+\textit{normalized convolution} \citep[e.g.,][]{Knutsson1993}, an image
+reconstruction technique in which missing data are ignored during the
+convolution and replaced with values interpolated using the kernel.
+An example is given in \figurename~\ref{fig:convolution-example}.
 In \astropypkg versions $\leq 1.3$, the direct convolution and Fast Fourier Transform (FFT)
-convolution approaches were inconsistent, with the latter implementing
-normalized convolution, while the former a different approach.
+convolution approaches were inconsistent, with only the latter implementing
+normalized convolution.
 As of version 2.0, the two methods now agree and include a suite of
 consistency checks.
 
