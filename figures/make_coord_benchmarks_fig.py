@@ -45,10 +45,11 @@ n = len(names)
 M = np.zeros((2*n, 2*n))
 for i in range(n):
     for j in range(n):
-        if 2*i < 2*j:
+        if 2*i >= 2*j:
             M[2*j:2*j+2, 2*i:2*i+2] = np.nan
         else:
-            M[2*j:2*j+2, 2*i:2*i+2] = np.array(data["{}-{}".format(names[j], names[i])])
+            M[2*j:2*j+2, 2*i:2*i+2] = np.array(data["{}-{}".format(names[j],
+                                                                   names[i])])
 
 
 fig, ax = plt.subplots(1, 1, figsize=(6,8.75))
