@@ -18,5 +18,6 @@
  "PyDL": "pydl",
  "python-cpl": "pythoncpl",
  "sncosmo": "sncosmo",
- "spectral-cube": "spectralcube"
+ "spectral-cube": "spectralcube",
+ "pyspeckit": "pyspeckit"
 }
