@@ -35,7 +35,7 @@
         },
         {
             "name": "ginga",
-            "maintainer": "Eric Jeschke <eric@naoj.org> and Pey-Lian Lim",
+            "maintainer": "Eric Jeschke <eric@naoj.org> and Pey Lian Lim",
             "provisional": false,
             "stable": true,
             "home_url": "https://ejeschke.github.io/ginga",

@@ -320,17 +320,17 @@ of the \python distributions for scientific computing (e.g.,
 \url{http://docs.astropy.org/en/stable/install.html}}
 Effort has been made to make \astropypkg available and easily installable across
 all platforms; the package is constantly tested on different platforms as part
-of a suite of continuous integration tests.
+of a suite of continuous integration (CI) tests.
 
 \subsection{Support of Astropy}
 
 The \astropy project, as of the version 2.0 release, does not receive any direct
 financial support for the development of \astropypkg.
-Development of the software, all supporting materials, and community support are provided
-by individuals who work on the \astropy project in their own personal
-time, by individuals or groups contributing to \astropy as
-part of a research project, or contributions from institutions that allocate
-people to work on \astropy.
+Development of the software, all supporting materials, and community support are
+provided by individuals who work on the \astropy project in their own personal
+time, by individuals or groups contributing to \astropy as part of a research
+project, or contributions from institutions that allocate people to work on
+\astropy.
 A list of organizations that have contributed to \astropy in this manner
 can be found in the Acknowledgments.
 
@@ -342,13 +342,7 @@ from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
 open source scientific computing.} organization. NumFOCUS has, to date, covered the direct costs incurred by the \astropy project.
 
-% Removing unless this gets written about in
-% a later version
-% This section should be a straight forward/factual description of the current
-% funding and support provided to astropy with the purpose of explaining the
-% current structure to the community
-
-\section{Astropy Core Package version 2.0}
+\section{Astropy Core Package Version 2.0}
 \label{sec:core}
 % Adrian
 The \astropy project aims to provide \python-based packages for all tasks that
@@ -701,7 +695,7 @@ classes building on this interface, and utilities for manipulating these kind of
 datasets.
 
 The \texttt{NDDataBase} class provides the abstract interface for gridded data
-with attributes for accessing metadata, the world-coordinate system (WCS),
+with attributes for accessing metadata, the world coordinate system (WCS),
 uncertainty arrays matched to the shape of the data, and other traits.
 Building on this interface, the \texttt{NDData} class provides a minimal
 working implementation for storing \package{numpy} arrays. These classes serve
@@ -893,20 +887,31 @@ The \package{astropy.modeling} subpackage now supports the representation, evalu
 \subsection{Convolution}
 % Adam G.
 
-The \package{astropy.convolution} subpackage implements `normalized convolution' \citep[e.g.,][]{Knutsson1993}, which is an image reconstruction technique in which missing data are ignored during the convolution and replaced with values interpolated using the kernel.   An example of this is given in \figurename~\ref{fig:convolution-example}.  In versions $\leq 1.3$, the direct convolution and Fast Fourier Transform (FFT) convolution approaches were not consistent, with FFT convolution implementing normalized convolution and direct convolution implementing a different approach.  As of version 2.0, the two methods are consistent and include a suite of consistency checks.
+The \package{astropy.convolution} subpackage implements
+``normalized convolution'' \citep[e.g.,][]{Knutsson1993} that is an image
+reconstruction technique, in which missing data are ignored during the
+convolution and replaced with values interpolated using the kernel;
+An example of this is given in \figurename~\ref{fig:convolution-example}.
+In \astropypkg versions $\leq 1.3$, the direct convolution and Fast Fourier Transform (FFT)
+convolution approaches were inconsistent, with the latter implementing
+normalized convolution, while the former a different approach.
+As of version 2.0, the two methods now agree and include a suite of
+consistency checks.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{convolution_example}
 \caption{%
     An example showing different modes of convolution available in the \python
-    ecosystem.  The red x's mark pixels that are set to \texttt{NaN} in the original data
-    (a).  If the data are convolved with a Gaussian kernel on a $9\times 9$ grid using
+    ecosystem.  The red x's mark pixels that are set to \texttt{NaN} in the
+    original data (a).  If the data are convolved with a Gaussian kernel on a
+    $9\times 9$ grid using
     \package{scipy}'s direct convolution (b), any pixel within range of the original \texttt{NaN}
-    pixels is also set to \texttt{NaN}.  Panel (c) shows what happens if the \texttt{NaN}s are set
-    to zero first: the originally \texttt{NaN} regions are depressed relative to their
-    surroundings.  Finally, panel (d) shows \astropypkg's convolution behavior,
-    where the missing pixels are replaced with values interpolated from their
-    surroundings using the convolution kernel.
+    pixels is also set to \texttt{NaN}.  Panel (c) shows what happens if the
+    \texttt{NaN}s are set to zero first: the originally \texttt{NaN} regions are
+    depressed relative to their surroundings.  Finally, panel (d) shows
+    \astropypkg's convolution behavior, where the missing pixels are replaced
+    with values interpolated from their surroundings using the convolution
+    kernel.
     \label{fig:convolution-example}
 }
 \end{figure}
@@ -915,43 +920,89 @@ The \package{astropy.convolution} subpackage implements `normalized convolution'
 \subsection{Visualization}
 % Larry:  Image visualization (stretching, scaling), RGB
 
-The \package{astropy.visualization} subpackage provides functionality that can be helpful when visualizing data. This includes a framework for plotting astronomical images with coordinates with \package{matplotlib} (previously the standalone \package{wcsaxes} package), functionality related to image normalization (including both scaling and stretching), smart histogram plotting, RGB color image creation from separate images, and custom plotting styles for \package{matplotlib}.
+The \package{astropy.visualization} subpackage provides functionality that can
+be helpful when visualizing data. This includes a framework (previously the
+standalone \package{wcsaxes} package) for plotting
+astronomical images with coordinates with \package{matplotlib}, functionality related to image
+normalization (including both scaling and stretching), smart histogram
+plotting, red-green-blue (RGB) color image creation from separate images,
+and custom plotting styles for \package{matplotlib}.
 
 \subsubsection{Image Stretching and Normalization}
 
 \label{sec:stretch}
 
-\package{astropy.visualization} provides a framework for transforming values in images (and more generally any arrays), typically for the purpose of visualization. Two main types of transformations are normalization and stretching of image values.
+\package{astropy.visualization} provides a framework for transforming values in
+images (and more generally any arrays), typically for the purpose of
+visualization. Two main types of transformations are normalization and
+stretching of image values.
 
-Normalization transforms the images values to the range $[0,1]$ using lower and upper limits $(v_{\rm min}, v_{\rm max})$
+Normalization transforms the image values to the range $[0,1]$ using lower and
+upper limits $(v_{\rm min}, v_{\rm max})$,
 \begin{equation}
-y = \frac{x - v_{\rm min}}{v_{\rm max} - v_{\rm min}}
+y = \frac{x - v_{\rm min}}{v_{\rm max} - v_{\rm min}} \quad ,
 \end{equation}
 where $x$ represents the values in the original image.
 
-Stretching transforms the image values in the range $[0,1]$ again to the range $[0,1]$ using a linear or non-linear function
+Stretching transforms the image values in the range $[0,1]$ again to the range
+$[0,1]$ using a linear or non-linear function,
 \begin{equation}
 z = f(y) \quad .
 \end{equation}
 
-Several classes are provided for automatically determining intervals (e.g., using image percentiles) and for normalizing values in this interval to the $[0,1]$ range.
+Several classes are provided for automatically determining intervals
+(e.g., using image percentiles) and for normalizing values in this interval to
+the $[0,1]$ range.
 
-\package{matplotlib} allows a custom normalization and stretch to be used when displaying data by passing a normalization object. The \package{astropy.visualization} package also provides a normalization class that wraps the interval and stretching objects into a normalization object that \package{matplotlib} understands.
+\package{matplotlib} allows a custom normalization and stretch to be used when
+displaying data by passing in a normalization object.
+The \package{astropy.visualization} package also provides a normalization class
+that wraps the interval and stretches objects into a normalization object that
+\package{matplotlib} understands.
 
 \subsubsection{Plotting image data with world coordinates}
 
-Astronomers dealing with observational imaging commonly need to make figures with images that include the correct coordinates and optionally display a coordinate grid. The challenge, however, is that the conceptual coordinate axes (such as longitude/latitude) need not be lined up with the pixel axes of the image. The \package{astropy.visualization.wcsaxes} subpackage implements a generalized way of making figures from an image array and a world coordinate system (WCS) object that provides the transformation between pixel and `world' coordinates.
+Astronomers dealing with observational imaging commonly need to make figures
+with images that include the correct coordinates and optionally display a
+coordinate grid. The challenge, however, is that the conceptual coordinate axes
+(such as longitude/latitude) need not be lined up with the pixel axes of the
+image. The \package{astropy.visualization.wcsaxes} subpackage implements a
+generalized way of making figures from an image array and a WCS object
+that provides the transformation between pixel and world coordinates.
 
-World coordinates can be, for example, right ascension and declination, but can also include, for example, velocity, wavelength, frequency, or time. The main features from this subpackage include the ability to control which axes to show which coordinate on (for example showing longitude ticks on the top and bottom axes and latitude on the left and right axes), controlling the spacing of the ticks either by specifying the positions to use or providing a tick spacing or an average number of ticks that should be present on each axis, setting the format for the tick labels to ones commonly used by astronomers, controlling the visibility of the grid/graticule, and overlaying ticks, labels, and/or grid lines from different coordinate systems. In addition, it is possible to pass data with more than two dimensions and slice on-the-fly. Finally, it is possible to define non-rectangular frames, such as, for example, Aitoff projections.
+World coordinates can be, for example, right ascension and declination, but can
+also include, for example, velocity, wavelength, frequency, or time.
+The main features from this subpackage include the ability to control which
+axes to show which coordinate on (e.g., showing longitude ticks on the
+top and bottom axes and latitude on the left and right axes), controlling the
+spacing of the ticks either by specifying the positions to use or providing a
+tick spacing or an average number of ticks that should be present on each axis,
+setting the format for the tick labels to ones commonly used by astronomers,
+controlling the visibility of the grid/graticule, and overlaying ticks, labels,
+and/or grid lines from different coordinate systems. In addition, it is
+possible to pass data with more than two dimensions and slice on-the-fly.
+Last but not least, it is also able to define non-rectangular frames, such as,
+for example, Aitoff projections.
 
-This subpackage differs from \package{APLpy} \citep{aplpy} in that the latter focuses on providing a very high-level interface to plotting that requires very few lines of code to get a good result, whereas \package{wcsaxes} defines an interface that is much closer to that of \package{matplotlib} \citep{matplotlib}. This enables significantly more advanced visualizations.
+This subpackage differs from \package{APLpy} \citep{aplpy}, in that the latter
+focuses on providing a very high-level interface to plotting that requires very
+few lines of code to get a good result, whereas \package{wcsaxes} defines an
+interface that is much closer to that of \package{matplotlib} \citep{matplotlib}.
+This enables significantly more advanced visualizations.
 
-An example of a visualization made with \package{wcsaxes} is shown in \figurename~\ref{fig:wcsaxes} -- this example illustrates the ability to overlay multiple coordinate systems and customize which ticks/labels are shown on which axes around the image. This also uses the image stretching functionality from \sectionname~\ref{sec:stretch} to show the image in a square root stretch (automatically updating the tick positions in the colorbar).
+An example of a visualization made with \package{wcsaxes} is shown in
+\figurename~\ref{fig:wcsaxes}; This example illustrates the ability to
+overlay multiple coordinate systems and customize which ticks/labels are shown
+on which axes around the image. This also uses the image stretching
+functionality from \sectionname~\ref{sec:stretch} to show the image in a
+square-root stretch (automatically updating the tick positions in the colorbar).
 
 \begin{figure}
 \includegraphics[width=\textwidth]{cygnus_x_spitzer.pdf}
 \caption{%
-An example of figure made using the \package{astropy.visualization.wcsaxes} subpackage, using \textit{Spitzer}/IRAC 8.0~$\mu$m data from the Cygnus-X \textit{Spitzer} Legacy survey \citep{cygnusx}.
+An example of figure made using the \package{astropy.visualization.wcsaxes}
+subpackage, using \textit{Spitzer}/IRAC 8.0~$\mu$m data from the Cygnus-X
+\textit{Spitzer} Legacy survey \citep{cygnusx}.
 \label{fig:wcsaxes}
 }
 \end{figure}
@@ -959,19 +1010,29 @@ An example of figure made using the \package{astropy.visualization.wcsaxes} subp
 \subsubsection{Choosing Histogram Bins}
 
 \package{astropy.visualization} also provides a histogram function, which is a
-generalization of \texttt{matplotlib}’s histogram function, to allow for more
+generalization of \texttt{matplotlib}’s histogram function, to allow for a more
 flexible specification of histogram bins.  The function provides several methods
 of automatically tuning the histogram bin size. It has a syntax identical to
 \texttt{matplotlib}’s histogram function, with the exception of the \texttt{bins}
 parameter, which allows specification of one of four different methods for
-automatic bin selection: `blocks', `knuth', `scott', or `freedman'.
+automatic bin selection: ``blocks'', ``knuth'', ``scott'', or ``freedman''.
 
 \subsubsection{Creating color RGB images}
 
-\cite{Lupton2004} describe an ``optimal'' algorithm for producing red-green-blue (RGB) composite images from three separate high-dynamic range arrays. The \package{astropy.visualization} subpackage provides a convenience function to create such a color image.  It also includes an associated set of classes to provide alternate scalings.
-This functionality was contributed by developers from the Large Synoptic Survey Telescope (LSST) and serves as an example of contribution to \astropy from a more traditional engineering organization \citep{Jennes2016}.
+\cite{Lupton2004} describe an ``optimal'' algorithm for producing
+RGB composite images from three separate high-dynamic range
+arrays. The \package{astropy.visualization} subpackage provides a convenience
+function to create such a color image.  It also includes an associated set of
+classes to provide alternate scalings.
+This functionality was contributed by developers from the Large Synoptic Survey
+Telescope (LSST) and serves as an example of contribution to \astropy from a
+more traditional engineering organization \citep{Jennes2016}.
 
-The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977} we show an RGB color image of the Hickson 88 group, centered near NGC~6977.  This image was generated from SDSS images using the \package{astropy.visualization} tools.
+The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a
+variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977},
+we show an RGB color image of the Hickson 88 group, centered near NGC~6977.
+This image was generated from SDSS images using the
+\package{astropy.visualization} tools.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{ngc6977.png}
@@ -986,18 +1047,22 @@ tools.
 
 \subsection{Cosmology}
 
-The \package{cosmology} package contains classes for representing different cosmologies and functions for calculating commonly used quantities such as look-back time and distance.   The package was described in detail in \cite{astropy}.  The default cosmology in \astropypkg version 2.0 is given by the values in \cite{2016A&A...594A..13P}.
+The \package{cosmology} package contains classes for representing different
+cosmologies and functions for calculating commonly used quantities such as
+look-back time and distance.   The package was described in detail in
+\cite{astropy}.  The default cosmology in \astropypkg version 2.0 is given by
+the values in \cite{2016A&A...594A..13P}.
 
 \subsection{Statistics}
 % Edited by Adrian PW
 
 The \package{astropy.stats} package provides statistical tools that
-are useful for or specific to astronomy and are not found in or extend
-the available functionality of other \python statistics packages such
+are useful for astronomy and are either not found in or extend
+the available functionality of other \python statistics packages, such
 as \package{scipy} \citep{scipy} or \package{statsmodels}
 \citep{seabold2010statsmodels}.  \package{astropy.stats} contains
 a range of functionality used by many different disciplines
-in astronomy. It is not a complete set of statistic tools, but rather
+in astronomy. It is not a complete set of statistical tools, but rather
 a still growing collection of useful features.
 
 % Steve C.: overview, circular stats,
@@ -1007,25 +1072,51 @@ a still growing collection of useful features.
 
 \subsubsection{Robust Statistical Estimators}
 
-Robust statistics provide reliable estimates of basic statistics for complex distributions that largely mitigate the effects of outliers. \package{astropy.stats} includes several robust statistical functions that are commonly used in astronomy, such as sigma clipping methods for rejecting outliers, median absolute deviation functions, and biweight estimators, which have been used to calculate the velocity dispersion of galaxy clusters \citep{Beers1990}.
+Robust statistics provide reliable estimates of basic statistics for complex
+distributions that largely mitigate the effects of outliers.
+\package{astropy.stats} includes several robust statistical functions that are
+commonly used in astronomy, such as sigma clipping methods for rejecting
+outliers, median absolute deviation functions, and biweight estimators,
+which have been used to calculate the velocity dispersion of galaxy clusters
+\citep{Beers1990}.
 
 \subsubsection{Circular Statistics}
 
-Astronomers often need to compute statistics of quantities evaluated on a circle, such as sky direction or polarization angle.
+Astronomers often need to compute statistics of quantities evaluated on a
+circle, such as sky direction or polarization angle.
 A set of circular statistical estimators based on \citet{JammalamadakaSengupta}
 are implemented in \package{astropy.stats}.  These functions provide
 measurements of the circular mean, variance, and moment.   For all of these
 functions, they work with both \texttt{numpy.ndarrays} (assumed to be in
 radians) and \texttt{Quantity} objects.  In addition, the subpackage includes
-tests for Rayleigh Test, vtest, and a function to compute the maximum likelihood
-estimator for the parameters of the von Mises distribution.
+tests for Rayleigh Test, \texttt{vtest}, and a function to compute the maximum
+likelihood estimator for the parameters of the von Mises distribution.
 
 \subsubsection{Lomb-Scargle Periodograms}
 
-Periodic analysis of unevenly-spaced time series is common across many subfields of astronomy. The \package{astropy.stats} package now includes several efficient implementations of the Lomb-Scargle periodogram \citep{Lomb76, Scargle82} and several generalizations, including floating mean models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003}, and appropriate handling of heteroscedastic uncertainties. Importantly, the implementations make use of several fast and scalable computational approaches \citep[e.g.,][]{Press89, Palmer09}, and so can be applied to much larger datasets than Lomb-Scargle algorithms available in, e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code in \astropypkg has been adapted from previously-published open-source code \citep{astroML, VanderPlas2015}.
+Periodic analysis of unevenly-spaced time series is common across many
+sub-fields of astronomy. The \package{astropy.stats} package now includes
+several efficient implementations of the Lomb-Scargle periodogram
+\citep{Lomb76, Scargle82} and several generalizations, including floating mean
+models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003},
+and appropriate handling of heteroscedastic uncertainties.
+Importantly, the implementations make use of several fast and scalable
+computational approaches \citep[e.g.,][]{Press89, Palmer09}, and thus can be
+applied to much larger datasets than Lomb-Scargle algorithms available in,
+e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code
+in \astropypkg has been adapted from previously-published open-source code
+\citep{astroML, VanderPlas2015}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
-\astropypkg also includes an implementation of {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of break-points in non-periodic astronomical time-series. One interesting application of Bayesian Blocks is its use in determining optimal histogram binnings, and in particular binnings with unequal bin sizes. This code was adapted, with several improvements, from the \package{astroML} package \citep{astroML}. An example of a histogram fit using the Bayesian blocks algorithm is shown in the right panel of \figurename~\ref{fig:bayes-blocks-hist}.
+\package{astropy.stats} also includes an implementation of
+{\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of
+break-points in non-periodic astronomical time-series. One interesting
+application of Bayesian Blocks is its use in determining optimal histogram
+binnings, particularly binnings with unequal bin sizes.
+This code was adapted, with several improvements, from the \package{astroML}
+package \citep{astroML}. An example of a histogram fit using the Bayesian
+Blocks algorithm is shown in the right panel of
+\figurename~\ref{fig:bayes-blocks-hist}.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{bayesian_blocks_hist.pdf}
@@ -1046,9 +1137,9 @@ Periodic analysis of unevenly-spaced time series is common across many subfields
 
 In addition to astronomy-specific packages and libraries, the \astropy Project
 also maintains and distributes several general-purpose infrastructure packages
-that help with the maintenance and upkeep of the \astropypkg core package and
+that assist the maintenance and upkeep of the \astropypkg core package and
 other affiliated packages.
-The following sections describes the most widely-used infrastructure packages
+The following sections describe the most widely-used infrastructure packages
 developed by the \astropy Project.
 
 \subsection{Package template}
@@ -1070,10 +1161,10 @@ for continuous integration services, and \package{Cython} build support.
 % Brigitta
 
 \astropy also provides a set of scripts for setting up and configuring
-continuous integration (CI) services as a \github repository,
+CI services as a \github repository,
 \package{astropy/ci-helpers}.\footnote{\url{https://github.com/astropy/ci-helpers}}
-These tools aim to empower package maintainers to control their testing set up
-and installation process for various continuous integration services through a
+These tools aim to empower package maintainers to control their testing setup
+and installation process for various CI services through a
 set of environment variables.
 While the current development is mostly driven by the needs of the \astropy
 ecosystem, the actual usage of this package is extremely widespread. The current
@@ -1081,20 +1172,20 @@ tools support configuration for Travis CI and Appveyor CI.
 
 \subsection{Sphinx extensions}
 
-The documentation for many \python packages, the core \astropypkg package, and
-for all packages in the \astropy ecosystem is written using the
+The documentation for many \python packages, including
+all the packages in the \astropy ecosystem, is written using the
 \package{Sphinx} documentation build system.
-\package{Sphinx} makes it possible to write documentation using plain text files
-that follow a markup language called ``reStructuredText,'' which are then
-transformed into HTML or \LaTeX{} documentation during the documentation build
-process.
-For the \astropy project, we have developed a few \package{Sphinx} extensions
+\package{Sphinx} supports writing documentation using plain text files
+that follow a markup language called \texttt{reStructuredText} (RST).
+These files are then transformed into HTML, PDF, or \LaTeX{} documents
+during the documentation build process.
+For the \astropy project, we have developed several \package{Sphinx} extensions
 that facilitate automatically generating API documentation for large projects,
 like the \astropypkg core package.
 The main extension we have developed is
 \package{sphinx-automodapi}\footnote{\url{http://sphinx-automodapi.readthedocs.io}},
-which makes it easy with a single reStructuredText command to generate a set of
-documentation pages listing all of the available classes, functions, and
+which provides a convenient single RST command to generate a set of
+documentation pages, listing all of the available classes, functions, and
 attributes in a given \python module.
 
 \section{The future of the Astropy project}
@@ -1106,55 +1197,55 @@ attributes in a given \python module.
 Following the release of version 2.0, development on the next major version of
 the \astropypkg core package (version 3.0) has already begun.
 On top of planned changes and additions to the core package, we also plan to
-overhaul the \astropy educational and learning materials, and further refactor
-and generalize the infrastructure utilities developed for the core package for
-the benefit of the community.
+overhaul the \astropy educational/learning materials and further
+generalize the infrastructure utilities originally developed for the core
+package for the benefit of the community.
 
 \subsection{Future versions of the Astropy core and affiliated packages}
 
 One of the most significant changes coming in this next major release will be
-removing support for \python 2 \citep{ape10}: future versions of \astropypkg
-will only support \python 3.5 and higher.
-Removing \python 2 support will allow the use of new, \python 3-only features,
-will simplify the code base, and reduce the testing overhead for the package.
+removing the support for \python 2 \citep{ape10}: future versions of \astropypkg
+will only support \python 3.5 or higher.
+Removing \python 2 support will allow the use of new \python 3-only features,
+simplify the code base, and reduce the testing overhead for the package.
 \astropypkg version 3.0 is currently scheduled for January 2018.
 
 In the next major release after version 3.0, scheduled for
-mid-2018, the focus will be on optimization of the code and improved
-documentation.
-To prepare for this release, we are preparing software for testing, evaluating,
-and monitoring the performance of the code.
-Less functionality may be introduced in this release while the focus will be
-primarily on improved performance.
+mid-2018, the focus will be on algorithm optimization and
+documentation improvement.
+To prepare for this release, we are subjecting the core package to testing,
+evaluation, and performance monitoring.
+As a result, less new functionality may be introduced as a trade-off for
+better performance.
 
 Beyond the core code, the \astropy project is also further developing the
 \astropy-managed affiliated packages.
 While these may not be integrated into the \astropypkg core package, these
 projects provide code that is useful to the astronomical community and meet the
 testing and documentation standards of \astropy.
-Some of these new efforts includes an initiative to develop tools for
+Some of these new efforts include an initiative to develop tools for
 spectroscopy \citep[\package{specutils}, \package{specreduc}, \package{specviz}]
-{ape13}, integration of LSST software, and packages to support HEALPIX
+{ape13}, integration of LSST software, and support for HEALPIX
 projection. %\citep{astropy-healpix}
 %\inlinecomment{BMS}{TODO: uncomment references of packages once they are available}
 
 \subsection{Learn Astropy}
 % Adrian
 
-The \astropypkg core package documentation contains narrative descriptions of
-the package functionality along with detailed usage notes for functions,
+The documentation of the \astropypkg core package contains narrative descriptions of
+the package's functionality, along with detailed usage notes for functions,
 classes, and modules.
-While useful as a reference and for more advanced \python users, it is not the
-right entry-point for all users or learning environments.
+While useful as a reference for more experienced \python users, it is not the
+proper entry-point for other users or learning environments.
 In the near future, we will launch a new resource for learning to use both the
 \astropypkg core package and the many packages in the broader \astropy
-ecosystem, under the name `\emph{Learn Astropy}.'
+ecosystem, under the name \emph{Learn Astropy}.
 
 The new \emph{Learn Astropy} site will present several different ways to engage
 with the \astropy ecosystem:
 \begin{description}
     \item[Documentation] The \astropypkg and affiliated package documentation
-        contain the complete description of a package with all requisite
+        contains the complete description of a package with all requisite
         details, including usage, dependencies, and examples.
         The pages will largely remain as-is, but will be focused towards more
         intermediate users and as a reference resource.
@@ -1172,11 +1263,11 @@ with the \astropy ecosystem:
         Several tutorials already
         exist\footnote{\url{http://tutorials.astropy.org/}} and are being
         actively expanded.
-    \item[Guides] These are long-form narrative, comprehensive,
-        conceptually-focused documents (roughly one book chapter in length)
+    \item[Guides] These are long-form narrative, comprehensive, and
+        conceptually-focused documents (roughly one book chapter in length),
         providing stand-alone introductions to core packages in addition to the
         underlying astronomical concepts.
-        These are less specific and more conceptual than tutorials.
+        These are less specific and more conceptual than tutorials;
         For example, ``using \astropypkg and \package{ccdproc} to reduce imaging
         data.''
 \end{description}
@@ -1189,32 +1280,32 @@ comment on these efforts via the \astropy mailing list or \package{astropy/astro
 % Renamed and edited by Adrian PW
 
 The development of the \astropypkg package and cultivation of the \astropy
-ecosystem is still maintaining significant growth while improving stability,
+ecosystem are still maintaining significant growth while improving in stability,
 breadth, and reliability.
 As the \astropypkg core package becomes more mature, several subpackages have
 reached stability with a rich set of features that help astronomers worldwide to
-perform many daily tasks such as planning observations, analyzing data or
+perform many daily tasks, such as planning observations, analyzing data or
 simulation results, and writing publications.
-The strong emphasis that the \astropy project puts on reliability and code
-correctness helps users to trust the calculations performed with \astropypkg and
+The strong emphasis that the \astropy project puts on reliability and high coding
+standards helps users to trust the calculations performed with \astropypkg and
 to publish reproducible results.
-At the same time, the \astropy ecosystem and core package are growing: new
-functionality is still being contributed, and new affiliated packages are being
+At the same time, the \astropy ecosystem and core package are both growing: new
+functionality is still being contributed and new affiliated packages are being
 developed to support more specialized needs.
 
 The \astropy project is also spreading awareness of best practices in
 community-driven software development.
 This is important as most practicing astronomers were not explicitly taught
 computer science and software development, despite the fact that a major
-fraction of nearly every astronomer's workload today is related to software use
+fraction of many astronomers' workload today is related to software use
 and development.
 The \astropypkg package leads by example, showing all interested astronomers how
-modern tools like \texttt{git} version control or continuous integration can
+modern tools like \texttt{git} version control or CI testing can
 increase the quality, accessibility, and discoverability of astronomical
 software without overly complicating the development cycle.
 Within \astropy, all submitted code is reviewed by at least one, but typically
-more, members of the \astropy community, who provide feedback to contributors
-to help improve their skills.
+more, members of the \astropy community, who provide feedback to contributors,
+which helps to improve their skills.
 As a community, \astropy follows an explicit code of conduct \citep{ape8} and treats all
 contributors and users with respect, provides a harassment-free environment, and
 encourages and welcomes new contributions from all.
