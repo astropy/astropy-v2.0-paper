@@ -73,13 +73,18 @@ broader \astropy project.
 
 
 \section{Introduction} \label{sec:intro}
-All astronomical research makes use of software in some way.  Astronomy as a field has thus long supported the development of software tools
-for astronomical tasks: from scripts that enable individual scientific research to software packages for small collaborations to data reduction pipelines for survey operations.
-Some software packages are or were supported by large institutions and are intended for a wide range of users. These packages typically provide some level of documentation and user support or
-training.
+All astronomical research makes use of software in some way.
+Astronomy as a field has thus long supported the development of software tools
+for astronomical tasks, such as scripts that enable individual scientific
+research, software packages for small collaborations, and data reduction
+pipelines for survey operations.
+Some software packages are or were supported by large institutions and are
+intended for a wide range of users.
+These packages therefore typically provide some level of documentation and user
+support or training.
 Other packages are developed by individual researchers or research groups and
 are then typically used by smaller groups for more domain-specific purposes.
-Both in packages meant for wider distribution and in scripts specific to
+For both packages meant for wider distribution and for scripts specific to
 particular research projects, a library that addresses common astronomical tasks
 simplifies the software development process.
 The users of such a library then also benefit from a community and ecosystem
@@ -92,11 +97,11 @@ community-driven effort to standardize core functionality for astronomical
 software in \python.
 In this way, its genesis differs from but builds upon many substantial and
 former astronomical software development efforts that were commissioned or
-initiated through large institutional support, for example IRAF \citep[developed
+initiated through large institutional support, such as IRAF \citep[developed
 at NOAO;][]{IRAF}, MIDAS \citep[developed at ESO;][]{MIDAS}, or Starlink
 \citep[originally developed by a consortium of UK institutions and now
 maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
-More recently, community-driven efforts have seen significant success in the astronomical sciences \citep{yt}.
+More recently, community-driven efforts have seen significant success in the astronomical sciences (e.g., \citealt{yt}).
 
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular, general-purpose
 programming language that is available under a permissive open source software license free of
@@ -110,11 +115,12 @@ software. While dedicated libraries provide support for array representation and
 arithmetic \citep[\package{numpy};][]{numpy}, a wide variety of functions for scientific
 computing \citep[\package{scipy};][]{scipy}, and publication-quality plotting
 \citep[\package{matplotlib};][]{matplotlib}, tens of thousands of other high-quality and easy-to-use
-packages are available, which can help with tasks that are not astronomy specific but
-might be performed in the course of astronomical research; e.g., interfacing with
-databases or statistical inferences. More recently, the development of package managers such as
-Anaconda\footnote{\url{https://anaconda.org/}} has significantly streamlined the installation
-process for many libraries, lowering many barriers to entry.
+packages are available, which can help with tasks that are not specific to astronomy but
+might be performed in the course of astronomical research, e.g., interfacing with
+databases, or statistical inferences.
+More recently, the development and mainstream adoption of package managers such
+as Anaconda\footnote{\url{https://anaconda.org/}} has significantly streamlined
+the installation process for many libraries, lowering many barriers to entry.
 
 The \astropy project aims to provide an open-source and open-development core
 package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
@@ -147,10 +153,13 @@ developed by the \astropy project itself: a core package called \astropypkg
 (\sectionname~\ref{sec:core}) and several separate packages that help maintain
 the infrastructure for, e.g., testing and documentation
 (\sectionname~\ref{sec:infrastructure}). We end with a short vision for
-the future of \astropy in particular and astronomical software in general
-in \sectionname~\ref{sec:future}.
+the future of \astropy and astronomical software in general in
+\sectionname~\ref{sec:future}.
 
-This article is not intended as an introduction to \astropypkg, nor does it replace the \astropypkg documentation. Instead, it describes the way the \astropy community is organized and the current state of the \astropypkg package.
+This article is not intended as an introduction to \astropypkg, nor does it
+replace the \astropypkg documentation. Instead, it describes the way the
+\astropy community is organized and the current state of the \astropypkg
+package.
 
 \section{Organization and infrastructure}
 \label{sec:org}
