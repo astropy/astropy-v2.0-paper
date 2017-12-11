@@ -83,5 +83,7 @@ for i in range(0, 2*n):
         ax.plot([i+0.5, i+0.5], [-0.5, np.floor(i+2.5)-0.5], color='#888888', alpha=0.25,
                 **grid_style)
 
-fig.colorbar(c)
+cb = fig.colorbar(c)
+cb.set_label('accuracy metric [arcsec]')
+
 fig.savefig('coordinates-benchmark.pdf')
