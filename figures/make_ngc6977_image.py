@@ -5,6 +5,10 @@ from astropy.visualization import make_lupton_rgb, astropy_mpl_style
 from astropy.wcs import WCS
 import matplotlib.pyplot as plt
 plt.style.use(astropy_mpl_style)
+plt.rcParams['font.family'] = plt.rcParamsDefault['font.family']
+plt.rcParams['lines.marker'] = ''
+from reproject import reproject_interp
+import numpy as np
 
 # load the data
 g_name = get_pkg_data_filename('visualization/reprojected_sdss_g.fits.bz2')
@@ -15,19 +19,31 @@ g = fits.open(g_name)[0]
 r = fits.open(r_name)[0]
 i = fits.open(i_name)[0]
 
-# extract a smaller region around the Hickson 88 group
-slc = (slice(0, 285), slice(33, 318))
-gp = g.data[slc]
-rp = r.data[slc]
-ip = i.data[slc]
+# Rotate the images
+ang = np.deg2rad(90)
+wcs = WCS(g.header)
+wcs.wcs.cd = wcs.wcs.cd @ np.array([[np.cos(ang),-np.sin(ang)],[np.sin(ang),np.cos(ang)]])
 
-# make the figure - stretch 1
+imgs = []
+for img in [g,r,i]:
+    hdr = img.header
+    hdr = hdr.copy()
+
+    arr, footprint = reproject_interp(img, wcs.to_header(),
+                                      shape_out=(g.header['NAXIS1'], g.header['NAXIS2']))
+    imgs.append(arr)
+
+# extract a smaller region around the Hickson 88 group
+slc = (slice(200, 580), slice(130, 550))
+gp = imgs[0][slc]
+rp = imgs[1][slc]
+ip = imgs[2][slc]
+
+# make the figure - 2 sets of stretch parameters
 rgb1 = make_lupton_rgb(ip, rp, gp)
 rgb2 = make_lupton_rgb(ip*0.8, rp, gp*1.3, Q=10, stretch=0.4)
 
-wcs = WCS(g.header)
-
-fig, axes = plt.subplots(1, 2, figsize=(8, 4),
+fig, axes = plt.subplots(1, 2, figsize=(10, 5.5),
                          sharex=True, sharey=True,
                          subplot_kw=dict(projection=wcs))
 
@@ -39,9 +55,9 @@ axes[1].imshow(rgb2, origin='lower')
 axes[1].set_title('Q=10, stretch=0.4', fontsize=18)
 axes[1].set_adjustable('box-forced')
 
-for i in [0,1]:
-    lon, lat = axes[i].coords
-    axes[i].coords.grid(True, color='white', ls='solid', alpha=0.4)
+for j in [0,1]:
+    lon, lat = axes[j].coords
+    axes[j].coords.grid(True, color='white', ls='solid', alpha=0.4)
 
     lon.set_axislabel('Right Ascension (ICRS)')
 
@@ -52,4 +68,4 @@ for i in [0,1]:
     lat.set_major_formatter('dd:mm')
 
 axes[0].coords[1].set_axislabel('Declination (ICRS)')
-fig.savefig('ngc6977.png')
+fig.savefig('ngc6977.pdf')
