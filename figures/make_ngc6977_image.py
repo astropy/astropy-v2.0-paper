@@ -11,18 +11,17 @@ from reproject import reproject_interp
 import numpy as np
 
 # load the data
-# g_name = get_pkg_data_filename('visualization/reprojected_sdss_g.fits.bz2')
-# r_name = get_pkg_data_filename('visualization/reprojected_sdss_r.fits.bz2')
-# i_name = get_pkg_data_filename('visualization/reprojected_sdss_i.fits.bz2')
-g_name = get_pkg_data_filename('hash/fb425fccf6326e34f4566711d8910364')
-r_name = get_pkg_data_filename('hash/e6670142bc3c83936d84bd5d5d331d6a')
-i_name = get_pkg_data_filename('hash/ed6e4146ea0a1d2af0f005dd8ba79282')
+g_name = get_pkg_data_filename('visualization/reprojected_sdss_g.fits.bz2')
+r_name = get_pkg_data_filename('visualization/reprojected_sdss_r.fits.bz2')
+i_name = get_pkg_data_filename('visualization/reprojected_sdss_i.fits.bz2')
 
 g = fits.open(g_name)[0]
 r = fits.open(r_name)[0]
 i = fits.open(i_name)[0]
 
-# Rotate the images
+# Rotate the images: the images are rotated ~90º from the coordinate grid, so
+# as they are by default, the grid tick labels don't appear along the axes. This
+# rotates the images so they are more aligned with the coordinate grid.
 ang = np.deg2rad(-90)
 wcs = WCS(g.header)
 wcs.wcs.cd = wcs.wcs.cd @ np.array([[np.cos(ang),-np.sin(ang)],[np.sin(ang),np.cos(ang)]])
