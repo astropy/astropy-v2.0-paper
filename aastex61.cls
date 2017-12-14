@@ -6029,7 +6029,7 @@ needed. It will not do anything.^^J Please use
 \newcount\AuthorCollaborationLimit
 \let\AuthorCallLimit\AuthorCollaborationLimit
 %% no limit for default
-\AuthorCollaborationLimit=100
+\AuthorCollaborationLimit=300
 \newcount\largestAffilNum
 
 \def\lookfornumbers#1#2#3#4#5#6#7#8#9{\def\one{#1}
