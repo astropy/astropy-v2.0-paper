@@ -709,13 +709,20 @@ or reduction are also provided.
 \label{sec:table}
 % fleshed out / edited by Adrian PW
 
-The \package{astropy.table} subpackage provides functionality for representing
-and manipulating heterogeneous data.
-The package was described in detail in \cite{astropy}.
-Thus, in what follows, we only summarize key new features or updates to
-\package{astropy.table} since the previous \astropy paper.
+The \package{astropy.table} subpackage provides functionality for
+representing and manipulating heterogeneous data. In some respects,
+this is similar to \package{numpy} record arrays \citep{numpy} or
+\package{pandas} dataframes \citep{pandas} but with modifications for
+astronomical data. Most notably, tables from \package{astropy.table}
+allow for table or column metadata and can handle
+vectors or arrays as table entries.
+The subpackage was described in
+detail in \cite{astropy}.  Thus, in what follows, we only summarize
+key new features or updates to \package{astropy.table} since the
+previous \astropy paper. These are support for grouped table
+operations, table concatnation, and using array-valued
+\package{astropy} objects as table columns.
 
-\subsubsection{Support for grouped table operations}
 
 A table can contain data that naturally form groups; for example, it may
 contain multiple observations of a few sources at different points in time
@@ -726,7 +733,6 @@ the mean or standard deviation of the fluxes or magnitudes over time) or filter
 the groups based on user-defined criteria. These kinds of grouping and
 aggregation operations are now fully supported by \texttt{Table} objects.
 
-\subsubsection{Support for table concatenation}
 
 \texttt{Table} objects can now be combined in several different ways. If two
 tables have the same columns, we may want to stack them ``vertically'' to create a
@@ -736,12 +742,12 @@ new table with the same rows but all columns. For other situations, more generic
 table concatenation or join are also possible when two tables share some
 columns.
 
-\subsubsection{Using Astropy objects in tables}
 
-The \texttt{Table} object now allows \texttt{Quantity}, celestial
+The \texttt{Table} object now allows array-valued \texttt{Quantity}, celestial
 coordinate (\texttt{SkyCoord}), and date/time (\texttt{Time}) objects to
 be used as columns. It also provides a general way for other user-defined
-objects to be used as columns. This makes it possible, for instance, to easily
+array-like objects to be used as columns.
+This makes it possible, for instance, to easily
 represent catalogs of sources or time series in \astropy, while having both the
 benefits of the \texttt{Table} object (e.g., accessing specific rows/columns
 or groups of them and combining tables) and of, for example,
