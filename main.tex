@@ -43,7 +43,11 @@
 \correspondingauthor{Astropy Coordination Committee}
 \email{coordinators@astropy.org}
 
-\author{Astropy Collaboration}
+\author{Astropy Project}
+\noaffiliation
+\footnote{The author list has three parts: the 13 authors that made significant contributions to the  writing of the paper in order of contribution, the four members of the \astropy Project coordination committee, and contributions to the \astropy Project in alphabetical order.  The position in the author list does not correspond to contributions to the \astropy Project as a whole.  A more complete list of contributors to the core package can be found in the \href{https://github.com/astropy/astropy/graphs/contributors}{package repository}, and at the \href{http://www.astropy.org/team.html}{\astropy team webpage}.}
+
+\input{author.tex}
 
 \begin{abstract}
 % I (Adrian) took a first stab at the abstract, but it needs some work. Feel
@@ -709,13 +713,20 @@ or reduction are also provided.
 \label{sec:table}
 % fleshed out / edited by Adrian PW
 
-The \package{astropy.table} subpackage provides functionality for representing
-and manipulating heterogeneous data.
-The package was described in detail in \cite{astropy}.
-Thus, in what follows, we only summarize key new features or updates to
-\package{astropy.table} since the previous \astropy paper.
+The \package{astropy.table} subpackage provides functionality for
+representing and manipulating heterogeneous data. In some respects,
+this is similar to \package{numpy} record arrays \citep{numpy} or
+\package{pandas} dataframes \citep{pandas} but with modifications for
+astronomical data. Most notably, tables from \package{astropy.table}
+allow for table or column metadata and can handle
+vectors or arrays as table entries.
+The subpackage was described in
+detail in \cite{astropy}.  Thus, in what follows, we only summarize
+key new features or updates to \package{astropy.table} since the
+previous \astropy paper. These are support for grouped table
+operations, table concatenation, and using array-valued
+\package{astropy} objects as table columns.
 
-\subsubsection{Support for grouped table operations}
 
 A table can contain data that naturally form groups; for example, it may
 contain multiple observations of a few sources at different points in time
@@ -726,7 +737,6 @@ the mean or standard deviation of the fluxes or magnitudes over time) or filter
 the groups based on user-defined criteria. These kinds of grouping and
 aggregation operations are now fully supported by \texttt{Table} objects.
 
-\subsubsection{Support for table concatenation}
 
 \texttt{Table} objects can now be combined in several different ways. If two
 tables have the same columns, we may want to stack them ``vertically'' to create a
@@ -736,12 +746,12 @@ new table with the same rows but all columns. For other situations, more generic
 table concatenation or join are also possible when two tables share some
 columns.
 
-\subsubsection{Using Astropy objects in tables}
 
-The \texttt{Table} object now allows \texttt{Quantity}, celestial
+The \texttt{Table} object now allows array-valued \texttt{Quantity}, celestial
 coordinate (\texttt{SkyCoord}), and date/time (\texttt{Time}) objects to
 be used as columns. It also provides a general way for other user-defined
-objects to be used as columns. This makes it possible, for instance, to easily
+array-like objects to be used as columns.
+This makes it possible, for instance, to easily
 represent catalogs of sources or time series in \astropy, while having both the
 benefits of the \texttt{Table} object (e.g., accessing specific rows/columns
 or groups of them and combining tables) and of, for example,
@@ -1015,15 +1025,21 @@ more traditional engineering organization \citep{Jennes2016}.
 
 The Sloan Digital Sky Survey (SDSS) SkyServer color images were made using a
 variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977},
-we show an RGB color image of the Hickson 88 group, centered near NGC~6977.
+we show an RGB color image of the Hickson 88 group, centered near
+NGC~6977.\footnote{\url{http://skyserver.sdss.org/dr13/en/tools/chart/navi.aspx?ra=313.12381&dec=-5.74611}}
 This image was generated from SDSS images using the
 \package{astropy.visualization} tools.
 
 \begin{figure}
-\includegraphics[width=\textwidth]{ngc6977.png}
+\includegraphics[width=\textwidth]{ngc6977}
 \caption{An RGB color image of the region near the Hickson 88 group
 constructed from SDSS images and the \package{astropy.visualization}
 tools.
+This example uses \package{astropy.visualization.wcsaxes} to display the
+sky coordinate grid, and the \texttt{astropy.visualization.make\_lupton\_rgb()}
+function to produce the RGB image from three SDSS filter images ($g$, $r$, $i$).
+The left and right panel images show two different parameter choices for the
+stretch and softening parameters (shown in the titles).
 \label{fig:ngc6977}}
 \end{figure}
 
@@ -1302,12 +1318,14 @@ community.
 
 \acknowledgments 
 
-We would like to thank the community that have contributed to \astropy, 
-that have open issues and provided feedback, and have supported the 
-project in a number of different ways.  
-%insert significant contributors to astropy who hav decided not to 
+We would like to thank the members of the community that have 
+contributed to \astropy, 
+that have opened issues and provided feedback, and have supported the 
+project in a number of different ways.  We would like to acknowledge
+Alex Conley and Neil Crighton for maintaining the  \package{cosmology} 
+package. 
+%insert significant contributors to astropy who have decided not to 
 %be co-authors
-
 
 The \astropy community is supported by and makes use
 of a number of organizations and services outside the traditional
@@ -1319,9 +1337,11 @@ thank NumFOCUS and the Python Software Foundation for financial
 support. Within the academic community, we thank
 institutions that make it possible that astronomers and other developers on
 their staff can contribute their time to the development of
-\astropy projects.
-% Add list of institutes
+\astropy projects.  We would like acknowledge the support of the 
+Space Telescope Science Institute, Harvard–Smithsonian Center for Astrophysics, 
+and the South African Astronomical Observatory.  
 
+The following individuals would like to recognize support for their personal contributions.
 HMG was supported by the National Aeronautics and Space Administration through the 
 Smithsonian Astrophysical Observatory contract SV3-73016 to MIT for Support of the Chandra X-Ray Center, which is
 operated by the Smithsonian Astrophysical Observatory for and on behalf of the National Aeronautics Space 
@@ -1336,6 +1356,7 @@ ANT 1655 and ANT 1656. DH was supported through the SFB 881 "The Milkyway System
 grant AYA2016-75808-R (FEDER) issued by the Spanish government. JEHT was supported by the Gemini Observatory, which
 is operated by the Association of Universities for Research in Astronomy, Inc., on behalf of the international 
 Gemini partnership of Argentina, Brazil, Canada, Chile, and the United States of America.
+
 
 Furthermore, the \astropy packages would not exist
 in their current form without a number of web services for code
