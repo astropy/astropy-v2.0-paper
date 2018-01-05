@@ -198,8 +198,8 @@ infrastructure that supports the development and maintenance of the package.
 Individual pull requests are generally limited to a single conceptual addition
 or modification to make code review tractable.
 Pull requests that modify or add code to a specific subpackage must be reviewed
-and approved by one of the subpackage maintainers before it is merged into the
-core codebase.
+and approved by one of the subpackage maintainers before they are merged into
+the core codebase.
 Bugs and feature requests are reported via the \github issue tracker and labeled
 with a set of possible labels that help classify and organize the issues.
 The development workflow is detailed in the \astropypkg
@@ -246,7 +246,7 @@ steady rate throughout its existence.
 
 Central to the success of \astropy is an open environment where anybody can
 contribute to the project.
-This model leads to an ``organic'' growth, where different features are
+This model leads to an ``organic'' growth, where features are
 implemented by different people with different programming styles and
 interfaces.
 Thus, \astropy has a mechanism to more formally propose significant changes to
@@ -324,7 +324,7 @@ features.
 Some versions are additionally designated as ``Long-term support'' (LTS)
 releases, which continue to receive bug fixes for 2 years following the release
 with no changes to the API\@.
-The LTS versions are ideal for pipelines and other applications, where API
+The LTS versions are ideal for pipelines and other applications in which API
 stability is essential.
 The latest LTS release (version 2.0) is also the last one that supports \python
 2; it will receive bug fixes until the end of 2019 \citep{ape10}.
@@ -378,7 +378,7 @@ package
 provides a full log of changes\footnote{\url{https://github.com/astropy/astropy/blob/stable/CHANGES.rst}}
 over the course of the entire project and more details about individual
 subpackages are available in the documentation.\footnote{\url{http://docs.astropy.org/en/stable/}}
-Beyond what is mentioned below, most subpackages have seen increased performance
+Beyond what is mentioned below, most subpackages have seen improved performance
 since the release of the version 0.2 package.
 
 \subsection{Units}\label{sec:units}
@@ -412,8 +412,9 @@ features and improvements here.
 work well with many of the functions in \texttt{numpy} that support
 array operations. For example, \texttt{Quantity} objects with angular
 units can be directly passed in to the trigonometric functions implemented in
-\texttt{numpy}. The units are internally converted to radians (what the \texttt{numpy}
-trigonometric functions expect) before being passed to \texttt{numpy}.
+\texttt{numpy}. The units are internally converted to radians, which is what
+the \texttt{numpy} trigonometric functions expect, before being passed to
+\texttt{numpy}.
 
 \subsubsection{Logarithmic units and magnitudes}
         By default, taking the logarithm of
@@ -535,7 +536,7 @@ connected frames.
 }
 \end{figure}
 
-The typical user doesn't usually have to interact with the \texttt{Frame} or
+The typical user does not usually have to interact with the \texttt{Frame} or
 \texttt{Representation} classes directly.
 Instead, \texttt{astropy.coordinates} provides a high-level interface to
 representing astronomical coordinates through the \texttt{SkyCoord} class,
@@ -572,10 +573,9 @@ In addition to representing celestial
     Transforming coordinates with velocity data is also supported, but in some
     cases the transformed velocity components have limited accuracy because the
     transformations are done numerically instead of analytically.
-    The low-level interface for specifying and transforming velocity data (see
-    the next point) is currently experimental.
-    As such, in version 2.0, only the \texttt{Frame} classes (and not the
-    \texttt{SkyCoord} class) support handling velocities.
+    The low-level interface for specifying and transforming velocity data  is
+    currently experimental.  As such, in version 2.0, only the \texttt{Frame}
+    classes (and not the \texttt{SkyCoord} class) support handling velocities.
 
 \subsubsection{Solar System Ephemerides}
     Also new is support for computing ephemerides of major solar system bodies
@@ -809,11 +809,12 @@ Command-line scripts are now available for printing a summary of the HDUs in
 FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
 the screen in a human-readable format (\texttt{fitsheader}).
 
-FITS files are now loaded \emph{lazily} (this default behavior can be
-deactivated, if needed), where all HDUs are not loaded until
-requested. This should provide substantial speed-ups when using the
-convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
-get an HDU that is near the beginning in a file with many HDUs.
+FITS files are now loaded \emph{lazily} by default, i.e., an object
+representing the list of HDUs is created but the data are not loaded into
+memory until requested.  This approach should provide substantial speed-ups
+when using the convenience functions (e.g., \texttt{getheader()} or
+\texttt{getdata()}) to get an HDU that is near the beginning in a file with
+many HDUs.
 
 \subsection{Modeling}
 \label{sec:modeling}
@@ -843,7 +844,7 @@ Models are defined by their parameters and initialized by providing values for t
 names of the parameters are stored in a list, \texttt{Model.param\_names}. Parameters are complex objects.
 They store additional information -- default value, default unit, and parameter constraints. Parameter
 values and constraints can be updated by assignment. Supported constraints include \texttt{fixed},
-and \texttt{tied} parameters, and \texttt{bounds} on parameter values. The framework supports also models
+and \texttt{tied} parameters, and \texttt{bounds} on parameter values. The framework also supports models
 for which the number of parameters and their names are defined by another argument.
 A typical example is a polynomial model defined by its degree.
 A model is evaluated by calling it as a function.
@@ -873,11 +874,22 @@ Sherpa \citep{sherpa},
 and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
 
 \subsubsection{Creating New Models}
-If arithmetic combinations of existing models is not sufficient, new model classes can be defined in different ways. The \package{astropy.modeling} provides tools to turn a simple function into a full-featured model, but it also allows extending the build-in model class with arbitrary code.
+If arithmetic combinations of existing models is not sufficient, new model
+classes can be defined in different ways. The \package{astropy.modeling}
+package provides tools to turn a simple function into a full-featured model,
+but it also allows extending the built-in model class with arbitrary code.
 
 \subsubsection{Unit Support}
 
-The \package{astropy.modeling} subpackage now supports the representation, evaluation, and fitting of models using \texttt{Quantity} objects, which attach units to scalar values or arrays of values. In practice, this means that one can, for example, fit a model to data with units and get parameters that also have units out, or initialize a model with parameters with units and evaluate it using input values with different but equivalent units. Using this, we have implemented a blackbody model (\texttt{BlackBody1D}) that can be used to fit observed flux densities in a variety of units and as a function of different units of spectral coordinates (e.g., wavelength or frequency).
+The \package{astropy.modeling} subpackage now supports the representation,
+evaluation, and fitting of models using \texttt{Quantity} objects, which attach
+units to scalar values or arrays of values. In practice, this means that one
+can, for example, fit a model to data with units and get parameters that also
+have units out, or initialize a model with parameters with units and evaluate
+it using input values with different but equivalent units. For example, the
+blackbody model (\texttt{BlackBody1D}) can be used to fit observed flux
+densities in a variety of units and as a function of different units of
+spectral coordinates (e.g., wavelength or frequency).
 
 \subsection{Convolution}
 % Adam G.
@@ -986,7 +998,7 @@ interface that is much closer to that of \package{matplotlib} \citep{matplotlib}
 This enables significantly more advanced visualizations.
 
 An example of a visualization made with \package{wcsaxes} is shown in
-\figurename~\ref{fig:wcsaxes}; This example illustrates the ability to
+\figurename~\ref{fig:wcsaxes}. This example illustrates the ability to
 overlay multiple coordinate systems and customize which ticks/labels are shown
 on which axes around the image. This also uses the image stretching
 functionality from \sectionname~\ref{sec:stretch} to show the image in a
@@ -1087,9 +1099,9 @@ Astronomers often need to compute statistics of quantities evaluated on a
 circle, such as sky direction or polarization angle.
 A set of circular statistical estimators based on \citet{JammalamadakaSengupta}
 are implemented in \package{astropy.stats}.  These functions provide
-measurements of the circular mean, variance, and moment.   For all of these
-functions, they work with both \texttt{numpy.ndarrays} (assumed to be in
-radians) and \texttt{Quantity} objects.  In addition, the subpackage includes
+measurements of the circular mean, variance, and moment.   All of these
+functions work with both \texttt{numpy.ndarrays} (assumed to be in radians) and
+\texttt{Quantity} objects.  In addition, the subpackage includes
 tests for Rayleigh Test, \texttt{vtest}, and a function to compute the maximum
 likelihood estimator for the parameters of the von Mises distribution.
 
@@ -1164,7 +1176,7 @@ for continuous integration services, and \package{Cython} build support.
 \astropy also provides a set of scripts for setting up and configuring
 CI services as a \github repository,
 \package{astropy/ci-helpers}.\footnote{\url{https://github.com/astropy/ci-helpers}}
-These tools aim to empower package maintainers to control their testing setup
+These tools aim to enable package maintainers to control their testing setup
 and installation process for various CI services through a
 set of environment variables.
 While the current development is mostly driven by the needs of the \astropy
@@ -1268,7 +1280,7 @@ with the \astropy ecosystem:
         conceptually-focused documents (roughly one book chapter in length),
         providing stand-alone introductions to core packages in addition to the
         underlying astronomical concepts.
-        These are less specific and more conceptual than tutorials;
+        These are less specific and more conceptual than tutorials.
         For example, ``using \astropypkg and \package{ccdproc} to reduce imaging
         data.''
 \end{description}
@@ -1297,7 +1309,7 @@ developed to support more specialized needs.
 The \astropy project is also spreading awareness of best practices in
 community-driven software development.
 This is important as most practicing astronomers were not explicitly taught
-computer science and software development, despite the fact that a major
+computer science and software development, despite the fact that a substantial
 fraction of many astronomers' workload today is related to software use
 and development.
 The \astropypkg package leads by example, showing all interested astronomers how
@@ -1305,8 +1317,8 @@ modern tools like \texttt{git} version control or CI testing can
 increase the quality, accessibility, and discoverability of astronomical
 software without overly complicating the development cycle.
 Within \astropy, all submitted code is reviewed by at least one, but typically
-more, members of the \astropy community, who provide feedback to contributors,
-which helps to improve their skills.
+more, member of the \astropy community, who provide feedback to contributors,
+which helps to improve their software development skills.
 As a community, \astropy follows an explicit code of conduct \citep{ape8} and treats all
 contributors and users with respect, provides a harassment-free environment, and
 encourages and welcomes new contributions from all.
