@@ -809,11 +809,12 @@ Command-line scripts are now available for printing a summary of the HDUs in
 FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
 the screen in a human-readable format (\texttt{fitsheader}).
 
-FITS files are now loaded \emph{lazily} (this default behavior can be
-deactivated, if needed), where all HDUs are not loaded until
-requested. This should provide substantial speed-ups when using the
-convenience functions (e.g., \texttt{getheader()} or \texttt{getdata()}) to
-get an HDU that is near the beginning in a file with many HDUs.
+FITS files are now loaded \emph{lazily} by default, i.e., an object
+representing the list of HDUs is created but the data are not loaded into
+memory until requested.  This approach should provide substantial speed-ups
+when using the convenience functions (e.g., \texttt{getheader()} or
+\texttt{getdata()}) to get an HDU that is near the beginning in a file with
+many HDUs.
 
 \subsection{Modeling}
 \label{sec:modeling}
