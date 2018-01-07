@@ -785,7 +785,7 @@ Cython/C engine for reading and writing ASCII files. This is available for most
 of the common formats.  On average, the new engine is about 4 to 5 times faster
 than the corresponding pure-\python implementation and is often comparable to
 the speed of the \package{pandas} \citep{pandas} ASCII file interface.  The
-fast reader has parallel processing option that allows harnessing multiple
+fast reader has a parallel processing option that allows harnessing multiple
 cores for input parsing to achieve even greater speed gains.  By default,
 \texttt{read()} and \texttt{write()} will attempt to use the fast Cython/C engine
 when dealing with compatible formats. Certain features of the full read
