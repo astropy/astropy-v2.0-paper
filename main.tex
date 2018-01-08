@@ -768,7 +768,10 @@ It also provides a unified interface for reading and writing data with these
 different formats using the \package{astropy.table} subpackage.
 For many common cases, this simplifies the process of file input and output (I/O) and
 reduces the need to master the separate details of all the I/O packages within
-\astropypkg.
+\astropypkg. The file interface allows transparent compression of
+the \texttt{gzip}, \texttt{bzip2} and \texttt{lzma} (\texttt{.xz})
+formats; for the latter two if the Python installation was compiled
+with support the respective libraries.
 
 \subsubsection{ASCII}
 
@@ -782,7 +785,9 @@ both human-readable and compatible with most simple CSV readers.
 
 The \package{astropy.io.ascii} subpackage now includes a significantly faster
 Cython/C engine for reading and writing ASCII files. This is available for most
-of the common formats.  On average, the new engine is about 4 to 5 times faster
+of the common formats. It also offers some additional features like parsing
+of different exponential notation styles, such as commonly produced
+by Fortran programs.  On average, the new engine is about 4 to 5 times faster
 than the corresponding pure-\python implementation and is often comparable to
 the speed of the \package{pandas} \citep{pandas} ASCII file interface.  The
 fast reader has parallel processing option that allows harnessing multiple
@@ -790,7 +795,7 @@ cores for input parsing to achieve even greater speed gains.  By default,
 \texttt{read()} and \texttt{write()} will attempt to use the fast Cython/C engine
 when dealing with compatible formats. Certain features of the full read
 / write interface are unavailable in the fast version, in which case the
-pure-\python version will automatically be used.
+reader will by default fall back automatically to the pure-\python version.
 
 The \package{astropy.io.ascii} subpackage now provides the capability
 to read a table within an HTML file or web URL into an \astropypkg
