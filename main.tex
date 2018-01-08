@@ -50,8 +50,6 @@
 \input{author.tex}
 
 \begin{abstract}
-% I (Adrian) took a first stab at the abstract, but it needs some work. Feel
-% free to modify!
 The \astropy project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
@@ -66,7 +64,6 @@ We conclude with a future outlook of planned new features and directions for the
 broader \astropy project.
 \end{abstract}
 
-% Adrian PW: how are there still no software keywords in AAS journals?!?
 \keywords{%
     Astrophysics - Instrumentation and Methods for Astrophysics
     ---
@@ -82,7 +79,7 @@ Astronomy as a field has thus long supported the development of software tools
 for astronomical tasks, such as scripts that enable individual scientific
 research, software packages for small collaborations, and data reduction
 pipelines for survey operations.
-Some software packages are or were supported by large institutions and are
+Some software packages are, or were, supported by large institutions and are
 intended for a wide range of users.
 These packages therefore typically provide some level of documentation and user
 support or training.
@@ -94,12 +91,12 @@ simplifies the software development process.
 The users of such a library then also benefit from a community and ecosystem
 built around a shared foundation.
 The \astropy project has grown to become this community for \python astronomy
-software, and the \astropypkg core package a feature-rich \python library.
+software, and the \astropypkg core package is a feature-rich \python library.
 
 The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
 software in \python.
-In this way, its genesis differs from but builds upon many substantial and
+In this way, its genesis differs from, but builds upon, many substantial and
 former astronomical software development efforts that were commissioned or
 initiated through large institutional support, such as IRAF \citep[developed
 at NOAO;][]{IRAF}, MIDAS \citep[developed at ESO;][]{MIDAS}, or Starlink
@@ -108,7 +105,7 @@ maintained by the East Asian Observatory;][]{starlink1982,starlink2013}.
 More recently, community-driven efforts have seen significant success in the astronomical sciences (e.g., \citealt{yt}).
 
 \python\footnote{\url{https://www.python.org/}} is an increasingly popular, general-purpose
-programming language that is available under a permissive open source software license free of
+programming language that is available under a permissive open source software license and is free of
 charge for all major operating systems. The programming language has become especially popular
 in the quantitative sciences, where researchers must simultaneously produce research, perform
 data analysis, and develop software. A large part of this success owes itself to the vibrant
@@ -124,7 +121,7 @@ might be performed in the course of astronomical research, e.g., interfacing wit
 databases, or statistical inferences.
 More recently, the development and mainstream adoption of package managers such
 as Anaconda\footnote{\url{https://anaconda.org/}} has significantly streamlined
-the installation process for many libraries, lowering many barriers to entry.
+the installation process for many libraries, lowering the barriers to entry.
 
 The \astropy project aims to provide an open-source and open-development core
 package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
@@ -155,10 +152,12 @@ We start by describing the way the \astropy project functions and is organized
 in \sectionname~\ref{sec:org}. We then describe the main software efforts
 developed by the \astropy project itself: a core package called \astropypkg
 (\sectionname~\ref{sec:core}) and several separate packages that help maintain
-the infrastructure for, e.g., testing and documentation
+the infrastructure for testing and documentation
 (\sectionname~\ref{sec:infrastructure}). We end with a short vision for
 the future of \astropy and astronomical software in general in
-\sectionname~\ref{sec:future}.
+\sectionname~\ref{sec:future}. The full paper, including the code
+to produce the figures, is available in a \github 
+repository\footnote{\url{https://github.com/astropy/astropy-v2.0-paper}}
 
 This article is not intended as an introduction to \astropypkg, nor does it
 replace the \astropypkg documentation. Instead, it describes the way the
@@ -169,8 +168,6 @@ package.
 \label{sec:org}
 
 \subsection{Coordination of Astropy}
-% draft by ?? (BMS thinks Erik)
-% edited by Adrian PW
 \label{sect:coordcom}
 From its inception, \astropy has required coordination to ensure the project
 as a whole and its coding efforts are consistent and reasonably efficient.
@@ -190,9 +187,10 @@ as well as the associated procedures.
 Additionally, the committee oversees the assignment of roles (primarily driven by already-existing contributions), and increasingly has acted as the ``face'' of the Project, providing contact with organizations like NumFOCUS (the body that holds any potential funding in trust for \astropy) and the American Astronomical Society (AAS).
 
 \subsection{Astropy development model}
-% draft by Adrian PW and Erik T.
+
 Code is contributed to the \astropypkg core package or modified through ``pull
-requests'' (via \github) that often contain several \texttt{git} commits.
+requests'' (via \github\footnote{\url{https://github.com/astropy/astropy/}}) 
+that often contain several \texttt{git} commits.
 Pull requests may fix bugs, implement new features, or improve or modify the
 infrastructure that supports the development and maintenance of the package.
 Individual pull requests are generally limited to a single conceptual addition
@@ -241,8 +239,6 @@ The package is still healthy: new commits are and have been contributed at a
 steady rate throughout its existence.
 
 \subsection{APEs - Astropy Proposals for Enhancement}
-% draft by hamogu
-% edited by Adrian PW
 
 Central to the success of \astropy is an open environment where anybody can
 contribute to the project.
@@ -273,9 +269,6 @@ make an executive decision based on the community input on the APE in question.
 
 
 \subsection{Concept of affiliated packages}
-% it may be described in previous subsection, if not the Brigitta can try to
-% write it up
-% edited by Adrian PW
 
 A major part of the \astropy project is the concept of ``Affiliated Packages.''
 An affiliated package is an astronomy-related
@@ -293,8 +286,6 @@ Affiliated packages may also be used to develop substantial new functionality
 that will eventually be incorporated into the \astropypkg core package
 (e.g., \texttt{wcsaxes}).
 New functionality benefits from having a rapid development and release cycle that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).
-% AG: rephrased this.
-%Initially separate packages with typically rapid initial development and new experimental features benefit from having a release cycle that is not tied to the
 
 Affiliated packages are listed on the main \astropy website and advertised to
 the community through \astropy mailing lists; a list of current affiliated
@@ -308,13 +299,9 @@ community.
 
 Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package, where applicable.
 
-%\subsection{Accuracy testing across many different implementation}
 
 \subsection{Release cycle and Long Term Support}
 \label{sect:releasecycle}
-% This could also include information about the development cycle
-% Brigitta can writes this up if there's no other taker
-% edited by Adrian PW
 
 The \astropypkg package has a regular release schedule consisting of new significant
 releases every 6 months, with bugfix releases as needed \citep{ape2}.
@@ -341,7 +328,7 @@ of the \python distributions for scientific computing (e.g.,
 \url{http://docs.astropy.org/en/stable/install.html}}
 Effort has been made to make \astropypkg available and easily installable across
 all platforms; the package is constantly tested on different platforms as part
-of a suite of continuous integration (CI) tests.
+of a suite of continuous integration tests.
 
 \subsection{Support of Astropy}
 
@@ -365,7 +352,6 @@ open source scientific computing.} organization. NumFOCUS has, to date, covered 
 
 \section{Astropy Core Package Version 2.0}
 \label{sec:core}
-% Adrian
 The \astropy project aims to provide \python-based packages for all tasks that
 are commonly needed in a large subset of the astronomical community.
 At the foundation is the \astropypkg core package, which provides general
@@ -382,7 +368,6 @@ Beyond what is mentioned below, most subpackages have seen improved performance
 since the release of the version 0.2 package.
 
 \subsection{Units}\label{sec:units}
-% Adrian
 
 The \texttt{astropy.units} subpackage adds support for representing units and
 numbers with associated units --- ``quantities'' --- in code.
@@ -439,8 +424,6 @@ the \texttt{numpy} trigonometric functions expect, before being passed to
 
 
 \subsection{Constants}
-% David S.
-% Edited by Adrian PW
 
 The \texttt{astropy.constants} subpackage provides a selection of physical and
 astronomical constants as \texttt{Quantity} objects (see
@@ -471,7 +454,6 @@ updated.
 
 \subsection{Coordinates}
 \label{sec:coordinates}
-% Adrian, Erik
 The \package{astropy.coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
 The framework heavily relies on the \package{astropy.units} subpackage, and most
@@ -644,7 +626,6 @@ benchmarks are refined and the packages updated.
 
 \subsection{Time}
 \label{sec:time}
-% Adrian PW
 
 The \package{astropy.time} subpackage focuses on supporting time scales (e.g.,
 UTC, TAI, UT1) and time formats (e.g., Julian date, modified Julian date) that
@@ -711,7 +692,6 @@ or reduction are also provided.
 
 \subsubsection{Tables}
 \label{sec:table}
-% fleshed out / edited by Adrian PW
 
 The \package{astropy.table} subpackage provides functionality for
 representing and manipulating heterogeneous data. In some respects,
@@ -759,11 +739,10 @@ the \texttt{SkyCoord} or the \texttt{Time} classes (e.g., converting the
 coordinates to a different frame or accessing the date/time in the desired time scale).
 
 \subsection{\package{io}}
-% Simon
 
 The \package{astropy.io} subpackage provides support for reading and writing
 data to a variety of ASCII and binary file formats, such as a wide range of
-ASCII data table formats, FITS, and VOTable.
+ASCII data table formats, FITS, HDF5, and VOTable.
 It also provides a unified interface for reading and writing data with these
 different formats using the \package{astropy.table} subpackage.
 For many common cases, this simplifies the process of file input and output (I/O) and
@@ -823,9 +802,6 @@ many HDUs.
 
 \subsection{Modeling}
 \label{sec:modeling}
-% The whole modeling submodule was missing from the previous paper, so everything really, including compound models, unit support etc.
-% Nadia, Lim
-% Tom R. -- unit support
 
 The \package{astropy.modeling} subpackage provides a framework for representing
 analytical models and performing model evaluation and parameter fitting.
@@ -897,7 +873,6 @@ densities in a variety of units and as a function of different units of
 spectral coordinates (e.g., wavelength or frequency).
 
 \subsection{Convolution}
-% Adam G.
 
 The \package{astropy.convolution} subpackage implements
 \textit{normalized convolution} \citep[e.g.,][]{Knutsson1993}, an image
@@ -930,7 +905,6 @@ consistency checks.
 
 
 \subsection{Visualization}
-% Larry:  Image visualization (stretching, scaling), RGB
 
 The \package{astropy.visualization} subpackage provides functionality that can
 be helpful when visualizing data. This includes a framework (previously the
@@ -1060,8 +1034,6 @@ stretch and softening parameters (shown in the titles).
 \label{fig:ngc6977}}
 \end{figure}
 
-%\subsection{Utils}
-% Lim
 
 \subsection{Cosmology}
 
@@ -1072,7 +1044,6 @@ look-back time and distance.   The subpackage was described in detail in
 the values in \cite{2016A&A...594A..13P}.
 
 \subsection{Statistics}
-% Edited by Adrian PW
 
 The \package{astropy.stats} package provides statistical tools that
 are useful for astronomy and are either not found in or extend
@@ -1083,10 +1054,6 @@ a range of functionality used by many different disciplines
 in astronomy. It is not a complete set of statistical tools, but rather
 a still growing collection of useful features.
 
-% Steve C.: overview, circular stats,
-% Jake V.:  Lomb-scargle, Bayesian blocks
-% Larry:  sigma clipping, biweight stats
-% Ze':  Ripley's K (spatial stats)
 
 \subsubsection{Robust Statistical Estimators}
 
@@ -1151,7 +1118,6 @@ Blocks algorithm is shown in the right panel of
 \section{Infrastructure for Astropy affiliated packages}
 
 \label{sec:infrastructure}
-% Text also edited by Adrian PW
 
 In addition to astronomy-specific packages and libraries, the \astropy Project
 also maintains and distributes several general-purpose infrastructure packages
@@ -1161,7 +1127,6 @@ The following sections describe the most widely-used infrastructure packages
 developed by the \astropy Project.
 
 \subsection{Package template}
-% Brigitta may write this up if there is no other takers
 
 \astropy provides a package template --- as a separate \github repository,
 \package{astropy/package-template}\footnote{\url{https://github.com/astropy/package-template/}}
@@ -1176,17 +1141,17 @@ The package template also provides a testing framework, template configurations
 for continuous integration services, and \package{Cython} build support.
 
 \subsection{Continuous integration helpers}
-% Brigitta
 
 \astropy also provides a set of scripts for setting up and configuring
-CI services as a \github repository,
+continuous integration (CI) services as a \github repository,
 \package{astropy/ci-helpers}.\footnote{\url{https://github.com/astropy/ci-helpers}}
 These tools aim to enable package maintainers to control their testing setup
 and installation process for various CI services through a
 set of environment variables.
 While the current development is mostly driven by the needs of the \astropy
 ecosystem, the actual usage of this package is extremely widespread. The current
-tools support configuration for Travis CI and Appveyor CI.
+tools support configuration for Travis CI\footnote{\url{https://travis-ci.org/}} and 
+Appveyor CI\footnote{\url{https://www.appveyor.com/}}.
 
 \subsection{Sphinx extensions}
 
@@ -1208,9 +1173,6 @@ attributes in a given \python module.
 
 \section{The future of the Astropy project}
 \label{sec:future}
-% First draft by SMC
-% edited by BMS
-% edited again by Adrian PW
 
 Following the release of version 2.0, development on the next major version of
 the \astropypkg core package (version 3.0) has already begun.
@@ -1248,7 +1210,6 @@ projection. %\citep{astropy-healpix}
 %\inlinecomment{BMS}{TODO: uncomment references of packages once they are available}
 
 \subsection{Learn Astropy}
-% Adrian
 
 The documentation of the \astropypkg core package contains narrative descriptions of
 the package's functionality, along with detailed usage notes for functions,
@@ -1295,7 +1256,6 @@ comment on these efforts via the \astropy mailing list or \package{astropy/astro
 
 \section{Conclusion}
 \label{sec:conclusion}
-% Renamed and edited by Adrian PW
 
 The development of the \astropypkg package and cultivation of the \astropy
 ecosystem are still maintaining significant growth while improving in stability,
@@ -1341,8 +1301,6 @@ that have opened issues and provided feedback, and have supported the
 project in a number of different ways.  We would like to acknowledge
 Alex Conley and Neil Crighton for maintaining the  \package{cosmology} 
 subpackage. 
-%insert significant contributors to astropy who have decided not to 
-%be co-authors
 
 The \astropy community is supported by and makes use
 of a number of organizations and services outside the traditional
