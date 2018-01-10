@@ -36,6 +36,7 @@ Astrophysical Journal.
 Rules for Authorship
 ====================
 
+*The form is still open, so if you are only seeing this now but do qualify, please sign up on the form* 
 
 We would like you to become a co-author if any of the following applies to you:
 
