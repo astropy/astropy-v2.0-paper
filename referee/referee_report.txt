@@ -1,0 +1,27 @@
+---------------------------------------------------------------------- 
+Referee Report
+The astropy package and Astropy community are dragging the astronomical community into the open source era of technology development. The impact of Astropy in the astronomical community is extremely high and as such, a publication describing the latest release of the astropy package is very appropriate for ApJ.
+
+There are some stylistic issues with the text. I have left comments inline where appropriate.
+
+More generally, given the technical nature of the work being described here, I frequently found myself wanting a small code snippet that demonstrated the new/improved functionality of the packages being described. Perhaps the authors could find a way to include short code examples where appropriate, either inline in the paper body or in the appendix. 
+
+> 5. Do you have any comments or criticisms that may be helpful to the author(s) to improve or correct the paper? Are units, object designations, equations, and notation complete and correct? In cases that may be ambiguous, please specify whether you consider the suggested changes to be mandatory for publication or advisory.
+
+Given that large-fractions of this paper are an ApJ-formatted subset of the astropy documentation/release notes (i.e. describing new functionalities of the astropy package) there are fairly substantial sections of this paper where I have little to say/comment on as a reviewer. 
+
+Specific issues that need to be corrected: There are some errors in the paper (inline comments left where appropriate), for example, Figure 6 has a fairly major issue with either the wrong caption or the wrong figure but I'm sure this is easily addressed. I have left comments throughout the modified 'main.tex' file in the form `\inlinecomment{REVIEWER}{Comment}`
+
+More generally I have a few comments/concerns:
+
+- Given the title of this paper, I expected to see more discussion by the authors about the inclusivity of their community. An uber-skeptical reader could make the assessment that the Astropy community has a code of conduct therefore believes it's inclusive. I suspect that the community is doing much more than this though... So, has any attempt been made by the authors to quantify the inclusivity of the Astropy community? There's a growing literature in the quantitative social sciences studying open source communities that the authors might want to look into: e.g. the work of Gousios http://www.gousios.gr/publications.html and Vasilescu https://cmustrudel.github.io/publications/ come to mind. Some discussion or attempt to quantify the inclusivity is recommended.
+
+- The phase 'open development' is used a few times but isn't really defined or connected to the broader open source ecosystem. What other communities are working in this way? How novel is 'open development' by their assessment? For example, other communities have adopted policies that encourage community contribution - most notable is the Node.js Foundation's contribution policies designed to promote 'Healthy Open Source' https://medium.com/the-node-js-collection/healthy-open-source-967fa8be7951 . How does the Astropy community efforts compare to this?
+
+- A number of times I found myself wondering how the Astropy projects decides whether to build their own package or leverage something available in the scientific Python ecosystem? On the face of it it seems like every decision made by the Astropy project to build a new core package only increases the long term cost/overhead of maintaining this functionality. For example, Section 3.5.2 describes `astropy.table` and notes that there's similarities to the pandas package and numpy arrays. The functionality described in `astropy.nddata` also sounds somewhat generic. Some discussion as to why existing community tools (such as pandas) weren't used would be very welcome. In addition, if the answer to this question is that these other tools don't support all of the functionality the Astropy community needs (e.g. ability to handle Quantities with units in tables) are any efforts being made by the Astropy community to contribute these changes to packages such as Pandas? 
+
+________________________
+
+Note from statistical editor. 
+
+In sec 3.11.3, a sentence can be added warning users about difficulties in interpreting the statistical significance of Lomb-Scargle periodogram peaks. This is important because unreliable interpretation is common, and warnings are not given elsewhere (e.g. NASA Exoplanet Archive Periodogram Service). A good reference is Vanderplas 2017 (https://arxiv.org/abs/1703.09824) soon to appear in the ApJ Suppl. 
