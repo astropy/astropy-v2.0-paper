@@ -33,9 +33,16 @@ Journal
 The paper will be submitted to the software section of the
 Astrophysical Journal.
 
+Feedback
+========
+
+Comments on the paper are welcome as issues.   Questions and comments can also
+be sent to crawfordsm@gmail.com. 
+
 Rules for Authorship
 ====================
 
+*The form is still open, so if you are only seeing this now but do qualify, please sign up on the form* 
 
 We would like you to become a co-author if any of the following applies to you:
 
