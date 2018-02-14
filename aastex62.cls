@@ -1,12 +1,11 @@
 %% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% AASTeX61.cls                                  %%
-%% October 5, 2016                               %%
-%% December 28, 2016 (bug fix on .bib file)      %%
-%% Copyright 2016 American Astronomical Society  %%
+%% AASTeX62.cls                                  %%
+%% Jan 6, 2018                                   %%
+%% Copyright 2018 American Astronomical Society  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\currversion{6.1}
+\def\currversion{6.2}
 
 %%
 %%    These files are distributed
@@ -82,8 +81,8 @@
 %%%     abstract        = "formatter for AAS journal submissions",
 %%%  }
 
-\ProvidesClass{aastex61}%%%
- [2016/04/16 Version 6.1/AAS markup document class]%
+\ProvidesClass{aastex62}%%%
+ [2017/10/16 Version 6.2/AAS markup document class]%
 {}
 \ClassInfo{aastex}{%
 ^^J
@@ -121,7 +120,7 @@ track changes, new `modern' style and much more, by Amy Hendrickson,%
 %   preprint2	: twocolumn, single space, 12pt fonts
 
 %% Modern is new design developed by David Hogg and Daniel Foreman-Mackey
-%   modern      : one column, single space, 10pt fonts, more stylish
+%   modern      : one column, single space, 12pt fonts, more stylish
 
 %   twocolumn	: a two column article, single space, 10pt  fonts
 
@@ -154,6 +153,11 @@ track changes, new `modern' style and much more, by Amy Hendrickson,%
 \newif\ifonecolstyle
 \newif\iftwocolstyle
 
+\newif\ifrnaas
+%% makes modern the style for rnaas
+\DeclareOption{RNAAS}{\global\rnaastrue}
+\DeclareOption{rnaas}{\global\rnaastrue}
+
  \DeclareOption{manuscript}{\twelvepointtrue\@two@colfalse\doublespacetrue\manutrue}%
 
 %% Preprints are like manuscript but are single spaced:
@@ -169,7 +173,7 @@ track changes, new `modern' style and much more, by Amy Hendrickson,%
 
 %% left in from older version, in case it could be useful:
 
-\DeclareOption{twocolumn}{\twocolstyletrue\@two@coltrue}
+\DeclareOption{twocolumn}{\twocolstyletrue\@two@coltrue\twelvepointfalse}
 
 %% default style
 \DeclareOption{onecolumn}{\onecolstyletrue}
@@ -326,8 +330,10 @@ revtex4-1.cls^^J^^J}\stop
 \let\@startsection=\@startsection@from@latex
 \def\baselinestretch{1.0}
 
-%% a bit more vertical space between horizontal lines, makes table more readable
-\AtBeginDocument{\def\arraystretch{1.2}}
+%% Default vertical space between horizontal lines. Can change definition
+%% of arraystretch in the body of the paper; either for full article or
+%% for a single table.
+\AtBeginDocument{\def\arraystretch{1}}
 
 %% needed?
 \def\raggedcolumn@sw#1#2{#2}  % implement flushbottom as it was in revtex4
@@ -633,14 +639,37 @@ revtex4-1.cls^^J^^J}\stop
 %    TITLE PAGE                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% October 2017, adding preprint number capability
+\newcount\rptnum
+\newcount\rptloopnum
+\def\reportnum#1{\global\advance\rptnum by 1
+\expandafter\gdef\csname report\the\rptnum\endcsname{\hbox to
+\textwidth{\hskip.75\textwidth\relax#1\relax\hfill}}}
+
 \long\def\frontmatter@title@above{
+\ifrnaas
+\vspace*{-\headsep}\vspace*{\headheight}
+\footnotesize
+\noindent{\sc Draft version \today}\\[2pt]
+{\footnotesize Typeset using \LaTeX\ {\bf RNAAS} style in AASTeX62}
+\par\vspace*{-\baselineskip}\vspace*{0.625in}
+\else
+\vbox to 0pt{\vskip-48pt\normalsize\rptloopnum=0\loop
+\global\advance\rptloopnum by 1
+\expandafter\ifx\csname report\the\rptloopnum\endcsname\relax
+\else
+\csname report\the\rptloopnum\endcsname
+\vskip1pt
+\repeat
+\vss
+}
 \ifmodern
 \vglue-18pt
 {\footnotesize
 \raggedright
 {\sc Draft version \today}\\[2pt]
 {\footnotesize
-Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
+Typeset using \LaTeX\ {\bf modern} style in AASTeX62}
 \vskip48pt
 }
 \else
@@ -649,7 +678,7 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \vspace*{-\headsep}\vspace*{\headheight}
 \footnotesize
 \noindent{\sc Draft version \today}\\[2pt]
-{\footnotesize Typeset using \LaTeX\ {\bf preprint} style in AASTeX61}
+{\footnotesize Typeset using \LaTeX\ {\bf preprint} style in AASTeX62}
 \par\vspace*{-\baselineskip}\vspace*{0.625in}
 \else
 %%
@@ -657,7 +686,7 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \vspace*{-\headsep}\vspace*{\headheight}
 \footnotesize
 {\footnotesize\textsc{\@journalinfo}}\par
-{\footnotesize Typeset using \LaTeX\ {\bf preprint2} style in AASTeX61}
+{\footnotesize Typeset using \LaTeX\ {\bf preprint2} style in AASTeX62}
 \par\vspace*{-\baselineskip}\vspace*{0.625in}
 \else
 %%
@@ -665,23 +694,27 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \vspace*{-\headsep}\vspace*{\headheight}
 \footnotesize
 {\footnotesize\textsc{\@journalinfo}}\par
-{\footnotesize Typeset using \LaTeX\ {\bf twocolumn} style in AASTeX61}
+{\footnotesize Typeset using \LaTeX\ {\bf twocolumn} style in AASTeX62}
 \par\vspace*{-\baselineskip}\vspace*{0.625in}
 \else
 \ifmanu
 \vspace*{-\headsep}\vspace*{\headheight}
 \footnotesize
 \noindent\textsc{\@journalinfo}\\[-8pt]
-{\footnotesize Typeset using \LaTeX\ {\bf manuscript} style in AASTeX61}
+{\footnotesize Typeset using \LaTeX\ {\bf manuscript} style in
+AASTeX62}
 \par\vspace*{-\baselineskip}\vspace*{0.625in}
 \else
 %% Default
 \vspace*{-\headsep}\vspace*{\headheight}
 \footnotesize
 {\footnotesize\textsc{\@journalinfo}}\par
-{\footnotesize Typeset using \LaTeX\ default style in AASTeX61}%% default style
+{\footnotesize Typeset using \LaTeX\ default style in AASTeX62}%% default style
 \par\vspace*{-\baselineskip}\vspace*{0.625in}
 \fi\fi\fi\fi\fi
+%%
+\fi %% ends test to see if rnaas option was used; if rnaas is true
+    %% none of this command will be activated.
 }%
 
 \def\frontmatter@title@produce{%
@@ -690,7 +723,7 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
  \frontmatter@title@above
   \frontmatter@title@format
   \@title
-\vskip12pt
+%% October 2017, was +12pt
   \@ifx{\@title@aux\@title@aux@cleared}{}{%
   \expandafter\frontmatter@footnote\expandafter{\@title@aux}%
   }%
@@ -711,7 +744,8 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \newcount\fncount
 \newcount\endfncount
 \long\def\tempfootnote#1{\global\advance\fncount by 1\relax%
-\expandafter\gdef\csname footnote\the\fncount\endcsname{#1}}
+\expandafter\gdef\csname
+footnote\the\fncount\endcsname{\if@two@col\hsize=242pt\fi\relax#1}}
 
 \long\def\abstracttempfootnote#1{\global\advance\fncount by 1\relax%
 \expandafter\gdef\csname absfootnote\the\fncount\endcsname{#1}}
@@ -734,12 +768,11 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \unskip\footnote{\csname footnote\the\endfncount\endcsname}%
 \repeat}
 
-
-
 %% 
 \renewcommand\title[2][]{%
 \def\@title{\setbox0=\vbox{\let\footnote\tempfootnote #2}%
-{\let\footnote\tempfootnoteintitle\uppercase{#2}}
+{\let\footnote\tempfootnoteintitle%\uppercase
+{#2}}%% here???
 \kickoutfootnotes
 \ifdoublespace\vskip 3\baselineskip\fi
 }%
@@ -747,12 +780,16 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
  \let\@AF@join\@title@join
 }%
 
+\def\frontmatter@title@format{\ifrnaas
+\large\scshape\centering
+\else
+\normalsize\centering\fi}
 
-\def\frontmatter@title@format{\normalsize\centering}
+\def\frontmatter@title@below{\vskip8pt}%
 
-\def\frontmatter@title@below{\vskip12pt}%
 
-\def\frontmatter@authorformat{\small\scshape
+\def\frontmatter@authorformat{\small\advance\baselineskip-3pt
+\parskip=0pt\ifrnaas\else\scshape\fi
 \ifmodern
 \vskip48pt
 \centering
@@ -765,49 +802,64 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 }%
 
 
-\def\frontmatter@affiliationfont{\normalfont\footnotesize\it
-\ifmodern\baselineskip=14pt\fi
+\def\frontmatter@affiliationfont{\normalfont\footnotesize
+%% changed october 2017
+\it
 \iflongauthor\else
+\ifrnaas\else
 \rightskip-12pt plus 1fil
 \leftskip6pt \parindent-4pt
-\fi
+\fi\fi
 }%
 
-\def\frontmatter@finalspace{\vskip-24pt}%\vspace*{-\baselineskip}\vspace*{0.375in}}
+ \def\frontmatter@finalspace{\ifrnaas\vspace*{-\baselineskip}\vspace*{0.0in}
+\else
+\vskip-24pt\fi}
 
 \def\@separator{\\}%
 
 \newcounter{front@matter@foot@note}\setcounter{front@matter@foot@note}{0}
 
-\iflongauthor
+\iflongauthor%
 \renewcommand\affiliation[1]{%
+\parskip=2pt
+\def\@centercr{\vrule depth 3pt width0pt\vskip1sp}
  \move@AU\move@AF%
 \iflongauthor\let\@listand\relax\fi
  \begingroup%
   \@affiliation{%\hspace*{2mm}
 \ifnum\countauthors<\AuthorCollaborationLimit
- #1\ifmodern\iflongauthor\baselineskip=12pt\else\vskip2pt\fi\else\baselineskip=12pt\fi\fi
+ #1\ifmodern\iflongauthor\baselineskip=12pt\else\vskip2pt\fi\else\baselineskip=11pt
+\fi\fi
 \ifnum\countauthors=\AuthorCollaborationLimit
- #1\ifmodern\iflongauthor\baselineskip=12pt\else\vskip2pt\fi\else\baselineskip=12pt\fi\fi
-\iflongauthor\vskip-12pt\ifnum\countauthors>\AuthorCollaborationLimit\iftwelvepoint\vskip-3pt\else\iftwocolstyle\else\vskip-6pt\fi\fi\fi%
+ #1\ifmodern\iflongauthor\baselineskip=12pt\else\vskip2pt\fi\else\baselineskip=11pt
+\fi\fi
+\iflongauthor \vskip-10pt\ifnum\countauthors>\AuthorCollaborationLimit\iftwelvepoint\vskip-3pt\else\iftwocolstyle\else\vskip-6pt\fi\fi\fi%
 \fi
 }%
-}%
+\let\@centercr\savecentercr}%
 \else
 %% older version
 \renewcommand\affiliation[1]{%
  \move@AU\move@AF%
  \begingroup%
   \@affiliation{%\hspace*{2mm}
- #1\ifmodern\iflongauthor\baselineskip=12pt\else\vskip2pt\fi\else\baselineskip=12pt\fi}%
+%% october 2017 changes:
+\centering
+ #1\ifmodern
+\baselineskip=9.5pt
+ \else
+        \iftwelvepoint
+	\ifpreprint\baselineskip=12pt\else\ifpreprinttwo\else\baselineskip19pt\fi\fi\else \baselineskip=9.5pt\fi
+\fi}%
 }%
 \fi %% end switch for longauthor
-
 
 %   ABSTRACT
 \def\frontmatter@abstractfont{\normalsize\parindent=9pt
 }%
-%\def\frontmatter@abstractwidth{6in}
+%% october 2017
+\def\frontmatter@abstractwidth{478pt}
 \def\frontmatter@preabstractspace{12pt}
 \def\frontmatter@postabstractspace{12pt}
 
@@ -815,7 +867,7 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \long\def\frontmatter@abstractheading{%
  \begingroup
   \centering
-  \abstractname
+\ifmodern\else\hskip34pt \fi \abstractname
   \vskip 1mm
   \par
  \endgroup
@@ -827,8 +879,13 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \global\abstracttrue
   \global\setbox\absbox\vbox\bgroup
    \color@begingroup
-   \columnwidth\textwidth
-   \hsize\columnwidth
+%% width of abstract changed oct 2017
+\ifmodern
+ \columnwidth\textwidth
+ \hsize\columnwidth
+\else
+\hsize = 478pt
+\fi
    \@parboxrestore
    \def\@mpfn{mpfootnote}\def\thempfn{\thempfootnote)}\c@mpfootnote\z@ % should be footnote, not mpfootnote?
 %   \let\@footnotetext\frontmatter@footnotetext
@@ -841,7 +898,8 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
     \frontmatter@abstractheading
     \frontmatter@abstractfont
 %    \let\footnote\mini@note
-    \expandafter\everypar\expandafter{\the\everypar\addcontents@abstract\everypar{}}%
+\ifmodern\else\everypar={\leftskip=34pt}\fi
+%    \expandafter\everypar\expandafter{\the\everypar\addcontents@abstract\everypar{}}%
 \ifnumlines\let\go\linenumbers\else\let\go\relax\fi\go
 }{%
 \ifnumlines\let\go\endlinenumbers\else\let\go\relax\fi\go
@@ -874,7 +932,8 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
     \@ifdim{\dimen@>\z@}{\vskip\dimen@}{}%
    \endgroup
    \begingroup
-    \prep@absbox
+   \prep@absbox
+%% centered, oct 2017
 \unvbox\absbox
     \post@absbox
    \endgroup
@@ -884,7 +943,6 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 }%
 
 \newif\ifbib
-
 
 %  ****************************************
 %  *             KEYWORDS                 *
@@ -896,13 +954,21 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 \newlength{\keys@width}
 \def\frontmatter@keys@format{\ifmodern\vskip0pt\else\vspace*{0.5mm}\fi%
   \settowidth{\keys@width}{\normalsize\@keys@name}%
-  \rightskip=0.5in\leftskip=\rightskip\parindent=0pt%
+\ifmodern\else
+\rightskip=0.5in
+\leftskip=34pt
+\fi
+\parindent=0pt%
     \hangindent=\keys@width\hangafter=1\normalsize}%
 \def\@keywords@produce#1{%
  \showKEYS@sw{%
   \begingroup%
    \frontmatter@keys@format%
-   \@keys@name#1\par
+   \@keys@name#1
+\vrule depth 12pt width 0pt
+\ifnobreakafterkeywords
+\vrule depth 24pt width0pt\fi
+\par
   \endgroup
  }{%
   \@if@empty{#1}{}{%
@@ -924,7 +990,6 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 % footnotes and issues them before \begin{refernces} or
 % \begin{\thebibliography} or \begin{appendix}, whichever comes first,
 % at the end of right column.  
-%% ???
 \newcounter{lastfootnote}
 \let\orig@footnote=\footnote
 %
@@ -991,12 +1056,20 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 
 \def\section{%
 \if@firstsection
-      \maketitle
+     \maketitle
 \global\@firstsectionfalse
      \setcounter{footnote}{\thefront@matter@foot@note}%
      \let\footnotetext=\old@foot@note@text
      \let\footnotemark=\old@foot@note@mark
-   \clearpage
+\ifnobreakafterkeywords
+\ifmodern\vskip24pt
+\else
+\vskip12pt\fi%%
+\goodbreak
+\else
+\ifrnaas\else
+ \clearpage\fi
+\fi
    \if@two@col
    \twocolumngrid
    \fi
@@ -1033,7 +1106,7 @@ Typeset using \LaTeX\ {\bf modern} style in AASTeX61}
 
 %
 % How the section number will appear in the section title - AV
-\def\ApjSectionMarkInTitle#1{#1.\ }
+\def\ApjSectionMarkInTitle#1{\ifrnaas\else #1.\ \fi}
 \def\ApjSectionpenalty{0}
 
 
@@ -1178,7 +1251,7 @@ the#1\endcsname}
 \def\bibitem{\vskip\bibskip\savebibitem}
 \newdimen\bibindent
 \renewenvironment{thebibliography}[1]{\global\bibtrue
-
+\ifrnaas\newpage\fi%+++
 \onecolumngrid
 \vspace{20pt}
 \goodbreak
@@ -1374,16 +1447,37 @@ the#1\endcsname}
 
 
 %% Commands from aastex.cls:
-\newcommand\dataset{\@testopt\@dataset{[}}%
-\def\@dataset[#1]#2{#2}%
+
+% This has been redefined below
+%\newcommand\dataset{\@testopt\@dataset{[}}%
+%\def\@dataset[#1]#2{#2}%
+
 \newcommand\facility{\@testopt\@facility{[}}%
 \def\@facility[#1]#2{{\vskip6pt{\large\it Facility:} #2}}%
 
 \newcommand\facilities{\@testopt\@facilities{[}}%
 \def\@facilities[#1]#2{{\vskip6pt{\large\it Facilities:} #2}}%
 
-\newcommand\software{\@testopt\@software{[}}%
-\def\@software[#1]#2{{\vskip6pt{\large\it Software:} #2}}%
+
+\long\def\software{\bgroup\@testopt \@software {[}}
+\def\@software[#1]#2{\vskip 6pt{
+\frenchspacing
+\iftwelvepoint
+\font\foo=cmr12
+\else
+\font\foo=cmr10\fi
+%%
+\fontdimen2\foo=1.5pt 
+%%
+{\large \it Software: }
+#2
+%% returning to original fontdimen
+\iftwelvepoint
+\fontdimen2\foo=3.91663pt
+\else
+\fontdimen2\foo=3.33333pt
+\fi
+}\egroup}
 
 \newcommand\object{\@testopt\@object{[}}%
 \def\@object[#1]#2{#2}%
@@ -1713,9 +1807,6 @@ the#1\endcsname}
 \global\def\tablenotetext#1#2{\vskip-8pt\vskip1sp\flushleft{\currtabletypesize
 \noindent\hskip1em $^{#1}$ #2}\vskip1sp}
 
-
-\newif\if@table@not@headed
-
 %% this version of \tablehead doesn't seem to be used, so set to \xyztablehead{}
 \def\xyztablehead#1{\@table@not@headedfalse%
   \kill
@@ -1736,6 +1827,8 @@ the#1\endcsname}
   \endfoot%
 }
 
+\newif\if@table@not@headed
+
 \newlength{\table@note@skip}
 \setlength{\table@note@skip}{0.5ex}
 \newlength{\deluxe@table@width}
@@ -1743,13 +1836,13 @@ the#1\endcsname}
 \newcounter{deluxe@table@num}
 \newdimen\LTcapwidth
 
-%% \ignorespaces necessary ++== depth 6pt was depth 3pt
-\def\colhead#1{\multicolumn{1}{c}{\vrule depth 6pt width
+%% \ignorespaces necessary ++== depth 6pt was depth 3pt, == added height 12pt, nov 2017
+\def\colhead#1{\multicolumn{1}{c}{\vrule depth 6pt height 12pt width
 0pt\relax#1}\ignorespaces}
-\def\twocolhead#1{\multicolumn{2}{c}{\hss\vrule depth 6pt width
+\def\twocolhead#1{\multicolumn{2}{c}{\hss\vrule depth 6pt height 12pt width
 0pt\relax#1\hss}\ignorespaces}
 \def\nocolhead#1{\multicolumn{1}{h}{}\ignorespaces}
-\def\dcolhead#1{\multicolumn{1}{c}{$\vrule depth 6pt
+\def\dcolhead#1{\multicolumn{1}{c}{$\vrule depth 6pt height12pt
 width0pt\relax#1$}\ignorespaces}
 
 %\newcounter{LT@tables}
@@ -4475,7 +4568,7 @@ deluxetable*\endcsname{\deluxestartrue\bgroup\floattrue
 \def\deluxetablecaption#1{\gdef\@tablecaption{#1}}
 
 \newif\ifstartlongtable
-\def\startlongtable{\global\startlongtabletrue}
+\def\startlongtable{\vskip1sp\global\startlongtabletrue}
 
 \newif\iffloat
 \def\floattable{\global\deluxestartrue\global\floattrue}
@@ -4496,6 +4589,8 @@ deluxetable*\endcsname{\deluxestartrue\bgroup\floattrue
 % \else\let\go\longdeluxetable\fi\go%}
 %% aug 2016
 \ifstartlongtable
+%% nov 2017:
+\def\arraystretch{1.1}
    \ifdeluxestar
 \vskip12pt
    \if@two@col\onecolumngrid
@@ -4552,7 +4647,8 @@ to\hsize{\hss\vtop{\hsize=\wd0
 \begin{tabular}{#1}%
 \hline\hline\noalign{\vskip-9pt}%
 \pt@head%
-##1\omit\\\omit\\\hline\end{tabular}}
+##1\crcr% added october 2017
+\omit\\\omit\\\hline\end{tabular}}
 
 %\noindent\hskip-1.25em %% kludge! but seems necessary
 \hbox to\hsize{\hss\copy3\hss}
@@ -4588,7 +4684,7 @@ to\hsize{\hss\vtop{\hsize=\wd0
 \setbox0=\hbox{\colnumbersonfalse
 \begin{tabular}{#1}
 \pt@head
-##1\end{tabular}}%
+##1\end{tabular}}% not here
 \expandafter\ifx\csname @tablecaption\endcsname\empty\else
 
 \noindent\hbox
@@ -4598,8 +4694,8 @@ to\hsize{\hss\vtop{\hsize=\wd0
 \begin{tabular}{#1}%
 \hline\hline\noalign{\vskip-9pt}%
 \pt@head%
-
-##1\omit\\\omit\\\hline\end{tabular}}%%<<== original
+##1\crcr%% added October 2017
+\omit\\\omit\\\hline\end{tabular}}%%<<== original
 \vskip-\parskip
 \noindent\hbox to\hsize{\hss\copy3\hss}
 \global\setbox4\vtop\bgroup\hsize=\wd0\relax
@@ -4639,7 +4735,7 @@ to\hsize{\hss\vtop{\hsize=\wd0
 \bgroup\centering
 \def\table@hook{\currtabletypesize}
       \LTcapwidth=\wd\longtablebox
-\begin{longtable}{#1}
+\begin{longtable}{#1}%%
 \caption{\hsize=\wd\longtablebox 
 \advance\baselineskip2pt
 \@tablecaption}\\
@@ -4662,10 +4758,10 @@ continued  \if@two@col\else on next page\fi}\\
 
 \hline%\nobreak
 \endlastfoot
-
 ##1
 \end{longtable}
-\vglue-24pt
+\vglue-\LTpost
+\vskip-6pt
 \egroup
 \global\setbox4=\vtop\bgroup
 \ifdim\wd\longtablebox>\textwidth
@@ -4684,8 +4780,8 @@ continued  \if@two@col\else on next page\fi}\\
 \vskip1sp
 \egroup
 \ifdim\dp4>6pt
-\vbox{%\vglue-3.5\baselineskip %% why this dimension??
-\hbox to \columnwidth{\hfill
+\vglue-6pt
+\vbox{\hbox to \columnwidth{\hfill
 \vtop{\hsize\wd\longtablebox
 \leftskip=6pt\parindent-6pt
 \copy4}\hfill}
@@ -4701,7 +4797,10 @@ continued  \if@two@col\else on next page\fi}\\
 \global\rotateonfalse
 %\global\floatfalse
 \if@two@col\vskip12pt\twocolumngrid\fi
-\relax}
+\relax\null%% \null is an empty hbox.
+%% This keeps final page(s) of startlongtable/deluxetable
+%% from begin thrown away when at end of article.
+}
 
 %% bbb
 %% \end{deluxetable}:
@@ -4992,12 +5091,12 @@ to\hsize{\hss\vtop{\hsize=\maxtablewidth\caption{\@tablecaption}}\hss}\vskip3pt\
 \parindent=-6pt \leftskip=6pt 
 }
 
-\def\tablecomments#1{{\small\vskip3pt\indent\vrule height 11pt depth 2pt
-width 0pt\currtabletypesize{\sc Note}---{#1}\vskip1sp}}
+\def\tablecomments#1{\vskip1pt{\small\vskip1sp\indent\vrule height 11pt depth 2pt
+width 0pt\currtabletypesize{\sc Note}---{#1}\vskip1pt}}
 
-\def\tablenotetext#1#2{{\currtabletypesize\vskip1pt\indent\vrule
+\def\tablenotetext#1#2{\vskip1pt{\currtabletypesize\vskip1pt\indent\vrule
 height 11pt depth
-2pt width0pt\relax$^{\hbox to 5pt{$#1$}}$#2\vskip1sp}}
+2pt width0pt\relax$^{\hbox to 5pt{$#1$}}$#2\vskip1pt}}
 
 \def\tablerefs#1{{\small\vskip3pt\indent\vrule height 11pt depth 2pt
 width 0pt\currtabletypesize{\bf References}---{#1}\vskip1sp}}
@@ -5067,6 +5166,7 @@ width 0pt\currtabletypesize{\bf References}---{#1}\vskip1sp}}
 \catcode`\$=\active%
 \xxtablehead}
 
+%% ++=
 \def\xxtablehead#1{%
 \let&\CheckNumberAndSwitch%
 \gdef\pt@head{%
@@ -5075,7 +5175,33 @@ width 0pt\currtabletypesize{\bf References}---{#1}\vskip1sp}}
 \expandafter\getDs\tabfullpreamble\relax
 \global\colcount=0
 \global\colheadcount=0}%
-\\[-10pt]% this is right 
+\\ 
+\iftwelvepoint%
+   \ifpreprint%
+   \iflongrotateon\else\noalign{\vskip-6.5pt}\fi%
+   \else%
+      \ifpreprinttwo%
+      \iflongrotateon\else\noalign{\vskip-6.5pt}\fi%
+      \else%
+         \ifmanu%
+            \iflongrotateon\noalign{\vskip-8pt}\else\noalign{\vskip-17pt}\fi%
+         \else%
+           \ifmodern  \iflongrotateon\else\noalign{\vskip-9pt}\fi%
+            \else%
+           \fi%% end ifmodern
+         \fi%% end ifmanu
+      \fi%% end ifpreprinttwo
+    \fi%% end ifpreprint
+\else%
+%% not twelvepoint
+    \iftwocolstyle%
+    \iflongrotateon\else\noalign{\vskip-5pt}\fi%
+          \else%
+              \ifonecolstyle% default
+                \iflongrotateon\noalign{\vskip2pt}\else\noalign{\vskip-4.5pt}\fi%
+              \fi% end ifonecol
+   \fi%endiftwocolstyle
+\fi%end iftwelvepoint
 #1\ifcolnumberson%
 \ifnotfirst\\[-22pt]\fi
 \else\\\hline\\[-8pt]\fi% space below hline for 2nd and 3rd part of split table
@@ -5087,20 +5213,46 @@ width 0pt\currtabletypesize{\bf References}---{#1}\vskip1sp}}
 \catcode`\$=\active%
 \zztablehead}
 
-%%
+%% +++
 \def\zztablehead#1{\let&\CheckNumberAndSwitch%
 \gdef\pt@head{%
 %% this is needed:
 \multicolumn1c{\expandafter\getDs\tabfullpreamble\relax
 \global\tempcounter=0
 \global\colcount=0
-\global\colheadcount=0}\\%
-#1
+\global\colheadcount=0}\\
+\iftwelvepoint%
+   \ifpreprint%
+   \iflongrotateon\else\noalign{\vskip-6.5pt}\fi%
+   \else%
+      \ifpreprinttwo%
+      \iflongrotateon\else\noalign{\vskip-6.5pt}\fi%
+      \else%
+         \ifmanu%
+            \iflongrotateon\noalign{\vskip-8pt}\else\noalign{\vskip-17pt}\fi%
+         \else%
+           \ifmodern  \iflongrotateon\else\noalign{\vskip-5pt}\fi%
+            \else%
+           \fi%% end ifmodern
+         \fi%% end ifmanu
+      \fi%% end ifpreprinttwo
+    \fi%% end ifpreprint
+\else%
+%% not twelvepoint
+    \iftwocolstyle%
+    \iflongrotateon\else\noalign{\vskip-5pt}\fi%
+          \else%
+              \ifonecolstyle% default
+                \iflongrotateon\noalign{\vskip2pt}\else\noalign{\vskip-4.5pt}\fi%
+              \fi% end ifonecol
+   \fi%endiftwocolstyle
+\fi%end iftwelvepoint
+#1%
 \ifcolnumberson\\[6pt]
 \savecolnumbers\vrule height 11pt depth 4pt width 0pt\relax%
-\\[6pt]
-\ifdeluxedecimals\\[-14pt] % 
-\savedecimals\fi
+\\\ifmanu\noalign{\vskip-15pt}\fi%
+\ifdeluxedecimals\\[-14pt]% 
+\savedecimals\fi%
 \else \vrule depth 6pt
 width0pt\\\ifdeluxedecimals\savedecimals\fi\hline\fi%
 }}
@@ -5125,8 +5277,8 @@ width0pt\\\ifdeluxedecimals\savedecimals\fi\hline\fi%
 \newcount\colheadcount
 \newcommand\xcolhead[1]{\multicolumn{\expandafter\ifx\csname
 col\the\colheadcount\endcsname\relax 1\else\expandafter%
-\csname col\the\colheadcount\endcsname\fi}{c}{\vrule depth 4pt width %% 
-0pt#1\relax\global\advance\colheadcount
+\csname col\the\colheadcount\endcsname\fi}{c}{\vrule depth 4pt
+width0pt\relax#1\relax\global\advance\colheadcount
 by 1\relax}\ignorespaces}%
 %
 
@@ -5208,6 +5360,7 @@ by 1\relax}\ignorespaces}%
 
 \newbox\rotatetablebox
 \def\rotatetable{%
+\clearpage
 \global\startlongtabletrue\setbox\rotatetablebox=\vbox\bgroup
 }
 \def\endrotatetable{\egroup
@@ -5220,6 +5373,7 @@ by 1\relax}\ignorespaces}%
 
 
 \expandafter\def\csname rotatetable*\endcsname{%
+\clearpage
 \global\startlongtabletrue\setbox\rotatetablebox=\vbox to
 \textwidth\bgroup\vfill}
 
@@ -5237,7 +5391,9 @@ by 1\relax}\ignorespaces}%
 }
 
 
+\newif\iflongrotateon
 \def\longrotatetable{%
+\global\longrotateontrue
    \if@two@col\onecolumngrid\clearpage
    \fi
 \clearpage
@@ -5248,7 +5404,7 @@ by 1\relax}\ignorespaces}%
 \global\floatfalse
 \global\startlongtabletrue
 \def\LS@rot{%
-  \setbox\@outputbox\vbox{\hbox{\rotatebox{90}{\box\@outputbox}}}}
+  \setbox\@outputbox\vbox{\vskip\movetabledown\hbox{\rotatebox{90}{\box\@outputbox}}}}
 
 \let\LS@makecol=\@makecol
 \let\LS@makefcolumn=\@makefcolumn
@@ -5272,6 +5428,8 @@ by 1\relax}\ignorespaces}%
   \endgroup
    \if@two@col\twocolumngrid\fi
 \clearpage
+\global\longrotateonfalse
+\global\movetabledown=0pt
   \global\@colht=\textheight
   \global\vsize=\textheight
   \global\@colroom=\textheight}
@@ -5343,6 +5501,7 @@ by 1\relax}\ignorespaces}%
 \newif\ifturnoffedit
 \def\turnoffedit{\global\turnoffedittrue}
 \def\turnoffedits{\global\turnoffedittrue}
+\let\turnoffediting\turnoffedits
 
 \newif\ifturnoffone
 \newif\ifturnofftwo
@@ -5351,11 +5510,14 @@ by 1\relax}\ignorespaces}%
 %% \turnoffeditone to only turn off only \edit1, \collaborationcomment1 and \authorcomment1 :
 \def\turnoffeditone{\turnoffonetrue}
 
+
 %% \turnoffedittwo to only turn off only \edit2, \collaborationcomment2 and \authorcomment2 :
 \def\turnoffedittwo{\turnofftwotrue}
 
+
 %% \turnoffeditthree to only turn off only \edit3, \collaborationcomment3 and \authorcomment3 :
 \def\turnoffeditthree{\turnoffthreetrue}
+
 
 %% Other choices can be made, but this should be
 %% standardized, so didn't make an user interface
@@ -5368,11 +5530,14 @@ by 1\relax}\ignorespaces}%
 \newcount\colorcount
 \def\edit#1#2{{\colorcount=#1\relax%
 \ifturnoffedit\let\go\ignorespaces\else%
-\let\go\relax%
+\let\go\relax\fi%
+\ifturnoffedit
+\color{black}#2%
+\else
 \color{\csname editcolor\the\colorcount\endcsname}%
-\ifnum\colorcount=1{\ifturnoffone\else\bf#2\ \fi}\else%
-\ifnum\colorcount=2{\ifturnofftwo\else\it#2\ \fi}\else%
-\ifnum\colorcount=3{\ifturnoffthree\else#2\ \fi}\fi\fi\fi\fi%
+\ifnum\colorcount=1{\ifturnoffone\color{black}#2\else\bf#2\fi}\else%
+\ifnum\colorcount=2{\ifturnofftwo\color{black}#2\else\it#2\fi}\else%
+\ifnum\colorcount=3{\ifturnoffthree\color{black}#2\else#2\fi}\fi\fi\fi\fi%
 }\go}
 
 \def\collaborationcomment#1#2{{\colorcount=#1
@@ -5421,7 +5586,7 @@ by 1\relax}\ignorespaces}%
 \newcommand*\submitjournal[1]
 {\def\@submitted{Submitted to #1}}%
 
-%% this one is used
+%% this one is used &&&
 \def\titleblock@produce{%
  \begingroup
  \ltx@footnote@pop
@@ -5434,7 +5599,7 @@ by 1\relax}\ignorespaces}%
 \ifmodern\leftskip=0pt\rightskip\leftskip\fi
   \frontmatter@title@produce
   \groupauthors@sw{%
-   \frontmatter@author@produce@group
+\frontmatter@author@produce@group
   }{%
    \frontmatter@author@produce@script
   }%
@@ -5460,9 +5625,8 @@ to 20pt{\hfill}}\vskip12pt}%
   }%
   \par
   \frontmatter@finalspace
- \endgroup
+\endgroup%
 }%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Highlight Figure
@@ -5868,11 +6032,14 @@ on page
 
 \newcommand\tablebreak{\\[-11pt]\noalign{\break}\\ }
 
-%% As suggested by Greg Schwarz, Gus Meunch, Feb 11
+%% As suggested by Greg Schwarz, August Meunch, Feb 11
 
-\def\dataset{\@ifnextchar[{\ydataset}{\xdataset}}
-\def\ydataset[#1]#2{\href{#2}{[#1]}}
-\def\xdataset#1{\href{#1}{[DATASET]}}
+\def\dataset{\def\doi##1{https://doi.org/##1}
+\@ifnextchar[{\ydataset}{\xdataset}}
+\def\xdataset#1{\ydataset[]{#1}\let\doi\savedoi}
+\def\ydataset[#1]#2{\def\one{#1}\ifx\one\empty
+\href{#2}{[DATASET]}\else
+\href{#2}{#1}\fi\let\doi\savedoi}
 
 %% this seems in the middle of nowhere...
 \advance\columnsep6pt
@@ -6016,10 +6183,6 @@ needed. It will not do anything.^^J Please use
 needed. It will not do anything.^^J Please use
 \string\altaffiliation\string{\string} instead.^^J^^J}\stop}
 
-
-
-
-
 %% We do not need \and in list of authors. It is taken care of
 %% automatically. Below is the definition from revtex4-1:
 % 
@@ -6029,7 +6192,7 @@ needed. It will not do anything.^^J Please use
 \newcount\AuthorCollaborationLimit
 \let\AuthorCallLimit\AuthorCollaborationLimit
 %% no limit for default
-\AuthorCollaborationLimit=300
+\AuthorCollaborationLimit=10000
 \newcount\largestAffilNum
 
 \def\lookfornumbers#1#2#3#4#5#6#7#8#9{\def\one{#1}
@@ -6101,42 +6264,14 @@ needed. It will not do anything.^^J Please use
 \else%
 \setbox0=\hbox{\expandafter\lookfornumbers\@affilID@temp{}{}{}{}{}{}{}{}{}}%
 \fi\fi
-%% #2= \altaffiliation{} or \email{} or possibly anything other than author, affiliation, or collaboration 
-%%\endgroup{}{} %%this works.
+%% #2= \altaffiliation{} or \email{} or 
+%% possibly anything other than author, affiliation, or collaboration 
   \@if@empty{#2}{\endgroup{}{}}
-{\ifnum\countauthors>\AuthorCollaborationLimit\else
-\endgroup{\comma@space}{}\frontmatter@footnote{#2}\fi}%
-\ifnum\countauthors>\AuthorCollaborationLimit\else  \space \@listand\fi
-}%
-
-\def\xxxdoauthor#1#2#3{%
-\iflongauthor\vskip12pt\fi
-\global\advance\countauthors by 1
-\ifnum\countauthors>\AuthorCollaborationLimit
-\iflongauthor\vskip6pt\fi
-\doEtAl
+{\ifnum\countauthors>\AuthorCollaborationLimit\endgroup{}{}%% <<< bug fix, added \endgroup{}{}
 \else
-\ifnum\AuthorCollaborationLimit=\countauthors
-\iflongauthor\vskip6pt\fi
-\let\@listand\relax
-\fi
-  \ignorespaces\leavevmode\hbox{#1\unskip\@listcomma}% nice, keeps name from breaking across lines
-\fi
-  \begingroup
-\ifnum\countauthors>\AuthorCollaborationLimit\else
-%% author names:
-  #3% 
-%all affil numbers:
-\ifx\@affilID@temp\empty
-\else%
-\setbox0=\hbox{\expandafter\lookfornumbers\@affilID@temp{}{}{}{}{}{}{}{}{}}%
-\fi\fi
-%% #2= \altaffiliation{} or \email{} or possibly anything other than author, affiliation, or collaboration 
-%%\endgroup{}{}
-  \@if@empty{#2}{\endgroup{}{}}
-{\ifnum\countauthors>\AuthorCollaborationLimit\else
 \endgroup{\comma@space}{}\frontmatter@footnote{#2}\fi}%
-\ifnum\countauthors>\AuthorCollaborationLimit\else  \space \@listand\fi
+\ifnum\countauthors>\AuthorCollaborationLimit\else  \space
+\@listand\fi 
 }%
 
 
@@ -6147,10 +6282,12 @@ needed. It will not do anything.^^J Please use
 \newif\iffirstaffil
 \firstaffiltrue
 
+%% 
 \def\@affil@script#1#2#3#4{%
-%\ifmodern
-\iffirstaffil\vskip24pt 
-\global\firstaffilfalse\fi%\fi
+\iffirstaffil
+% Oct 2017
+\vskip2pt
+\global\firstaffilfalse\fi
  \@ifnum{#1=\z@}{}{%
   \par
   \begingroup
@@ -6176,10 +6313,15 @@ needed. It will not do anything.^^J Please use
  }%
 }%
 
+\newif\ifnobreakafterkeywords
+\def\NoNewPageAfterKeywords{\global\nobreakafterkeywordstrue}
+\NoNewPageAfterKeywords
+\def\NewPageAfterKeywords{\global\nobreakafterkeywordsfalse}
+
 \def\frontmatter@maketitle{%
 \@author@finish
-\if@firstsection
-  \title@column\titleblock@produce
+\if@firstsection% not appendix, in other words
+  \title@column\titleblock@produce 
 \onecolumngrid
 \else
 %
@@ -6202,11 +6344,14 @@ needed. It will not do anything.^^J Please use
 % \let\maketitle\relax
 %  \let\thanks\@gobble
 \if@firstsection
-  \let\abstract\@undefined\let\endabstract\@undefined
-  \titlepage@sw{%
-   \vfil
-   \clearpage
-  }{}%
+\let\abstract\@undefined\let\endabstract\@undefined
+\titlepage@sw{%
+\ifnobreakafterkeywords
+\else
+\vfil
+\ifrnaas\else \clearpage\fi
+\fi
+ }{}%
 \fi
 }%
 
@@ -6233,18 +6378,15 @@ needed. It will not do anything.^^J Please use
 
 \def\allauthors{%% this conditional keeps \allauthors from turning on
 %%                 unless \AuthorCollaborationLimit is used:
-\ifnum\AuthorCollaborationLimit>0
 \ifnumlines\nolinenumbers\fi
 \onecolumngrid
 \clearpage
-\AuthorCollaborationLimit=100
-\largestAffilNum=100
+\AuthorCollaborationLimit=10000
+%\largestAffilNum=10000 <<== not needed
 {\vskip6pt\vskip1sp\centerline{\large\bf All Authors and
 Affiliations\vrule depth 18pt width0pt}\nobreak
 \maketitle
-\fi
 }}
-
 \let\AllAuthors\allauthors
 
 %% no club or widow lines
@@ -6294,27 +6436,27 @@ width 0pt\relax\fi}}}
 \footnote{\href{mailto:#1}{#1}\ifmodern\vrule depth 7pt width
 0pt\relax\else\ifmanu\vskip-4pt\else\vrule depth 7pt width 0pt\fi\fi}}}
 
-
 \def\nocollaboration{%
-\iflongauthor
-\collaboration{\vbox to 0pt{\vss ---\vskip9pt}}
-\else
-\collaboration{\vbox to 0pt{\vss ---\vskip4pt}}
-\fi
+\collaboration{\vbox to 0pt{\vss ---\vskip2pt}}
 }
 
 %% gets rid of () around collaboration
 \def\@collaboration@present#1#2#3#4{%
 \par
  \begingroup
+\iflongauthor\vskip-4pt\ifmodern\vskip-6pt\fi\fi
   \frontmatter@collaboration@above
   \@affilID@def{}%
   \@tempcnta\z@
   \@author@present{}{\ignorespaces#3\unskip}{#4}%
+%% October 2017
   \par
+\ifmodern%\vskip-4pt
+\else
+\iflongauthor\else\vskip-6pt\fi\fi
  \endgroup
-\iflongauthor\vskip-6pt\else
-\vskip6pt\fi
+\iflongauthor 
+\else\vskip8pt\fi
  \set@listcomma@list#1%
 }%
 
@@ -6327,6 +6469,17 @@ width 0pt\relax\fi}}}
 %\let\bibdata@app\relax
 %\def\pre@bibdata{}
 
+%% This is the underlying issue:
+%% Redefining \@bibdataout@init will keep useless file, \jobnameNotes, from being written.
+\let\@bibdataout@init\relax
+
+%% redefining and simplifying RevTeX4-1 definition, so that bibliography is not looking for
+%% \jobnameNotes:
+
+\def\bibliography#1{\bibliography@latex{#1}}%
+
+%%%
+\let\savecentercr\@centercr
 \def\frontmatter@author@produce@script{%
   \begingroup
     \let\@author@present\@author@present@script
@@ -6352,7 +6505,10 @@ width 0pt\relax\fi}}}
     \begingroup
      \frontmatter@above@affiliation@script
      \let\AFF@opr \@affil@script
-     \@AFF@list
+{\parskip=2pt
+\def\@centercr{\vrule depth 3pt width0pt\vskip1sp}
+     \@AFF@list}
+\let\@centercr\savecentercr
      \frontmatter@footnote@produce
      \par
     \endgroup
@@ -6372,9 +6528,281 @@ width 0pt\relax\fi}}}
 
 \bibliographystyle{aasjournal}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% October 2017
+
+\renewenvironment{widetext}{%
+\if@two@col
+  \par\ignorespaces
+  \setbox\widetext@top\vbox{%
+   \hb@xt@\hsize{%
+    \leaders\hrule\hfil
+    \vrule\@height6\p@
+   }%
+  }%
+  \setbox\widetext@bot\hb@xt@\hsize{%
+    \vrule\@depth6\p@
+    \leaders\hrule\hfil
+  }%
+  \onecolumngrid
+  \vskip10\p@
+  \dimen@\ht\widetext@top\advance\dimen@\dp\widetext@top
+  \cleaders\box\widetext@top\vskip\dimen@
+  \vskip6\p@
+  \prep@math@patch
+\fi}{%
+\if@two@col
+  \par
+  \vskip6\p@
+  \setbox\widetext@bot\vbox{%
+   \hb@xt@\hsize{\hfil\box\widetext@bot}%
+  }%
+  \dimen@\ht\widetext@bot\advance\dimen@\dp\widetext@bot
+  \cleaders\box\widetext@bot\vskip\dimen@
+  \vskip8.5\p@
+  \twocolumngrid\global\@ignoretrue
+  \@endpetrue
+\fi}%
+\newbox\widetext@top
+\newbox\widetext@bot
+
+\urlstyle{rm}
+
+\def\doi#1{\href{https://doi.org/#1}{https://doi.org/#1}}
+\let\savedoi\doi
+
+\def\mdash{---}
+
+
 \endinput
 
 %% Change Log
+============================
+Nov 27, 2017
+
+1) Change to \begin{widetext}...\end{widetext} to
+return the horizontal lines before and after the 
+environment.
+
+2) \NoNewPageAfterKeywords is now default;
+authors wanting a new page after keywords can
+use the \NewPageAfterKeywords command.
+
+3) Change in definition names, returning to earlier version:
+\turnoffediting will turn off colors for all levels
+of editing mark up made with \edit1{}, \edit2{}, or \edit3{}.
+You can turn off any level of editing with 
+\turnoffeditone, \turnoffedittwo, and \turnoffeditthree.
+
+4) It is now possible to use \doi{} as an argument of \dataset.
+\dataset[]{\doi{10.5281/zenodo.831784}} and
+\dataset[\doi{10.5281/zenodo.831784}]{\doi{10.5281/zenodo.831784}}
+will work.
+ 
+============================
+October 15, 2017
+
+1) \movetabledown now works with longrotatetable as it does with
+rotatetable.
+\movetabledown=<dimen> before either 
+\begin{rotatetable} or
+\begin{longrotatetable}
+
+Added \clearpage before \begin{rotatetable} and \begin{rotatetable*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2)
+
+\NoNewPageAfterKeywords, used after \documentclass{AASTeX62},
+will keep a new page from starting after keywords.
+Extra vertical space before first section in Modern option.
+
+Solution suggested by  Alex Drlica-Wagner.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+3)\edit1{}, \edit2{} and \edit3{} will add color
+to the edited text.
+
+To get rid of the color, but not the text, authors should
+use \turnoffeditonecolor (for \edit1{})
+ \turnoffedittwocolor (for \edit2{})
+ \turnoffeditthreecolor (for \edit3{})
+These commands have the same results as
+\turnoffeditone, \turnoffedittwo, and \turnoffeditthree
+which are not disabled, but the new commands make the
+action to be produced more descriptive.
+
+Similarly, instead of \turnoffedit or \turnoffedits
+we now have \turnoffeditcolors. The original two
+commands still work, but the new command is more
+descriptive of the results.
+
+Authors should be instructed to put these commands before
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+4)
+\begin{widetext}...\end{widetext}
+
+\begin{widetext}
+will go from twocolumngrid to onecolumngrid, centered.
+
+\end{widetext} will turn off centering and go back
+to twocolumngrid.
+
+Only needed in twocolumn styles; nothing will happen
+in single column styles.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+5) Sean Lake's problem with \mag was solved by Barbara Beeton online,
+
+``the latest edit identifies the problem unambiguously: \mag is a tex
+primitive, and shouldn't be redefined. why this didn't appear in the
+logs you posted is beyond me, but if you rename your command to (say)
+\Mag it should stop having a problem. � barbara beeton Feb 22''
+
+\mag is a tex primitive, and it is expecting to be followed by a
+number.
+
+This had nothing to do with AASTeX61.cls
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+6) 
+\def\arraystretch{.9} as requested will make the space between
+lines in tables shrink to 90% of the original space.
+
+I think what is really wanted is \def\arraystretch{1.1} which will
+still give us 110% of the original space, a little extra vertical space, but not
+as much as we had before.
+
+Meanwhile, an author can change the definition of \arraystretch{}
+for a single table or all the tables in his paper, if he wants more
+or less space.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+7) Abstract is now the same width as in emulateapj
+in all styles, with the exception of the modern option 
+which is unchanged. Abstracts in all styles will break over pages
+in this version.
+
+Thanks to suggestion by Patricio Cubillos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+8) Center and tighten affiliations, changed and
+tested for all styles, including longauthor option.
+
+samples.zip show examples titlepage of each style with and
+without longauthor option.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+9) preprintnumbers activated.
+No need to use a documentclass option.
+
+Just enter \reportnum{<text>}, before \begin{document}
+and repeat as many times as needed. The entries will stack 
+in the top right hand corner of the titlepage, for all styles.
+
+ie
+\reportnum{YOUR-INST-REP-789}
+\reportnum{MY-INST-REP-123}
+
+%% author can continue with as many entries as desired.
+% \reportnum{A number of other numbers}
+% \reportnum{More Numbers}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+10) Title is no longer uppercase by default. It is
+now title case, which means all important words are
+capitalized by author.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+11) \AuthorCollaborationLimit now
+set to default of 10,000. If smaller number of
+authors wanted, \AuthorCollaborationLimit can
+be set to the number wanted; \allauthors typed
+at end of article will make every author and
+affiliation print.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+12) \startlongtable\deluxetable now works in appendix, even
+when it is the last entry in the paper. Added \null
+to \endlongdeluxetable which has the effect of making
+last page print.
+
+This works in my test, but it
+may be useful to see the example from author, github #54
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+13) Deluxetable no longer crashes if author has neglected
+to put in \\ before \enddata. I added the non-redundant \\
+command, \crcr, and sample now works.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+14) \tablehead in deluxetable had too much space underneath
+double horizontal lines. Made custom negative skip based 
+on each style, tested, and supplied tabsamples.zip showing
+tableheads in each style.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+15) \urlstyle{rm} is set so that url and href produce
+the same fonts.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+16) Fix to \dataset so that square brackets
+are not printed in the case of argument
+in square brackets.
+
+Now
+\dataset[]{http://www.texnology.com}
+produces
+[DATASET] linked to www.texnology.com
+
+\dataset[TeXnology]{http://www.texnology.com}
+produces
+TeXnology linked to www.texnology.com
+
+%% This will also work,
+% same results as \dataset[]{http://www.texnology.com}
+% but using the more common LaTeX syntax:
+
+\dataset{http://www.texnology.com}
+also produces
+[DATASET] linked to www.texnology.com
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+17) New version of DOI:
+
+\doi{10.5281/zenodo.831784}
+now produces hyperlinked
+
+https://doi.org/10.5281/zenodo.831784
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+18) Added to definition of \software,
+working with sample from August Muench, reduced
+the space between words, and got rid of
+extra space after punctuation with the
+\frenchspacing command.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+19) August Muench entered a bug report
+complaining that \clearpage doesn't always
+work, but he didn't have a sample, so I am
+not able to debug this one. It may be that
+the problem isn't with the code, but with
+the way the commands were entered, but 
+without a sample I have no way of knowing.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+20)
+Tested \startlongtable in all styles
+and didn't find a problem with centering.
+I did add a skip at the beginning of
+\startlongtable in case someone didn't
+leave a blank line before using the
+command.
+
+============================
 September 21, 2016
 Finishing Version 6.1 update
 
