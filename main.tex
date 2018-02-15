@@ -1090,7 +1090,9 @@ computational approaches \citep[e.g.,][]{Press89, Palmer09}, and thus can be
 applied to much larger datasets than Lomb-Scargle algorithms available in,
 e.g., \package{scipy.stats} (\citealt{scipy}). Much of the Lomb-Scargle code
 in \astropypkg has been adapted from previously-published open-source code
-\citep{astroML, VanderPlas2015}.
+\citep{astroML, VanderPlas2015}. Users should be aware that correct
+interpretation of periodogram results involves some subtleties; for a thorough
+discussion of this issue, see \citet[][in press]{VanderPlas2018}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
 \package{astropy.stats} also includes an implementation of
