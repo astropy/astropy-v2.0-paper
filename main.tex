@@ -174,7 +174,7 @@ package.
 From its inception, \astropy has required coordination to ensure the project
 as a whole and its coding efforts are consistent and reasonably efficient.
 While many \python projects adopt a ``Benevolent Dictator For Life'' (BDFL)
-model, \astropy has instead opted for a \emph{coordination committee}.  This
+model\footenote{https://en.wikipedia.org/wiki/Benevolent\_dictator\_for\_life}, \astropy has instead opted for a \emph{coordination committee}.  This
 is in part due to the nature of the project as a large-scale collaboration
 between many contributors with many interests, and in part due to simply the
 amount of work that needs to get done.  For the latter reason, the
@@ -242,12 +242,7 @@ steady rate throughout its existence.
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 
-Central to the success of \astropy is an open environment where anybody can
-contribute to the project.
-This model leads to an ``organic'' growth, where features are
-implemented by different people with different programming styles and
-interfaces.
-Thus, \astropy has a mechanism to more formally propose significant changes to
+The \astropy project has a formal mechanism to propose significant changes to
 the core package (e.g., re-writing the coordinates subpackage; \citealt{ape5}),
 to plan out major new features (e.g., a new file format; \citealt{ape6}), or
 institute new organization-wide policies (e.g., adopting a code of conduct;
@@ -287,7 +282,11 @@ libraries) that make these packages more suitable to be separate from the
 Affiliated packages may also be used to develop substantial new functionality
 that will eventually be incorporated into the \astropypkg core package
 (e.g., \texttt{wcsaxes}).
-New functionality benefits from having a rapid development and release cycle that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).
+New functionality benefits from having a rapid development and release cycle 
+that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).  
+These projects may also have less stringent requirements for style, testing, or
+development as the core package. 
+
 
 Affiliated packages are listed on the main \astropy website and advertised to
 the community through \astropy mailing lists; a list of current affiliated
