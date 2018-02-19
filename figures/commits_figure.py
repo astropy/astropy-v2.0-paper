@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 
+
 def generate_commit_stats_file(filename='gitlogstats.csv', overwrite=False,
                                astropy_path=None):
     """
@@ -17,7 +18,7 @@ def generate_commit_stats_file(filename='gitlogstats.csv', overwrite=False,
     set `overwrite` to True to always re-generate the statistics.
     """
     if os.path.isfile(filename) and not overwrite:
-        return pd.read_csv(filename)
+        df = pd.read_csv(filename)
 
     else:
         import subprocess
@@ -30,11 +31,17 @@ def generate_commit_stats_file(filename='gitlogstats.csv', overwrite=False,
 
         with tempfile.NamedTemporaryFile(mode='w+') as f:
             f.write(output)
+            f.seek(0)
             df = pd.read_csv(f.name, names=['commit', 'date', 'author',
                                             'committer'])
 
+        print('writing df to file {0}'.format(filename))
         df.to_csv(filename)
-        return df
+
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.set_index(df['date'])
+
+    return df
 
 
 def commits_plot(astropy_path, ax=None, **hist_kw):
@@ -74,8 +81,6 @@ def commits_vs_time(astropy_path, ax=None, **hist_kw):
 
     df = generate_commit_stats_file(astropy_path=astropy_path)
     # n_commits = df.groupby('date').size()
-    df['date'] = pd.to_datetime(df['date'])
-    df = df.set_index(df['date'])
 
     date_bins = df.groupby(pd.TimeGrouper('D'))
     commits_per_day = date_bins.size()
@@ -84,13 +89,28 @@ def commits_vs_time(astropy_path, ax=None, **hist_kw):
         fig, ax = plt.subplots(1, 1, figsize=(6,5))
 
     n_commits = np.cumsum(commits_per_day)
-    plt.fill_between(n_commits.index, 0, np.array(n_commits))
+    ax.fill_between(n_commits.index, 0, np.array(n_commits))
 
     ax.set_xlabel('year')
     ax.set_ylabel('number of commits')
 
     ax.set_xlim(datetime(2011,6,1), datetime(2018,1,1))
     ax.set_ylim(0, 21000)
+
+
+def contributors_vs_time(astropy_path, timegrouper_freq='M', ax=None):
+    df = generate_commit_stats_file(astropy_path=astropy_path)
+    groups = df.groupby(pd.TimeGrouper(freq=timegrouper_freq))
+    agg = groups.agg({"author": lambda x: x.nunique()})
+
+    if ax is None:
+        fig, ax = plt.subplots(1, 1)
+
+    ax.plot(agg.index, agg['author'], drawstyle='steps-mid', marker='')
+    ax.set_xlabel('year')
+    ax.set_ylabel('committers per month')
+    ax.set_xlim(datetime(2011, 6, 1), datetime(2018, 1, 1))
+    ax.set_ylim(0, 35)
 
 
 if __name__ == "__main__":
@@ -108,9 +128,10 @@ if __name__ == "__main__":
 
     astropy_path = path.abspath(path.expanduser(args.astropy_path))
 
-    fig, axes = plt.subplots(1, 2, figsize=(11,5))
+    fig, axes = plt.subplots(1, 3, figsize=(15, 5.))
     commits_plot(astropy_path, ax=axes[0])
     commits_vs_time(astropy_path, ax=axes[1])
+    contributors_vs_time(astropy_path, ax=axes[2])
 
     fig.tight_layout()
-    fig.savefig('ncommits.pdf')
+    fig.savefig('commits.pdf')
