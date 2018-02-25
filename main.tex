@@ -320,7 +320,8 @@ The latest LTS release (version 2.0) is also the last one that supports \python
 The version numbering of the \astropypkg core package reflects this release
 scheme: the core package version number uses the form \texttt{x.y.z}, where ``x'' is
 advanced for LTS releases, ``y'' for non-LTS feature releases, and
-``z'' for bugfix releases.
+``z'' for bugfix releases.  This is similar to 
+Semantic Versioning\footnote{https://semver.org}.
 
 The released versions of the \astropypkg core package are available from several
 of the \python distributions for scientific computing (e.g.,
@@ -349,7 +350,8 @@ for sustainability has not yet been established.
 The \astropy project has the ability to accept financial contributions
 from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
-open-source scientific computing.} organization. NumFOCUS has, to date, covered the direct costs incurred by the \astropy project.
+open-source scientific computing.} organization. NumFOCUS has, 
+to date, covered the direct costs incurred by the \astropy project.
 
 \section{Astropy Core Package Version 2.0}
 \label{sec:core}
@@ -384,8 +386,8 @@ subpackages, have become a key concept for using the package as a whole.
 Units are intimately entwined in the definition of astronomical coordinates;
 thus, nearly all functionality in the \texttt{astropy.coordinates} subpackage
 (see \sectionname~\ref{sec:coordinates}) depends on them.
-For most other subpackages, quantities are at least accepted and often expected
-by default.
+Most \astropypkg subpackages have been made compatible with \texttt{Quantity} 
+objects, although they are not always required. 
 
 The motivation and key concepts behind this subpackage were described in detail
 in the previous paper \citep{astropy}. Therefore, we primarily highlight new
@@ -637,7 +639,7 @@ or sidereal times.
 library, which replicates the Standards of Fundamental Astronomy (SOFA;
 \citealt{sofa}) but is licensed under a three-clause BSD license.
 The package was described in detail in  \citet{astropy} and has
-stayed stable for the last several versions of \astropypkg.
+remained stable for the last several versions of \astropypkg.
 Thus, in what follows, we only highlight significant changes or new features
 since the previous \astropy paper.
 
