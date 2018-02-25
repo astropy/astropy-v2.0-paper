@@ -893,12 +893,12 @@ consistency checks.
 \caption{%
     An example showing different modes of convolution available in the \python
     ecosystem.  Each red $x$ signifies a pixel that is set to \texttt{NaN} in the
-    original data (a).  If the data are convolved with a Gaussian kernel on a
+    original data (top left).  If the data are convolved with a Gaussian kernel on a
     $9\times 9$ grid using
-    \package{scipy}'s direct convolution (b), any pixel within range of the original \texttt{NaN}
-    pixels is also set to \texttt{NaN}.  Panel (c) shows what happens if the
+    \package{scipy}'s direct convolution (top right), any pixel within range of the original \texttt{NaN}
+    pixels is also set to \texttt{NaN}.  The bottom left panel shows what happens if the
     \texttt{NaN}s are set to zero first: the originally \texttt{NaN} regions are
-    depressed relative to their surroundings.  Finally, panel (d) shows
+    depressed relative to their surroundings.  Finally, the bottom right panel shows
     \astropypkg's convolution behavior, where the missing pixels are replaced
     with values interpolated from their surroundings using the convolution
     kernel.
@@ -1032,8 +1032,6 @@ tools.
 This example uses \package{astropy.visualization.wcsaxes} to display the
 sky coordinate grid, and the \texttt{astropy.visualization.make\_lupton\_rgb()}
 function to produce the RGB image from three SDSS filter images ($g$, $r$, $i$).
-The left and right panel images show two different parameter choices for the
-stretch and softening parameters (shown in the titles).
 \label{fig:ngc6977}}
 \end{figure}
 
@@ -1262,9 +1260,8 @@ comment on these efforts via the \astropy mailing list or \package{astropy/astro
 \section{Conclusion}
 \label{sec:conclusion}
 
-The development of the \astropypkg package and cultivation of the \astropy
-ecosystem are still maintaining significant growth while improving in stability,
-breadth, and reliability.
+The \astropypkg package is improving in stability, breadth, and reliability
+while the the \astropy project is still significantly growing. 
 As the \astropypkg core package becomes more mature, several subpackages have
 reached stability with a rich set of features that help astronomers worldwide to
 perform many daily tasks, such as planning observations, analyzing data or
@@ -1327,12 +1324,11 @@ Smithsonian Astrophysical Observatory contract SV3-73016 to MIT for Support of t
 operated by the Smithsonian Astrophysical Observatory for and on behalf of the National Aeronautics Space
 Administration under contract NAS8-03060. JTV was supported by the UW eScience Institute, via grants from the Moore
 Foundation, the Sloan Foundation, and the Washington Research Foundation. SMC acknowledges the National Research
-Foundation of South Africa. TLA was supported by NASA contract NAS8-03060. Support for E.J.T. was provided by NASA
+Foundation of South Africa. TLA was supported by NASA contract NAS8-03060. Support for EJT. was provided by NASA
 through Hubble Fellowship grant No. 51316.01 awarded by the Space Telescope Science Institute, which is operated by
 the Association of Universities for Research in Astronomy, Inc., for NASA, under contract NAS 5-26555, as well as a
 Giacconi Fellowship. MB was supported by the FONDECYT regular project 1170618 and the MINEDUC-UA projects codes
-ANT 1655 and ANT 1656. DH was supported through the SFB 881 ``The
-Milky Way System'' by the German Research Foundation
+ANT 1655 and ANT 1656. DH was supported through the SFB 881 ``The Milky Way System'' by the German Research Foundation
 (DFG). WEK was supported by an ESO Fellowship. C.M. is supported by NSF grant AST-1313484. SP was supported by
 grant AYA2016-75808-R (FEDER) issued by the Spanish government. JEHT was supported by the Gemini Observatory, which
 is operated by the Association of Universities for Research in Astronomy, Inc., on behalf of the international

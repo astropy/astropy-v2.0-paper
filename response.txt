@@ -6,6 +6,21 @@ and ths statistical editor below.
 > There are some stylistic issues with the text. I have left comments inline
 >  where appropriate.
 
+We have addressed all of the stylistic issues that were raised by the referee.
+Here are some responses to the more detailed comments:
+
+Comment on styles:
+As it was not related to the section, we removed the first paragraph 
+in the APE section that commented on different styles.  However, we
+did add a comment in the affiliated package section indicating that
+they may have different requirements and structure than the core package. 
+
+Comment on NDData:
+At the time of initial development, the developers were not aware of 
+any open source packages that would have fit the requirements of NDData.  Since
+then, we have been working with different groups (LSST, sunypy) to coordinate
+development of the NDData interface as well as assessing other attempts at 
+something similar.  There is currently an APE about this under discussion. 
 
 > More generally, given the technical nature of the work being described here,
 > I frequently found myself wanting a small code snippet that demonstrated the 
