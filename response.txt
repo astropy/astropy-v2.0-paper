@@ -13,6 +13,43 @@ and ths statistical editor below.
 > authors could find a way to include short code examples where appropriate, 
 > either inline in the paper body or in the appendix.
 
+We did include code snippets in the first astropy paper from 2013, and
+it is not much work; we could use the same scripts to provide nicely
+formatted code examples with appropriate syntax highlighting here. However,
+we have made a conscious decision to avoid that this time as far as
+possible. We will explain our reasoning below, but if the referee
+insists, we can quickly add a few examples in a second revision.
+
+The main reasons why we chose NOT to include code samples are:
+
+- While we aim for stability, many of the newsest features are still
+  considered provisional, meaning that their API can still change. The
+  paper describes astropy 2.0, but at the time of writing this,
+  astropy 3.0 is already released. We hope that this paper is useful
+  for years to come. Code examples for a specific version are at risk
+  of being outdated much sooner than that.
+
+- Code examples belong in the documentation. In the documentation at
+  cods.astropy.org we provide extensive examples with enough comments
+  to actually understand what is going on. If readers are curious, we
+  want them to read the documentation.
+
+- It takes a lot of space to explain a code example well. Currently,
+  the text lists the names of the most important classes or
+  functions. To give a meaningful example that shows these classes in
+  action and is useful to people not familiar with astropy (or even
+  Python), we would have to detail several parameters and the format
+  of the results. We think that it is more useful to explain the
+  general concept in the paper and not the names and the specific
+  implementation of the functions and parameters.
+
+- Most new features would require some setup. For example, showing the
+  code for WCS axis plotting is not very useful without loading an
+  image with a WCS in it first. More complex features profit more from
+  code examples, but they also require much more setup to make such an
+  example self-consistent and useful. Again, the documentation is a better
+  place for that.
+
 
 > Specific issues that need to be corrected: There are some errors in the paper
 > (inline comments left where appropriate), for example, Figure 6 has a fairly 
