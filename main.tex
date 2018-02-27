@@ -352,6 +352,37 @@ from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
 open source scientific computing.} organization. NumFOCUS has, to date, covered the direct costs incurred by the \astropy project.
 
+\subsection{Reuse of the scientific Python ecosystem}
+
+The \astropy Project is built on a philosophy of building from the existing
+Python scientific ecosystem wherever possible. Many of the enabling technologies
+like \texttt{numpy}, \texttt{scipy}, \texttt{matplotlib}, or \texttt{cython},
+are necessary as the core underpinnings of \astropy packages.  Often this means
+simply means using these packages as ``building blocks'' (E.g., the ubiquitous
+use of \texttt{numpy} arrays throughout \astropypkg).  In other cases this means
+wrappers around more general algorithms that make them more convenient for
+astronomy use cases (E.g., the model-fitting in the \package{astropy.modeling}
+subpackage discussed in \sectionname~\ref{sec:modeling}).  Sometimes these
+simple wrappers evolve into more complex implementations that address
+astronomically-relevant use cases the general tool does not support (E.g.,
+\package{astropy.convolution}, see \sectionname~\ref{ssec:convolution}). As a
+broad rule, the Project explicitly encourages re-use of code where possible.
+
+However, the boundaries of when this re-use is called for often ambiguous.  Some
+of the examples above only evolved after significant debate in the community
+over whether these algorithms were sufficient.  Other times, even apparently
+general functionality did not exist in the wider ecosystem that met the \astropy
+community's needs, and hence the functionality had to be developed wholly from
+the developer resources available in the community (E.g.,
+\package{astropy.units}, or \package{astropy.table} when it began). While some
+of this functionality is ``given back'' to the wider community (E.g., myriad bug
+fixes for the enabling technologies listed above, and some of the testing and
+documentation architecture), in general, careful consideration is taken of
+whether the additional effort to make a piece of \astropy, and it is only
+``extracted'' when it seems plausible that the ongoing effort is worth the
+reward in the form of additional contributors or maintainers.
+
+
 \section{Astropy Core Package Version 2.0}
 \label{sec:core}
 The \astropy project aims to provide \python-based packages for all tasks that
@@ -875,6 +906,7 @@ densities in a variety of units and as a function of different units of
 spectral coordinates (e.g., wavelength or frequency).
 
 \subsection{Convolution}
+\label{ssec:convolution}
 
 The \package{astropy.convolution} subpackage implements
 \textit{normalized convolution} \citep[e.g.,][]{Knutsson1993}, an image
