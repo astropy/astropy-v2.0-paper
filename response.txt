@@ -50,6 +50,11 @@ The main reasons why we chose NOT to include code samples are:
   example self-consistent and useful. Again, the documentation is a better
   place for that.
 
+As a compromise, we have added links to the documentation in many places and
+there is a link in the introduction that points to the github repository where
+this article is written. That repository contains (and the text in the
+introduction says this) the scripts that we used to generate the figures.
+
 
 > Specific issues that need to be corrected: There are some errors in the paper
 > (inline comments left where appropriate), for example, Figure 6 has a fairly 
