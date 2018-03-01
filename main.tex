@@ -817,6 +817,16 @@ when using the convenience functions (e.g., \href{http://docs.astropy.org/en/sta
 \href{http://docs.astropy.org/en/stable/io/fits/api/files.html#getdata}{\texttt{getdata()}}) to get an HDU that is near the beginning in a file with
 many HDUs.
 
+\subsubsection{HDF5}
+
+The \package{astropy.io.misc.hdf5} subpackage provides support for binary
+read and write access to files in the \emph{Hierarchical Data Format}
+(HDF5), if the \package{h5py} package is installed. Astropy table I/O
+is offered transparently through \texttt{Table.read()} and
+\texttt{Table.write()}, analogously to the other auto-detected
+formats. The keyword \texttt{path='group/subgroup/dataset'} specifies
+the path to the data inside the file's hierarchical structure.
+
 \subsection{Modeling}
 \label{sec:modeling}
 
