@@ -61,10 +61,10 @@
 \input{author.tex}
 
 \begin{abstract}
-The \astropy project supports and fosters the development of open-source and openly-developed
+The \astropy Project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
-A key element of the \astropy project is the core package \astropypkg, which serves as the
+A key element of the \astropy Project is the core package \astropypkg, which serves as the
 foundation for more specialized projects and packages.
 In this article, we provide an overview of the organization of the \astropy
 project and summarize key features in the core package as of the recent major
@@ -72,7 +72,7 @@ release, version 2.0.
 We then describe the project infrastructure designed to facilitate and support
 development for a broader ecosystem of inter-operable packages.
 We conclude with a future outlook of planned new features and directions for the
-broader \astropy project.
+broader \astropy Project.
 \end{abstract}
 
 \keywords{%
@@ -101,7 +101,7 @@ particular research projects, a library that addresses common astronomical tasks
 simplifies the software development process.
 The users of such a library then also benefit from a community and ecosystem
 built around a shared foundation.
-The \astropy project has grown to become this community for \python astronomy
+The \astropy Project has grown to become this community for \python astronomy
 software, and the \astropypkg core package is a feature-rich \python library.
 
 The development of the \astropypkg core package began as a largely
@@ -134,7 +134,7 @@ More recently, the development and mainstream adoption of package managers such
 as Anaconda\footnote{\url{https://anaconda.org/}} has significantly streamlined
 the installation process for many libraries, lowering the barriers to entry.
 
-The \astropy project aims to provide an open-source and open-development core
+The \astropy Project aims to provide an open-source and open-development core
 package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
 support astronomical functionality in the \python programming language.
 The \astropypkg core package is now a feature-rich library of sufficiently
@@ -145,7 +145,7 @@ standard \citep{FITS} and maintain software for such a general-purpose need.
 Another example of such a common task is in dealing with representations of and
 transformations between astronomical coordinate systems.
 
-The \astropy project aims to develop and provide high-quality code and
+The \astropy Project aims to develop and provide high-quality code and
 documentation according to the best practices in software development.
 The project makes use of different tools and web services to reach those
 goals without central institutional oversight.
@@ -159,9 +159,9 @@ developed.
 In this paper, we describe the current status of the \astropy community and the
 \astropypkg core package and discuss goals for future development.
 
-We start by describing the way the \astropy project functions and is organized
+We start by describing the way the \astropy Project functions and is organized
 in \sectionname~\ref{sec:org}. We then describe the main software efforts
-developed by the \astropy project itself: a core package called \astropypkg
+developed by the \astropy Project itself: a core package called \astropypkg
 (\sectionname~\ref{sec:core}) and several separate packages that help maintain
 the infrastructure for testing and documentation
 (\sectionname~\ref{sec:infrastructure}). We end with a short vision for
@@ -288,10 +288,10 @@ make an executive decision based on the community input on the APE in question.
 
 \subsection{Concept of affiliated packages}
 
-A major part of the \astropy project is the concept of ``Affiliated Packages.''
+A major part of the \astropy Project is the concept of ``Affiliated Packages.''
 An affiliated package is an astronomy-related
 \python package that is not part of the \astropypkg core package, but
-has requested to be included as part of the \astropy project's
+has requested to be included as part of the \astropy Project's
 community. These packages support the goals and vision of \astropy of
 improving code re-use, interoperability, and embracing good coding
 practices such as testing and thorough documentation.
@@ -312,7 +312,7 @@ Becoming an affiliated package is a good way for new and existing packages to
 gain exposure while promoting \astropy's high standard for code and
 documentation quality.
 This process of listing and promoting affiliated packages is one way in which
-the \astropy project tries to increase code re-use in the astronomical
+the \astropy Project tries to increase code re-use in the astronomical
 community.
 
 Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package, where applicable.
@@ -350,10 +350,10 @@ of a suite of continuous integration tests.
 
 \subsection{Support of Astropy}
 
-The \astropy project, as of the version 2.0 release, does not receive any direct
+The \astropy Project, as of the version 2.0 release, does not receive any direct
 financial support for the development of \astropypkg.
 Development of the software, all supporting materials, and community support are
-provided by individuals who work on the \astropy project in their own personal
+provided by individuals who work on the \astropy Project in their own personal
 time, by individuals or groups contributing to \astropy as part of a research
 project, or contributions from institutions that allocate people to work on
 \astropy.
@@ -363,14 +363,45 @@ can be found in the Acknowledgments.
 Different funding models have been proposed for support of \astropy
 (e.g., \citealt{2016arXiv161003159M}), but a long-term plan
 for sustainability has not yet been established.
-The \astropy project has the ability to accept financial contributions
+The \astropy Project has the ability to accept financial contributions
 from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
-open source scientific computing.} organization. NumFOCUS has, to date, covered the direct costs incurred by the \astropy project.
+open source scientific computing.} organization. NumFOCUS has, to date, covered the direct costs incurred by the \astropy Project.
+
+\subsection{Reuse of the scientific Python ecosystem}
+
+The \astropy Project is built on a philosophy of building from the existing
+Python scientific ecosystem wherever possible. Many of the enabling technologies
+like \texttt{numpy}, \texttt{scipy}, \texttt{matplotlib}, or \texttt{cython},
+are necessary as the core underpinnings of \astropy packages.  Often this means
+using these packages as ``building blocks'' (e.g., the ubiquitous
+use of \texttt{numpy} arrays throughout \astropypkg).  In other cases this means
+wrappers around more general algorithms that make them more convenient for
+astronomy use cases (e.g., the model-fitting in the \package{astropy.modeling}
+subpackage discussed in \sectionname~\ref{sec:modeling}).  Sometimes these
+simple wrappers evolve into more complex implementations that address
+astronomically-relevant use cases the general tool does not support (e.g.,
+\package{astropy.convolution}, see \sectionname~\ref{ssec:convolution}). As a
+broad rule, the Project explicitly encourages re-use of code where possible.
+
+However, the boundaries of when this re-use is called for is often ambiguous.  Some
+of the examples above only evolved after significant debate in the community
+over whether these algorithms were sufficient.  Other times, even apparently
+general functionality did not exist in the wider ecosystem that met the \astropy
+community's needs, and hence the functionality had to be developed wholly from
+the developer resources available in the community (e.g.,
+\package{astropy.units}, or \package{astropy.table} when it began). At the same 
+time, however, the \astropy Project has provided the wider community with myriad bug
+fixes to the enabling technologies listed above, as well as the testing and
+documentation architecture. Functionality is only ``extracted'' from \astropy to 
+other packages after careful consideration that includes considering the impact 
+on the maintenance and support of \astropy.
+
+
 
 \section{Astropy Core Package Version 2.0}
 \label{sec:core}
-The \astropy project aims to provide \python-based packages for all tasks that
+The \astropy Project aims to provide \python-based packages for all tasks that
 are commonly needed in a large subset of the astronomical community.
 At the foundation is the \astropypkg core package, which provides general
 functionality (e.g., coordinate transformations, reading and writing
@@ -597,7 +628,7 @@ arbitrary precision and some transformations are sometimes subject to
 interpretation of standards (in particular in the case of Galactic coordinates),
 we do not designate any of the existing packages as the ``ground truth'' but
 instead compare each tool to all other tools. The benchmarks are thus useful
-beyond the \astropy project since they allow all of the tools to be compared to
+beyond the \astropy Project since they allow all of the tools to be compared to
 all other tools. The tools included in the benchmark at the moment include the
 \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas},
 PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast},
@@ -716,11 +747,11 @@ or reduction are also provided.
 The \astropysubpkg{table} subpackage provides functionality for
 representing and manipulating heterogeneous data. In some respects,
 this is similar to \package{numpy} record arrays \citep{numpy} or
-\package{pandas} dataframes \citep{pandas} but with modifications for
+\package{pandas} \texttt{DataFrame} objects \citep{pandas}, but with modifications for
 astronomical data. Most notably, tables from \astropysubpkg{table}
 allow for table or column metadata and can handle
-vectors or arrays as table entries.
-The subpackage was described in
+vectors/arrays or arbitrary objects (with suitable column-like characteristics)
+as table entries. The subpackage was described in
 detail in \cite{astropy}.  Thus, in what follows, we only summarize
 key new features or updates to \astropysubpkg{table} since the
 previous \astropy paper. These are support for grouped table
@@ -757,6 +788,17 @@ benefits of the \astropyTable object (e.g., accessing specific rows/columns
 or groups of them and combining tables) and of, for example,
 the \astropyskycoord or the \astropyTime classes (e.g., converting the
 coordinates to a different frame or accessing the date/time in the desired time scale).
+
+Additionally, there is now interoperability between \texttt{Table}
+and \package{pandas} \texttt{DataFrame} objects using the \texttt{Table.to_pandas()}
+and \texttt{Table.from_pandas()} methods. \texttt{Table.to_pandas()} is,
+however, limited to a subset of possible \texttt{Table} objects, because several
+of the features outlined above cannot be represented as \package{pandas} data
+frames. While these features might be contributed to or combined with
+\package{pandas} at a later date, the architectural differences that
+enable these areas are significant, so this would be a major undertaking that would 
+require substantial investment from the core maintainers and communities of both 
+packages.
 
 \subsection{\package{io}}
 
@@ -907,6 +949,7 @@ function of different units of spectral coordinates (e.g., wavelength or
 frequency).
 
 \subsection{Convolution}
+\label{ssec:convolution}
 
 The \astropysubpkg{convolution} subpackage implements
 \textit{normalized convolution} \citep[e.g.,][]{Knutsson1993}, an image
@@ -1173,7 +1216,7 @@ documentation builds for developers of affiliated packages or
 Any \python package can make use of this ready-to-go package layout, setup,
 installation, and \package{Sphinx} documentation build infrastructure that was
 originally developed for the \astropypkg core package and affiliated packages
-maintained by the \astropy project.
+maintained by the \astropy Project.
 The package template also provides a testing framework, template configurations
 for continuous integration services, and \package{Cython} build support.
 
@@ -1199,7 +1242,7 @@ all the packages in the \astropy ecosystem, is written using the
 that follow a markup language called \texttt{reStructuredText} (RST).
 These files are then transformed into HTML, PDF, or \LaTeX{} documents
 during the documentation build process.
-For the \astropy project, we have developed several \package{Sphinx} extensions
+For the \astropy Project, we have developed several \package{Sphinx} extensions
 that facilitate automatically generating API documentation for large projects,
 like the \astropypkg core package.
 The main extension we have developed is
@@ -1235,7 +1278,7 @@ evaluation, and performance monitoring.
 As a result, less new functionality may be introduced as a trade-off for
 better performance.
 
-Beyond the core code, the \astropy project is also further developing the
+Beyond the core code, the \astropy Project is also further developing the
 \astropy-managed affiliated packages.
 While these may not be integrated into the \astropypkg core package, these
 projects provide code that is useful to the astronomical community and meet the
@@ -1301,14 +1344,14 @@ As the \astropypkg core package becomes more mature, several subpackages have
 reached stability with a rich set of features that help astronomers worldwide to
 perform many daily tasks, such as planning observations, analyzing data or
 simulation results, and writing publications.
-The strong emphasis that the \astropy project puts on reliability and high coding
+The strong emphasis that the \astropy Project puts on reliability and high coding
 standards helps users to trust the calculations performed with \astropypkg and
 to publish reproducible results.
 At the same time, the \astropy ecosystem and core package are both growing: new
 functionality is still being contributed and new affiliated packages are being
 developed to support more specialized needs.
 
-The \astropy project is also spreading awareness of best practices in
+The \astropy Project is also spreading awareness of best practices in
 community-driven software development.
 This is important as most practicing astronomers were not explicitly taught
 computer science and software development, despite the fact that a substantial
@@ -1324,7 +1367,7 @@ to contributors, which helps to improve contributors' software development skill
 As a community, \astropy follows an explicit code of conduct \citep{ape8} and treats all
 contributors and users with respect, provides a harassment-free environment, and
 encourages and welcomes new contributions from all.
-Thus, while the \astropy project provides and develops software and tools
+Thus, while the \astropy Project provides and develops software and tools
 essential to modern astronomical research, it also helps to prepare the current
 and next generation of researchers with the knowledge to adequately use,
 develop, and contribute to those tools within a conscientious and welcoming
