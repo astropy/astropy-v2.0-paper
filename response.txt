@@ -9,6 +9,12 @@ and the statistical editor below.
 We have addressed all of the stylistic issues that were raised by the referee.
 Here are some responses to the more detailed comments:
 
+Comment on health of the project:
+
+We have added a plot of contributors per month along with our other metrics
+and some further comments about the health of the project.  A full analysis
+following the CHAOSS framework is beyond the scope of the current paper. 
+
 Comment on styles:
 As it was not related to the section, we removed the first paragraph 
 in the APE section that commented on different styles.  However, we
