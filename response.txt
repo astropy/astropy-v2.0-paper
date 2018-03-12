@@ -18,9 +18,10 @@ they may have different requirements and structure than the core package.
 Comment on NDData:
 At the time of initial development, the developers were not aware of 
 any open source packages that would have fit the requirements of NDData.  Since
-then, we have been working with different groups (LSST, sunypy) to coordinate
+then, we have been working with different groups (LSST, sunpy) to coordinate
 development of the NDData interface as well as assessing other attempts at 
-something similar.  There is currently an APE about this under discussion. 
+something similar.  There is currently an APE about this under 
+discussion (https://github.com/astropy/astropy-APEs/pull/14)  . 
 
 > More generally, given the technical nature of the work being described here,
 > I frequently found myself wanting a small code snippet that demonstrated the
