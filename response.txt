@@ -29,14 +29,9 @@ discussion (https://github.com/astropy/astropy-APEs/pull/14)  .
 > authors could find a way to include short code examples where appropriate,
 > either inline in the paper body or in the appendix.
 
-We did include code snippets in the first astropy paper from 2013, and
-it is not much work; we could use the same scripts to provide nicely
-formatted code examples with appropriate syntax highlighting here. However,
-we have made a conscious decision to avoid that this time as far as
-possible. We will explain our reasoning below, but if the referee
-insists, we can quickly add a few examples in a second revision.
-
-The main reasons why we chose NOT to include code samples are:
+We did include code snippets in the first astropy paper from 2013. 
+However, we have made a conscious decision to avoid that this time 
+due to the following reasons:
 
 - While we aim for stability, many of the newsest features are still
   considered provisional, meaning that their API can still change. The
@@ -77,6 +72,9 @@ introduction says this) the scripts that we used to generate the figures.
 > major issue with either the wrong caption or the wrong figure but I'm sure
 > this is easily addressed. I have left comments throughout the modified
 > 'main.tex' file in the form `\inlinecomment{REVIEWER}{Comment}`
+
+We have updated Figure 6 to have the correct caption. Inline comments
+were also addressed throughout the text. 
 
 > More generally I have a few comments/concerns:
 
