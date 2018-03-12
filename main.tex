@@ -34,6 +34,17 @@
 \newcommand{\inlinecomment}[2]{\todo[inline]{#1: #2}\xspace}
 \newcommand{\comment}[2]{\todo{#1: #2}\xspace}
 
+% Links to documentation: subpackages
+\newcommand{\astropysubpkg}[1]{\href{http://docs.astropy.org/en/stable/#1/index.html}{\texttt{astropy.#1}}\xspace}
+\newcommand{\astropyiosubpkg}[1]{\href{http://docs.astropy.org/en/stable/io/#1/index.html}{\texttt{astropy.io.#1}}\xspace}
+\newcommand{\astropywcsaxes}{\href{http://docs.astropy.org/en/stable/visualization/wcsaxes/index.html}{\texttt{astropy.visualization.wcsaxes}}\xspace}
+
+% Links to documentation: classes
+\newcommand{\astropyskycoord}{\href{http://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html}{\texttt{SkyCoord}}\xspace}
+\newcommand{\astropyQuantity}{\href{http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html}{\texttt{Quantity}}\xspace}
+\newcommand{\astropyTime}{\href{http://docs.astropy.org/en/stable/api/astropy.time.Time.html}{\texttt{Time}}\xspace}
+\newcommand{\astropyTable}{\href{http://docs.astropy.org/en/stable/api/astropy.table.Table.html}{\texttt{Table}}\xspace}
+
 \begin{document}
 
 \draft{\today}
@@ -50,10 +61,10 @@
 \input{author.tex}
 
 \begin{abstract}
-The \astropy project supports and fosters the development of open-source and openly-developed
+The \astropy Project supports and fosters the development of open-source and openly-developed
 \python packages that provide commonly-needed functionality to the astronomical
 community.
-A key element of the \astropy project is the core package \astropypkg, which serves as the
+A key element of the \astropy Project is the core package \astropypkg, which serves as the
 foundation for more specialized projects and packages.
 In this article, we provide an overview of the organization of the \astropy
 project and summarize key features in the core package as of the recent major
@@ -61,7 +72,7 @@ release, version 2.0.
 We then describe the project infrastructure designed to facilitate and support
 development for a broader ecosystem of inter-operable packages.
 We conclude with a future outlook of planned new features and directions for the
-broader \astropy project.
+broader \astropy Project.
 \end{abstract}
 
 \keywords{%
@@ -93,7 +104,7 @@ functions.
 The users of such a library then also benefit from a community and ecosystem
 built around a shared foundation.
 The \astropy project has grown to become this community for \python astronomy
-software, and the \astropypkg core package has becoming this shared foundation.
+software, and the \astropypkg core package has become this shared foundation.
 
 The development of the \astropypkg core package began as a largely
 community-driven effort to standardize core functionality for astronomical
@@ -125,7 +136,7 @@ More recently, the development and mainstream adoption of package managers such
 as Anaconda\footnote{\url{https://anaconda.org/}} has significantly streamlined
 the installation process for many libraries, lowering the barriers to entry for new users.
 
-The \astropy project aims to provide an open-source and open-development core
+The \astropy Project aims to provide an open-source and open-development core
 package (\astropypkg) and an ecosystem of \emph{affiliated packages} that
 support astronomical functionality in the \python programming language.
 The \astropypkg core package is now a feature-rich library of sufficiently
@@ -136,7 +147,7 @@ standard \citep{FITS} and maintain software for such a general-purpose need.
 Another example of such a common task is in dealing with representations of and
 transformations between astronomical coordinate systems.
 
-The \astropy project aims to develop and provide high-quality code and
+The \astropy Project aims to develop and provide high-quality code and
 documentation according to the best practices in software development.
 The project makes use of different tools and web services to reach those
 goals without central institutional oversight.
@@ -150,9 +161,9 @@ developed.
 In this paper, we describe the current status of the \astropy community and the
 \astropypkg core package and discuss goals for future development.
 
-We start by describing the way the \astropy project functions and is organized
+We start by describing the way the \astropy Project functions and is organized
 in \sectionname~\ref{sec:org}. We then describe the main software efforts
-developed by the \astropy project itself: a core package called \astropypkg
+developed by the \astropy Project itself: a core package called \astropypkg
 (\sectionname~\ref{sec:core}) and several separate packages that help maintain
 the infrastructure for testing and documentation
 (\sectionname~\ref{sec:infrastructure}). We end with a short vision for
@@ -207,11 +218,13 @@ documentation.\footnote{\emph{How to make a code contribution},
 \url{http://docs.astropy.org/en/latest/development/workflow/development_workflow.html}}
 
 \begin{figure}
-\includegraphics[width=\textwidth]{ncommits.pdf}
+\includegraphics[width=\textwidth]{commits.pdf}
 \caption{%
     \emph{Left panel}: Distribution of number of commits per committer.
-    \emph{Right panel}: Cumulative number of commits to the \astropypkg core
+    \emph{Middle panel}: Cumulative number of commits to the \astropypkg core
     package over time.
+    \emph{Right panel}: Number of unique committers per month to the
+    \astropypkg core package.
     \label{fig:ncommits}
 }
 \end{figure}
@@ -222,7 +235,7 @@ maintainability as the code itself.  Without comments there are $142197$ lines
 of code.} contributed by $232$ unique contributors over $19270$ \texttt{git}
 commits.
 \figurename~\ref{fig:ncommits}, left, shows the distribution of total number of
-commits per contributor as of November 2017.
+commits per contributor as of early 2018.
 The relative flatness of this distribution (as demonstrated by its log-log slope of
 $-0.5$) shows that the \astropypkg core package has been developed by a broad
 contributor base.  A leading group of 6 developers have each added over 1000
@@ -235,10 +248,15 @@ effort and is not dominated by a single individual.
 It is also important to note that the number of commits is only a rough metric
 of contribution, as a single commit could be a critical fix in the package or a
 fix for a typographical error.
-\figurename~\ref{fig:ncommits}, right, shows the number of commits as a
+\figurename~\ref{fig:ncommits}, middle, shows the number of commits as a
 function of time since the genesis of the \astropypkg core package.
 The package is still healthy: new commits are and have been contributed at a
 steady rate throughout its existence.
+\figurename~\ref{fig:ncommits}, right, shows that, $\approx$20--25 people
+contribute to the core package each month.
+While we would like for this number to grow, this demonstrates that the core
+package is still being developed and maintained by a substantial group of
+contributors.
 
 \subsection{APEs - Astropy Proposals for Enhancement}
 
@@ -267,10 +285,10 @@ make an executive decision based on the community input on the APE in question.
 
 \subsection{Concept of affiliated packages}
 
-A major part of the \astropy project is the concept of ``Affiliated Packages.''
+A major part of the \astropy Project is the concept of ``Affiliated Packages.''
 An affiliated package is an astronomy-related
 \python package that is not part of the \astropypkg core package, but
-has requested to be included as part of the \astropy project's
+has requested to be included as part of the \astropy Project's
 community. These packages support the goals and vision of \astropy of
 improving code re-use, interoperability, and embracing good coding
 practices such as testing and thorough documentation.
@@ -281,12 +299,11 @@ libraries) that make these packages more suitable to be separate from the
 \astropypkg core package.
 Affiliated packages may also be used to develop substantial new functionality
 that will eventually be incorporated into the \astropypkg core package
-(e.g., \texttt{wcsaxes}).
+(e.g., \astropywcsaxes).
 New functionality benefits from having a rapid development and release cycle 
 that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).  
 These projects may also have less stringent requirements for style, testing, or
 development as the core package. 
-
 
 Affiliated packages are listed on the main \astropy website and advertised to
 the community through \astropy mailing lists; a list of current affiliated
@@ -295,7 +312,7 @@ Becoming an affiliated package is a good way for new and existing packages to
 gain exposure while promoting \astropy's high standard for code and
 documentation quality.
 This process of listing and promoting affiliated packages is one way in which
-the \astropy project tries to increase code re-use in the astronomical
+the \astropy Project tries to increase code re-use in the astronomical
 community.
 
 Packages can become affiliated to \astropy by applying for this status on a public mailing list. The coordination committee (\sectionname~\ref{sect:coordcom}) reviews such requests and issues recommendations for the improvement of a package, where applicable.
@@ -334,10 +351,10 @@ of a suite of continuous integration tests.
 
 \subsection{Support of Astropy}
 
-The \astropy project, as of the version 2.0 release, does not receive any direct
+The \astropy Project, as of the version 2.0 release, does not receive any direct
 financial support for the development of \astropypkg.
 Development of the software, all supporting materials, and community support are
-provided by individuals who work on the \astropy project in their own personal
+provided by individuals who work on the \astropy Project in their own personal
 time, by individuals or groups contributing to \astropy as part of a research
 project, or contributions from institutions that allocate people to work on
 \astropy.
@@ -347,20 +364,53 @@ can be found in the Acknowledgments.
 Different funding models have been proposed for support of \astropy
 (e.g., \citealt{2016arXiv161003159M}), but a long-term plan
 for sustainability has not yet been established.
-The \astropy project has the ability to accept financial contributions
+The \astropy Project has the ability to accept financial contributions
 from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
 open-source scientific computing.} organization. NumFOCUS has, 
-to date, covered the direct costs incurred by the \astropy project.
+to date, covered the direct costs incurred by the \astropy Project.
+
+\subsection{Reuse of the scientific Python ecosystem}
+
+The \astropy Project is built on a philosophy of building from the existing
+Python scientific ecosystem wherever possible. Many of the enabling technologies
+like \texttt{numpy}, \texttt{scipy}, \texttt{matplotlib}, or \texttt{cython},
+are necessary as the core underpinnings of \astropy packages.  Often this means
+using these packages as ``building blocks'' (e.g., the ubiquitous
+use of \texttt{numpy} arrays throughout \astropypkg).  In other cases this means
+wrappers around more general algorithms that make them more convenient for
+astronomy use cases (e.g., the model-fitting in the \package{astropy.modeling}
+subpackage discussed in \sectionname~\ref{sec:modeling}).  Sometimes these
+simple wrappers evolve into more complex implementations that address
+astronomically-relevant use cases the general tool does not support (e.g.,
+\package{astropy.convolution}, see \sectionname~\ref{ssec:convolution}). As a
+broad rule, the Project explicitly encourages re-use of code where possible.
+
+However, the boundaries of when this re-use is called for is often ambiguous.  Some
+of the examples above only evolved after significant debate in the community
+over whether these algorithms were sufficient.  Other times, even apparently
+general functionality did not exist in the wider ecosystem that met the \astropy
+community's needs, and hence the functionality had to be developed wholly from
+the developer resources available in the community (e.g.,
+\package{astropy.units}, or \package{astropy.table} when it began). At the same 
+time, however, the \astropy Project has provided the wider community with myriad bug
+fixes to the enabling technologies listed above, as well as the testing and
+documentation architecture. Functionality is only ``extracted'' from \astropy to 
+other packages after careful consideration that includes considering the impact 
+on the maintenance and support of \astropy.
+
+
+>>>>>>> 0a5c93ffa551be5fd4bba22f4be705f8d79a39bd
 
 \section{Astropy Core Package Version 2.0}
 \label{sec:core}
-The \astropy project aims to provide \python-based packages for all tasks that
+The \astropy Project aims to provide \python-based packages for all tasks that
 are commonly needed in a large subset of the astronomical community.
 At the foundation is the \astropypkg core package, which provides general
 functionality (e.g., coordinate transformations, reading and writing
 astronomical files, and units) or base classes for other
-packages to utilize for a common interface (e.g., \texttt{NDData}).
+packages to utilize for a common interface (e.g.,
+\href{http://docs.astropy.org/en/stable/nddata/index.html}{\texttt{NDData}}).
 In this section, we highlight new features introduced or substantially improved
 since version 0.2 (previously described in \citealt{astropy}).  The \astropypkg
 package
@@ -372,19 +422,19 @@ since the release of the version 0.2 package.
 
 \subsection{Units}\label{sec:units}
 
-The \texttt{astropy.units} subpackage adds support for representing units and
+The \astropysubpkg{units} subpackage adds support for representing units and
 numbers with associated units --- ``quantities'' --- in code.
 Historically, quantities in code have often been represented simply as numbers,
 with units implied or noted via comments in the code because of considerations
 about speed: having units associated with numbers inherently adds overhead to
 numerical operations.
-In \texttt{astropy.units}, \texttt{Quantity} objects extend \texttt{numpy}
+In \astropysubpkg{units}, \astropyQuantity objects extend \texttt{numpy}
 array objects and have been designed with speed in mind.
 
 As of \astropypkg version 2.0, units and quantities, prevalent in most of its
 subpackages, have become a key concept for using the package as a whole.
 Units are intimately entwined in the definition of astronomical coordinates;
-thus, nearly all functionality in the \texttt{astropy.coordinates} subpackage
+thus, nearly all functionality in the \astropysubpkg{coordinates} subpackage
 (see \sectionname~\ref{sec:coordinates}) depends on them.
 Most \astropypkg subpackages have been made compatible with \texttt{Quantity} 
 objects, although they are not always required. 
@@ -395,10 +445,10 @@ features and improvements here.
 
 \subsubsection{Interaction with \package{numpy} arrays}
 
-\texttt{Quantity} objects extend
+\astropyQuantity objects extend
 \texttt{numpy.ndarray} objects and therefore
 work well with many of the functions in \texttt{numpy} that support
-array operations. For example, \texttt{Quantity} objects with angular
+array operations. For example, \astropyQuantity objects with angular
 units can be directly passed in to the trigonometric functions implemented in
 \texttt{numpy}. The units are internally converted to radians, which is what
 the \texttt{numpy} trigonometric functions expect, before being passed to
@@ -406,30 +456,30 @@ the \texttt{numpy} trigonometric functions expect, before being passed to
 
 \subsubsection{Logarithmic units and magnitudes}
         By default, taking the logarithm of
-        a \texttt{Quantity} object with non-dimensionless units intentionally
+        a \astropyQuantity object with non-dimensionless units intentionally
         fails.
         However, some well-known units are actually logarithmic quantities,
         where the logarithm of the value is taken with respect to some reference
         value.
         Examples include astronomical magnitudes, which are logarithmic fluxes,
         and decibels, which are more generic logarithmic ratios of quantities.
-        Logarithmic, relative units are now supported in \texttt{astropy.units}.
+        Logarithmic, relative units are now supported in \astropysubpkg{units}.
 
 \subsubsection{Defining functions that require quantities}
         When writing code or
-        functions that expect \texttt{Quantity} objects, we often want to
+        functions that expect \astropyQuantity objects, we often want to
         enforce that the input units have the correct physical type.
-        For example, we may want to require only length-type \texttt{Quantity}
+        For example, we may want to require only length-type \astropyQuantity
         objects.
-        \texttt{astropy.units} provides a tool called \texttt{quantity\_input()}
+        \astropysubpkg{units} provides a tool called \href{http://docs.astropy.org/en/stable/api/astropy.units.quantity_input.html}{\texttt{quantity\_input()}}
         that can perform this verification automatically to avoid repetitive
         code.
 
 
 \subsection{Constants}
 
-The \texttt{astropy.constants} subpackage provides a selection of physical and
-astronomical constants as \texttt{Quantity} objects (see
+The \astropysubpkg{constants} subpackage provides a selection of physical and
+astronomical constants as \astropyQuantity objects (see
 \sectionname~\ref{sec:units}).
 A brief description of this package was given in \cite{astropy}.
 In version 2.0, the built-in constants have been organized into modules for
@@ -446,9 +496,9 @@ is available and provides access to the adopted versions of the
 constants from earlier versions of \astropypkg.
 To use previous versions of the constants as \emph{units} (e.g., solar masses),
 the values have to be imported directly; with version
-2.0, \texttt{astropy.units} uses the \texttt{astropyconst20} versions.
+2.0, \astropysubpkg{units} uses the \texttt{astropyconst20} versions.
 
-Astronomers using \texttt{astropy.constants} should take particular note of the
+Astronomers using \astropysubpkg{constants} should take particular note of the
 constants provided for Earth, Jupiter, and the Sun.
 Following IAU 2015 Resolution B3 \citep{iau2015b3}, nominal values are now given
 for mass parameters and radii.
@@ -457,10 +507,10 @@ updated.
 
 \subsection{Coordinates}
 \label{sec:coordinates}
-The \package{astropy.coordinates} subpackage is designed to support representing
+The \astropysubpkg{coordinates} subpackage is designed to support representing
 and transforming celestial coordinates and, new in version 2.0, velocities.
-The framework heavily relies on the \package{astropy.units} subpackage, and most
-inputs to objects in this subpackage are expected to be \texttt{Quantity}
+The framework heavily relies on the \astropysubpkg{units} subpackage, and most
+inputs to objects in this subpackage are expected to be \astropyQuantity
 objects.
 Some of the machinery also relies on the Essential Routines of Fundamental
 Astronomy (ERFA) \texttt{C} library for some of the critical underlying
@@ -504,7 +554,7 @@ If required, these additional frame attributes must be specified along with the
 coordinate data when a \texttt{Frame} object is created.
 \figurename~\ref{fig:frame-transform-graph} shows the network of possible
 reference frame transformations as currently implemented in
-\texttt{astropy.coordinates}.
+\astropysubpkg{coordinates}.
 Custom user-implemented \texttt{Frame} classes that define transformations to
 any reference frame in this graph can then be transformed to any of the other
 connected frames.
@@ -513,7 +563,7 @@ connected frames.
 \includegraphics[width=\textwidth]{coordinates_graph.pdf}
 \caption{%
     The full graph of possible reference frame transformations implemented in
-    \texttt{astropy.coordinates}.
+    \astropysubpkg{coordinates}.
     Arrows indicate transformations from one frame to another.
     Arrows that point back to the same frame indicate self-transformations that
     involve a change of reference frame parameters (e.g., equinox).
@@ -523,15 +573,15 @@ connected frames.
 
 The typical user does not usually have to interact with the \texttt{Frame} or
 \texttt{Representation} classes directly.
-Instead, \texttt{astropy.coordinates} provides a high-level interface to
-representing astronomical coordinates through the \texttt{SkyCoord} class,
+Instead, \astropysubpkg{coordinates} provides a high-level interface to
+representing astronomical coordinates through the \astropyskycoord class,
 which was designed to provide a single class that
 accepts a wide range of possible inputs.
 It supports coordinate data in any coordinate frame in any representation by
 internally using the \texttt{Frame} and \texttt{Representation} classes.
 
 In what follows, we briefly highlight key new features in
-\texttt{astropy.coordinates}.
+\astropysubpkg{coordinates}.
 
 \subsubsection{Local Earth coordinate frames}
 In addition to representing celestial
@@ -541,7 +591,7 @@ In addition to representing celestial
     With this, \astropypkg now supports Earth-location-specific coordinate
     systems such as the altitude-azimuth (\texttt{AltAz}) or horizontal system.
     Transformations between \texttt{AltAz} and any Barycentric coordinate frame
-    also requires specifying a time using the \texttt{Time} class from
+    also requires specifying a time using the \astropyTime class from
     \texttt{astropy.time}.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg or the
@@ -560,7 +610,7 @@ In addition to representing celestial
     transformations are done numerically instead of analytically.
     The low-level interface for specifying and transforming velocity data  is
     currently experimental.  As such, in version 2.0, only the \texttt{Frame}
-    classes (and not the \texttt{SkyCoord} class) support handling velocities.
+    classes (and not the \astropyskycoord class) support handling velocities.
 
 \subsubsection{Solar System Ephemerides}
     Also new is support for computing ephemerides of major solar system bodies
@@ -573,7 +623,7 @@ In addition to representing celestial
 \subsubsection{Accuracy of coordinate transformations}
 
 In order to check the accuracy of the coordinate transformations in
-\package{astropy.coordinates}, we have created a set of benchmarks that we use
+\astropysubpkg{coordinates}, we have created a set of benchmarks that we use
 to compare transformations between a set of coordinate frames for a number of
 packages\footnote{\url{http://www.astropy.org/coordinates-benchmark/summary.html}}.
 Since no package can be guaranteed to implement all transformations to
@@ -581,7 +631,7 @@ arbitrary precision and some transformations are sometimes subject to
 interpretation of standards (in particular in the case of Galactic coordinates),
 we do not designate any of the existing packages as the ``ground truth'' but
 instead compare each tool to all other tools. The benchmarks are thus useful
-beyond the \astropy project since they allow all of the tools to be compared to
+beyond the \astropy Project since they allow all of the tools to be compared to
 all other tools. The tools included in the benchmark at the moment include the
 \astropypkg core package, Kapteyn \citep{kapteyn}, NOVAS \citep{novas},
 PALpy \citep{pal}, PyAST \citep[a wrapper for AST, described in][]{ast},
@@ -630,12 +680,12 @@ benchmarks are refined and the packages updated.
 \subsection{Time}
 \label{sec:time}
 
-The \package{astropy.time} subpackage focuses on supporting time scales (e.g.,
+The \astropysubpkg{time} subpackage focuses on supporting time scales (e.g.,
 UTC, TAI, UT1) and time formats (e.g., Julian date, modified Julian date) that
 are commonly used in astronomy.
 This functionality is needed, for example, to calculate barycentric corrections
 or sidereal times.
-\package{astropy.time} is currently built on the ERFA (\citealt{erfa}) C
+\astropysubpkg{time} is currently built on the ERFA (\citealt{erfa}) C
 library, which replicates the Standards of Fundamental Astronomy (SOFA;
 \citealt{sofa}) but is licensed under a three-clause BSD license.
 The package was described in detail in  \citet{astropy} and has
@@ -650,18 +700,18 @@ source to the observatory because of the Earth's motion.
 It is therefore common to instead convert times to the Solar System
 barycenter or heliocenter where the relative timing of photons is
 standardized.
-With the location of a source on the sky (i.e., a \texttt{SkyCoord}
+With the location of a source on the sky (i.e., a \astropyskycoord
 object), the location of an observatory on Earth (i.e., an
-\texttt{EarthLocation} object), and time values as \texttt{Time}
+\href{http://docs.astropy.org/en/stable/api/astropy.coordinates.EarthLocation.html}{\texttt{EarthLocation}} object), and time values as \astropyTime
 objects, the time corrections to shift to the solar system barycenter or
-heliocenter can now be computed with \package{astropy.time} using the
-\texttt{light\_travel\_time} method of a \texttt{Time} object.
+heliocenter can now be computed with \astropysubpkg{time} using the
+\texttt{light\_travel\_time} method of a \astropyTime object.
 
 \subsection{Data containers}
 
 \subsubsection{\package{nddata}}
 
-The \package{astropy.nddata} subpackage provides three types of functionality: an
+The \astropysubpkg{nddata} subpackage provides three types of functionality: an
 abstract interface for representing generic arbitrary-dimensional datasets
 intended primarily for subclassing by developers of other packages, concrete
 classes building on this interface, and utilities for manipulating these kind of
@@ -684,9 +734,10 @@ Additionally, the \texttt{CCDData} class also provides reading and writing from
 and to FITS files and uses data structures from \astropypkg, like \texttt{WCS},
 to represent the file contents abstractly.
 
-The \package{astropy.nddata.utils} module provides utilities that can operate
+The \href{http://docs.astropy.org/en/stable/nddata/utils.html}
+{\package{astropy.nddata.utils}} module provides utilities that can operate
 on either plain \package{numpy} arrays or any of the classes in the
-\package{astropy.nddata} subpackage. It features a class for representing
+\astropysubpkg{nddata} subpackage. It features a class for representing
 two-dimensional image cutouts, allowing one to easily link pixels in the cutout
 to those in the original image or vice versa, to convert
 between world and pixel coordinates in the cutout, and to overlay the cutout
@@ -696,16 +747,16 @@ or reduction are also provided.
 \subsubsection{Tables}
 \label{sec:table}
 
-The \package{astropy.table} subpackage provides functionality for
+The \astropysubpkg{table} subpackage provides functionality for
 representing and manipulating heterogeneous data. In some respects,
 this is similar to \package{numpy} record arrays \citep{numpy} or
-\package{pandas} dataframes \citep{pandas} but with modifications for
-astronomical data. Most notably, tables from \package{astropy.table}
+\package{pandas} \texttt{DataFrame} objects \citep{pandas}, but with modifications for
+astronomical data. Most notably, tables from \astropysubpkg{table}
 allow for table or column metadata and can handle
-vectors or arrays as table entries.
-The subpackage was described in
+vectors/arrays or arbitrary objects (with suitable column-like characteristics)
+as table entries. The subpackage was described in
 detail in \cite{astropy}.  Thus, in what follows, we only summarize
-key new features or updates to \package{astropy.table} since the
+key new features or updates to \astropysubpkg{table} since the
 previous \astropy paper. These are support for grouped table
 operations, table concatenation, and using array-valued
 \package{astropy} objects as table columns.
@@ -718,10 +769,10 @@ on the combination of source observed and the band, after which we combine the
 results for each combination of source and band in some way (e.g., finding
 the mean or standard deviation of the fluxes or magnitudes over time) or filter
 the groups based on user-defined criteria. These kinds of grouping and
-aggregation operations are now fully supported by \texttt{Table} objects.
+aggregation operations are now fully supported by \astropyTable objects.
 
 
-\texttt{Table} objects can now be combined in several different ways. If two
+\astropyTable objects can now be combined in several different ways. If two
 tables have the same columns, we may want to stack them ``vertically'' to create a
 new table with the same columns but all rows. If two tables are row-matched but
 have distinct columns, we may want to stack them ``horizontally'' to create a
@@ -730,24 +781,35 @@ table concatenation or join are also possible when two tables share some
 columns.
 
 
-The \texttt{Table} object now allows array-valued \texttt{Quantity}, celestial
-coordinate (\texttt{SkyCoord}), and date/time (\texttt{Time}) objects to
+The \astropyTable object now allows array-valued \astropyQuantity, celestial
+coordinate (\astropyskycoord), and date/time (\astropyTime) objects to
 be used as columns. It also provides a general way for other user-defined
 array-like objects to be used as columns.
 This makes it possible, for instance, to easily
 represent catalogs of sources or time series in \astropy, while having both the
-benefits of the \texttt{Table} object (e.g., accessing specific rows/columns
+benefits of the \astropyTable object (e.g., accessing specific rows/columns
 or groups of them and combining tables) and of, for example,
-the \texttt{SkyCoord} or the \texttt{Time} classes (e.g., converting the
+the \astropyskycoord or the \astropyTime classes (e.g., converting the
 coordinates to a different frame or accessing the date/time in the desired time scale).
+
+Additionally, there is now interoperability between \texttt{Table}
+and \package{pandas} \texttt{DataFrame} objects using the \texttt{Table.to\_pandas()}
+and \texttt{Table.from\_pandas()} methods. \texttt{Table.to\_pandas()} is,
+however, limited to a subset of possible \texttt{Table} objects, because several
+of the features outlined above cannot be represented as \package{pandas} data
+frames. While these features might be contributed to or combined with
+\package{pandas} at a later date, the architectural differences that
+enable these areas are significant, so this would be a major undertaking that would 
+require substantial investment from the core maintainers and communities of both 
+packages.
 
 \subsection{\package{io}}
 
-The \package{astropy.io} subpackage provides support for reading and writing
+The \package{astropy.io} subpackages provide support for reading and writing
 data to a variety of ASCII and binary file formats, such as a wide range of
 ASCII data table formats, FITS, HDF5, and VOTable.
 It also provides a unified interface for reading and writing data with these
-different formats using the \package{astropy.table} subpackage.
+different formats using the \astropysubpkg{table} subpackage.
 For many common cases, this simplifies the process of file input and output (I/O) and
 reduces the need to master the separate details of all the I/O packages within
 \astropypkg. The file interface allows transparent compression of
@@ -765,7 +827,7 @@ possible to write a table to an ASCII-format file and read it back
 with no loss of information. The ECSV format has been designed to be
 both human-readable and compatible with most simple CSV readers.
 
-The \package{astropy.io.ascii} subpackage now includes a significantly faster
+The \astropyiosubpkg{ascii} subpackage now includes a significantly faster
 Cython/C engine for reading and writing ASCII files. This is available for most
 of the common formats. It also offers some additional features like parsing
 of different exponential notation styles, such as commonly produced
@@ -779,34 +841,46 @@ when dealing with compatible formats. Certain features of the full read
 / write interface are unavailable in the fast version, in which case the
 reader will by default fall back automatically to the pure-\python version.
 
-The \package{astropy.io.ascii} subpackage now provides the capability
+The \astropyiosubpkg{ascii} subpackage now provides the capability
 to read a table within an HTML file or web URL into an \astropypkg
-\texttt{Table} object. A \texttt{Table} object can now also
+\astropyTable object. A \astropyTable object can now also
 be written out as an HTML table.
 
 \subsubsection{FITS}
 
-The \package{astropy.io.fits} subpackage started as a direct port of the
+The \astropyiosubpkg{fits} subpackage started as a direct port of the
 PyFITS project \citep{PyFITS}. Therefore, it is pretty stable, with mostly bug
 fixes but also a few new features and performance improvements.  The API
 remains mostly compatible with PyFITS, which is now deprecated in favor of
 \astropypkg.
 
 Command-line scripts are now available for printing a summary of the HDUs in
-FITS file(s) (\texttt{fitsinfo}) and for printing the header information to
-the screen in a human-readable format (\texttt{fitsheader}).
+FITS file(s)
+(\href{http://docs.astropy.org/en/stable/io/fits/usage/scripts.html#module-astropy.io.fits.scripts.fitsinfo}{\texttt{fitsinfo}})
+and for printing the header information to the screen in a human-readable format
+(\href{http://docs.astropy.org/en/stable/io/fits/usage/scripts.html#module-astropy.io.fits.scripts.fitsheader}{\texttt{fitsheader}}).
 
 FITS files are now loaded \emph{lazily} by default, i.e., an object
 representing the list of HDUs is created but the data are not loaded into
 memory until requested.  This approach should provide substantial speed-ups
-when using the convenience functions (e.g., \texttt{getheader()} or
-\texttt{getdata()}) to get an HDU that is near the beginning in a file with
+when using the convenience functions (e.g., \href{http://docs.astropy.org/en/stable/io/fits/api/files.html#getheader}{\texttt{getheader()}} or
+\href{http://docs.astropy.org/en/stable/io/fits/api/files.html#getdata}{\texttt{getdata()}}) to get an HDU that is near the beginning in a file with
 many HDUs.
+
+\subsubsection{HDF5}
+
+The \package{astropy.io.misc.hdf5} subpackage provides support for binary
+read and write access to files in the \emph{Hierarchical Data Format}
+(HDF5), if the \package{h5py} package is installed. Astropy table I/O
+is offered transparently through \texttt{Table.read()} and
+\texttt{Table.write()}, analogously to the other auto-detected
+formats. The keyword \texttt{path='group/subgroup/dataset'} specifies
+the path to the data inside the file's hierarchical structure.
 
 \subsection{Modeling}
 \label{sec:modeling}
 
-The \package{astropy.modeling} subpackage provides a framework for representing
+The \astropysubpkg{modeling} subpackage provides a framework for representing
 analytical models and performing model evaluation and parameter fitting.
 The main motivation for this functionality was to create a framework that
 allows arbitrary combination of models to support the Generalized World
@@ -841,7 +915,7 @@ Another useful settable property of models is \texttt{Model.bounding\_box}. This
 
 \subsubsection{Model Sets}
 
-\package{astropy.modeling} provides an efficient way to set up the same type of model with many different sets of parameter values.
+\astropysubpkg{modeling} provides an efficient way to set up the same type of model with many different sets of parameter values.
 This creates a model set that can be efficiently evaluated. For example, in PSF (point spread function) photometry, all objects in an image will have a PSF of the same functional form, but with different positions and amplitudes.
 
 \subsubsection{Compound Models}
@@ -849,35 +923,38 @@ Models can be combined using arithmetic expressions. The result is also a model,
 
 \subsubsection{Fitting Models to Data}
 
-\package{astropy.modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide support for specifying parameter constraints. The fitters take a model and data as input and return a copy of the model with the optimized parameter values set. The goal is to make it easy to extend the fitting framework to create new fitters. The optimizers available in \astropypkg version 2.0 are Levenberg--Marquardt (\texttt{scipy.optimize.leastsq}), Simplex (\texttt{scipy.optimize.fmin}), SLSQP (\texttt{scipy.optimize.slsqp}), and LinearLSQFitter (\texttt{numpy.linalg.lstsq} which provides exact solutions for linear models).
+\astropysubpkg{modeling} provides several fitters which are wrappers around some of the \texttt{numpy} and \texttt{scipy.optimize} functions and provide support for specifying parameter constraints. The fitters take a model and data as input and return a copy of the model with the optimized parameter values set. The goal is to make it easy to extend the fitting framework to create new fitters. The optimizers available in \astropypkg version 2.0 are Levenberg--Marquardt (\texttt{scipy.optimize.leastsq}), Simplex (\texttt{scipy.optimize.fmin}), SLSQP (\texttt{scipy.optimize.slsqp}), and LinearLSQFitter (\texttt{numpy.linalg.lstsq} which provides exact solutions for linear models).
 
 Modeling also supports a plugin system for fitters, which allows using the
 \astropypkg models with external fitters. An example of this is
 \package{SABA}\footnote{\url{https://github.com/astropy/saba}}, which is a bridge between
 Sherpa \citep{sherpa},
-and \package{astropy.modeling}, to bring the Sherpa fitters into \astropypkg.
+and \astropysubpkg{modeling}, to bring the Sherpa fitters into \astropypkg.
 
 \subsubsection{Creating New Models}
 If arithmetic combinations of existing models is not sufficient, new model
-classes can be defined in different ways. The \package{astropy.modeling}
+classes can be defined in different ways. The \astropysubpkg{modeling}
 package provides tools to turn a simple function into a full-featured model,
 but it also allows extending the built-in model class with arbitrary code.
 
 \subsubsection{Unit Support}
 
-The \package{astropy.modeling} subpackage now supports the representation,
-evaluation, and fitting of models using \texttt{Quantity} objects, which attach
+The \astropysubpkg{modeling} subpackage now supports the representation,
+evaluation, and fitting of models using \astropyQuantity objects, which attach
 units to scalar values or arrays of values. In practice, this means that one
 can, for example, fit a model to data with units and get parameters that also
 have units out, or initialize a model with parameters with units and evaluate
 it using input values with different but equivalent units. For example, the
-blackbody model (\texttt{BlackBody1D}) can be used to fit observed flux
-densities in a variety of units and as a function of different units of
-spectral coordinates (e.g., wavelength or frequency).
+blackbody model
+(\href{http://docs.astropy.org/en/stable/api/astropy.modeling.blackbody.BlackBody1D.html}{\texttt{BlackBody1D}})
+can be used to fit observed flux densities in a variety of units and as a
+function of different units of spectral coordinates (e.g., wavelength or
+frequency).
 
 \subsection{Convolution}
+\label{ssec:convolution}
 
-The \package{astropy.convolution} subpackage implements
+The \astropysubpkg{convolution} subpackage implements
 \textit{normalized convolution} \citep[e.g.,][]{Knutsson1993}, an image
 reconstruction technique in which missing data are ignored during the
 convolution and replaced with values interpolated using the kernel.
@@ -909,9 +986,9 @@ consistency checks.
 
 \subsection{Visualization}
 
-The \package{astropy.visualization} subpackage provides functionality that can
+The \astropysubpkg{visualization} subpackage provides functionality that can
 be helpful when visualizing data. This includes a framework (previously the
-standalone \package{wcsaxes} package) for plotting
+standalone \astropywcsaxes package) for plotting
 astronomical images with coordinates with \package{matplotlib}, functionality related to image
 normalization (including both scaling and stretching), smart histogram
 plotting, red-green-blue (RGB) color image creation from separate images,
@@ -921,7 +998,7 @@ and custom plotting styles for \package{matplotlib}.
 
 \label{sec:stretch}
 
-\package{astropy.visualization} provides a framework for transforming values in
+\astropysubpkg{visualization} provides a framework for transforming values in
 images (and more generally any arrays), typically for the purpose of
 visualization. Two main types of transformations are normalization and
 stretching of image values.
@@ -945,7 +1022,7 @@ the $[0,1]$ range.
 
 \package{matplotlib} allows a custom normalization and stretch to be used when
 displaying data by passing in a normalization object.
-The \package{astropy.visualization} package also provides a normalization class
+The \astropysubpkg{visualization} package also provides a normalization class
 that wraps the interval and stretches objects into a normalization object that
 \package{matplotlib} understands.
 
@@ -955,7 +1032,7 @@ Astronomers dealing with observational imaging commonly need to make figures
 with images that include the correct coordinates and optionally display a
 coordinate grid. The challenge, however, is that the conceptual coordinate axes
 (such as longitude/latitude) need not be lined up with the pixel axes of the
-image. The \package{astropy.visualization.wcsaxes} subpackage implements a
+image. The \astropywcsaxes subpackage implements a
 generalized way of making figures from an image array and a WCS object
 that provides the transformation between pixel and world coordinates.
 
@@ -975,11 +1052,11 @@ for example, Aitoff projections.
 
 This subpackage differs from \package{APLpy} \citep{aplpy}, in that the latter
 focuses on providing a very high-level interface to plotting that requires very
-few lines of code to get a good result, whereas \package{wcsaxes} defines an
+few lines of code to get a good result, whereas \astropywcsaxes defines an
 interface that is much closer to that of \package{matplotlib} \citep{matplotlib}.
 This enables significantly more advanced visualizations.
 
-An example of a visualization made with \package{wcsaxes} is shown in
+An example of a visualization made with \astropywcsaxes is shown in
 \figurename~\ref{fig:wcsaxes}. This example illustrates the ability to
 overlay multiple coordinate systems and customize which ticks/labels are shown
 on which axes around the image. This also uses the image stretching
@@ -989,7 +1066,7 @@ square-root stretch (automatically updating the tick positions in the colorbar).
 \begin{figure}
 \includegraphics[width=\textwidth]{cygnus_x_spitzer.pdf}
 \caption{%
-An example of figure made using the \package{astropy.visualization.wcsaxes}
+An example of figure made using the \astropywcsaxes
 subpackage, using \textit{Spitzer}/IRAC 8.0~$\mu$m data from the Cygnus-X
 \textit{Spitzer} Legacy survey \citep{cygnusx}.
 \label{fig:wcsaxes}
@@ -998,7 +1075,7 @@ subpackage, using \textit{Spitzer}/IRAC 8.0~$\mu$m data from the Cygnus-X
 
 \subsubsection{Choosing Histogram Bins}
 
-\package{astropy.visualization} also provides a histogram function, which is a
+\astropysubpkg{visualization} also provides a histogram function, which is a
 generalization of \texttt{matplotlib}’s histogram function, to allow for a more
 flexible specification of histogram bins.  The function provides several methods
 of automatically tuning the histogram bin size. It has a syntax identical to
@@ -1010,7 +1087,7 @@ automatic bin selection: ``blocks'', ``knuth'', ``scott'', or ``freedman''.
 
 \cite{Lupton2004} describe an ``optimal'' algorithm for producing
 RGB composite images from three separate high-dynamic range
-arrays. The \package{astropy.visualization} subpackage provides a convenience
+arrays. The \astropysubpkg{visualization} subpackage provides a convenience
 function to create such a color image.  It also includes an associated set of
 classes to provide alternate scalings.
 This functionality was contributed by developers from the Large Synoptic Survey
@@ -1022,15 +1099,16 @@ variation on this technique.  As an example, in \figurename~\ref{fig:ngc6977},
 we show an RGB color image of the Hickson 88 group, centered near
 NGC~6977.\footnote{\url{http://skyserver.sdss.org/dr13/en/tools/chart/navi.aspx?ra=313.12381&dec=-5.74611}}
 This image was generated from SDSS images using the
-\package{astropy.visualization} tools.
+\astropysubpkg{visualization} tools.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{ngc6977}
 \caption{An RGB color image of the region near the Hickson 88 group
-constructed from SDSS images and the \package{astropy.visualization}
+constructed from SDSS images and the \astropysubpkg{visualization}
 tools.
-This example uses \package{astropy.visualization.wcsaxes} to display the
-sky coordinate grid, and the \texttt{astropy.visualization.make\_lupton\_rgb()}
+This example uses \astropywcsaxes to display the
+sky coordinate grid, and the
+\href{http://docs.astropy.org/en/stable/api/astropy.visualization.make_lupton_rgb.html}{\texttt{make\_lupton\_rgb()}}
 function to produce the RGB image from three SDSS filter images ($g$, $r$, $i$).
 \label{fig:ngc6977}}
 \end{figure}
@@ -1038,19 +1116,19 @@ function to produce the RGB image from three SDSS filter images ($g$, $r$, $i$).
 
 \subsection{Cosmology}
 
-The \package{cosmology} subpackage contains classes for representing different
-cosmologies and functions for calculating commonly used quantities such as
-look-back time and distance.   The subpackage was described in detail in
+The \astropysubpkg{cosmology} subpackage contains classes for representing
+different cosmologies and functions for calculating commonly used quantities
+such as look-back time and distance.   The subpackage was described in detail in
 \cite{astropy}.  The default cosmology in \astropypkg version 2.0 is given by
 the values in \cite{2016A&A...594A..13P}.
 
 \subsection{Statistics}
 
-The \package{astropy.stats} package provides statistical tools that
+The \astropysubpkg{stats} package provides statistical tools that
 are useful for astronomy and are either not found in or extend
 the available functionality of other \python statistics packages, such
 as \package{scipy} \citep{scipy} or \package{statsmodels}
-\citep{seabold2010statsmodels}.  \package{astropy.stats} contains
+\citep{seabold2010statsmodels}.  \astropysubpkg{stats} contains
 a range of functionality used by many different disciplines
 in astronomy. It is not a complete set of statistical tools, but rather
 a still growing collection of useful features.
@@ -1060,7 +1138,7 @@ a still growing collection of useful features.
 
 Robust statistics provide reliable estimates of basic statistics for complex
 distributions that largely mitigate the effects of outliers.
-\package{astropy.stats} includes several robust statistical functions that are
+\astropysubpkg{stats} includes several robust statistical functions that are
 commonly used in astronomy, such as sigma clipping methods for rejecting
 outliers, median absolute deviation functions, and biweight estimators,
 which have been used to calculate the velocity dispersion of galaxy clusters
@@ -1071,17 +1149,17 @@ which have been used to calculate the velocity dispersion of galaxy clusters
 Astronomers often need to compute statistics of quantities evaluated on a
 circle, such as sky direction or polarization angle.
 A set of circular statistical estimators based on \citet{JammalamadakaSengupta}
-are implemented in \package{astropy.stats}.  These functions provide
+are implemented in \astropysubpkg{stats}.  These functions provide
 measurements of the circular mean, variance, and moment.   All of these
 functions work with both \texttt{numpy.ndarrays} (assumed to be in radians) and
-\texttt{Quantity} objects.  In addition, the subpackage includes
+\astropyQuantity objects.  In addition, the subpackage includes
 tests for Rayleigh Test, \texttt{vtest}, and a function to compute the maximum
 likelihood estimator for the parameters of the von Mises distribution.
 
 \subsubsection{Lomb-Scargle Periodograms}
 
 Periodic analysis of unevenly-spaced time series is common across many
-sub-fields of astronomy. The \package{astropy.stats} package now includes
+sub-fields of astronomy. The \astropysubpkg{stats} package now includes
 several efficient implementations of the Lomb-Scargle periodogram
 \citep{Lomb76, Scargle82} and several generalizations, including floating mean
 models \citep{Zechmeister09}, truncated Fourier models \citep{Bretthorst2003},
@@ -1096,7 +1174,7 @@ interpretation of periodogram results involves some subtleties; for a thorough
 discussion of this issue, see \citet[][in press]{VanderPlas2018}.
 
 \subsubsection{Bayesian Blocks and Histogram Binning}
-\package{astropy.stats} also includes an implementation of
+\astropysubpkg{stats} also includes an implementation of
 {\it Bayesian Blocks} \citep{Scargle2013}, an algorithm for analysis of
 break-points in non-periodic astronomical time-series. One interesting
 application of Bayesian Blocks is its use in determining optimal histogram
@@ -1139,7 +1217,7 @@ documentation builds for developers of affiliated packages or
 Any \python package can make use of this ready-to-go package layout, setup,
 installation, and \package{Sphinx} documentation build infrastructure that was
 originally developed for the \astropypkg core package and affiliated packages
-maintained by the \astropy project.
+maintained by the \astropy Project.
 The package template also provides a testing framework, template configurations
 for continuous integration services, and \package{Cython} build support.
 
@@ -1165,7 +1243,7 @@ all the packages in the \astropy ecosystem, is written using the
 that follow a markup language called \texttt{reStructuredText} (RST).
 These files are then transformed into HTML, PDF, or \LaTeX{} documents
 during the documentation build process.
-For the \astropy project, we have developed several \package{Sphinx} extensions
+For the \astropy Project, we have developed several \package{Sphinx} extensions
 that facilitate automatically generating API documentation for large projects,
 like the \astropypkg core package.
 The main extension we have developed is
@@ -1201,7 +1279,7 @@ evaluation, and performance monitoring.
 As a result, less new functionality may be introduced as a trade-off for
 better performance.
 
-Beyond the core code, the \astropy project is also further developing the
+Beyond the core code, the \astropy Project is also further developing the
 \astropy-managed affiliated packages.
 While these may not be integrated into the \astropypkg core package, these
 projects provide code that is useful to the astronomical community and meet the
@@ -1266,14 +1344,14 @@ As the \astropypkg core package becomes more mature, several subpackages have
 reached stability with a rich set of features that help astronomers worldwide to
 perform many daily tasks, such as planning observations, analyzing data or
 simulation results, and writing publications.
-The strong emphasis that the \astropy project puts on reliability and high coding
+The strong emphasis that the \astropy Project puts on reliability and high coding
 standards helps users to trust the calculations performed with \astropypkg and
 to publish reproducible results.
 At the same time, the \astropy ecosystem and core package are both growing: new
 functionality is still being contributed and new affiliated packages are being
 developed to support more specialized needs.
 
-The \astropy project is also spreading awareness of best practices in
+The \astropy Project is also spreading awareness of best practices in
 community-driven software development.
 This is important as most practicing astronomers were not explicitly taught
 computer science and software development, despite the fact that a substantial
@@ -1289,7 +1367,7 @@ to contributors, which helps to improve contributors' software development skill
 As a community, \astropy follows an explicit code of conduct \citep{ape8} and treats all
 contributors and users with respect, provides a harassment-free environment, and
 encourages and welcomes new contributions from all.
-Thus, while the \astropy project provides and develops software and tools
+Thus, while the \astropy Project provides and develops software and tools
 essential to modern astronomical research, it also helps to prepare the current
 and next generation of researchers with the knowledge to adequately use,
 develop, and contribute to those tools within a conscientious and welcoming
@@ -1301,7 +1379,7 @@ We would like to thank the members of the community that have
 contributed to \astropy,
 that have opened issues and provided feedback, and have supported the
 project in a number of different ways.  We would like to acknowledge
-Alex Conley and Neil Crighton for maintaining the  \package{cosmology}
+Alex Conley and Neil Crighton for maintaining the \astropysubpkg{cosmology}
 subpackage.
 
 The \astropy community is supported by and makes use
