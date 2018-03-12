@@ -1,7 +1,7 @@
 
 We thank the referee for the close reading of the paper and the insightful
 comments.  We provide a response to specific comments from the referee
-and ths statistical editor below.
+and the statistical editor below.
 
 > There are some stylistic issues with the text. I have left comments inline
 >  where appropriate.
@@ -111,6 +111,25 @@ the paper title to make room for future study and dialogue.
 > https://medium.com/the-node-js-collection/healthy-open-source-967fa8be7951 .
 > How does the Astropy community efforts compare to this?
 
+This question is at the intersection of two communities. On the one
+side, there is the open source community, which by itself consists of
+many different projects with vastly different norms and
+processes. Many terms, "open develoment" being one of them, are used
+with slightly different meanings in different parts of this
+community. The model of astropy - the development happens openly on
+github and anyone with an internet connection can comment on issues or
+propose a pull request, but only a select set of maintainers can merge
+them - is by no means special. Many open source communities work in a
+very similar way, although they may use different terminology to
+describe it. On the other hand, there is the astrophysics community,
+and while there are several open source and open development (in the
+way astropy uses the term) projects in astronomy, astropy is probably
+the biggest one. Many astronmers are not involved in any open
+development (also many make use of open source projects they are not
+involved in e.g. GNU/Linux), and the concept is new to many of
+them. This article caters mostly to the astrophysics community, so we
+decided to add a definition, but we refrain from a comparative
+discussion with other open source projects.
 
 > A number of times I found myself wondering how the Astropy projects decides
 > whether to build their own package or leverage something available in the
