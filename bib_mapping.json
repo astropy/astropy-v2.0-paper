@@ -1,6 +1,6 @@
 {"astroscrappy": "astroscrappy",
 "Astro-SCRAPPY": "astroscrappy",
- "astroplan": "astroplan_AAS",
+ "astroplan": "astroplan",
  "astroquery": "astroquery",
  "ccdproc": "ccdproc",
  "cluster-lensing": "clusterlensing",
@@ -11,7 +11,7 @@
  "Glue": "glue",
  "gwcs": "gwcs",
  "Halotools": "halotools",
- "imexam": "imexam", 
+ "imexam": "imexam",
  "marxs": "marxs",
  "naima": "naima",
  "photutils": "photutils",
@@ -19,5 +19,6 @@
  "python-cpl": "pythoncpl",
  "sncosmo": "sncosmo",
  "spectral-cube": "spectralcube",
- "pyspeckit": "pyspeckit"
+ "pyspeckit": "pyspeckit",
+ "poliastro": "poliastro"
 }

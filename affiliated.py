@@ -15,7 +15,7 @@ stable_dict = {False: 'No', True: 'Yes'}
 row = ('\\href{{{0}}}{{{1}}} & {2} & '
        '\\href{{https://pypi.python.org/pypi/{3}}}{{{3}}} & {4} & {5} \\\\\n')
 
-with open("registry.tex", "w") as f1, open("registry_prov.tex", "w") as f2:
+with open("registry.tex", "w") as f1:
     for item in package_list:
 
         citealt = ("\\citealt{{{0}}}".format(bib_map[item["name"]])
@@ -24,16 +24,10 @@ with open("registry.tex", "w") as f1, open("registry_prov.tex", "w") as f2:
 
         maintainer = re.sub(' [<(].*?[>)]', '', item["maintainer"])
 
-        if not item['provisional']:
-            f1.write(row.format(item["repo_url"], item["name"],
-                                stable_dict[item["stable"]], item['pypi_name'],
-                                maintainer,
-                                citealt
-                               ))
-        else:
-            f2.write(row.format(item["repo_url"],
-                                re.sub('_', '\_', item["name"]),
-                                stable_dict[item["stable"]], item['pypi_name'],
-                                maintainer,
-                                citealt
-                               ))
+        name = re.sub('_', '\_', item["name"])
+
+        f1.write(row.format(item["repo_url"], name,
+                            stable_dict[item["stable"]], item['pypi_name'],
+                            maintainer,
+                            citealt
+                        ))
