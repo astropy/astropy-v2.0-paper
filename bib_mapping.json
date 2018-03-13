@@ -20,5 +20,19 @@
  "sncosmo": "sncosmo",
  "spectral-cube": "spectralcube",
  "pyspeckit": "pyspeckit",
- "poliastro": "poliastro"
+ "poliastro": "poliastro",
+ "APLpy": "aplpy",
+ "stingray": "stingray",
+ "astroML": "astroML_conf, astroML_book",
+ "linetools": "linetools",
+ "hips": "hips",
+ "HENDRICS": "hendrics",
+ "PyVO": "pyvo",
+ "omnifit": "omnifit",
+ "pyregion": "pyregions",
+ "regions": "regions",
+ "reproject": "reproject",
+ "specutils": "specutils",
+ "spherical\\_geometry": "sphericalgeometry",
+ "synphot": "synphot"
 }
