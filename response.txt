@@ -149,13 +149,53 @@ discussion with other open source projects.
 > handle Quantities with units in tables) are any efforts being made by the
 > Astropy community to contribute these changes to packages such as Pandas?
 
-This is an important point, but turns out to be very difficult to generalize how these decisions are made (ironically!). From a *dependency* point of view, Astropy deeply intertwines with the existing Python scientific ecosystem. Where possible we always try to use other tools instead of building our own. Some major astropy functionality is essentially an astro-relevant "wrapper" around existing code. For example, modeling makes it easier to use fitting functions from scipy with models that are primarily of interest in astronomy. Other bits of functionality are really astro-specific or the work to make it more "general" is difficult.  The coordinates and nddata subpackages are good examples of this latter case - despite the general-sounding names, they are focused on the needs of the astronomy community.  The `nddata` case the referee mentions is particularly notable because the actual underlying machinery is built completely on `numpy`, but essentially provides a standard "metadata" language for N-dimensional data *in astronomy*.  That is, it has attributes like `wcs`, `flags`, etc, that have a particular meaning and shared "cultural" understanding in astronomy that is lost if it is made into a more "general" tool.
+This is an important point, but turns out to be very difficult to generalize
+how these decisions are made (ironically!). From a *dependency* point of view,
+Astropy deeply intertwines with the existing Python scientific ecosystem.
+Where possible we always try to use other tools instead of building our own.
+Some major astropy functionality is essentially an astro-relevant "wrapper"
+around existing code. For example, modeling makes it easier to use fitting
+functions from scipy with models that are primarily of interest in astronomy.
+Other bits of functionality are really astro-specific or the work to make it
+more "general" is difficult.  The coordinates and nddata subpackages are good
+examples of this latter case - despite the general-sounding names, they are
+focused on the needs of the astronomy community.  The `nddata` case the
+referee mentions is particularly notable because the actual underlying machinery
+is built completely on `numpy`, but essentially provides a standard "metadata"
+language for N-dimensional data *in astronomy*.  That is, it has attributes like
+`wcs`, `flags`, etc, that have a particular meaning and shared "cultural"
+understanding in astronomy that is lost if it is made into a more "general" tool.
 
-Other pieces were originally more astro-specific or had no equivalent when they were started and have grown more generalizable as time goes on - e.g. units and table. In general, it's considered "best effort" to generalize these things because the first priority is basic tools for astronomy. Such changes come with non-trivial added cost because that means it now needs a maintainer to do releases, review pull requests, maintain the docs, etc. Using the astropy community helps this, of course, but it is still more work than simply leaving these things in the core. So how much anything is generalized dependes heavily on the time/interest of an individual to do the porting. So for example some of the documentation and testing machinery is now (after v2.0) getting moved from astropy into more generally-useful independent packages.  Meanwhile, units/Quantity would require a much larger effort to disentangle from astropy and maintain independently - but no maintainer with enough time has thus far volunteered.
+Other pieces were originally more astro-specific or had no equivalent when they
+were started and have grown more generalizable as time goes on - e.g. units and
+table. In general, it's considered "best effort" to generalize these things
+because the first priority is basic tools for astronomy. Such changes come with
+non-trivial added cost because that means it now needs a maintainer to do releases,
+review pull requests, maintain the docs, etc. Using the astropy community helps
+this, of course, but it is still more work than simply leaving these things in
+the core. So how much anything is generalized dependes heavily on the time/interest
+of an individual to do the porting. So for example some of the documentation and
+testing machinery is now (after v2.0) getting moved from astropy into more
+generally-useful independent packages.  Meanwhile, units/Quantity would require a
+much larger effort to disentangle from astropy and maintain independently - but no
+maintainer with enough time has thus far volunteered.
 
 We have added a new section 2.7 outlining some of the above discussion.
 
-Additionally, as the referee points out, `astropy.table` represents a particularly unusual case for this.  It falls under the "historical" case in that it was started before Pandas.  By the time Pandas became a standard tool in the pydata stack, tables had already developed a fairly large user base in astronomy, so it was not an option to completely eliminate it and say "use Pandas".  It had also developed several features missing from Pandas but important for astronomy users (e.g., support for units, fully-fledged objects as columns, and support for the FITS table concept of "multidimensional columns").  The `astropy.table` investigated this possibility, but it was clear that some of the features would require major incompatible changes *in Pandas* to do this, and it was clear by then that the Pandas user base was too large to accept this.  This led to the current solution of `to_pandas` and `from_pandas`, which allows transformation back-and-forth for the use cases where this is supported. We have added a briefer summary of this discussion to the text in the tables subsection (3.5.2).
+Additionally, as the referee points out, `astropy.table` represents a particularly
+unusual case for this.  It falls under the "historical" case in that it was started
+before Pandas.  By the time Pandas became a standard tool in the pydata stack,
+tables had already developed a fairly large user base in astronomy, so it was not
+an option to completely eliminate it and say "use Pandas".  It had also developed
+several features missing from Pandas but important for astronomy users (e.g.,
+support for units, fully-fledged objects as columns, and support for the FITS
+table concept of "multidimensional columns").  The `astropy.table` investigated
+this possibility, but it was clear that some of the features would require major
+incompatible changes *in Pandas* to do this, and it was clear by then that the
+Pandas user base was too large to accept this.  This led to the current solution
+of `to_pandas` and `from_pandas`, which allows transformation back-and-forth for
+the use cases where this is supported. We have added a briefer summary of this
+discussion to the text in the tables subsection (3.5.2).
 
 
 ________________________
