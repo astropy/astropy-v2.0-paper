@@ -47,7 +47,7 @@ due to the following reasons:
   of being outdated much sooner than that.
 
 - Code examples belong in the documentation. In the documentation at
-  cods.astropy.org we provide extensive examples with enough comments
+  docs.astropy.org we provide extensive examples with enough comments
   to actually understand what is going on. If readers are curious, we
   want them to read the documentation.
 
