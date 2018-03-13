@@ -95,12 +95,12 @@ intended for a wide range of users.
 These packages therefore typically provide some level of documentation and user
 support or training.
 Other packages are developed by individual researchers or research groups,
-are then typically used by smaller groups for more domain-specific purposes, and 
-may have less extensive user support. 
+are then typically used by smaller groups for more domain-specific purposes, and
+may have less extensive user support.
 For both packages meant for wider distribution and for scripts specific to
 particular research projects, a library that addresses common astronomical tasks
 simplifies the software development process by encouraging the reuse of common
-functions.  
+functions.
 The users of such a library then also benefit from a community and ecosystem
 built around a shared foundation.
 The \astropy project has grown to become this community for \python astronomy
@@ -303,10 +303,10 @@ libraries) that make these packages more suitable to be separate from the
 Affiliated packages may also be used to develop substantial new functionality
 that will eventually be incorporated into the \astropypkg core package
 (e.g., \astropywcsaxes).
-New functionality benefits from having a rapid development and release cycle 
-that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).  
+New functionality benefits from having a rapid development and release cycle
+that is not tied to that of the \astropypkg core (\sectionname~\ref{sect:releasecycle}).
 These projects may also have less stringent requirements for style, testing, or
-development as compared to the core package. 
+development as compared to the core package.
 
 Affiliated packages are listed on the main \astropy website and advertised to
 the community through \astropy mailing lists; a list of current affiliated
@@ -340,7 +340,7 @@ The latest LTS release (version 2.0) is also the last one that supports \python
 The version numbering of the \astropypkg core package reflects this release
 scheme: the core package version number uses the form \texttt{x.y.z}, where ``x'' is
 advanced for LTS releases, ``y'' for non-LTS feature releases, and
-``z'' for bugfix releases.  This is similar to 
+``z'' for bugfix releases.  This is similar to
 Semantic Versioning\footnote{https://semver.org}.
 
 The released versions of the \astropypkg core package are available from several
@@ -370,7 +370,7 @@ for sustainability has not yet been established.
 The \astropy Project has the ability to accept financial contributions
 from institutions or individuals through the NumFOCUS\footnote{NumFOCUS
 is a 501(c)(3) nonprofit that supports and promotes world-class, innovative,
-open-source scientific computing.} organization. NumFOCUS has, 
+open-source scientific computing.} organization. NumFOCUS has,
 to date, covered the direct costs incurred by the \astropy Project.
 
 \subsection{Reuse of the scientific Python ecosystem}
@@ -395,11 +395,11 @@ over whether these algorithms were sufficient.  Other times, even apparently
 general functionality did not exist in the wider ecosystem that met the \astropy
 community's needs, and hence the functionality had to be developed wholly from
 the developer resources available in the community (e.g.,
-\package{astropy.units}, or \package{astropy.table} when it began). At the same 
+\package{astropy.units}, or \package{astropy.table} when it began). At the same
 time, however, the \astropy Project has provided the wider community with myriad bug
 fixes to the enabling technologies listed above, as well as the testing and
-documentation architecture. Functionality is only ``extracted'' from \astropy to 
-other packages after careful consideration that includes considering the impact 
+documentation architecture. Functionality is only ``extracted'' from \astropy to
+other packages after careful consideration that includes considering the impact
 on the maintenance and support of \astropy.
 
 
@@ -438,8 +438,8 @@ subpackages, have become a key concept for using the package as a whole.
 Units are intimately entwined in the definition of astronomical coordinates;
 thus, nearly all functionality in the \astropysubpkg{coordinates} subpackage
 (see \sectionname~\ref{sec:coordinates}) depends on them.
-Most \astropypkg subpackages have been made compatible with \texttt{Quantity} 
-objects, although they are not always required. 
+Most \astropypkg subpackages have been made compatible with \texttt{Quantity}
+objects, although they are not always required.
 
 The motivation and key concepts behind this subpackage were described in detail
 in the previous paper \citep{astropy}. Therefore, we primarily highlight new
@@ -597,7 +597,7 @@ In addition to representing celestial
     \texttt{astropy.time}.
     With this new functionality, many of the common tasks associated with
     observation planning can now be completed with \astropypkg or the
-    \astropy-affiliated package \package{astroplan}\citep{astroplan_AAS}.
+    \astropy-affiliated package \package{astroplan}\citep{astroplan}.
 
 \subsubsection{Proper motion and velocity transformations}
     In addition to positional coordinate data, the \texttt{Frame} classes now
@@ -801,8 +801,8 @@ however, limited to a subset of possible \texttt{Table} objects, because several
 of the features outlined above cannot be represented as \package{pandas} data
 frames. While these features might be contributed to or combined with
 \package{pandas} at a later date, the architectural differences that
-enable these areas are significant, so this would be a major undertaking that would 
-require substantial investment from the core maintainers and communities of both 
+enable these areas are significant, so this would be a major undertaking that would
+require substantial investment from the core maintainers and communities of both
 packages.
 
 \subsection{\package{io}}
@@ -1111,8 +1111,8 @@ tools.
 This example uses \astropywcsaxes to display the
 sky coordinate grid, and the
 \href{http://docs.astropy.org/en/stable/api/astropy.visualization.make_lupton_rgb.html}{\texttt{make\_lupton\_rgb()}}
-function to produce the RGB image from three SDSS filter images ($g$, $r$, $i$).  The image  on the left shows 
-the image with the default parameters, whereas the image on the right has paramets set to show a greater dynamical range. 
+function to produce the RGB image from three SDSS filter images ($g$, $r$, $i$).  The image  on the left shows
+the image with the default parameters, whereas the image on the right has paramets set to show a greater dynamical range.
 \label{fig:ngc6977}}
 \end{figure}
 
@@ -1234,7 +1234,7 @@ and installation process for various CI services through a
 set of environment variables.
 While the current development is mostly driven by the needs of the \astropy
 ecosystem, the actual usage of this package is extremely widespread\footnote{Approximately 30\%
-of the ci-helpers contributor are coming from outside the astropy community and 
+of the ci-helpers contributor are coming from outside the astropy community and
 there are currently 292 repositories on github that has ci-helpers in their travis configuration file.}. The current
 tools support configuration for Travis CI\footnote{\url{https://travis-ci.org/}} and
 Appveyor CI\footnote{\url{https://www.appveyor.com/}}.
@@ -1344,7 +1344,7 @@ comment on these efforts via the \astropy mailing list or \package{astropy/astro
 \label{sec:conclusion}
 
 The \astropypkg package is improving in stability, breadth, and reliability
-while the the \astropy project is still significantly growing. 
+while the the \astropy project is still significantly growing.
 As the \astropypkg core package becomes more mature, several subpackages have
 reached stability with a rich set of features that help astronomers worldwide to
 perform many daily tasks, such as planning observations, analyzing data or
@@ -1415,8 +1415,8 @@ ANT 1655 and ANT 1656. DH was supported through the SFB 881 ``The Milky Way Syst
 (DFG). WEK was supported by an ESO Fellowship. C.M. is supported by NSF grant AST-1313484. SP was supported by
 grant AYA2016-75808-R (FEDER) issued by the Spanish government. JEHT was supported by the Gemini Observatory, which
 is operated by the Association of Universities for Research in Astronomy, Inc., on behalf of the international
-Gemini partnership of Argentina, Brazil, Canada, Chile, and the United States of America.  YPB was supported by 
-the Korea Astronomy and Space Science Institute under the R\&D program supervised by the Ministry of Science, 
+Gemini partnership of Argentina, Brazil, Canada, Chile, and the United States of America.  YPB was supported by
+the Korea Astronomy and Space Science Institute under the R\&D program supervised by the Ministry of Science,
 ICT and Future Planning.
 
 
